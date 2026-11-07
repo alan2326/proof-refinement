@@ -31,7 +31,7 @@ uv run ProofRefinement/Lemma54/Evaluator.py --file ProofRefinement/Lemma54/Candi
 The oracles behind V28 read two chunk-certificate files that the evaluator
 recomputes against: `Cache/Backups/2026-05-03_production/v26_chunk_certifier_npe16.json`
 and `Cache/Backups/2026-05-03_subdivision/round3_v26_corner_split_v3.json`.
-Those files were not retained after the run; the `MANIFEST.sha256` next to each
+Those files were not retained after the run. The `MANIFEST.sha256` next to each
 README records their hashes. Without them the evaluator passes the parse,
 compile, and axiom-audit stages and fails the oracle stage, so check V28 with
 `--skip-oracle` or regenerate the certificates first. The scripts are in
@@ -52,7 +52,7 @@ The run parameters of the original computation are in
 `Cache/Backups/2026-05-03_production/README.md`.
 
 `ProofRefinement/Lemma54/Scratch/` holds the modules the truncation-free oracle
-imports and the certificate generators above; the rest of the original scratch
+imports and the certificate generators above. The rest of the original scratch
 directory was exploratory and is not included.
 
 ## Running the loop
@@ -65,5 +65,5 @@ open in this directory:
 /run-next-sprint
 ```
 
-`scripts/harness_preflight.sh` is the halt check the skill runs first;
+`scripts/harness_preflight.sh` is the halt check the skill runs first, and
 `scripts/harness_reset.sh` returns the workspace to its V0 state.

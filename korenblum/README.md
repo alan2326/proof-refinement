@@ -35,7 +35,7 @@ drives one sprint.
 `ShinkaAblation/launch.sh` needs `ANTHROPIC_API_KEY` and a virtual environment
 with [ShinkaEvolve](https://github.com/SakanaAI/ShinkaEvolve) installed,
 passed as `SHINKA_VENV`. `build_task_prompt.py` reads the paper text from
-`ProofRefinement/Korenblum/Wang2025.txt`, which is not included; supply your own
+`ProofRefinement/Korenblum/Wang2025.txt`, which is not included. Supply your own
 text extraction of Wang, "A lower bound on the Korenblum's constant", Proc. AMS
 153 (2025), before running it. The recorded run is in
 `ShinkaAblation/evo.log` and `ShinkaAblation/results/`.

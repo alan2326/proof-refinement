@@ -3,13 +3,13 @@
 The small end-to-end example from the paper: bracket pi between the
 half-perimeter of the inscribed regular 2^(n+2)-gon plus lambda/4^n and plus
 kappa/4^n, for every n, and make kappa - lambda small. There is no numerical
-backend; every constant is proved in Lean.
+backend. Every constant is proved in Lean.
 
 | Path | Contents |
 | --- | --- |
 | `PolygonCore/` | `polygonLower` and its two basic facts |
 | `ProofRefinement/PolygonPi/Proof/` | the candidate contract and the trusted surface |
-| `ProofRefinement/PolygonPi/Candidates/` | V0 to V5 of the primary run (Claude Sonnet 5, five sprints); V5 certifies kappa = 128/375, lambda = 9/32, score 721/12000 |
+| `ProofRefinement/PolygonPi/Candidates/` | V0 to V5 of the primary run (Claude Sonnet 5, five sprints). V5 certifies kappa = 128/375, lambda = 9/32, score 721/12000 |
 | `ProofRefinement/PolygonPi/Evaluator.py` | the evaluator (standard library only) |
 | `results/` | frontier, summary, and telemetry of the primary run |
 | `environment/` | tool-version fingerprints of the machine the run used |

@@ -6,7 +6,7 @@ checkpoint of a main run and optimizes the same quantity for a matched budget.
 
 | Path | Contents |
 | --- | --- |
-| `docs/2026-07-27-ablation-design.md` | the design and execution record: Korenblum study (sections 1 to 10e), Grothendieck sprint-016 study (section 13); later sections describe variants that were not used |
+| `docs/2026-07-27-ablation-design.md` | the design and execution record: Korenblum study (sections 1 to 10e), Grothendieck sprint-016 study (section 13). Later sections describe variants that were not used |
 | `docs/2026-07-30-ablation-writeup.md`, `docs/2026-07-30-grothendieck-ablation-summary.md` | the write-ups the paper's numbers come from |
 | `harness/` | runners for the four configurations, workspace builders, and acceptance gates |
 | `analysis/` | the DNF classifiers and the matched-window cut, with their JSON outputs |
@@ -22,7 +22,7 @@ checkpoint of a main run and optimizes the same quantity for a matched budget.
 
 `runs/reference_budget*.json` hold the matched budgets, and
 `runs/groth16_envelope/` holds the no-Lean envelope and the success bar fixed
-before the Grothendieck runs. Model transcripts are not included; the
+before the Grothendieck runs. Model transcripts are not included, and the
 `static_context.md` files have the source-paper text removed.
 
 ## Harness

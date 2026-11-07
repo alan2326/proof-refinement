@@ -13,7 +13,7 @@ the final theorem.
 
 | Case study | Quantity | Start | Result | Final candidate |
 | --- | --- | --- | --- | --- |
-| Grothendieck constant | remainder constant C_r of Lemma 5.4 in Braverman et al. (2011); upper bound on K_G | C_r on the order of 10^15 (Krivine's bound minus 9.56e-33) | C_r = 2/7, giving K_G <= pi / (2 log(1+sqrt 2)) - 10^-17 | `grothendieck/ProofRefinement/Lemma54/Candidates/V28.lean` |
+| Grothendieck constant | remainder constant C_r of Lemma 5.4 in Braverman et al. (2011), which controls the upper bound on K_G | C_r on the order of 10^15 (Krivine's bound minus 9.56e-33) | C_r = 2/7, giving K_G <= pi / (2 log(1+sqrt 2)) - 10^-17 | `grothendieck/ProofRefinement/Lemma54/Candidates/V28.lean` |
 | Korenblum constant | certified radius c, a lower bound on K_K | 0.3554 (Wang 2025) | 0.356565 | `korenblum/ProofRefinement/Korenblum/Candidates/V68.lean` |
 | Polygon-pi warm-up | kappa - lambda in a two-sided bracket of pi | 1 | 721/12000 | `polygon_pi/ProofRefinement/PolygonPi/Candidates/V5.lean` |
 
@@ -43,7 +43,7 @@ The three workspaces (`ProofRefinement/Lemma54`, `ProofRefinement/Korenblum`,
 | --- | --- |
 | `lemma.toml` | the sink theorem, the score expression, the allowed seed axioms, and the registered numerical oracles |
 | `Proof/` | the trusted surface: the candidate contract and the reduction chain that connects a candidate to the published theorem |
-| `Candidates/V<n>.lean` | one file per accepted or rejected candidate; the score is the rational it declares |
+| `Candidates/V<n>.lean` | one file per accepted or rejected candidate. The score is the rational it declares |
 | `Numerical_Library/` | the oracle functions, computed with [Arb](https://arblib.org) through `python-flint` |
 | `Evaluator.py` | compiles the candidate, runs `#print axioms`, recomputes every oracle it uses, scores it, and appends to `Refinement_Log/log.jsonl` |
 | `Sprint_Contracts/`, `Refinement_Log/` | the planner's contract and the evaluator's verdict for every sprint |
@@ -60,8 +60,8 @@ The harness design is written up in
 ## Requirements
 
 - [elan](https://github.com/leanprover/elan). Each project's `lean-toolchain` selects Lean 4 v4.28.0.
-- Python 3.11 or newer and [uv](https://docs.astral.sh/uv/). The evaluators need `mpmath` and `python-flint` (declared in each project's `pyproject.toml`); the polygon-pi evaluator needs only the standard library.
-- Claude Code, if you want to run the agent loop rather than just check the artifacts.
+- Python 3.11 or newer and [uv](https://docs.astral.sh/uv/). The evaluators need `mpmath` and `python-flint`, declared in each project's `pyproject.toml`. The polygon-pi evaluator needs only the standard library.
+- Claude Code, if you want to run the agent loop and not only check the artifacts.
 
 Mathlib is large. In each project, run `lake exe cache get` once before `lake build`.
 
@@ -100,18 +100,18 @@ whose numerics are interval-certified end to end.
 
 `grothendieck/LeanProof/Rounding.lean` carries two `sorry`s in the rounding
 argument, as documented in `grothendieck/ProofGraph/README.md`. The Lemma 5.4
-chain that the candidates prove is sorry-free; the sink that assembles the full
+chain that the candidates prove is sorry-free. The sink that assembles the full
 Grothendieck inequality inherits those two.
 
 The Grothendieck oracles read chunk-certificate files that were not retained
 after the run, so the V28 evaluator's oracle stage cannot be rerun without
-regenerating them (a few hours on a large machine; the scripts and the
-original run parameters are included, see `grothendieck/README.md`). The
+regenerating them, which takes a few hours on a large machine. The scripts and
+the original run parameters are included (see `grothendieck/README.md`). The
 Korenblum and polygon-pi evaluators rerun end to end.
 
 The ablation harness rebuilds its starting workspaces from a commit of the
 private development repository. The scripts and the gates that check a rebuilt
-snapshot are included; the commit is not. The run records under
+snapshot are included. The commit is not. The run records under
 `ablations/runs/` are complete except for the model transcripts.
 
 ## What was left out
