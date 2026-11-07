@@ -20,7 +20,7 @@ backend; every constant is proved in Lean.
 ```bash
 lake exe cache get
 lake build
-lake env lean ProofRefinement/PolygonPi/Candidates/V5.lean
+lake build ProofRefinement.PolygonPi.Candidates.V5
 python3 ProofRefinement/PolygonPi/Evaluator.py --file ProofRefinement/PolygonPi/Candidates/V5.lean --no-log
 ```
 

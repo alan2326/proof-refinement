@@ -19,7 +19,7 @@ interval-arithmetic oracle.
 ```bash
 lake exe cache get
 lake build
-lake env lean ProofRefinement/Korenblum/Candidates/V68.lean
+lake build ProofRefinement.Korenblum.Candidates.V68
 scripts/run_eval.sh                                    # evaluator on V68
 scripts/run_eval.sh ProofRefinement/Korenblum/Candidates/V66.lean
 ```

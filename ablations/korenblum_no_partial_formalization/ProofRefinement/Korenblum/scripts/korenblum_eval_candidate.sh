@@ -7,7 +7,7 @@ if [[ $# -lt 1 ]]; then
 fi
 
 WORKSPACE_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-REPO_ROOT="$(git -C "$WORKSPACE_DIR" rev-parse --show-toplevel)"
+REPO_ROOT="$(cd "$WORKSPACE_DIR/../.." && pwd)"  # the Lean project root (where lakefile.toml lives)
 CANDIDATE="$1"
 shift
 

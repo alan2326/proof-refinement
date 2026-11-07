@@ -5,7 +5,7 @@
 set -euo pipefail
 
 WORKSPACE_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-REPO_ROOT="$(git -C "$WORKSPACE_DIR" rev-parse --show-toplevel)"
+REPO_ROOT="$(cd "$WORKSPACE_DIR/../.." && pwd)"  # the Lean project root (where lakefile.toml lives)
 cd "$REPO_ROOT"
 
 if [[ $# -gt 0 ]]; then

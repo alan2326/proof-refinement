@@ -72,11 +72,13 @@ From a project directory:
 ```bash
 lake exe cache get
 lake build                                   # the trusted surface and the formalized papers
-lake env lean ProofRefinement/<Workspace>/Candidates/V<n>.lean
+lake build ProofRefinement.<Workspace>.Candidates.V<n>   # the candidate, as a module
 uv run ProofRefinement/<Workspace>/Evaluator.py --file ProofRefinement/<Workspace>/Candidates/V<n>.lean --no-log
 ```
 
-The evaluator prints every stage it runs. Pass `--skip-oracle` to skip the
+The evaluator compiles the candidate itself, but its axiom audit imports the
+candidate as a module, so the module must have been built once. The evaluator
+prints every stage it runs. Pass `--skip-oracle` to skip the
 numerical recomputation, which is the slow step.
 
 ## Caveats
@@ -100,6 +102,12 @@ whose numerics are interval-certified end to end.
 argument, as documented in `grothendieck/ProofGraph/README.md`. The Lemma 5.4
 chain that the candidates prove is sorry-free; the sink that assembles the full
 Grothendieck inequality inherits those two.
+
+The Grothendieck oracles read chunk-certificate files that were not retained
+after the run, so the V28 evaluator's oracle stage cannot be rerun without
+regenerating them (a few hours on a large machine; the scripts and the
+original run parameters are included, see `grothendieck/README.md`). The
+Korenblum and polygon-pi evaluators rerun end to end.
 
 The ablation harness rebuilds its starting workspaces from a commit of the
 private development repository. The scripts and the gates that check a rebuilt
