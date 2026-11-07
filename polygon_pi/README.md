@@ -11,7 +11,7 @@ backend. Every constant is proved in Lean.
 | `ProofRefinement/PolygonPi/Proof/` | the candidate contract and the trusted surface |
 | `ProofRefinement/PolygonPi/Candidates/` | V0 to V5 of the primary run (Claude Sonnet 5, five sprints). V5 certifies kappa = 128/375, lambda = 9/32, score 721/12000 |
 | `ProofRefinement/PolygonPi/Evaluator.py` | the evaluator (standard library only) |
-| `results/` | frontier, summary, and telemetry of the primary run |
+| `results/` | frontier and summary of the primary run, with the scripts that produce them. Cost and wall-clock telemetry was recorded only for the comparison run |
 | `environment/` | tool-version fingerprints of the machine the run used |
 | `comparison_run_opus5/` | candidates, contracts, verdicts, and notes of the comparison run with Claude Opus 5 as planner and generator (score 9816533/10^9) |
 

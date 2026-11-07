@@ -64,7 +64,7 @@ estimate of any kind.
 ## Do not read
 
 `validation-private/` and `results/` are human-only. They are off-limits to every
-agent in the loop, denied in `.claude/settings.local.json`, and
+agent in the loop, denied in `.claude/settings.json`, and
 `validation-private/` is gitignored. Reading either invalidates the run — so if
 you find yourself curious about what is in them, that is the signal to stop, not
 to look.
