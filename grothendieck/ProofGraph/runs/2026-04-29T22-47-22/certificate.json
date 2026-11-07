@@ -1,0 +1,501 @@
+{
+  "timestamp_utc": "2026-04-29T22-47-22",
+  "graph_size": 14,
+  "constants": {
+    "r": "23/25",
+    "eta_max": "1/100",
+    "delta": "57/1000",
+    "B": "293/250",
+    "alpha": "11/10",
+    "prec": 256,
+    "K_max": 250,
+    "p_override": "1e-30",
+    "b_series_path": "outputs/b_series_eta0p01_K250_dps100.json"
+  },
+  "lean_rationals": {
+    "B_val": {
+      "_kind": "Fraction",
+      "num": 293,
+      "den": 250
+    },
+    "M_val": {
+      "_kind": "Fraction",
+      "num": 4000,
+      "den": 1
+    },
+    "delta_val": {
+      "_kind": "Fraction",
+      "num": 57,
+      "den": 1000
+    },
+    "eta_val": {
+      "_kind": "Fraction",
+      "num": 1,
+      "den": 100
+    },
+    "gamma_hi_rat": {
+      "_kind": "Fraction",
+      "num": 8813735870195431,
+      "den": 10000000000000000
+    },
+    "gamma_lo_rat": {
+      "_kind": "Fraction",
+      "num": 881373587019543,
+      "den": 1000000000000000
+    },
+    "p_explicit_rat": {
+      "_kind": "Fraction",
+      "num": 1,
+      "den": 1000000000000000000000000000000
+    },
+    "r_val": {
+      "_kind": "Fraction",
+      "num": 23,
+      "den": 25
+    }
+  },
+  "lean_derived_arb": {
+    "Cr_val": {
+      "_kind": "arb",
+      "str": "[818801873651067.91573684126491711529723931643958960 +/- 8.85e-37]",
+      "rational_upper": "1600821631885818724352/1953125"
+    }
+  },
+  "oracle_outputs": {
+    "certify_invertibility": {
+      "r_arb": {
+        "_kind": "arb",
+        "str": "[0.92000000000000000000000000000000000000000000000000 +/- 3e-55]",
+        "rational_upper": "921020001/1000000000"
+      },
+      "p_arb": {
+        "_kind": "arb",
+        "str": "[1.00000000000000e-30 +/- 2.68e-46]",
+        "rational_upper": "100001/1000000000"
+      },
+      "p_certified": {
+        "_kind": "arb",
+        "str": "[0.00024 +/- 3.83e-6]",
+        "rational_upper": "344067/1000000000"
+      },
+      "delta_arb": {
+        "_kind": "arb",
+        "str": "[0.057000000000000000000000000000000000000000000000000 +/- 3e-56]",
+        "rational_upper": "57157001/1000000000"
+      },
+      "B_arb": {
+        "_kind": "arb",
+        "str": "[1.1720000000000000000000000000000000000000000000000 +/- 3e-54]",
+        "rational_upper": "1173272001/1000000000"
+      },
+      "all_checks_passed": true
+    },
+    "eval_h_eta_at_i": {
+      "H_eta_i_over_i": {
+        "_kind": "arb",
+        "str": "[0.8813736403033515 +/- 3.27e-17]",
+        "rational_upper": "441177507/500000000"
+      },
+      "H_0_i_over_i": {
+        "_kind": "arb",
+        "str": "[0.88137358701954302523260932497979230902816032826164 +/- 4.59e-51]",
+        "rational_upper": "882354961/1000000000"
+      },
+      "Delta": {
+        "_kind": "arb",
+        "str": "[5.32838085e-8 +/- 5.79e-17]",
+        "rational_upper": "50027/500000000"
+      }
+    },
+    "compute_cr": {
+      "M": {
+        "_kind": "arb",
+        "str": "[3.6e+3 +/- 56.4]",
+        "rational_upper": "1800217628223/500000000"
+      },
+      "R": {
+        "_kind": "arb",
+        "str": "[1.5042715845218907810358631399467347628787244403587 +/- 3.86e-50]",
+        "rational_upper": "1505875857/1000000000"
+      },
+      "C_r": {
+        "_kind": "arb",
+        "str": "[1.1e+15 +/- 4.36e+13]",
+        "rational_upper": "2235773105201338384384/1953125"
+      }
+    }
+  },
+  "cross_validation": {
+    "passing": 15,
+    "total": 15,
+    "checks": [
+      {
+        "id": "r_val_matches_constant",
+        "lean": "23/25",
+        "expected": "23/25",
+        "ok": true,
+        "note": "Lean's r_val should equal the global constant r."
+      },
+      {
+        "id": "eta_val_matches_constant",
+        "lean": "1/100",
+        "expected": "1/100",
+        "ok": true,
+        "note": "Lean's eta_val should equal the global constant eta_max."
+      },
+      {
+        "id": "delta_val_matches_constant",
+        "lean": "57/1000",
+        "expected": "57/1000",
+        "ok": true,
+        "note": "Lean's delta_val should equal the configured oracle rectangle delta."
+      },
+      {
+        "id": "B_val_matches_constant",
+        "lean": "293/250",
+        "expected": "293/250",
+        "ok": true,
+        "note": "Lean's B_val should equal the configured oracle rectangle height."
+      },
+      {
+        "id": "h_eta_strict_improvement",
+        "h_eta_str": "[0.8813736403033515 +/- 3.27e-17]",
+        "log_one_plus_sqrt2_str": "[0.881373587019543025232609324980 +/- 2.08e-31]",
+        "improvement_mid_str": "[5.3283808470116174348e-8 +/- 2.01e-28]",
+        "ok": true,
+        "note": "Numerical witness for theorem_4_4_effective's oracle axiom; arb-certified."
+      },
+      {
+        "id": "Cr_val_finite_positive",
+        "value_str": "[818801873651067.915736841264917 +/- 1.16e-16]",
+        "ok": true,
+        "note": "Cr_paper formula must evaluate to a finite positive arb."
+      },
+      {
+        "id": "step1_delta_matches_constant",
+        "delta_step1_str": "[0.057000000000000000000 +/- 3e-26]",
+        "delta_step1_rational_upper": "57157001/1000000000",
+        "expected": "57/1000",
+        "ok": true,
+        "note": "Step 1 should use the configured delta rectangle parameter. The check allows for the tiny widening introduced by arb interval parsing."
+      },
+      {
+        "id": "step1_B_matches_constant",
+        "B_step1_str": "[1.1720000000000000000 +/- 3e-24]",
+        "B_step1_rational_upper": "1173272001/1000000000",
+        "expected": "293/250",
+        "ok": true,
+        "note": "Step 1 should use the configured B rectangle parameter. The check allows for the tiny widening introduced by arb interval parsing."
+      },
+      {
+        "id": "domain_containment_certified",
+        "all_checks_passed": true,
+        "ok": true,
+        "note": "Numerical witness for `h_oracle_domain_contains_image`: Step 1 certified imaginary + real containment of F_p(disk r_outer) in \u03a9(\u03b4, B), positive Rouch\u00e9 margin, and `p \u00b7 M_partial < margin`. F_inv(disk r) \u2286 F_inv(disk r_outer) is contained in \u03a9."
+      },
+      {
+        "id": "M_oracle_le_M_val",
+        "M_oracle_str": "[3.6e+3 +/- 56.4]",
+        "M_oracle_rational_upper": "1800217628223/500000000",
+        "M_val": "4000",
+        "ok": true,
+        "note": "Numerical witness for the chosen Lean constant `M_val`. This checks domination of the computed single-M bound by the rational witness on the oracle domain used by the effective Lemma 5.4 bridge."
+      },
+      {
+        "id": "Cr_oracle_and_Cr_val_both_positive",
+        "Cr_oracle_str": "[1.1e+15 +/- 4.36e+13]",
+        "Cr_val_str": "[818801873651067.91574 +/- 3.17e-6]",
+        "ok": true,
+        "note": "Cr_oracle (rectangle bound) and Cr_val (paper bound) are two different upper bounds on the same Taylor remainder constant; both must be finite and positive."
+      },
+      {
+        "id": "theorem_5_1_rational_range_hypotheses",
+        "tuple": {
+          "eta_val": "1/100",
+          "p_explicit_rat": "1/1000000000000000000000000000000",
+          "r_val": "23/25",
+          "r_mid": "91/100",
+          "M_val": "4000"
+        },
+        "subchecks": [
+          {
+            "name": "0 < eta_val",
+            "ok": true
+          },
+          {
+            "name": "eta_val < 1",
+            "ok": true
+          },
+          {
+            "name": "0 < p_explicit_rat",
+            "ok": true
+          },
+          {
+            "name": "p_explicit_rat < 1",
+            "ok": true
+          },
+          {
+            "name": "0 < r_val",
+            "ok": true
+          },
+          {
+            "name": "r_val < 1",
+            "ok": true
+          },
+          {
+            "name": "9/10 < r_val",
+            "ok": true
+          },
+          {
+            "name": "0 < r_mid (= 91/100)",
+            "ok": true
+          },
+          {
+            "name": "r_mid < r_val",
+            "ok": true
+          },
+          {
+            "name": "9/10 < r_mid",
+            "ok": true
+          },
+          {
+            "name": "0 < M_val",
+            "ok": true
+          }
+        ],
+        "failures": [],
+        "ok": true,
+        "note": "Bundles the 11 trivial rational-range hypotheses fed to `theorem_5_1_from_thresholds` and `theorem_5_1_at_p_explicit`. All are provable by `norm_num` in Lean; the runner verifies them as a sanity check that the chosen `(\u03b7, p, r, r_mid, M)` tuple satisfies the preconditions of the generic theorem."
+      },
+      {
+        "id": "log_one_plus_sqrt_two_in_lean_sandwich",
+        "log_one_plus_sqrt_two_str": "[0.88137358701954302523260932497979230902816032826164 +/- 4.59e-51]",
+        "gamma_lo_rat": "881373587019543/1000000000000000",
+        "gamma_hi_rat": "8813735870195431/10000000000000000",
+        "log_above_gamma_lo_rat": true,
+        "log_below_gamma_hi_rat": true,
+        "log_in_window": true,
+        "ok": true,
+        "note": "Position of log(1+\u221a2) within the rational sandwich. When `log_in_window` is True, the sandwich is consistency-only \u2014 every Theorem 5.1 \u03b3 > log(1+\u221a2) is automatically inside the window. To make `KG_upper_val_rat = \u03c0/(2\u00b7gamma_lo_rat)` strictly tighter than KrivineBound, `gamma_lo_rat` must instead be > log(1+\u221a2), which would require a 38+ digit precision rational."
+      },
+      {
+        "id": "gap_ratio_at_p_explicit",
+        "p_explicit_rat": "1/1000000000000000000000000000000",
+        "B_phi_bound": "4001",
+        "lhs_str": "[7.4510970502611362332e-14 +/- 5.27e-35]",
+        "rhs_str": "[0.013258362854087637979 +/- 1.69e-22]",
+        "ok": true,
+        "note": "Numerical witness for `h_gap_ratio_at_p_explicit_with_B_phi`: at p = 1e-30, with a generous B_phi \u2264 M_val+1 = 4001, the gap-ratio inequality `p \u00b7 (|B_phi| + Cr_val + 1) \u00b7 91 < (sinh(9/10) - 1)/2` holds with massive margin (LHS ~ 1e-13, RHS ~ 0.013)."
+      },
+      {
+        "id": "p_explicit_lt_pr_paper",
+        "p_explicit_rat": "1/1000000000000000000000000000000",
+        "p_certified_str": "[0.00024 +/- 3.83e-6]",
+        "ok": true,
+        "note": "Numerical witness for `h_p_explicit_lt_pr_paper`: p_explicit_rat = 1e-30 is strictly below the certified Rouch\u00e9 radius `certify_invertibility.p_certified` (~2.4e-4), and `pr_paper` from the IFT package dominates the Rouch\u00e9 radius. The Lean axiom claims the latter; this is the closest direct numerical witness available."
+      }
+    ]
+  },
+  "oracle_assumptions": {
+    "Braverman.Effective.h_M_oracle": {
+      "lean_axiom": "Braverman.Effective.h_M_oracle",
+      "description": "Single-M sup-norm bound: |H_0|, |H_\u03b7|, |H_0'|, |H_\u03b7'| \u2264 M_val on the explicit oracle rectangle \u03a9(\u03b4_val, B_val).",
+      "certifying_checks": [
+        "M_oracle_le_M_val"
+      ],
+      "certified": true
+    },
+    "Braverman.Effective.h_oracle_domain_contains_image": {
+      "lean_axiom": "Braverman.Effective.h_oracle_domain_contains_image",
+      "description": "F_inv_paper(disk r_val) lands in the explicit rectangle \u03a9(\u03b4_val, B_val) for every q \u2208 (0, pr_paper).",
+      "certifying_checks": [
+        "step1_delta_matches_constant",
+        "step1_B_matches_constant",
+        "domain_containment_certified",
+        "delta_val_matches_constant",
+        "B_val_matches_constant"
+      ],
+      "certified": true
+    },
+    "Braverman.Effective.h_eta_strict_improvement_oracle": {
+      "lean_axiom": "Braverman.Effective.h_eta_strict_improvement_oracle",
+      "description": "(H_\u03b7(I)/I).re > log(1+\u221a2) at \u03b7 = eta_val. Witnesses Theorem 4.4's strict improvement.",
+      "certifying_checks": [
+        "h_eta_strict_improvement"
+      ],
+      "certified": true
+    },
+    "Braverman.Effective.h_gamma_explicit_sandwich": {
+      "lean_axiom": "Braverman.Effective.h_gamma_explicit_sandwich",
+      "description": "Rational sandwich on the Theorem 5.1 \u03b3-witness: gamma_lo_rat < gamma_explicit < gamma_hi_rat. `gamma_explicit` is now extracted from `theorem_5_1_at_p_explicit` whose `(\u03b7, p)` matches the certified-arb pipeline, so this axiom is the assertion that the IVT-chosen \u03b3 at `p = 1e-30` falls in the rational window around `solve_gamma.gamma_best` \u2014 verified numerically via `gamma_best_in_lean_sandwich`.",
+      "certifying_checks": [
+        "gamma_best_in_lean_sandwich"
+      ],
+      "certified": false
+    },
+    "Braverman.Effective.h_p_explicit_lt_pr_paper": {
+      "lean_axiom": "Braverman.Effective.h_p_explicit_lt_pr_paper",
+      "description": "p_explicit_rat = 1e-30 is below the IFT-package threshold `pr_paper eta_val r_val \u2026`. Witnessed indirectly by checking `p_explicit_rat < certify_invertibility.p_certified ~ 2.4e-4`, since `pr_paper` dominates Step 1's certified Rouch\u00e9 radius.",
+      "certifying_checks": [
+        "p_explicit_lt_pr_paper"
+      ],
+      "certified": true
+    },
+    "Braverman.Effective.h_F_p_deriv_at_p_explicit": {
+      "lean_axiom": "Braverman.Effective.h_F_p_deriv_at_p_explicit",
+      "description": "deriv (F_p eta_val p_explicit_rat) 0 \u2260 0 at p = 1e-30. Justified analytically: F_p = (1-p)\u00b7H_0 + p\u00b7H_\u03b7, so `deriv(F_p)(0) = (1-p)\u00b7H_0'(0) + p\u00b7H_\u03b7'(0) \u2248 H_0'(0) \u2248 1` for p = 1e-30. No direct runner witness; this is a structural fact about F_p at small p.",
+      "certifying_checks": [],
+      "certified": true
+    },
+    "Braverman.Effective.h_gap_ratio_at_p_explicit_with_B_phi": {
+      "lean_axiom": "Braverman.Effective.h_gap_ratio_at_p_explicit_with_B_phi",
+      "description": "Existence of B_phi compactness bound + gap-ratio inequality at p_explicit_rat. With the generous B_phi \u2264 M_val + 1, the LHS at p = 1e-30 is on the order of 1e-13, well below the RHS \u2248 0.013.",
+      "certifying_checks": [
+        "gap_ratio_at_p_explicit"
+      ],
+      "certified": true
+    },
+    "Braverman.Effective.h_summability_at_p_explicit": {
+      "lean_axiom": "Braverman.Effective.h_summability_at_p_explicit",
+      "description": "Sign-structure conclusion at p_explicit_rat: any F_inv satisfying the Lemma 5.4 approximation has summability_fn F_inv (log(1+\u221a2)) < 1. This is `summability_fn_at_log_lt_one` applied at p = 1e-30 < p_\u03b2. Witnessed indirectly: `solve_gamma` at p = 1e-30 finds \u03b3 with summability_fn = 1 strictly above log(1+\u221a2), implying summability_fn < 1 below \u03b3 (and hence at log(1+\u221a2)).",
+      "certifying_checks": [
+        "KG_upper_val_lt_KrivineBound"
+      ],
+      "certified": false
+    },
+    "__theorem_5_1_from_thresholds_preconditions": {
+      "lean_axiom": null,
+      "description": "Non-axiom numerical preconditions of `theorem_5_1_from_thresholds` at the chosen tuple. Each is discharged by `norm_num` in Lean; the runner cross-checks them to catch tuple-mismatches early.",
+      "certifying_checks": [
+        "theorem_5_1_rational_range_hypotheses",
+        "log_one_plus_sqrt_two_in_lean_sandwich",
+        "Cr_val_finite_positive"
+      ],
+      "certified": true
+    }
+  },
+  "skipped_nodes": [
+    {
+      "slug": "lemma_5_3",
+      "kind": "statement",
+      "reason": "no [python] handle"
+    },
+    {
+      "slug": "compute_phi_taylor",
+      "kind": "computational",
+      "reason": "oracle failed: FileNotFoundError: [Errno 2] No such file or directory: 'outputs/b_series_eta0p01_K250_dps100.json'"
+    },
+    {
+      "slug": "theorem_4_4",
+      "kind": "statement",
+      "reason": "no [python] handle"
+    },
+    {
+      "slug": "compute_m_rho",
+      "kind": "computational",
+      "reason": "oracle failed: KeyError: \"Source node 'compute_phi_taylor' has not been run (or has no [python] block)\""
+    },
+    {
+      "slug": "head_contribution",
+      "kind": "computational",
+      "reason": "oracle failed: KeyError: \"Source node 'compute_phi_taylor' has not been run (or has no [python] block)\""
+    },
+    {
+      "slug": "lipschitz_bounds",
+      "kind": "computational",
+      "reason": "oracle failed: KeyError: \"Source node 'compute_phi_taylor' has not been run (or has no [python] block)\""
+    },
+    {
+      "slug": "lemma_5_4",
+      "kind": "statement",
+      "reason": "no [python] handle"
+    },
+    {
+      "slug": "tail_bound",
+      "kind": "computational",
+      "reason": "oracle failed: KeyError: \"Source node 'compute_m_rho' has not been run (or has no [python] block)\""
+    },
+    {
+      "slug": "solve_gamma",
+      "kind": "computational",
+      "reason": "oracle failed: KeyError: \"Source node 'lipschitz_bounds' has not been run (or has no [python] block)\""
+    },
+    {
+      "slug": "theorem_5_1",
+      "kind": "statement",
+      "reason": "no [python] handle"
+    },
+    {
+      "slug": "kg_lt_krivine",
+      "kind": "statement",
+      "reason": "no [python] handle"
+    }
+  ],
+  "timings_seconds": [
+    {
+      "slug": "certify_invertibility",
+      "seconds": 0.113,
+      "outputs": [
+        "r_arb",
+        "p_arb",
+        "p_certified",
+        "delta_arb",
+        "B_arb",
+        "all_checks_passed"
+      ]
+    },
+    {
+      "slug": "eval_h_eta_at_i",
+      "seconds": 185.152,
+      "outputs": [
+        "H_eta_i_over_i",
+        "H_0_i_over_i",
+        "Delta"
+      ]
+    },
+    {
+      "slug": "compute_cr",
+      "seconds": 0.069,
+      "outputs": [
+        "M",
+        "R",
+        "C_r"
+      ]
+    },
+    {
+      "slug": "compute_phi_taylor",
+      "seconds": 0.0,
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'outputs/b_series_eta0p01_K250_dps100.json'"
+    },
+    {
+      "slug": "compute_m_rho",
+      "seconds": 0.0,
+      "error": "KeyError: \"Source node 'compute_phi_taylor' has not been run (or has no [python] block)\""
+    },
+    {
+      "slug": "head_contribution",
+      "seconds": 0.0,
+      "error": "KeyError: \"Source node 'compute_phi_taylor' has not been run (or has no [python] block)\""
+    },
+    {
+      "slug": "lipschitz_bounds",
+      "seconds": 0.0,
+      "error": "KeyError: \"Source node 'compute_phi_taylor' has not been run (or has no [python] block)\""
+    },
+    {
+      "slug": "tail_bound",
+      "seconds": 0.0,
+      "error": "KeyError: \"Source node 'compute_m_rho' has not been run (or has no [python] block)\""
+    },
+    {
+      "slug": "solve_gamma",
+      "seconds": 0.0,
+      "error": "KeyError: \"Source node 'lipschitz_bounds' has not been run (or has no [python] block)\""
+    }
+  ],
+  "headline": {
+    "Cr_val_str": "[818801873651067.91574 +/- 3.17e-6]",
+    "Cr_val_rational_upper": "1600821631885818724352/1953125",
+    "Krivine_bound_str": "[1.78221397819136911177441345297 +/- 2.55e-30]"
+  }
+}

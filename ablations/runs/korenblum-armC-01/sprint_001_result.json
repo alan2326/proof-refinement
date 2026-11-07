@@ -1,0 +1,77 @@
+{
+  "is_error": false,
+  "duration_api_ms": 1511391,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "4307c5a2-cfab-4486-b5f5-3b0dc965238d",
+  "total_cost_usd": 7.215934150000001,
+  "usage": {
+    "input_tokens": 17,
+    "cache_creation_input_tokens": 38944,
+    "cache_read_input_tokens": 243435,
+    "output_tokens": 2513,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 38944
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 505,
+        "cache_read_input_tokens": 35363,
+        "cache_creation_input_tokens": 411,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 411,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5": {
+      "inputTokens": 115,
+      "outputTokens": 121618,
+      "cacheReadInputTokens": 4046764,
+      "cacheCreationInputTokens": 258638,
+      "webSearchRequests": 0,
+      "costUSD": 6.680894500000002,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 30,
+      "outputTokens": 11190,
+      "cacheReadInputTokens": 544528,
+      "cacheCreationInputTokens": 54331,
+      "webSearchRequests": 0,
+      "costUSD": 0.53503965,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "**Sprint 001 \u2014 Radial reduction layer** completed end to end. Preflight passed (note: the script is at `ProofRefinement/Korenblum/scripts/korenblum_harness_preflight.sh`, not the top-level `scripts/` path the skill names \u2014 worth fixing in the skill). The planner found a true zero-state workspace and, rather than chasing a numeric push on an already-exhausted equation-(15) route, wrote a contract to build the missing scaffolding: reduce `ValidKorenblumBound c` to a 1-D inequality on circular means. The generator returned `STATUS=READY_FOR_EVALUATION`, having added an axiom-free `Proof/RadialReduction.lean` (~380 lines, polar change of variables via `Complex.integral_comp_polarCoord_symm`, seven theorems under the contract's exact names) plus `Candidates/V1.lean`, whose proof term round-trips `hKorenblum_prev` through both directions of the reduction. The evaluator returned **PASS** at **score 17823/50000** \u2014 deliberately equal to parent `V0`, since this sprint's deliverable is the reduction layer rather than a numeric gain, and the contract disclaimed strict improvement up front. Verdict note: `ProofRefinement/Korenblum/Refinement_Log/verdict_sprint_001_radial_reduction_layer.md`. Bulletin updated; sprint 002's named target is Wang's Lemma 2, where the real analytic slack lives.",
+  "ttft_ms": 1570,
+  "ttft_stream_ms": 1053,
+  "time_to_request_ms": 128,
+  "type": "result",
+  "duration_ms": 1763986,
+  "uuid": "208bb69b-4f1c-44c1-821c-f8cd6e85a8b9"
+}

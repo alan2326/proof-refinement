@@ -1,0 +1,37 @@
+{
+  "is_error": true,
+  "duration_api_ms": 0,
+  "num_turns": 1,
+  "stop_reason": "stop_sequence",
+  "session_id": "a0ed7992-603b-42e9-96ce-2dd89969aafc",
+  "total_cost_usd": 0,
+  "usage": {
+    "input_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "output_tokens": 0,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {},
+  "permission_denials": [],
+  "terminal_reason": "api_error",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subtype": "success",
+  "api_error_status": 400,
+  "result": "Credit balance is too low",
+  "type": "result",
+  "duration_ms": 435,
+  "uuid": "c7f8eb1c-70b4-427a-a07f-7baac03f4990"
+}

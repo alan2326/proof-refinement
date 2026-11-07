@@ -7,6 +7,7 @@ Lean 4 project for the lower bound on the Korenblum constant.
 | `KorenblumPaper/` | formalization of Section 2 of Wang (2025): the one-mode kernel, the finite-mode window, the paper's equation (15), and the side conditions |
 | `ProofRefinement/Korenblum/` | the refinement workspace: contract and reduction in `Proof/`, candidates V0 to V68, the Arb oracle library, the evaluator, and every sprint contract and verdict |
 | `ShinkaAblation/` | the ShinkaEvolve evolutionary baseline reported in the paper's appendix, with its results |
+| `earlier_search_V38/` | the earlier proof-search workspace whose candidate V38 certified c = 0.356401, the value the paper labels as an earlier iteration of this work |
 
 The final accepted candidate is `ProofRefinement/Korenblum/Candidates/V68.lean`
 (c = 71313/200000 = 0.356565, eleven windows). `V68_vs_Wang.md` in the

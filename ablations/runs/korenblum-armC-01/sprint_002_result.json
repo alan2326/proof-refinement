@@ -1,0 +1,77 @@
+{
+  "is_error": false,
+  "duration_api_ms": 2110252,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "7b9bd954-c0b4-42af-97f5-5792b8d21d06",
+  "total_cost_usd": 12.927685599999993,
+  "usage": {
+    "input_tokens": 21,
+    "cache_creation_input_tokens": 40406,
+    "cache_read_input_tokens": 303069,
+    "output_tokens": 3310,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 40406
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 696,
+        "cache_read_input_tokens": 35739,
+        "cache_creation_input_tokens": 672,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 672,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5": {
+      "inputTokens": 201,
+      "outputTokens": 175836,
+      "cacheReadInputTokens": 11084439,
+      "cacheCreationInputTokens": 376315,
+      "webSearchRequests": 0,
+      "costUSD": 12.291093249999996,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 28,
+      "outputTokens": 10068,
+      "cacheReadInputTokens": 708907,
+      "cacheCreationInputTokens": 72751,
+      "webSearchRequests": 0,
+      "costUSD": 0.63659235,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Sprint **002 \u2014 Parseval coefficient layer** completed end to end. Preflight exited 0 (script lives at `ProofRefinement/Korenblum/scripts/korenblum_harness_preflight.sh`, not the `scripts/` path the skill names). The planner wrote `Sprint_Contracts/sprint_002_parseval_coefficient_layer.md`, choosing the coefficient layer over the Wang (9)+(15) chain on the grounds that the seed bound 0.35646 already exceeds Wang's published 0.3554, so re-deriving (15) buys nothing. The generator returned `STATUS=READY_FOR_EVALUATION`, having shipped the core deliverable rather than the `MixedExcess` fallback: a new axiom-free `Proof/CoefficientLayer.lean` (~600 lines) containing Wang's Lemma 2 as `circMeanSq_hasSum`, the Bergman norm as a Taylor-coefficient series via `bergmanNormSq_eq_tsum` (endpoint closed through `lintegral`), and both directions of the `CoeffExcess` reformulation, plus `Candidates/V2.lean`. The evaluator returned **PASS** with **score 17823/50000** \u2014 equal to parent V1, which the contract explicitly permits for a support-module sprint \u2014 after confirming the build, absence of `sorry`, the axiom audit (`[propext, Classical.choice, Quot.sound]` for all five load-bearing theorems; V2 adds only `hKorenblum_prev`), and that no protected file was touched. Verdict at `ProofRefinement/Korenblum/Refinement_Log/verdict_sprint_002_parseval_coefficient_layer.md`; the bulletin event line is appended, naming Wang (2)\u2013(6) as the next target.\n\nOne thing worth your attention: two sprints have now passed at an unchanged score of 17823/50000. That is by design in both contracts and the gates don't require improvement, but it means the numeric bound has not moved yet \u2014 all progress so far is scaffolding toward it.",
+  "ttft_ms": 2530,
+  "ttft_stream_ms": 2009,
+  "time_to_request_ms": 104,
+  "type": "result",
+  "duration_ms": 2488385,
+  "uuid": "6ff39692-290f-4382-9070-2ce23f9450eb"
+}

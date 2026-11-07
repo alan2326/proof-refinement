@@ -1,0 +1,666 @@
+PROCEEDINGS OF THE
+AMERICAN MATHEMATICAL SOCIETY
+Volume 153, Number 3, March 2025, Pages 1209–1214
+https://doi.org/10.1090/proc/17112
+Article electronically published on January 8, 2025
+
+A LOWER BOUND ON KORENBLUM’S CONSTANT
+CHUNJIE WANG
+(Communicated by Javad Mashreghi)
+Abstract. Let A2 (D) be the Bergman space over the open unit disk D in the
+complex plane. In this paper we obtain a new lower bound on Korenblum’s
+constant c2 : c2 ≥ 0.3554.
+
+1. Introduction and main results
+Let D be the open unit disk in the complex plane C. For p > 0 the Bergman
+space Ap (D) consists of analytic functions f in D such that
+
+f Ap =
+
+D
+
+|f (z)|p dA(z)
+
+ p1
+< +∞,
+
+where dA(z) is the Lebesgue area measure. For p ≥ 1, Korenblum’s maximum
+principle (also refer to as the Bergman space maximum principle) states that there
+is an absolute constant c ∈ (0, 1) (may depend on p), such that whenever |f (z)| ≤
+|g(z)| (f, g ∈ Ap (D)) in the annulus c < |z| < 1, then f Ap ≤ gAp . For p ≥ 1,
+let cp be the largest value of c for which Korenblum’s maximum principle holds. c2
+is called Korenblum’s constant.
+First conjectured by Korenblum [5], the maximum principle was proved by Hayman [3] for p = 2 in 1999. Very soon, Hinkkanen [4] proved that the maximum
+principle holds for the Bergman space Ap (D) (p ≥ 1) with an absolute constant
+c = 0.15724. Recently Božin and Karapetrović [1] show the failure of the maximum
+principle for Ap (D) when 0 < p < 1. However, the sharp value of cp (p ≥ 1) even
+when p = 2 remains unknown.
+An example due to Martin (see [5]) shows c2 < √12 and, in fact, gives an upper
+bound on c2 (see [7]): c2 < 0.70450 · · · . Wang [9] proved that c2 < 0.67789 · · · . On
+the other hand, Hayman [3] gave the ﬁrst lower bound on c2 : c2 > 0.04. Hinkkanen
+[4] proved that c2 > 0.15724. Schuster [6] showed that c2 ≥ 0.21 in term of Möbius
+pseudodistance for the annulus. And Wang [10] proved that c2 ≥ 0.28185.
+In this paper we obtain a new lower bound on c2 : c2 ≥ 0.3554. Our main result
+is Theorem 1.
+Received by the editors May 23, 2024, and, in revised form, September 23, 2024.
+2020 Mathematics Subject Classiﬁcation. Primary 30H20.
+Key words and phrases. Bergman space, Korenblum’s maximum principle, Korenblum’s
+constant.
+The author was supported by the Natural Science Foundation of Hebei Province (Grant
+Number A2023202037) and the National Natural Science Foundation of China (Grant Number
+12171136).
+c
+2025
+American Mathematical Society
+
+1209
+
+Licensed to AMS.
+License or copyright restrictions may apply to redistribution; see https://www.ams.org/journal-terms-of-use
+
+1210
+
+CHUNJIE WANG
+
+Theorem 1. Let f and g be analytic functions in the unit disk D. Suppose that
+|f (z)| ≤ |g(z)| whenever c < |z| < 1, where c = 0.3554. Then f A2 ≤ gA2 .
+Lemma 2 is well known.
+Lemma 2 (see [2]). Suppose that f (z) =
+1
+2π
+
+∞
+
+
+ak z k is analytic in D. Then
+
+k=0
+
+ 2π
+|f (reiθ )|2 dθ =
+0
+
+∞
+
+
+|ak |2 r 2k ,
+
+0 ≤ r < 1.
+
+k=0
+
+2. Proof of Theorem 1
+Let c ∈ (0, 1) be a constant to be determined later. We write D(c) = {z ∈ C :
+|z| ≤ c} and A(c, 1) = {z ∈ C : c < |z| < 1}. To prove Theorem 1, it suﬃces to
+show that
+
+
+(1)
+(|f (z)|2 − |g(z)|2 )dA(z) ≤
+(|g(z)|2 − |f (z)|2 )dA(z).
+D(c)
+
+A(c,1)
+
+To obtain a better constant c, we follow [10]. We may assume that gA2 is
+ﬁnite, and so f A2 is also ﬁnite, for otherwise the result holds trivially. We may
+also assume that g is not identically equal to 0, and g has at least one zero in D(c),
+for otherwise the result holds trivially. Deﬁne ω(z) = f (z)/g(z) for c < |z| < 1, so
+that |ω| ≤ 1. We may assume that |ω(z)| < 1 in c < |z| < 1, since otherwise the
+result is trivial.
+Assume that 0 ≤ r ≤ c ≤ ρ < 1. Let
+f (z) =
+
+∞
+
+
+ak z k ,
+
+g(z) =
+
+k=0
+
+∞
+
+
+bk z k
+
+k=0
+
+be the power series expansion of f and g, respectively. Denote by N the set of all
+positive integers, and let
+N1 = {k ∈ N : |ak | ≥ |bk |} ∪ {0},
+N2 = {k ∈ N : |ak | < |bk |}.
+We consider three functions
+ 
+
+Σ+ (s) =
+|ak |2 − |bk |2 s2k ,
+
+0 ≤ s < 1,
+
+k∈N1
+
+Σ− (s) =
+
+ 
+
+|bk |2 − |ak |2 s2k ,
+
+0 ≤ s < 1,
+
+k∈N2
+
+Σ−
+0 (s) =
+
+ 
+
+|bk |2 − |ak |2 s2k−2 ,
+
+0 ≤ s < 1.
+
+k∈N2
+2
+Note that both Σ+ (s) and Σ−
+0 (s) are increasing and convex in s . For 0 ≤ r < c <
+ρ < 1, we have
+ρ2 − c 2 −
+c2 − r 2 −
+Σ0 (r) + 2
+Σ (ρ),
+Σ−
+0 (c) ≤ 2
+2
+ρ −r
+ρ − r2 0
+that is,
+
+(2)
+
+Σ−
+0 (r) ≥
+
+ρ2 − r 2 −
+c2 − r 2 −
+Σ
+(c)
+−
+Σ (ρ).
+ρ2 − c 2 0
+ρ2 − c 2 0
+
+Licensed to AMS.
+License or copyright restrictions may apply to redistribution; see https://www.ams.org/journal-terms-of-use
+
+A LOWER BOUND ON KORENBLUM’S CONSTANT
+
+1211
+
+Now we apply Lemma 2 to obtain
+ 2π
+ 2π
+1
+1
+iθ 2
+|f (re )| dθ −
+|g(reiθ )|2 dθ
+2π 0
+2π 0
+∞
+
+
+
+|ak |2 − |bk |2 r 2k
+=
+k=0
+
+=
+
+ 
+
+ 
+
+
+|ak |2 − |bk |2 r 2k −
+|bk |2 − |ak |2 r 2k
+
+k∈N1
++
+
+(3)
+
+=Σ
+
+k∈N2
+
+(r) − r Σ−
+0 (r).
+2
+
+Note that |f (z)| ≤ |g(z)| for z on |z| = c implies that Σ+ (c) ≤ Σ− (c). We have
+Σ+ (r) ≤ Σ+ (c) ≤ Σ− (c) = c2 Σ−
+0 (c).
+
+(4)
+
+It follows from (2), (3) and (4) that
+ 2π
+ 2π
+1
+1
+|f (reiθ )|2 dθ −
+|g(reiθ )|2 dθ
+2π 0
+2π 0
+2
+2
+2
+2
+2ρ − r
+2c −r
+Σ−
+Σ− (ρ).
+≤ c 2 Σ−
+0 (c) − r
+0 (c) + r
+2
+2
+2
+ρ −c
+ρ − c2 0
+Let us keep ρ ﬁxed and multiply both sides of this inequality by 2πr and then
+integrate with respect to r from 0 to c. We obtain
+
+(|f (z)|2 − |g(z)|2 )dA(z)
+D(c)
+
+3ρ2 c4 − 2c6 −
+c6
+Σ
+Σ− (ρ)
+(c)
++
+0
+6(ρ2 − c2 )
+6(ρ2 − c2 ) 0
+c6
+3ρ2 c4 − 4c6 −
+Σ
+Σ− (ρ).
+(c)
++
+=
+0
+6(ρ2 − c2 )
+6(ρ2 − c2 ) 0
+≤ c 4 Σ−
+0 (c) −
+
+If c < ρ <
+
+4
+3 c,
+
+
+(|f (z)|2 − |g(z)|2 )dA(z)
+D(c)
+
+≤
+(5)
+If
+
+=
+
+c6
+6(ρ2 − c2 )
+
+Σ−
+0 (ρ)
+
+c6
+6ρ2 (ρ2 − c2 )
+
+Σ− (ρ).
+
+−
+−
+4
+3 c < ρ < 1, since Σ0 (c) ≤ Σ0 (ρ),
+
+
+
+(|f (z)|2 − |g(z)|2 )dA(z)
+D(c)
+
+3ρ2 c4 − 4c6 −
+c6
+Σ
+Σ− (ρ)
+(ρ)
++
+6(ρ2 − c2 ) 0
+6(ρ2 − c2 ) 0
+c4
+= 2 Σ− (ρ).
+2ρ
+≤
+
+(6)
+
+Licensed to AMS.
+License or copyright restrictions may apply to redistribution; see https://www.ams.org/journal-terms-of-use
+
+1212
+
+CHUNJIE WANG
+
+Deﬁne
+ω0 = ω0 (ρ) = max{|ω(z)| : |z| = ρ}.
+Then 0 ≤ ω0 < 1. As in [8] we choose a = ω0α , where
+α=
+
+1 + 3K 2
+1 − K2
+
+and
+(7)
+
+K = 2ρ(1 + ρ−2 c)
+
+∞
+
+(1 + ρ2 c2n−1 )(1 + ρ−2 c2n+1 )(1 + c2n )2
+.
+(1 + ρ2 c2n−2 )(1 + ρ−2 c2n )(1 + c2n−1 )2
+n=1
+
+Then
+Σ− (ρ) =
+
+ 
+
+|bk |2 − |ak |2 ρ2k
+k∈N2
+
+=
+
+ |bk − aak |2 − |ak − abk |2
+1 − a2
+
+k∈N2
+
+≤
+
+ |bk − aak |2
+1 − a2
+
+k∈N2
+∞
+
+
+ρ2k
+
+ρ2k
+
+|bk − aak |2 2k
+ρ
+1 − a2
+k=0
+ 2π
+|g(ρeiθ ) − af (ρeiθ )|2
+1
+=
+dθ.
+2π 0
+1 − a2
+≤
+
+(8)
+
+Wang [10] proved that for |z| = ρ,
+ 2π
+
+(9)
+
+|g(ρeiθ ) − af (ρeiθ )|2
+dθ
+1 − a2
+0
+
+ 2π 
+|ω(ρeiθ ) − a|2
+=
+1+
+(|g(ρeiθ )|2 − |f (ρeiθ )|2 )dθ
+(1 − a2 )(1 − |ω(ρeiθ )|2 )
+0
+ 2π
+≤ (1 + γ2 (ρ))
+(|g(ρeiθ )|2 − |f (ρeiθ )|2 )dθ,
+0
+
+where
+γ2 (ρ) =
+
+1
+2
+
+1 + 3K 2
+−1 .
+1 − K2
+
+It follows from (5), (6), (8) and (9) that
+
+(10)
+
+
+6ρ2 (ρ2 − c2 )
+(|f (z)|2 − |g(z)|2 )dA(z)
+c6 (1 + γ2 (ρ)) D(c)
+ 2π
+1
+≤
+(|g(ρeiθ )|2 − |f (ρeiθ )|2 )dθ
+2π 0
+
+Licensed to AMS.
+License or copyright restrictions may apply to redistribution; see https://www.ams.org/journal-terms-of-use
+
+A LOWER BOUND ON KORENBLUM’S CONSTANT
+
+for c < ρ <
+
+1213
+
+4
+3 c, and
+
+
+2ρ2
+(|f (z)|2 − |g(z)|2 )dA(z)
+c4 (1 + γ2 (ρ)) D(c)
+ 2π
+1
+≤
+(|g(ρeiθ )|2 − |f (ρeiθ )|2 )dθ
+2π 0
+
+(11)
+
+4
+3 c < ρ < 1.
+
+for
+
+Multiplying both sides of (10) by 2πρ and integrating with respect to ρ from c
+4
+3 c yields
+
+to
+
+ √ 43 c
+c
+
+
+
+12ρ3 (ρ2 − c2 )
+dρ
+c6 (1 + γ2 (ρ))
+
+≤
+
+(12)
+
+(|f (z)|2 − |g(z)|2 )dA(z)
+D(c)
+
+√ 4 (|g(z)| − |f (z)| )dA(z).
+2
+
+c≤|z|<
+
+
+
+2
+
+3c
+
+Multiplying both sides of (11) by 2πρ and integrating with respect to ρ from
+to 1 yields
+
+4
+3c
+
+ 1
+
+
+4ρ3
+(|f (z)|2 − |g(z)|2 )dA(z)
+√ 4 c4 (1 + γ (ρ)) dρ
+2
+c
+D(c)
+3
+≤ √
+(|g(z)|2 − |f (z)|2 )dA(z).
+
+(13)
+
+4
+3 c≤|z|<1
+
+Combining (12) with (13), we obtain
+ √ 43 c
+c
+
+ 1
+
+12ρ3 (ρ2 − c2 )
+4ρ3
+dρ
++
+dρ
+(|f (z)|2 − |g(z)|2 )dA(z)
+√ 4 c4 (1 + γ (ρ))
+c6 (1 + γ2 (ρ))
+2
+D(c)
+3c
+
+(14)
+
+≤
+
+(|g(z)|2 − |f (z)|2 )dA(z).
+A(c,1)
+
+Thus if we can choose c so that
+ √ 43 c
+(15)
+c
+
+ 1
+12ρ3 (ρ2 − c2 )
+4ρ3
+dρ
++
+dρ ≥ 1,
+√
+6
+4
+4
+c (1 + γ2 (ρ))
+c (1 + γ2 (ρ))
+3c
+
+then inequality (1) is proved.
+Using Maple, we obtain that (15) holds with c = 0.3554. This completes the
+proof of Theorem 1.
+
+Licensed to AMS.
+License or copyright restrictions may apply to redistribution; see https://www.ams.org/journal-terms-of-use
+
+1214
+
+CHUNJIE WANG
+
+3. The case of Fock spaces
+The Fock space F consists of entire functions f such that
+
+ 12
+2 −|z|2
+f F =
+|f (z)| e
+dA(z)
+< +∞,
+C
+
+where dA(z) denote the Lebesgue area measure. It is well known that F is a Hilbert
+space with the following inner product:
+
+2
+f (z)g(z)e−|z| dA(z).
+f, g =
+C
+
+See [11] for the theory of Fock spaces.
+The version of Korenblum’s maximum principle in the Fock space setting was
+ﬁrst proved in [6]. Following Schuster [6] and using the same method as that in
+Theorem 1 here, we can prove that Theorem 2 in [6] holds with c = 0.8724. Namely,
+we have
+Theorem 3. Suppose that f (z) and g(z) are two entire functions satisfying |f (z)| ≤
+|g(z)| for |z| > c, where c = 0.8724. Then f F ≤ gF .
+References
+[1] Vladimir Božin and Boban Karapetrović, Failure of Korenblum’s maximum principle in
+Bergman spaces with small exponents, Proc. Amer. Math. Soc. 146 (2018), no. 6, 2577–2584,
+DOI 10.1090/proc/13946. MR3778159
+[2] Peter L. Duren, Theory of H p spaces, Pure and Applied Mathematics, Vol. 38, Academic
+Press, New York-London, 1970. MR268655
+[3] Walter Kurt Hayman, On a conjecture of Korenblum, Analysis (Munich) 19 (1999), no. 2,
+195–205, DOI 10.1524/anly.1999.19.2.195. MR1705360
+[4] A. Hinkkanen, On a maximum principle in Bergman space, J. Anal. Math. 79 (1999), 335–
+344, DOI 10.1007/BF02788246. MR1749317
+[5] Boris Korenblum, A maximum principle for the Bergman space, Publ. Mat. 35 (1991), no. 2,
+479–486, DOI 10.5565/PUBLMAT 35291 12. MR1201570
+[6] Alexander Schuster, The maximum principle for the Bergman space and the Möbius pseudodistance for the annulus, Proc. Amer. Math. Soc. 134 (2006), no. 12, 3525–3530, DOI
+10.1090/S0002-9939-06-08378-X. MR2240664
+[7] Chunjie Wang, Reﬁning the constant in a maximum principle for the Bergman space,
+Proc. Amer. Math. Soc. 132 (2004), no. 3, 853–855, DOI 10.1090/S0002-9939-03-07137-5.
+MR2019965
+[8] Chunjie Wang, On Korenblum’s maximum principle, Proc. Amer. Math. Soc. 134 (2006),
+no. 7, 2061–2066, DOI 10.1090/S0002-9939-06-08311-0. MR2215775
+[9] Chunjie Wang, Domination in the Bergman space and Korenblum’s constant, Integral
+Equations Operator Theory 61 (2008), no. 3, 423–432, DOI 10.1007/s00020-008-1587-4.
+MR2417506
+[10] Chunjie Wang, Some results on Korenblum’s maximum principle, J. Math. Anal. Appl. 373
+(2011), no. 2, 393–398, DOI 10.1016/j.jmaa.2010.07.052. MR2720689
+[11] Kehe Zhu, Analysis on Fock spaces, Graduate Texts in Mathematics, vol. 263, Springer, New
+York, 2012, DOI 10.1007/978-1-4419-8801-0. MR2934601
+Department of Mathematics, Hebei University of Technology, Tianjin 300401, People’s Republic of China
+Email address: wcj@hebut.edu.cn
+
+Licensed to AMS.
+License or copyright restrictions may apply to redistribution; see https://www.ams.org/journal-terms-of-use
+
+

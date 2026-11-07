@@ -1,0 +1,561 @@
+{
+  "timestamp_utc": "2026-04-29T23-15-30",
+  "graph_size": 14,
+  "constants": {
+    "r": "23/25",
+    "eta_max": "1/100",
+    "delta": "57/1000",
+    "B": "293/250",
+    "alpha": "11/10",
+    "prec": 256,
+    "K_max": 250,
+    "p_override": "1e-30",
+    "b_series_path": "grothendieck/proof/certified/b_series_eta0p01_K250_dps100.json"
+  },
+  "lean_rationals": {
+    "B_val": {
+      "_kind": "Fraction",
+      "num": 293,
+      "den": 250
+    },
+    "M_val": {
+      "_kind": "Fraction",
+      "num": 4000,
+      "den": 1
+    },
+    "delta_val": {
+      "_kind": "Fraction",
+      "num": 57,
+      "den": 1000
+    },
+    "eta_val": {
+      "_kind": "Fraction",
+      "num": 1,
+      "den": 100
+    },
+    "gamma_hi_rat": {
+      "_kind": "Fraction",
+      "num": 8813735870195431,
+      "den": 10000000000000000
+    },
+    "gamma_lo_rat": {
+      "_kind": "Fraction",
+      "num": 881373587019543,
+      "den": 1000000000000000
+    },
+    "p_explicit_rat": {
+      "_kind": "Fraction",
+      "num": 1,
+      "den": 1000000000000000000000000000000
+    },
+    "r_val": {
+      "_kind": "Fraction",
+      "num": 23,
+      "den": 25
+    }
+  },
+  "lean_derived_arb": {
+    "Cr_val": {
+      "_kind": "arb",
+      "str": "[818801873651067.91573684126491711529723931643958960 +/- 8.85e-37]",
+      "rational_upper": "1600821631885818724352/1953125"
+    }
+  },
+  "oracle_outputs": {
+    "certify_invertibility": {
+      "r_arb": {
+        "_kind": "arb",
+        "str": "[0.92000000000000000000000000000000000000000000000000 +/- 3e-55]",
+        "rational_upper": "921020001/1000000000"
+      },
+      "p_arb": {
+        "_kind": "arb",
+        "str": "[1.00000000000000e-30 +/- 2.68e-46]",
+        "rational_upper": "100001/1000000000"
+      },
+      "p_certified": {
+        "_kind": "arb",
+        "str": "[0.00024 +/- 3.83e-6]",
+        "rational_upper": "344067/1000000000"
+      },
+      "delta_arb": {
+        "_kind": "arb",
+        "str": "[0.057000000000000000000000000000000000000000000000000 +/- 3e-56]",
+        "rational_upper": "57157001/1000000000"
+      },
+      "B_arb": {
+        "_kind": "arb",
+        "str": "[1.1720000000000000000000000000000000000000000000000 +/- 3e-54]",
+        "rational_upper": "1173272001/1000000000"
+      },
+      "all_checks_passed": true
+    },
+    "eval_h_eta_at_i": {
+      "H_eta_i_over_i": {
+        "_kind": "arb",
+        "str": "[0.8813736403033515 +/- 3.27e-17]",
+        "rational_upper": "441177507/500000000"
+      },
+      "H_0_i_over_i": {
+        "_kind": "arb",
+        "str": "[0.88137358701954302523260932497979230902816032826164 +/- 4.59e-51]",
+        "rational_upper": "882354961/1000000000"
+      },
+      "Delta": {
+        "_kind": "arb",
+        "str": "[5.32838085e-8 +/- 5.79e-17]",
+        "rational_upper": "50027/500000000"
+      }
+    },
+    "compute_cr": {
+      "M": {
+        "_kind": "arb",
+        "str": "[3.6e+3 +/- 56.4]",
+        "rational_upper": "1800217628223/500000000"
+      },
+      "R": {
+        "_kind": "arb",
+        "str": "[1.5042715845218907810358631399467347628787244403587 +/- 3.86e-50]",
+        "rational_upper": "1505875857/1000000000"
+      },
+      "C_r": {
+        "_kind": "arb",
+        "str": "[1.1e+15 +/- 4.36e+13]",
+        "rational_upper": "2235773105201338384384/1953125"
+      }
+    },
+    "compute_phi_taylor": {
+      "h_eta_series": "([0.999219877694297 +/- 9.72e-17])*x + ([+/- 1.58e-90])*x^2 + ([0.165840988181993 +/- 2.00e-16])*x^3 + ([+/- 1.58e-90])*x^4 + ([0.0745090016755329 +/- 1.48e-18])*x^5 + ([+/- 1.58e-90])*x^6 + ([0.0442640800482906 +/- 5.75e-18])*x^7 + ([+/- 1.58e-90])*x^8 + ([0.0300663089355243 +/- 4.28e-17])*x^9 + ([+/- 1.58e-90])*x^10 + ([0.0220986997803030 +/- 7.42e-18])*x^11 + ([+/- 1.58e-90])*x^12 + ([0.0171100885333511 +/- 3.30e-17])*x^13 + ([+/- 1.58e-90])*x^14 + ([0.0137459089781887 +/- 4.35e-17])*x^15 + ([+/- 1.58e-90])*x^16 + ([0.0113518829081909 +/- 3.04e-17])*x^17 + ([+/- 1.58e-90])*x^18 + ([0.00957735266026575 +/- 4.16e-18])*x^19 + ([+/- 1.58e-90])*x^20 + ([0.00821925351568171 +/- 7.34e-19])*x^21 + ([+/- 1.58e-90])*x^22 + ([0.00715271442882315 +/- 1.54e-18])*x^23 + ([+/- 1.58e-90])*x^24 + ([0.00629717377303862 +/- 3.73e-18])*x^25 + ([+/- 1.58e-90])*x^26 + ([0.00559857529901700 +/- 2.09e-18])*x^27 + ([+/- 1.58e-90])*x^28 + ([0.00501944050734097 +/- 3.99e-18])*x^29 + ([+/- 1.58e-90])*x^30 + ([0.00453305402076963 +/- 4.62e-19])*x^31 + ([+/- 1.58e-90])*x^32 + ([0.00411991404417947 +/- 1.14e-18])*x^33 + ([+/- 1.58e-90])*x^34 + ([0.00376548758777102 +/- 3.90e-18])*x^35 + ([+/- 1.58e-90])*x^36 + ([0.00345874679294650 +/- 4.66e-18])*x^37 + ([+/- 1.58e-90])*x^38 + ([0.00319118875239563 +/- 9.41e-19])*x^39 + ([+/- 1.58e-90])*x^40 + ([0.00295616349268147 +/- 6.69e-19])*x^41 + ([+/- 1.58e-90])*x^42 + ([0.00274840351125184 +/- 1.42e-18])*x^43 + ([+/- 1.58e-90])*x^44 + ([0.00256368820827613 +/- 4.16e-18])*x^45 + ([+/- 1.58e-90])*x^46 + ([0.00239860048005048 +/- 2.96e-18])*x^47 + ([+/- 1.58e-90])*x^48 + ([0.00225034745887282 +/- 8.08e-19])*x^49 + ([+/- 1.58e-90])*x^50 + ([0.00211662665820422 +/- 1.81e-18])*x^51 + ([+/- 1.58e-90])*x^52 + ([0.00199552475375956 +/- 4.78e-18])*x^53 + ([+/- 1.58e-90])*x^54 + ([0.00188544015333986 +/- 4.17e-18])*x^55 + ([+/- 1.58e-90])*x^56 + ([0.00178502313107464 +/- 3.83e-18])*x^57 + ([+/- 1.58e-90])*x^58 + ([0.00169312908494405 +/- 2.11e-18])*x^59 + ([+/- 1.58e-90])*x^60 + ([0.00160878170737417 +/- 4.82e-18])*x^61 + ([+/- 1.58e-90])*x^62 + ([0.00153114372040874 +/- 3.03e-19])*x^63 + ([+/- 1.58e-90])*x^64 + ([0.00145949343809913 +/- 3.44e-18])*x^65 + ([+/- 1.58e-90])*x^66 + ([0.00139320585745400 +/- 3.42e-18])*x^67 + ([+/- 1.58e-90])*x^68 + ([0.00133173729777047 +/- 3.46e-19])*x^69 + ([+/- 1.58e-90])*x^70 + ([0.00127461284181713 +/- 4.05e-18])*x^71 + ([+/- 1.58e-90])*x^72 + ([0.00122141600544681 +/- 1.27e-18])*x^73 + ([+/- 1.58e-90])*x^74 + ([0.00117178019165952 +/- 1.94e-18])*x^75 + ([+/- 1.58e-90])*x^76 + ([0.00112538158277050 +/- 2.23e-18])*x^77 + ([+/- 1.58e-90])*x^78 + ([0.00108193319858548 +/- 6.84e-19])*x^79 + ([+/- 1.58e-90])*x^80 + ([0.00104117990538322 +/- 2.48e-18])*x^81 + ([+/- 1.58e-90])*x^82 + ([0.00100289420442769 +/- 4.35e-18])*x^83 + ([+/- 1.58e-90])*x^84 + ([0.000966872662871394 +/- 4.54e-19])*x^85 + ([+/- 1.58e-90])*x^86 + ([0.000932932876621256 +/- 9.70e-20])*x^87 + ([+/- 1.58e-90])*x^88 + ([0.000900910875765249 +/- 8.16e-21])*x^89 + ([+/- 1.58e-90])*x^90 + ([0.000870658899808651 +/- 2.74e-19])*x^91 + ([+/- 1.58e-90])*x^92 + ([0.000842043483228777 +/- 1.53e-19])*x^93 + ([+/- 1.58e-90])*x^94 + ([0.000814943802472780 +/- 3.21e-19])*x^95 + ([+/- 1.58e-90])*x^96 + ([0.000789250244065738 +/- 2.82e-19])*x^97 + ([+/- 1.58e-90])*x^98 + ([0.000764863160404012 +/- 4.01e-19])*x^99 + ([+/- 1.58e-90])*x^100 + ([0.000741691785420699 +/- 7.28e-20])*x^101 + ([+/- 1.58e-90])*x^102 + ([0.000719653286889433 +/- 2.10e-20])*x^103 + ([+/- 1.58e-90])*x^104 + ([0.000698671935885660 +/- 2.67e-19])*x^105 + ([+/- 1.58e-90])*x^106 + ([0.000678678377012678 +/- 4.80e-19])*x^107 + ([+/- 1.58e-90])*x^108 + ([0.000659608985550862 +/- 3.35e-19])*x^109 + ([+/- 1.58e-90])*x^110 + ([0.000641405299803975 +/- 3.98e-19])*x^111 + ([+/- 1.58e-90])*x^112 + ([0.000624013518677060 +/- 8.71e-20])*x^113 + ([+/- 1.58e-90])*x^114 + ([0.000607384055990717 +/- 4.42e-19])*x^115 + ([+/- 1.58e-90])*x^116 + ([0.000591471144268649 +/- 2.02e-19])*x^117 + ([+/- 1.58e-90])*x^118 + ([0.000576232481771127 +/- 3.41e-19])*x^119 + ([+/- 1.58e-90])*x^120 + ([0.000561628917420412 +/- 3.67e-19])*x^121 + ([+/- 1.58e-90])*x^122 + ([0.000547624169002988 +/- 1.10e-19])*x^123 + ([+/- 1.58e-90])*x^124 + ([0.000534184570660107 +/- 6.34e-20])*x^125 + ([+/- 1.58e-90])*x^126 + ([0.000521278846211257 +/- 6.48e-20])*x^127 + ([+/- 1.58e-90])*x^128 + ([0.000508877905309866 +/- 1.89e-19])*x^129 + ([+/- 1.58e-90])*x^130 + ([0.000496954659819422 +/- 3.67e-19])*x^131 + ([+/- 1.58e-90])*x^132 + ([0.000485483858131602 +/- 1.22e-19])*x^133 + ([+/- 1.58e-90])*x^134 + ([0.000474441935434546 +/- 7.28e-20])*x^135 + ([+/- 1.58e-90])*x^136 + ([0.000463806878186284 +/- 1.09e-19])*x^137 + ([+/- 1.58e-90])*x^138 + ([0.000453558101261507 +/- 1.81e-19])*x^139 + ([+/- 1.58e-90])*x^140 + ([0.000443676336424346 +/- 1.48e-19])*x^141 + ([+/- 1.58e-90])*x^142 + ([0.000434143530939850 +/- 2.75e-19])*x^143 + ([+/- 1.58e-90])*x^144 + ([0.000424942755275899 +/- 1.79e-21])*x^145 + ([+/- 1.58e-90])*x^146 + ([0.000416058118968424 +/- 4.42e-20])*x^147 + ([+/- 1.58e-90])*x^148 + ([0.000407474693828486 +/- 1.85e-19])*x^149 + ([+/- 1.58e-90])*x^150 + ([0.000399178443762169 +/- 3.20e-19])*x^151 + ([+/- 1.58e-90])*x^152 + ([0.000391156160555189 +/- 1.23e-19])*x^153 + ([+/- 1.58e-90])*x^154 + ([0.000383395405045151 +/- 1.45e-19])*x^155 + ([+/- 1.58e-90])*x^156 + ([0.000375884453166832 +/- 4.79e-19])*x^157 + ([+/- 1.58e-90])*x^158 + ([0.000368612246410844 +/- 4.58e-19])*x^159 + ([+/- 1.58e-90])*x^160 + ([0.000361568346284565 +/- 5.45e-20])*x^161 + ([+/- 1.58e-90])*x^162 + ([0.000354742892407032 +/- 6.34e-20])*x^163 + ([+/- 1.58e-90])*x^164 + ([0.000348126563907480 +/- 1.92e-19])*x^165 + ([+/- 1.58e-90])*x^166 + ([0.000341710543830765 +/- 1.76e-19])*x^167 + ([+/- 1.58e-90])*x^168 + ([0.000335486486282782 +/- 1.30e-19])*x^169 + ([+/- 1.58e-90])*x^170 + ([0.000329446486075502 +/- 2.64e-20])*x^171 + ([+/- 1.58e-90])*x^172 + ([0.000323583050654864 +/- 3.59e-19])*x^173 + ([+/- 1.58e-90])*x^174 + ([0.000317889074115815 +/- 8.57e-20])*x^175 + ([+/- 1.58e-90])*x^176 + ([0.000312357813127572 +/- 4.03e-19])*x^177 + ([+/- 1.58e-90])*x^178 + ([0.000306982864608995 +/- 4.14e-19])*x^179 + ([+/- 1.58e-90])*x^180 + ([0.000301758145008990 +/- 2.18e-19])*x^181 + ([+/- 1.58e-90])*x^182 + ([0.000296677871060315 +/- 3.47e-19])*x^183 + ([+/- 1.58e-90])*x^184 + ([0.000291736541887310 +/- 3.42e-19])*x^185 + ([+/- 1.58e-90])*x^186 + ([0.000286928922358861 +/- 2.50e-19])*x^187 + ([+/- 1.58e-90])*x^188 + ([0.000282250027587758 +/- 3.71e-19])*x^189 + ([+/- 1.58e-90])*x^190 + ([0.000277695108486341 +/- 3.87e-19])*x^191 + ([+/- 1.58e-90])*x^192 + ([0.000273259638296315 +/- 2.92e-19])*x^193 + ([+/- 1.58e-90])*x^194 + ([0.000268939300017734 +/- 2.50e-20])*x^195 + ([+/- 1.58e-90])*x^196 + ([0.000264729974668663 +/- 3.85e-19])*x^197 + ([+/- 1.58e-90])*x^198 + ([0.000260627730312855 +/- 2.60e-19])*x^199 + ([+/- 1.58e-90])*x^200 + ([0.000256628811798083 +/- 7.83e-20])*x^201 + ([+/- 1.58e-90])*x^202 + ([0.000252729631152586 +/- 1.35e-19])*x^203 + ([+/- 1.58e-90])*x^204 + ([0.000248926758591432 +/- 4.51e-19])*x^205 + ([+/- 1.58e-90])*x^206 + ([0.000245216914088568 +/- 4.79e-19])*x^207 + ([+/- 1.58e-90])*x^208 + ([0.000241596959473911 +/- 2.29e-19])*x^209 + ([+/- 1.58e-90])*x^210 + ([0.000238063891018150 +/- 2.58e-19])*x^211 + ([+/- 1.58e-90])*x^212 + ([0.000234614832470846 +/- 4.15e-19])*x^213 + ([+/- 1.58e-90])*x^214 + ([0.000231247028520200 +/- 1.01e-19])*x^215 + ([+/- 1.58e-90])*x^216 + ([0.000227957838645311 +/- 3.47e-19])*x^217 + ([+/- 1.58e-90])*x^218 + ([0.000224744731333995 +/- 5.34e-21])*x^219 + ([+/- 1.58e-90])*x^220 + ([0.000221605278641355 +/- 9.86e-20])*x^221 + ([+/- 1.58e-90])*x^222 + ([0.000218537151066133 +/- 2.55e-20])*x^223 + ([+/- 1.58e-90])*x^224 + ([0.000215538112723650 +/- 4.56e-19])*x^225 + ([+/- 1.58e-90])*x^226 + ([0.000212606016795706 +/- 4.65e-19])*x^227 + ([+/- 1.58e-90])*x^228 + ([0.000209738801239288 +/- 1.22e-19])*x^229 + ([+/- 1.58e-90])*x^230 + ([0.000206934484737238 +/- 4.40e-19])*x^231 + ([+/- 1.58e-90])*x^232 + ([0.000204191162875315 +/- 4.91e-19])*x^233 + ([+/- 1.58e-90])*x^234 + ([0.000201507004531156 +/- 1.23e-19])*x^235 + ([+/- 1.58e-90])*x^236 + ([0.000198880248461719 +/- 3.48e-19])*x^237 + ([+/- 1.58e-90])*x^238 + ([0.000196309200076740 +/- 4.04e-20])*x^239 + ([+/- 1.58e-90])*x^240 + ([0.000193792228386591 +/- 3.90e-19])*x^241 + ([+/- 1.58e-90])*x^242 + ([0.000191327763113783 +/- 4.71e-19])*x^243 + ([+/- 1.58e-90])*x^244 + ([0.000188914291958060 +/- 4.64e-19])*x^245 + ([+/- 1.58e-90])*x^246 + ([0.000186550358005757 +/- 1.47e-19])*x^247 + ([+/- 1.58e-90])*x^248 + ([0.000184234557274712 +/- 1.44e-19])*x^249 + ([+/- 1.58e-90])*x^250 + O(x^251)",
+      "phi": "([0.000780122305703097 +/- 1.44e-19])*x + ([+/- 1.58e-90])*x^2 + ([0.000305596947538468 +/- 2.25e-19])*x^3 + ([+/- 2.88e-90])*x^4 + ([-0.000230663852779688 +/- 1.64e-19])*x^5 + ([+/- 3.81e-90])*x^6 + ([4.44777408202304e-5 +/- 7.03e-21])*x^7 + ([+/- 4.90e-90])*x^8 + ([-7.48908908946547e-6 +/- 3.80e-21])*x^9 + ([+/- 6.31e-90])*x^10 + ([-2.24286825146107e-7 +/- 1.09e-22])*x^11 + ([+/- 8.12e-90])*x^12 + ([-2.60683846205802e-7 +/- 2.48e-24])*x^13 + ([+/- 1.05e-89])*x^14 + ([-8.91224686455419e-8 +/- 3.65e-23])*x^15 + ([+/- 1.35e-89])*x^16 + ([-3.26326418738215e-8 +/- 2.32e-23])*x^17 + ([+/- 1.74e-89])*x^18 + ([-1.16208570384921e-8 +/- 1.65e-23])*x^19 + ([+/- 2.23e-89])*x^20 + ([-4.14170053310490e-9 +/- 1.48e-24])*x^21 + ([+/- 2.87e-89])*x^22 + ([-1.46820566053997e-9 +/- 1.78e-24])*x^23 + ([+/- 3.70e-89])*x^24 + ([-5.15506925223280e-10 +/- 3.03e-25])*x^25 + ([+/- 4.76e-89])*x^26 + ([-1.82472067851060e-10 +/- 3.16e-25])*x^27 + ([+/- 6.12e-89])*x^28 + ([-6.38704697083126e-11 +/- 9.09e-27])*x^29 + ([+/- 7.88e-89])*x^30 + ([-2.26050106084424e-11 +/- 4.38e-26])*x^31 + ([+/- 1.02e-88])*x^32 + ([-7.92827276950024e-12 +/- 1.39e-27])*x^33 + ([+/- 1.31e-88])*x^34 + ([-2.81271122726197e-12 +/- 2.58e-28])*x^35 + ([+/- 1.68e-88])*x^36 + ([-9.90048395094818e-13 +/- 7.11e-29])*x^37 + ([+/- 2.17e-88])*x^38 + ([-3.52940754819208e-13 +/- 8.95e-29])*x^39 + ([+/- 2.79e-88])*x^40 + ([-1.24659597784255e-13 +/- 4.45e-29])*x^41 + ([+/- 3.59e-88])*x^42 + ([-4.47578220422520e-14 +/- 4.45e-29])*x^43 + ([+/- 4.62e-88])*x^44 + ([-1.58418742508505e-14 +/- 4.02e-29])*x^45 + ([+/- 5.94e-88])*x^46 + ([-5.74189168074384e-15 +/- 3.78e-30])*x^47 + ([+/- 7.65e-88])*x^48 + ([-2.03284684861368e-15 +/- 3.12e-30])*x^49 + ([+/- 9.84e-88])*x^50 + ([-7.44862617401858e-16 +/- 3.40e-31])*x^51 + ([+/- 1.27e-87])*x^52 + ([-2.63792378579845e-16 +/- 4.31e-31])*x^53 + ([+/- 1.64e-87])*x^54 + ([-9.73988300859871e-17 +/- 3.45e-32])*x^55 + ([+/- 2.10e-87])*x^56 + ([-3.47780235279093e-17 +/- 1.08e-32])*x^57 + ([+/- 2.71e-87])*x^58 + ([-1.27427753038659e-17 +/- 4.63e-32])*x^59 + ([+/- 3.48e-87])*x^60 + ([-4.69495652710667e-18 +/- 1.33e-33])*x^61 + ([+/- 4.48e-87])*x^62 + ([-1.65408863885194e-18 +/- 3.32e-34])*x^63 + ([+/- 5.77e-87])*x^64 + ([-6.49370364820775e-19 +/- 3.99e-34])*x^65 + ([+/- 7.42e-87])*x^66 + ([-2.15051400407322e-19 +/- 1.67e-34])*x^67 + ([+/- 9.56e-87])*x^68 + ([-8.92037183422748e-20 +/- 1.92e-35])*x^69 + ([+/- 1.23e-86])*x^70 + ([-2.97432948933234e-20 +/- 1.30e-35])*x^71 + ([+/- 1.59e-86])*x^72 + ([-1.12737394429119e-20 +/- 3.39e-35])*x^73 + ([+/- 2.04e-86])*x^74 + ([-4.68397500018333e-21 +/- 2.28e-36])*x^75 + ([+/- 2.63e-86])*x^76 + ([-1.24025835073905e-21 +/- 3.73e-36])*x^77 + ([+/- 3.38e-86])*x^78 + ([-7.48442382806509e-22 +/- 1.44e-37])*x^79 + ([+/- 4.35e-86])*x^80 + ([-1.63807644762049e-22 +/- 2.44e-37])*x^81 + ([+/- 5.60e-86])*x^82 + ([-8.33832939610238e-23 +/- 2.94e-38])*x^83 + ([+/- 7.21e-86])*x^84 + ([-4.17455968314908e-23 +/- 4.43e-38])*x^85 + ([+/- 9.28e-86])*x^86 + ([-1.48736905774822e-24 +/- 9.97e-40])*x^87 + ([+/- 1.20e-85])*x^88 + ([-9.08531025678736e-24 +/- 4.49e-39])*x^89 + ([+/- 1.54e-85])*x^90 + ([-3.07107400928109e-25 +/- 2.99e-40])*x^91 + ([+/- 1.98e-85])*x^92 + ([-3.38261490724082e-25 +/- 4.65e-40])*x^93 + ([+/- 2.55e-85])*x^94 + ([-7.58147154577277e-25 +/- 3.40e-40])*x^95 + ([+/- 3.28e-85])*x^96 + ([2.54631384597809e-25 +/- 7.39e-41])*x^97 + ([+/- 4.22e-85])*x^98 + ([-1.47832657751970e-25 +/- 2.40e-40])*x^99 + ([+/- 5.44e-85])*x^100 + ([-1.64237915675650e-26 +/- 3.07e-41])*x^101 + ([+/- 7.00e-85])*x^102 + ([2.93785819900806e-26 +/- 3.95e-41])*x^103 + ([+/- 9.01e-85])*x^104 + ([-2.39970443578350e-26 +/- 4.94e-41])*x^105 + ([+/- 1.16e-84])*x^106 + ([8.35390690092273e-27 +/- 2.71e-42])*x^107 + ([+/- 1.50e-84])*x^108 + ([-7.37803321185329e-28 +/- 2.33e-43])*x^109 + ([+/- 1.93e-84])*x^110 + ([-5.53714340913322e-27 +/- 4.96e-42])*x^111 + ([+/- 2.48e-84])*x^112 + ([3.49068704005431e-28 +/- 4.57e-43])*x^113 + ([+/- 3.19e-84])*x^114 + ([2.27726522155551e-27 +/- 1.10e-42])*x^115 + ([+/- 4.10e-84])*x^116 + ([4.50638884284315e-27 +/- 5.71e-43])*x^117 + ([+/- 5.28e-84])*x^118 + ([1.35054123109385e-27 +/- 4.21e-42])*x^119 + ([+/- 6.79e-84])*x^120 + ([-5.05143805710926e-27 +/- 1.42e-42])*x^121 + ([+/- 8.74e-84])*x^122 + ([-6.33571231983965e-27 +/- 1.21e-42])*x^123 + ([+/- 1.13e-83])*x^124 + ([-2.82878437169560e-28 +/- 3.19e-43])*x^125 + ([+/- 1.45e-83])*x^126 + ([7.04207753459217e-27 +/- 4.23e-42])*x^127 + ([+/- 1.87e-83])*x^128 + ([7.13244002791512e-27 +/- 1.61e-42])*x^129 + ([+/- 2.40e-83])*x^130 + ([-8.53168543667466e-28 +/- 1.75e-43])*x^131 + ([+/- 3.09e-83])*x^132 + ([-8.22150076284075e-27 +/- 3.71e-42])*x^133 + ([+/- 3.98e-83])*x^134 + ([-6.74538238856208e-27 +/- 1.70e-42])*x^135 + ([+/- 5.12e-83])*x^136 + ([1.80603637393012e-27 +/- 1.32e-43])*x^137 + ([+/- 6.59e-83])*x^138 + ([7.95955531014809e-27 +/- 4.94e-43])*x^139 + ([+/- 8.49e-83])*x^140 + ([5.47855877139778e-27 +/- 5.37e-43])*x^141 + ([+/- 1.10e-82])*x^142 + ([-2.13813557160536e-27 +/- 1.23e-42])*x^143 + ([+/- 1.41e-82])*x^144 + ([-6.52096451851660e-27 +/- 3.13e-42])*x^145 + ([+/- 1.81e-82])*x^146 + ([-3.88758064440838e-27 +/- 4.76e-42])*x^147 + ([+/- 2.33e-82])*x^148 + ([1.86021200906589e-27 +/- 1.43e-42])*x^149 + ([+/- 3.00e-82])*x^150 + ([4.57713731292920e-27 +/- 2.46e-42])*x^151 + ([+/- 3.87e-82])*x^152 + ([2.45387544209357e-27 +/- 3.81e-42])*x^153 + ([+/- 4.97e-82])*x^154 + ([-1.27802262188688e-27 +/- 2.98e-42])*x^155 + ([+/- 6.40e-82])*x^156 + ([-2.78018845016881e-27 +/- 3.61e-42])*x^157 + ([+/- 8.24e-82])*x^158 + ([-1.39789941241013e-27 +/- 2.18e-42])*x^159 + ([+/- 1.07e-81])*x^160 + ([7.12033765027712e-28 +/- 1.56e-43])*x^161 + ([+/- 1.37e-81])*x^162 + ([1.47164164725340e-27 +/- 3.72e-42])*x^163 + ([+/- 1.76e-81])*x^164 + ([7.25053354458516e-28 +/- 1.17e-43])*x^165 + ([+/- 2.27e-81])*x^166 + ([-3.23215171110293e-28 +/- 4.05e-43])*x^167 + ([+/- 2.92e-81])*x^168 + ([-6.81614867652185e-28 +/- 4.25e-43])*x^169 + ([+/- 3.75e-81])*x^170 + ([-3.42962470321481e-28 +/- 7.91e-44])*x^171 + ([+/- 4.83e-81])*x^172 + ([1.17440250833417e-28 +/- 3.63e-43])*x^173 + ([+/- 6.22e-81])*x^174 + ([2.76475884262053e-28 +/- 4.68e-43])*x^175 + ([+/- 8.00e-81])*x^176 + ([1.47270406061240e-28 +/- 4.59e-43])*x^177 + ([+/- 1.03e-80])*x^178 + ([-3.19751028170768e-29 +/- 1.14e-44])*x^179 + ([+/- 1.33e-80])*x^180 + ([-9.79423207131194e-29 +/- 3.24e-44])*x^181 + ([+/- 1.71e-80])*x^182 + ([-5.69233403670476e-29 +/- 9.58e-45])*x^183 + ([+/- 2.20e-80])*x^184 + ([4.89088020563579e-30 +/- 5.03e-47])*x^185 + ([+/- 2.83e-80])*x^186 + ([3.00779727658733e-29 +/- 1.06e-44])*x^187 + ([+/- 3.64e-80])*x^188 + ([1.96058873324325e-29 +/- 3.85e-44])*x^189 + ([+/- 4.69e-80])*x^190 + ([8.11262668717914e-31 +/- 1.63e-47])*x^191 + ([+/- 6.03e-80])*x^192 + ([-7.89170568225124e-30 +/- 5.1e-47])*x^193 + ([+/- 7.77e-80])*x^194 + ([-5.95736286916890e-30 +/- 1.78e-45])*x^195 + ([+/- 1.00e-79])*x^196 + ([-9.60546864382139e-31 +/- 3.63e-46])*x^197 + ([+/- 1.29e-79])*x^198 + ([1.72219858906023e-30 +/- 8.58e-47])*x^199 + ([+/- 1.66e-79])*x^200 + ([1.57799184060680e-30 +/- 1.19e-45])*x^201 + ([+/- 2.14e-79])*x^202 + ([4.32218161447446e-31 +/- 4.91e-46])*x^203 + ([+/- 2.75e-79])*x^204 + ([-2.92241274661607e-31 +/- 6.66e-47])*x^205 + ([+/- 3.54e-79])*x^206 + ([-3.57254379613646e-31 +/- 3.70e-46])*x^207 + ([+/- 4.55e-79])*x^208 + ([-1.39993934536556e-31 +/- 9.32e-47])*x^209 + ([+/- 5.86e-79])*x^210 + ([2.93723989042200e-32 +/- 4.44e-47])*x^211 + ([+/- 7.54e-79])*x^212 + ([6.89790663632322e-32 +/- 4.55e-48])*x^213 + ([+/- 9.70e-79])*x^214 + ([3.68586833566637e-32 +/- 2.88e-47])*x^215 + ([+/- 1.25e-78])*x^216 + ([7.40505223270716e-34 +/- 3.13e-49])*x^217 + ([+/- 1.61e-78])*x^218 + ([-1.15511463770451e-32 +/- 2.62e-49])*x^219 + ([+/- 2.07e-78])*x^220 + ([-6.77709488853523e-33 +/- 3.21e-48])*x^221 + ([+/- 2.67e-78])*x^222 + ([-8.66751792066171e-34 +/- 2.78e-49])*x^223 + ([+/- 3.43e-78])*x^224 + ([5.86790842595342e-34 +/- 4.87e-49])*x^225 + ([+/- 4.42e-78])*x^226 + ([7.40826893002476e-34 +/- 3.63e-49])*x^227 + ([+/- 5.69e-78])*x^228 + ([1.01469252817404e-33 +/- 6.45e-49])*x^229 + ([+/- 7.32e-78])*x^230 + ([2.65108364369354e-34 +/- 1.60e-49])*x^231 + ([+/- 9.42e-78])*x^232 + ([-6.53277746489020e-34 +/- 4.02e-49])*x^233 + ([+/- 1.22e-77])*x^234 + ([-2.83818128228955e-34 +/- 3.60e-49])*x^235 + ([+/- 1.57e-77])*x^236 + ([3.95989832828099e-34 +/- 2.88e-49])*x^237 + ([+/- 2.01e-77])*x^238 + ([1.23650260936856e-34 +/- 5.21e-50])*x^239 + ([+/- 2.59e-77])*x^240 + ([-3.12905962954369e-34 +/- 3.24e-49])*x^241 + ([+/- 3.33e-77])*x^242 + ([-4.74525354186134e-35 +/- 2.66e-50])*x^243 + ([+/- 4.29e-77])*x^244 + ([2.50188115280529e-34 +/- 3.84e-49])*x^245 + ([+/- 5.52e-77])*x^246 + ([1.60209944327389e-35 +/- 2.81e-50])*x^247 + ([+/- 7.11e-77])*x^248 + ([-1.88345311823481e-34 +/- 1.35e-49])*x^249 + O(x^250)"
+    },
+    "compute_m_rho": {
+      "rho": {
+        "_kind": "arb",
+        "str": "[0.96951094572149732775587025747777153993097636108780 +/- 1.05e-51]",
+        "rational_upper": "970580457/1000000000"
+      },
+      "M_rho": {
+        "_kind": "arb",
+        "str": "[0.32539737205518 +/- 3.79e-15]",
+        "rational_upper": "32582277/100000000"
+      }
+    },
+    "head_contribution": {
+      "head_contribution": {
+        "_kind": "arb",
+        "str": "[2.423662925352692e-44 +/- 9.41e-60]",
+        "rational_upper": "100001/1000000000"
+      },
+      "n": 124
+    },
+    "lipschitz_bounds": {
+      "L": {
+        "_kind": "arb",
+        "str": "[1.93054311586462 +/- 1.17e-15]",
+        "rational_upper": "1932573659/1000000000"
+      }
+    },
+    "tail_bound": {
+      "epsilon": {
+        "_kind": "arb",
+        "str": "[1.5291360874642e-10 +/- 6.59e-24]",
+        "rational_upper": "100001/1000000000"
+      }
+    },
+    "solve_gamma": {
+      "gamma_best": {
+        "_kind": "arb",
+        "str": "[0.88137358701954302523260932497979230908114883 +/- 2.34e-45]",
+        "rational_upper": "882354961/1000000000"
+      },
+      "series_error": {
+        "_kind": "arb",
+        "str": "[1.529378453757e-40 +/- 3.08e-53]",
+        "rational_upper": "100001/1000000000"
+      }
+    }
+  },
+  "cross_validation": {
+    "passing": 17,
+    "total": 17,
+    "checks": [
+      {
+        "id": "r_val_matches_constant",
+        "lean": "23/25",
+        "expected": "23/25",
+        "ok": true,
+        "note": "Lean's r_val should equal the global constant r."
+      },
+      {
+        "id": "eta_val_matches_constant",
+        "lean": "1/100",
+        "expected": "1/100",
+        "ok": true,
+        "note": "Lean's eta_val should equal the global constant eta_max."
+      },
+      {
+        "id": "delta_val_matches_constant",
+        "lean": "57/1000",
+        "expected": "57/1000",
+        "ok": true,
+        "note": "Lean's delta_val should equal the configured oracle rectangle delta."
+      },
+      {
+        "id": "B_val_matches_constant",
+        "lean": "293/250",
+        "expected": "293/250",
+        "ok": true,
+        "note": "Lean's B_val should equal the configured oracle rectangle height."
+      },
+      {
+        "id": "h_eta_strict_improvement",
+        "h_eta_str": "[0.8813736403033515 +/- 3.27e-17]",
+        "log_one_plus_sqrt2_str": "[0.881373587019543025232609324980 +/- 2.08e-31]",
+        "improvement_mid_str": "[5.3283808470116174348e-8 +/- 2.01e-28]",
+        "ok": true,
+        "note": "Numerical witness for theorem_4_4_effective's oracle axiom; arb-certified."
+      },
+      {
+        "id": "Cr_val_finite_positive",
+        "value_str": "[818801873651067.915736841264917 +/- 1.16e-16]",
+        "ok": true,
+        "note": "Cr_paper formula must evaluate to a finite positive arb."
+      },
+      {
+        "id": "step1_delta_matches_constant",
+        "delta_step1_str": "[0.057000000000000000000 +/- 3e-26]",
+        "delta_step1_rational_upper": "57157001/1000000000",
+        "expected": "57/1000",
+        "ok": true,
+        "note": "Step 1 should use the configured delta rectangle parameter. The check allows for the tiny widening introduced by arb interval parsing."
+      },
+      {
+        "id": "step1_B_matches_constant",
+        "B_step1_str": "[1.1720000000000000000 +/- 3e-24]",
+        "B_step1_rational_upper": "1173272001/1000000000",
+        "expected": "293/250",
+        "ok": true,
+        "note": "Step 1 should use the configured B rectangle parameter. The check allows for the tiny widening introduced by arb interval parsing."
+      },
+      {
+        "id": "domain_containment_certified",
+        "all_checks_passed": true,
+        "ok": true,
+        "note": "Numerical witness for `h_oracle_domain_contains_image`: Step 1 certified imaginary + real containment of F_p(disk r_outer) in \u03a9(\u03b4, B), positive Rouch\u00e9 margin, and `p \u00b7 M_partial < margin`. F_inv(disk r) \u2286 F_inv(disk r_outer) is contained in \u03a9."
+      },
+      {
+        "id": "M_oracle_le_M_val",
+        "M_oracle_str": "[3.6e+3 +/- 56.4]",
+        "M_oracle_rational_upper": "1800217628223/500000000",
+        "M_val": "4000",
+        "ok": true,
+        "note": "Numerical witness for the chosen Lean constant `M_val`. This checks domination of the computed single-M bound by the rational witness on the oracle domain used by the effective Lemma 5.4 bridge."
+      },
+      {
+        "id": "Cr_oracle_and_Cr_val_both_positive",
+        "Cr_oracle_str": "[1.1e+15 +/- 4.36e+13]",
+        "Cr_val_str": "[818801873651067.91574 +/- 3.17e-6]",
+        "ok": true,
+        "note": "Cr_oracle (rectangle bound) and Cr_val (paper bound) are two different upper bounds on the same Taylor remainder constant; both must be finite and positive."
+      },
+      {
+        "id": "theorem_5_1_rational_range_hypotheses",
+        "tuple": {
+          "eta_val": "1/100",
+          "p_explicit_rat": "1/1000000000000000000000000000000",
+          "r_val": "23/25",
+          "r_mid": "91/100",
+          "M_val": "4000"
+        },
+        "subchecks": [
+          {
+            "name": "0 < eta_val",
+            "ok": true
+          },
+          {
+            "name": "eta_val < 1",
+            "ok": true
+          },
+          {
+            "name": "0 < p_explicit_rat",
+            "ok": true
+          },
+          {
+            "name": "p_explicit_rat < 1",
+            "ok": true
+          },
+          {
+            "name": "0 < r_val",
+            "ok": true
+          },
+          {
+            "name": "r_val < 1",
+            "ok": true
+          },
+          {
+            "name": "9/10 < r_val",
+            "ok": true
+          },
+          {
+            "name": "0 < r_mid (= 91/100)",
+            "ok": true
+          },
+          {
+            "name": "r_mid < r_val",
+            "ok": true
+          },
+          {
+            "name": "9/10 < r_mid",
+            "ok": true
+          },
+          {
+            "name": "0 < M_val",
+            "ok": true
+          }
+        ],
+        "failures": [],
+        "ok": true,
+        "note": "Bundles the 11 trivial rational-range hypotheses fed to `theorem_5_1_from_thresholds` and `theorem_5_1_at_p_explicit`. All are provable by `norm_num` in Lean; the runner verifies them as a sanity check that the chosen `(\u03b7, p, r, r_mid, M)` tuple satisfies the preconditions of the generic theorem."
+      },
+      {
+        "id": "log_one_plus_sqrt_two_in_lean_sandwich",
+        "log_one_plus_sqrt_two_str": "[0.88137358701954302523260932497979230902816032826164 +/- 4.59e-51]",
+        "gamma_lo_rat": "881373587019543/1000000000000000",
+        "gamma_hi_rat": "8813735870195431/10000000000000000",
+        "log_above_gamma_lo_rat": true,
+        "log_below_gamma_hi_rat": true,
+        "log_in_window": true,
+        "ok": true,
+        "note": "Position of log(1+\u221a2) within the rational sandwich. When `log_in_window` is True, the sandwich is consistency-only \u2014 every Theorem 5.1 \u03b3 > log(1+\u221a2) is automatically inside the window. To make `KG_upper_val_rat = \u03c0/(2\u00b7gamma_lo_rat)` strictly tighter than KrivineBound, `gamma_lo_rat` must instead be > log(1+\u221a2), which would require a 38+ digit precision rational."
+      },
+      {
+        "id": "gap_ratio_at_p_explicit",
+        "p_explicit_rat": "1/1000000000000000000000000000000",
+        "B_phi_bound": "4001",
+        "lhs_str": "[7.4510970502611362332e-14 +/- 5.27e-35]",
+        "rhs_str": "[0.013258362854087637979 +/- 1.69e-22]",
+        "ok": true,
+        "note": "Numerical witness for `h_gap_ratio_at_p_explicit_with_B_phi`: at p = 1e-30, with a generous B_phi \u2264 M_val+1 = 4001, the gap-ratio inequality `p \u00b7 (|B_phi| + Cr_val + 1) \u00b7 91 < (sinh(9/10) - 1)/2` holds with massive margin (LHS ~ 1e-13, RHS ~ 0.013)."
+      },
+      {
+        "id": "p_explicit_lt_pr_paper",
+        "p_explicit_rat": "1/1000000000000000000000000000000",
+        "p_certified_str": "[0.00024 +/- 3.83e-6]",
+        "ok": true,
+        "note": "Numerical witness for `h_p_explicit_lt_pr_paper`: p_explicit_rat = 1e-30 is strictly below the certified Rouch\u00e9 radius `certify_invertibility.p_certified` (~2.4e-4), and `pr_paper` from the IFT package dominates the Rouch\u00e9 radius. The Lean axiom claims the latter; this is the closest direct numerical witness available."
+      },
+      {
+        "id": "gamma_best_in_lean_sandwich",
+        "gamma_best_str": "[0.88137358701954302523260932497979230908114883 +/- 2.34e-45]",
+        "gamma_lo_rat": "881373587019543/1000000000000000",
+        "gamma_hi_rat": "8813735870195431/10000000000000000",
+        "ok": true,
+        "note": "Numerical witness for `h_gamma_explicit_sandwich`: the certified `solve_gamma.gamma_best` arb interval is strictly contained in the rational sandwich `[gamma_lo_rat, gamma_hi_rat]` declared in `Theorem51Effective.lean`."
+      },
+      {
+        "id": "KG_upper_val_lt_KrivineBound",
+        "certified_gamma_gt_gamma0": true,
+        "certified_KG_upper_lt_Krivine": true,
+        "gamma_best_str": "[0.88137358701954302523260932497979230908114883 +/- 2.34e-45]",
+        "gamma_0_str": "[0.88137358701954302523260932497979230902816032826164 +/- 4.59e-51]",
+        "gamma_improvement_mid_str": "[5.2988500259607647074e-38 +/- 4.03e-58]",
+        "KG_upper_val_str": "[1.78221397819136911177441345297254934068458456 +/- 3.81e-45]",
+        "Krivine_bound_str": "[1.7822139781913691117744134529725493407917319097732 +/- 3.94e-50]",
+        "KG_improvement_mid_str": "[1.0714735185725024152e-37 +/- 3.58e-57]",
+        "ok": true,
+        "note": "Headline certificate-side witness: certified \u03b3_best > log(1+\u221a2), so \u03c0/(2\u03b3_best) < KrivineBound. This numerical witness is rigorous as an arb interval computation, but it is not yet the explicit Lean witness extracted by `Theorem51Effective.lean`."
+      }
+    ]
+  },
+  "oracle_assumptions": {
+    "Braverman.Effective.h_M_oracle": {
+      "lean_axiom": "Braverman.Effective.h_M_oracle",
+      "description": "Single-M sup-norm bound: |H_0|, |H_\u03b7|, |H_0'|, |H_\u03b7'| \u2264 M_val on the explicit oracle rectangle \u03a9(\u03b4_val, B_val).",
+      "certifying_checks": [
+        "M_oracle_le_M_val"
+      ],
+      "certified": true
+    },
+    "Braverman.Effective.h_oracle_domain_contains_image": {
+      "lean_axiom": "Braverman.Effective.h_oracle_domain_contains_image",
+      "description": "F_inv_paper(disk r_val) lands in the explicit rectangle \u03a9(\u03b4_val, B_val) for every q \u2208 (0, pr_paper).",
+      "certifying_checks": [
+        "step1_delta_matches_constant",
+        "step1_B_matches_constant",
+        "domain_containment_certified",
+        "delta_val_matches_constant",
+        "B_val_matches_constant"
+      ],
+      "certified": true
+    },
+    "Braverman.Effective.h_eta_strict_improvement_oracle": {
+      "lean_axiom": "Braverman.Effective.h_eta_strict_improvement_oracle",
+      "description": "(H_\u03b7(I)/I).re > log(1+\u221a2) at \u03b7 = eta_val. Witnesses Theorem 4.4's strict improvement.",
+      "certifying_checks": [
+        "h_eta_strict_improvement"
+      ],
+      "certified": true
+    },
+    "Braverman.Effective.h_gamma_explicit_sandwich": {
+      "lean_axiom": "Braverman.Effective.h_gamma_explicit_sandwich",
+      "description": "Rational sandwich on the Theorem 5.1 \u03b3-witness: gamma_lo_rat < gamma_explicit < gamma_hi_rat. `gamma_explicit` is now extracted from `theorem_5_1_at_p_explicit` whose `(\u03b7, p)` matches the certified-arb pipeline, so this axiom is the assertion that the IVT-chosen \u03b3 at `p = 1e-30` falls in the rational window around `solve_gamma.gamma_best` \u2014 verified numerically via `gamma_best_in_lean_sandwich`.",
+      "certifying_checks": [
+        "gamma_best_in_lean_sandwich"
+      ],
+      "certified": true
+    },
+    "Braverman.Effective.h_p_explicit_lt_pr_paper": {
+      "lean_axiom": "Braverman.Effective.h_p_explicit_lt_pr_paper",
+      "description": "p_explicit_rat = 1e-30 is below the IFT-package threshold `pr_paper eta_val r_val \u2026`. Witnessed indirectly by checking `p_explicit_rat < certify_invertibility.p_certified ~ 2.4e-4`, since `pr_paper` dominates Step 1's certified Rouch\u00e9 radius.",
+      "certifying_checks": [
+        "p_explicit_lt_pr_paper"
+      ],
+      "certified": true
+    },
+    "Braverman.Effective.h_F_p_deriv_at_p_explicit": {
+      "lean_axiom": "Braverman.Effective.h_F_p_deriv_at_p_explicit",
+      "description": "deriv (F_p eta_val p_explicit_rat) 0 \u2260 0 at p = 1e-30. Justified analytically: F_p = (1-p)\u00b7H_0 + p\u00b7H_\u03b7, so `deriv(F_p)(0) = (1-p)\u00b7H_0'(0) + p\u00b7H_\u03b7'(0) \u2248 H_0'(0) \u2248 1` for p = 1e-30. No direct runner witness; this is a structural fact about F_p at small p.",
+      "certifying_checks": [],
+      "certified": true
+    },
+    "Braverman.Effective.h_gap_ratio_at_p_explicit_with_B_phi": {
+      "lean_axiom": "Braverman.Effective.h_gap_ratio_at_p_explicit_with_B_phi",
+      "description": "Existence of B_phi compactness bound + gap-ratio inequality at p_explicit_rat. With the generous B_phi \u2264 M_val + 1, the LHS at p = 1e-30 is on the order of 1e-13, well below the RHS \u2248 0.013.",
+      "certifying_checks": [
+        "gap_ratio_at_p_explicit"
+      ],
+      "certified": true
+    },
+    "Braverman.Effective.h_summability_at_p_explicit": {
+      "lean_axiom": "Braverman.Effective.h_summability_at_p_explicit",
+      "description": "Sign-structure conclusion at p_explicit_rat: any F_inv satisfying the Lemma 5.4 approximation has summability_fn F_inv (log(1+\u221a2)) < 1. This is `summability_fn_at_log_lt_one` applied at p = 1e-30 < p_\u03b2. Witnessed indirectly: `solve_gamma` at p = 1e-30 finds \u03b3 with summability_fn = 1 strictly above log(1+\u221a2), implying summability_fn < 1 below \u03b3 (and hence at log(1+\u221a2)).",
+      "certifying_checks": [
+        "KG_upper_val_lt_KrivineBound"
+      ],
+      "certified": true
+    },
+    "__theorem_5_1_from_thresholds_preconditions": {
+      "lean_axiom": null,
+      "description": "Non-axiom numerical preconditions of `theorem_5_1_from_thresholds` at the chosen tuple. Each is discharged by `norm_num` in Lean; the runner cross-checks them to catch tuple-mismatches early.",
+      "certifying_checks": [
+        "theorem_5_1_rational_range_hypotheses",
+        "log_one_plus_sqrt_two_in_lean_sandwich",
+        "Cr_val_finite_positive"
+      ],
+      "certified": true
+    }
+  },
+  "skipped_nodes": [
+    {
+      "slug": "lemma_5_3",
+      "kind": "statement",
+      "reason": "no [python] handle"
+    },
+    {
+      "slug": "theorem_4_4",
+      "kind": "statement",
+      "reason": "no [python] handle"
+    },
+    {
+      "slug": "lemma_5_4",
+      "kind": "statement",
+      "reason": "no [python] handle"
+    },
+    {
+      "slug": "theorem_5_1",
+      "kind": "statement",
+      "reason": "no [python] handle"
+    },
+    {
+      "slug": "kg_lt_krivine",
+      "kind": "statement",
+      "reason": "no [python] handle"
+    }
+  ],
+  "timings_seconds": [
+    {
+      "slug": "certify_invertibility",
+      "seconds": 0.103,
+      "outputs": [
+        "r_arb",
+        "p_arb",
+        "p_certified",
+        "delta_arb",
+        "B_arb",
+        "all_checks_passed"
+      ]
+    },
+    {
+      "slug": "eval_h_eta_at_i",
+      "seconds": 164.972,
+      "outputs": [
+        "H_eta_i_over_i",
+        "H_0_i_over_i",
+        "Delta"
+      ]
+    },
+    {
+      "slug": "compute_cr",
+      "seconds": 0.069,
+      "outputs": [
+        "M",
+        "R",
+        "C_r"
+      ]
+    },
+    {
+      "slug": "compute_phi_taylor",
+      "seconds": 0.031,
+      "outputs": [
+        "h_eta_series",
+        "phi"
+      ]
+    },
+    {
+      "slug": "compute_m_rho",
+      "seconds": 0.271,
+      "outputs": [
+        "rho",
+        "M_rho"
+      ]
+    },
+    {
+      "slug": "head_contribution",
+      "seconds": 0.001,
+      "outputs": [
+        "head_contribution",
+        "n"
+      ]
+    },
+    {
+      "slug": "lipschitz_bounds",
+      "seconds": 0.008,
+      "outputs": [
+        "L"
+      ]
+    },
+    {
+      "slug": "tail_bound",
+      "seconds": 0.0,
+      "outputs": [
+        "epsilon"
+      ]
+    },
+    {
+      "slug": "solve_gamma",
+      "seconds": 0.0,
+      "outputs": [
+        "gamma_best",
+        "series_error"
+      ]
+    }
+  ],
+  "headline": {
+    "Cr_val_str": "[818801873651067.91574 +/- 3.17e-6]",
+    "Cr_val_rational_upper": "1600821631885818724352/1953125",
+    "Krivine_bound_str": "[1.78221397819136911177441345297 +/- 2.55e-30]",
+    "gamma_best_str": "[0.8813735870195430252326093249797923090811 +/- 4.89e-41]",
+    "KG_upper_val_str": "[1.782213978191369111774413452972549340685 +/- 4.16e-40]",
+    "KG_improvement_mid_str": "[1.07147351857250e-37 +/- 2.42e-52]"
+  }
+}

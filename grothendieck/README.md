@@ -9,13 +9,15 @@ four parts.
 | `ProofRefinement/Lemma54/` | the refinement workspace for the remainder constant C_r of Lemma 5.4 (see its own README and `AGENT_BRIEF.md`) |
 | `ProofGraph/` | the proof graph: one TOML per node, an axiom audit, and a runner that computes every numerical constant the Lean side declares (`ProofGraph/README.md`) |
 | `grothendieck/proof/certified/` | the certified-arb Python pipeline the oracles call |
-| `paper_artifacts/` | the plots and proof-graph figures in the paper, with the scripts that produce them |
+| `paper_artifacts/` | the plots and proof-graph figures in the paper, with the scripts that produce them. The per-iteration data file the plot script reads was not retained, so the rendered plots are the record |
 | `docs/` | harness design, plan, and the ablation write-up |
 | `blueprint/` | source of the Lean blueprint (build with `blueprint/build.sh`) |
 
 The final accepted candidate is `ProofRefinement/Lemma54/Candidates/V28.lean`,
 which declares `Cr_val := 2/7`. Its verdict is
-`ProofRefinement/Lemma54/Refinement_Log/verdict_034.md`.
+`ProofRefinement/Lemma54/Refinement_Log/verdict_034.md`. The run's record is the
+set of per-sprint verdict files there, together with `Bulletin.md` and
+`Sprint_Contracts/`; this workspace kept no `log.jsonl`.
 
 ## Build and check
 

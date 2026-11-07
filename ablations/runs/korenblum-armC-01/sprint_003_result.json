@@ -1,0 +1,77 @@
+{
+  "is_error": false,
+  "duration_api_ms": 1679735,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "c80da337-f354-4416-8459-2022765dabd5",
+  "total_cost_usd": 9.754021149999998,
+  "usage": {
+    "input_tokens": 17,
+    "cache_creation_input_tokens": 41715,
+    "cache_read_input_tokens": 247067,
+    "output_tokens": 3074,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 41715
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 709,
+        "cache_read_input_tokens": 36643,
+        "cache_creation_input_tokens": 729,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 729,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5": {
+      "inputTokens": 117,
+      "outputTokens": 145288,
+      "cacheReadInputTokens": 5725216,
+      "cacheCreationInputTokens": 433543,
+      "webSearchRequests": 0,
+      "costUSD": 9.20503675,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 22,
+      "outputTokens": 7882,
+      "cacheReadInputTokens": 548553,
+      "cacheCreationInputTokens": 70966,
+      "webSearchRequests": 0,
+      "costUSD": 0.5489843999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "**Sprint 003 \u2014 \"The \u03c9-transfer layer: Wang (3), (8) and the pointwise identity of (9)\"** ran end to end. Preflight returned `preflight: OK` (the script lives at `ProofRefinement/Korenblum/scripts/korenblum_harness_preflight.sh`, not the repo-root `scripts/` path the skill names). The planner wrote one contract at `Sprint_Contracts/sprint_003_omega_transfer_layer.md`, choosing the (8)/(9) chain over Wang's convexity chain and deliberately holding `c_value` at `35646/100000`. The generator returned `STATUS=READY_FOR_EVALUATION`, landing the full core deliverable \u2014 a new axiom-free `Proof/OmegaTransfer.lean` (536 lines: \u03a3\u207a/\u03a3\u207b with Wang (3) as an identity, Wang (8), the exact (8) defect identity, the master transfer theorem from a denominator-free pointwise \u03b3 hypothesis, a monomial tightness guard, and the `SigmaExcess` round trip), plus `Candidates/V3.lean` and one new Experience entry. The evaluator returned **PASS**: `lake build` of V3 succeeded, no `sorry`, evaluator exit 0 with `status: PASS` and **score 17823/50000**, axioms limited to `[propext, Classical.choice, Quot.sound, V0.hKorenblum_prev]`. The score is unchanged from parent V2 by contract design \u2014 this sprint builds the support layer rather than pushing the constant. Verdict note: `ProofRefinement/Korenblum/Refinement_Log/verdict_sprint_003_omega_transfer_layer.md`. Bulletin event line appended.\n\nOne finding worth surfacing beyond the verdict: the planner closed an open question by showing the circle-mean-only relaxation is vacuous for every `c > 0` (explicit polynomial witness family), which makes pointwise domination a soundness requirement and leaves Wang (9)/\u03b3\u2082 as the sole remaining load-bearing analytic step.",
+  "ttft_ms": 2046,
+  "ttft_stream_ms": 1531,
+  "time_to_request_ms": 114,
+  "type": "result",
+  "duration_ms": 1949755,
+  "uuid": "fe55f712-38d5-49c8-9951-a738cf14e4bf"
+}

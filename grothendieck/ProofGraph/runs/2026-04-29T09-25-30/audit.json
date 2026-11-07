@@ -1,0 +1,411 @@
+{
+  "timestamp_utc": "2026-04-29T09-25-30",
+  "total_lean_nodes": 5,
+  "ok": 5,
+  "unexpected_axioms": 0,
+  "failed": 0,
+  "results": [
+    {
+      "slug": "certify_invertibility",
+      "kind": "computational",
+      "status": "skipped",
+      "reason": "no Lean handle"
+    },
+    {
+      "slug": "eval_h_eta_at_i",
+      "kind": "computational",
+      "status": "skipped",
+      "reason": "no Lean handle"
+    },
+    {
+      "slug": "compute_cr",
+      "kind": "computational",
+      "status": "skipped",
+      "reason": "no Lean handle"
+    },
+    {
+      "slug": "lemma_5_3",
+      "kind": "statement",
+      "lean_sink": "Braverman.lemma_5_3",
+      "lean_file": "LeanProof/Lemma53.lean",
+      "effective": "Braverman.Effective.lemma_5_3_effective",
+      "status": "ok",
+      "targets": [
+        {
+          "theorem": "Braverman.lemma_5_3",
+          "file": "LeanProof/Lemma53.lean",
+          "status": "ok",
+          "actual_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "unexpected_axioms": []
+        },
+        {
+          "theorem": "Braverman.Effective.lemma_5_3_effective",
+          "file": "ProofGraph/Effective/Lemma53Effective.lean",
+          "status": "ok",
+          "actual_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "unexpected_axioms": []
+        }
+      ]
+    },
+    {
+      "slug": "compute_phi_taylor",
+      "kind": "computational",
+      "status": "skipped",
+      "reason": "no Lean handle"
+    },
+    {
+      "slug": "theorem_4_4",
+      "kind": "statement",
+      "lean_sink": "Braverman.theorem_4_4",
+      "lean_file": "LeanProof/Theorem44.lean",
+      "effective": "Braverman.Effective.theorem_4_4_effective",
+      "status": "ok",
+      "targets": [
+        {
+          "theorem": "Braverman.theorem_4_4",
+          "file": "LeanProof/Theorem44.lean",
+          "status": "ok",
+          "actual_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound",
+            "Braverman.Effective.h_eta_strict_improvement_oracle"
+          ],
+          "unexpected_axioms": []
+        },
+        {
+          "theorem": "Braverman.Effective.theorem_4_4_effective",
+          "file": "ProofGraph/Effective/Theorem44Effective.lean",
+          "status": "ok",
+          "actual_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound",
+            "Braverman.Effective.h_eta_strict_improvement_oracle"
+          ],
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound",
+            "Braverman.Effective.h_eta_strict_improvement_oracle"
+          ],
+          "unexpected_axioms": []
+        }
+      ]
+    },
+    {
+      "slug": "compute_m_rho",
+      "kind": "computational",
+      "status": "skipped",
+      "reason": "no Lean handle"
+    },
+    {
+      "slug": "head_contribution",
+      "kind": "computational",
+      "status": "skipped",
+      "reason": "no Lean handle"
+    },
+    {
+      "slug": "lipschitz_bounds",
+      "kind": "computational",
+      "status": "skipped",
+      "reason": "no Lean handle"
+    },
+    {
+      "slug": "lemma_5_4",
+      "kind": "statement",
+      "lean_sink": "Braverman.Paper.lemma_5_4_paper",
+      "lean_file": "ProofRefinement/Lemma54/Proof/Lib/Lemma54_Paper_Main.lean",
+      "effective": "Braverman.Effective.lemma_5_4_effective",
+      "status": "ok",
+      "targets": [
+        {
+          "theorem": "Braverman.Paper.lemma_5_4_paper",
+          "file": "ProofRefinement/Lemma54/Proof/Lib/Lemma54_Paper_Main.lean",
+          "status": "ok",
+          "actual_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound",
+            "Braverman.Paper.F_inv_paper",
+            "Braverman.Paper.F_inv_paper_R_bound",
+            "Braverman.Paper.F_inv_paper_analytic",
+            "Braverman.Paper.F_inv_paper_contdiff",
+            "Braverman.Paper.F_inv_paper_eq",
+            "Braverman.Paper.F_inv_paper_first_deriv_zero",
+            "Braverman.Paper.F_inv_paper_mem_S",
+            "Braverman.Paper.F_inv_paper_zero",
+            "Braverman.Paper.pr_paper",
+            "Braverman.Paper.pr_paper_pos"
+          ],
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound",
+            "Braverman.Paper.F_inv_paper",
+            "Braverman.Paper.F_inv_paper_eq",
+            "Braverman.Paper.F_inv_paper_zero",
+            "Braverman.Paper.F_inv_paper_mem_S",
+            "Braverman.Paper.F_inv_paper_R_bound",
+            "Braverman.Paper.F_inv_paper_analytic",
+            "Braverman.Paper.F_inv_paper_contdiff",
+            "Braverman.Paper.F_inv_paper_first_deriv_zero",
+            "Braverman.Paper.F_inv_paper_at_origin",
+            "Braverman.Paper.pr_paper",
+            "Braverman.Paper.pr_paper_pos",
+            "Braverman.Paper.pr_paper_le_one",
+            "Braverman.Effective.h_M_oracle"
+          ],
+          "unexpected_axioms": []
+        },
+        {
+          "theorem": "Braverman.Effective.lemma_5_4_effective",
+          "file": "ProofGraph/Effective/Lemma54Effective.lean",
+          "status": "ok",
+          "actual_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound",
+            "Braverman.Effective.h_M_oracle",
+            "Braverman.Paper.F_inv_paper",
+            "Braverman.Paper.F_inv_paper_R_bound",
+            "Braverman.Paper.F_inv_paper_analytic",
+            "Braverman.Paper.F_inv_paper_contdiff",
+            "Braverman.Paper.F_inv_paper_eq",
+            "Braverman.Paper.F_inv_paper_first_deriv_zero",
+            "Braverman.Paper.F_inv_paper_mem_S",
+            "Braverman.Paper.F_inv_paper_zero",
+            "Braverman.Paper.pr_paper",
+            "Braverman.Paper.pr_paper_pos"
+          ],
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound",
+            "Braverman.Paper.F_inv_paper",
+            "Braverman.Paper.F_inv_paper_eq",
+            "Braverman.Paper.F_inv_paper_zero",
+            "Braverman.Paper.F_inv_paper_mem_S",
+            "Braverman.Paper.F_inv_paper_R_bound",
+            "Braverman.Paper.F_inv_paper_analytic",
+            "Braverman.Paper.F_inv_paper_contdiff",
+            "Braverman.Paper.F_inv_paper_first_deriv_zero",
+            "Braverman.Paper.F_inv_paper_at_origin",
+            "Braverman.Paper.pr_paper",
+            "Braverman.Paper.pr_paper_pos",
+            "Braverman.Paper.pr_paper_le_one",
+            "Braverman.Effective.h_M_oracle"
+          ],
+          "unexpected_axioms": []
+        }
+      ]
+    },
+    {
+      "slug": "tail_bound",
+      "kind": "computational",
+      "status": "skipped",
+      "reason": "no Lean handle"
+    },
+    {
+      "slug": "solve_gamma",
+      "kind": "computational",
+      "status": "skipped",
+      "reason": "no Lean handle"
+    },
+    {
+      "slug": "theorem_5_1",
+      "kind": "statement",
+      "lean_sink": "Braverman.theorem_5_1",
+      "lean_file": "LeanProof/Theorem51.lean",
+      "effective": "Braverman.Effective.theorem_5_1_paper_effective",
+      "status": "ok",
+      "targets": [
+        {
+          "theorem": "Braverman.theorem_5_1",
+          "file": "LeanProof/Theorem51.lean",
+          "status": "ok",
+          "actual_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound",
+            "Braverman.Paper.F_inv_paper",
+            "Braverman.Paper.F_inv_paper_eq",
+            "Braverman.Paper.F_inv_paper_zero",
+            "Braverman.Paper.F_inv_paper_mem_S",
+            "Braverman.Paper.F_inv_paper_R_bound",
+            "Braverman.Paper.F_inv_paper_analytic",
+            "Braverman.Paper.F_inv_paper_contdiff",
+            "Braverman.Paper.F_inv_paper_first_deriv_zero",
+            "Braverman.Paper.F_inv_paper_at_origin",
+            "Braverman.Paper.pr_paper",
+            "Braverman.Paper.pr_paper_pos",
+            "Braverman.Paper.pr_paper_le_one",
+            "Braverman.Effective.h_M_oracle",
+            "Braverman.Effective.h_eta_strict_improvement_oracle"
+          ],
+          "unexpected_axioms": []
+        },
+        {
+          "theorem": "Braverman.Effective.theorem_5_1_paper_effective",
+          "file": "ProofGraph/Effective/Theorem51PaperEffective.lean",
+          "status": "ok",
+          "actual_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound",
+            "Braverman.Effective.h_M_oracle",
+            "Braverman.Effective.h_eta_strict_improvement_oracle",
+            "Braverman.Paper.F_inv_paper",
+            "Braverman.Paper.F_inv_paper_R_bound",
+            "Braverman.Paper.F_inv_paper_analytic",
+            "Braverman.Paper.F_inv_paper_at_origin",
+            "Braverman.Paper.F_inv_paper_contdiff",
+            "Braverman.Paper.F_inv_paper_eq",
+            "Braverman.Paper.F_inv_paper_first_deriv_zero",
+            "Braverman.Paper.F_inv_paper_mem_S",
+            "Braverman.Paper.F_inv_paper_zero",
+            "Braverman.Paper.pr_paper",
+            "Braverman.Paper.pr_paper_le_one",
+            "Braverman.Paper.pr_paper_pos"
+          ],
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound",
+            "Braverman.Paper.F_inv_paper",
+            "Braverman.Paper.F_inv_paper_eq",
+            "Braverman.Paper.F_inv_paper_zero",
+            "Braverman.Paper.F_inv_paper_mem_S",
+            "Braverman.Paper.F_inv_paper_R_bound",
+            "Braverman.Paper.F_inv_paper_analytic",
+            "Braverman.Paper.F_inv_paper_contdiff",
+            "Braverman.Paper.F_inv_paper_first_deriv_zero",
+            "Braverman.Paper.F_inv_paper_at_origin",
+            "Braverman.Paper.pr_paper",
+            "Braverman.Paper.pr_paper_pos",
+            "Braverman.Paper.pr_paper_le_one",
+            "Braverman.Effective.h_M_oracle",
+            "Braverman.Effective.h_eta_strict_improvement_oracle"
+          ],
+          "unexpected_axioms": []
+        }
+      ]
+    },
+    {
+      "slug": "kg_lt_krivine",
+      "kind": "statement",
+      "lean_sink": "Braverman.KG_lt_Krivine",
+      "lean_file": "LeanProof/MainTheorem.lean",
+      "effective": "Braverman.Effective.KG_lt_Krivine_effective",
+      "status": "ok",
+      "targets": [
+        {
+          "theorem": "Braverman.KG_lt_Krivine",
+          "file": "LeanProof/MainTheorem.lean",
+          "status": "ok",
+          "actual_axioms": [
+            "propext",
+            "sorryAx",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound",
+            "Braverman.Paper.F_inv_paper",
+            "Braverman.Paper.F_inv_paper_eq",
+            "Braverman.Paper.F_inv_paper_zero",
+            "Braverman.Paper.F_inv_paper_mem_S",
+            "Braverman.Paper.F_inv_paper_R_bound",
+            "Braverman.Paper.F_inv_paper_analytic",
+            "Braverman.Paper.F_inv_paper_contdiff",
+            "Braverman.Paper.F_inv_paper_first_deriv_zero",
+            "Braverman.Paper.F_inv_paper_at_origin",
+            "Braverman.Paper.pr_paper",
+            "Braverman.Paper.pr_paper_pos",
+            "Braverman.Paper.pr_paper_le_one",
+            "Braverman.Effective.h_M_oracle",
+            "Braverman.Effective.h_eta_strict_improvement_oracle",
+            "sorryAx"
+          ],
+          "unexpected_axioms": []
+        },
+        {
+          "theorem": "Braverman.Effective.KG_lt_Krivine_effective",
+          "file": "ProofGraph/Effective/KGBound.lean",
+          "status": "ok",
+          "actual_axioms": [
+            "propext",
+            "sorryAx",
+            "Classical.choice",
+            "Quot.sound",
+            "Braverman.Effective.h_M_oracle",
+            "Braverman.Effective.h_eta_strict_improvement_oracle",
+            "Braverman.Paper.F_inv_paper",
+            "Braverman.Paper.F_inv_paper_R_bound",
+            "Braverman.Paper.F_inv_paper_analytic",
+            "Braverman.Paper.F_inv_paper_at_origin",
+            "Braverman.Paper.F_inv_paper_contdiff",
+            "Braverman.Paper.F_inv_paper_eq",
+            "Braverman.Paper.F_inv_paper_first_deriv_zero",
+            "Braverman.Paper.F_inv_paper_mem_S",
+            "Braverman.Paper.F_inv_paper_zero",
+            "Braverman.Paper.pr_paper",
+            "Braverman.Paper.pr_paper_le_one",
+            "Braverman.Paper.pr_paper_pos"
+          ],
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound",
+            "Braverman.Paper.F_inv_paper",
+            "Braverman.Paper.F_inv_paper_eq",
+            "Braverman.Paper.F_inv_paper_zero",
+            "Braverman.Paper.F_inv_paper_mem_S",
+            "Braverman.Paper.F_inv_paper_R_bound",
+            "Braverman.Paper.F_inv_paper_analytic",
+            "Braverman.Paper.F_inv_paper_contdiff",
+            "Braverman.Paper.F_inv_paper_first_deriv_zero",
+            "Braverman.Paper.F_inv_paper_at_origin",
+            "Braverman.Paper.pr_paper",
+            "Braverman.Paper.pr_paper_pos",
+            "Braverman.Paper.pr_paper_le_one",
+            "Braverman.Effective.h_M_oracle",
+            "Braverman.Effective.h_eta_strict_improvement_oracle",
+            "sorryAx"
+          ],
+          "unexpected_axioms": []
+        }
+      ]
+    }
+  ]
+}

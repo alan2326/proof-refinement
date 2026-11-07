@@ -11,13 +11,13 @@ checkpoint of a main run and optimizes the same quantity for a matched budget.
 | `harness/` | runners for the four configurations, workspace builders, and acceptance gates |
 | `analysis/` | the DNF classifiers and the matched-window cut, with their JSON outputs |
 | `runs/` | one directory per cited run: `manifest.json`, `summary.json`, `events.jsonl`, the prompts, per-iteration results, and the static context the tool-less configurations received |
-| `korenblum_no_partial_formalization/` | the seed workspace for the Korenblum no-partial-formalization configuration |
+| `korenblum_no_partial_formalization/` | the candidate contract that `make_arm_c.py` installs when it builds the Korenblum no-partial-formalization workspace |
 
 ## Runs
 
 | Study | Full framework | Basic agent | No agent | No partial formalization |
 | --- | --- | --- | --- | --- |
-| Korenblum | `korenblum-armA-01` | `korenblum-armB-01`, `-02` | `korenblum-armBos-01` | `korenblum-armC-02` |
+| Korenblum | `korenblum-armA-01` | `korenblum-armB-01`, `-02` | `korenblum-armBos-01` | `korenblum-armC-01`, `-02` (the second carries the first's four sprints forward) |
 | Grothendieck (sprint 016) | `grothendieck016-armA-01`, `-02` | `grothendieck016-armB-01`, `-02`, `-03` | `grothendieck016-armBos-01` | `grothendieck016-armC-01`, `-02` |
 
 `runs/reference_budget*.json` hold the matched budgets, and

@@ -1,0 +1,77 @@
+{
+  "is_error": false,
+  "duration_api_ms": 1985074,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "335b9cd6-43de-4312-9ffa-3fa162db0bdb",
+  "total_cost_usd": 11.5163798,
+  "usage": {
+    "input_tokens": 29,
+    "cache_creation_input_tokens": 45903,
+    "cache_read_input_tokens": 461988,
+    "output_tokens": 4487,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 45903
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 736,
+        "cache_read_input_tokens": 39080,
+        "cache_creation_input_tokens": 641,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 641,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5": {
+      "inputTokens": 145,
+      "outputTokens": 168009,
+      "cacheReadInputTokens": 7008901,
+      "cacheCreationInputTokens": 513019,
+      "webSearchRequests": 0,
+      "costUSD": 10.91176925,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 26,
+      "outputTokens": 9287,
+      "cacheReadInputTokens": 656721,
+      "cacheCreationInputTokens": 71523,
+      "webSearchRequests": 0,
+      "costUSD": 0.6046105500000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Sprint complete.\n\n**sprint_004_zero_structure_blaschke_layer** \u2014 the planner selected a zero-structure/Blaschke sprint after establishing that Wang's published chain is numerically exhausted (Wang publishes 0.3554; the seed axiom already asserts 0.35646), so re-deriving (1)\u2192(15) could only score below the parent; it demoted the convexity chain, an honest (9)/\u03b3\u2082 attempt, and a numerical (15) oracle on those grounds and filed no proposal. The generator returned `STATUS=READY_FOR_EVALUATION`, having written `Proof/ZeroStructure.lean` (430 lines, axiom-free, Mathlib-only) and `Candidates/V4.lean`, plus one Experience.md entry recording four Mathlib v4.28.0 name drifts it hit (`Ioo_mem_nhdsGT`, unnamespaced `mem_closedBall_zero_iff`, `pow_le_pow_left\u2080`, and no need for `nhdsWithin_Ioi_self_neBot`). The evaluator returned `STATUS=VERDICT_PASS`: build clean, no `sorry`, axiom audit limited to `propext`/`Classical.choice`/`Quot.sound` plus `hKorenblum_prev` at the sink, oracle audit PASS, **score 17823/50000** \u2014 equal to parent V3, which the evaluator confirmed by re-running the evaluator on V3 directly and which the contract explicitly specifies as a PASS condition for a support-module sprint rather than a failure to improve. Verdict note: `ProofRefinement/Korenblum/Refinement_Log/verdict_sprint_004_zero_structure_blaschke_layer.md`. The bulletin event line is appended; next named target remains Wang (9)/\u03b3\u2082(\u03c1), then aggregation (12)\u2013(14).\n\nOne thing worth your attention across sprints: four consecutive PASSes have all scored 17823/50000. Each was by design, but the loop has not yet moved `c_value`, and the planner now reports that the remaining path to improvement runs through Wang (9), which it assessed as not-in-Mathlib and not one session.",
+  "ttft_ms": 1730,
+  "ttft_stream_ms": 1207,
+  "time_to_request_ms": 112,
+  "type": "result",
+  "duration_ms": 2535558,
+  "uuid": "f1003753-9206-487b-83c0-6fe057058e7d"
+}
