@@ -81,29 +81,30 @@ numerical recomputation, which is the slow step.
 
 ## Caveats
 
-- **Two C_r scales.** On 2026-05-03 the Grothendieck loop found that the
-  oracles of that era truncated a series without a tail bound. Every candidate
-  was re-audited under truncation-free oracles and C_r was re-based. V28's
-  C_r = 2/7 is a post-audit value. Candidates V9 to V26 and the ablation study
-  are on the earlier scale, which is why the ablation table reports ratios to a
-  checkpoint rather than absolute values. See
-  `grothendieck/ProofRefinement/Lemma54/PATCH_NOTES.md`.
-- **Korenblum oracles.** The oracle backing V68 (0.356565) integrates each
-  window with mpmath adaptive quadrature at high working precision
-  (`_two_window_mass_window` in `Numerical_Library/rigorous_scalar.py`). The
-  oracle backing V66 (0.356562) was migrated to Arb interval arithmetic in
-  sprint 102. V66 is therefore the best candidate whose numerics are
-  interval-certified end to end.
-- **Known sorries.** `grothendieck/LeanProof/Rounding.lean` carries two
-  `sorry`s in the rounding argument, as documented in
-  `grothendieck/ProofGraph/README.md`. The Lemma 5.4 chain that the candidates
-  prove is sorry-free; the sink that assembles the full Grothendieck inequality
-  inherits those two.
-- **Ablation snapshots.** The ablation harness rebuilds its starting workspaces
-  from a commit of the private development repository. The scripts and the
-  gates that check the rebuilt snapshot are included; the commit is not. The
-  run records under `ablations/runs/` are complete except for the model
-  transcripts.
+The Grothendieck C_r values live on two scales. On 2026-05-03 the loop found
+that the oracles of that era truncated a series without a tail bound, so every
+candidate was re-audited under truncation-free oracles and C_r was re-based.
+V28's C_r = 2/7 is a post-audit value. Candidates V9 to V26 and the ablation
+study are on the earlier scale, which is why the ablation table reports ratios
+to a checkpoint rather than absolute values. The details are in
+`grothendieck/ProofRefinement/Lemma54/PATCH_NOTES.md`.
+
+The two best Korenblum candidates differ in how their oracles integrate. The
+oracle behind V68 (0.356565) integrates each window with mpmath adaptive
+quadrature at high working precision (`_two_window_mass_window` in
+`Numerical_Library/rigorous_scalar.py`). The oracle behind V66 (0.356562) was
+migrated to Arb interval arithmetic in sprint 102, so V66 is the best candidate
+whose numerics are interval-certified end to end.
+
+`grothendieck/LeanProof/Rounding.lean` carries two `sorry`s in the rounding
+argument, as documented in `grothendieck/ProofGraph/README.md`. The Lemma 5.4
+chain that the candidates prove is sorry-free; the sink that assembles the full
+Grothendieck inequality inherits those two.
+
+The ablation harness rebuilds its starting workspaces from a commit of the
+private development repository. The scripts and the gates that check a rebuilt
+snapshot are included; the commit is not. The run records under
+`ablations/runs/` are complete except for the model transcripts.
 
 ## What was left out
 
