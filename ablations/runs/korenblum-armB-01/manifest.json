@@ -1,0 +1,91 @@
+{
+  "run_id": "korenblum-armB-01",
+  "arm": "B",
+  "constant": "korenblum",
+  "workspace": "ablations/workspaces/armB",
+  "anchor": {
+    "parent": "Candidates/V64.lean",
+    "c_parent": "17823/50000",
+    "goal": "evaluator pass with score > 17823/50000",
+    "reference_sprints": [
+      "084",
+      "085",
+      "086",
+      "087",
+      "088"
+    ],
+    "note": "085's DRY refactor is pre-applied in S0 (see design sect. 2.4)"
+  },
+  "snapshot_sha256": "4b839d1b8c21e81b1d07fb31aba4d9aae937d4305a4e1e4f80ffb23d1de87ac2",
+  "hardware": {
+    "cpu_model": "Intel(R) Xeon(R) Platinum 8352Y CPU @ 2.20GHz",
+    "cpu_logical": "128",
+    "cpu_cores_per_socket": "32",
+    "cpu_sockets": "2",
+    "ram_gb_total": "503",
+    "gpus": [
+      "NVIDIA A40, 46068 MiB",
+      "NVIDIA A40, 46068 MiB",
+      "NVIDIA A40, 46068 MiB",
+      "NVIDIA A40, 46068 MiB",
+      "NVIDIA A40, 46068 MiB"
+    ],
+    "gpu_used_by_workload": false,
+    "os": "Linux-5.15.0-185-generic-x86_64-with-glibc2.35",
+    "kernel": "5.15.0-185-generic",
+    "python": "3.13.9"
+  },
+  "toolchain": {
+    "lean_toolchain": "leanprover/lean4:v4.28.0",
+    "deps": {
+      "checkdecls": "3d425859e73fcfbef85b9638c2a91708ef4a22d4",
+      "mathlib": "8f9d9cff6bd728b17a24e163c9402775d9e6a365",
+      "batteries": "495c008c3e3f4fb4256ff5582ddb3abf3198026f"
+    },
+    "claude_code": "2.1.220 (Claude Code)",
+    "uv": "uv 0.9.10"
+  },
+  "prompt_sha256": {
+    ".claude/agents/korenblum-refinement-planner.md": "dff02cbea26bf5505288e716f40d3a6c44cf494a69d2d6ceb7be4abdc724cbc5",
+    ".claude/agents/korenblum-refinement-generator.md": "963c1fdd34e8211b1867a5c60364cc639a61ade68354f2f24d3a614d19b92d1b",
+    ".claude/agents/korenblum-refinement-evaluator.md": "ba0bfd3667ed6119af1f2baf88e6df7534322f366267fcb69a900e0a313c1789",
+    ".claude/skills/run-next-korenblum-sprint/SKILL.md": "464780d71986857ac9552f75e9ed129a7075601e9685a4919b3bd57af5396a5b",
+    "ProofRefinement/Korenblum/AGENT_BRIEF.md": "505fb7584917de081770be1c786365924d5d9d5fca9f3ddc765674b9cc55406f",
+    "ProofRefinement/Korenblum/START_HERE.md": "aff7841542e38caf667935b1b993dde787fb3b01dcffd872b7fba7548be17df3",
+    "ProofRefinement/Korenblum/README.md": "0938284d3c23ac760d3673af0995a9eeed65bcf16057c89488e5cfcf88b60115",
+    "ProofRefinement/Korenblum/Sprint_Contracts/TEMPLATE.md": "1b125a044684f81fd5c5425427128d2fdbfeeb11ea87fad4cb240e37287d46d0",
+    "CLAUDE.md": "e6ede756dad39b21967ddb072e7dc30f9aeecd906aef92446c8028ba0fa8ad8e"
+  },
+  "started_utc": "2026-07-28T20:58:49Z",
+  "role": "ablation: agentic system removed, partial formalization kept",
+  "model": "opus",
+  "resolved_model": "claude-opus-5",
+  "invocation": "claude -p, tools disallowed, subscription auth",
+  "limitation": "runs inside Claude Code, so its agentic system prompt is present and some tools remain visible though blocked; weaker than an SDK bare-model call, and biased in the ablation's favour",
+  "history_window": 3,
+  "tools": "none (no tool use, no subagents, no file access)",
+  "reference_budget": {
+    "T_ref_s": 8322,
+    "O_ref_output_tokens": 230815,
+    "usd_ref": 20.648,
+    "source_run": "korenblum-armA-01",
+    "terminal_label": "S",
+    "multiplier": 3.0,
+    "T_budget_s": 24966.0,
+    "O_budget_output_tokens": 692445.0,
+    "provenance": {
+      "armA_measured_wall_s": 3285.4,
+      "armA_sprints_to_goal": 1,
+      "original_run_band_s": 8322,
+      "original_run_band": "2026-05-05 sprints 084-088, 04:00:25->06:19:07",
+      "wall_clock_floored_at_original": true,
+      "why": "Arm A beat the original run's 5-sprint result in 1 sprint, so 3x its wall-clock would give the ablations less time than the framework itself originally used. Floored at the original band to keep the ablations generously resourced.",
+      "token_reference_note": "No token data survives for the original run (transcripts purged), so O_ref comes solely from Arm A's measured modelUsage."
+    }
+  },
+  "stopping_rule": "run until wall_clock > 3.0x T_ref AND output_tokens > 3.0x O_ref",
+  "budget": {
+    "T_budget_s": 24966.0,
+    "O_budget_tokens": 692445.0
+  }
+}

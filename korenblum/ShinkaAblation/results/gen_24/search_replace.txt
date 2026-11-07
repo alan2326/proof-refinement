@@ -1,0 +1,18 @@
+<NAME>
+no_change_seed_ceiling
+</NAME>
+
+<DESCRIPTION>
+The registered seed `hEq15_seed_3554` pins c to exactly 3554/10000, and no Lean proof of Eq15 at a higher c is available from the trusted modules without introducing new axioms. Any increase in `c_value` beyond 3554/10000 would require an unregistered axiom (hard fail) or a full Lean derivation we cannot produce here. The current program already achieves the seed ceiling cleanly. Make a trivial whitespace-preserving touch (no semantic change) to confirm; effectively no change.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius (seed-pinned at 3554/10000). -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius (seed-pinned at 3554/10000).
+The trusted seed pins c exactly here; raising requires a Lean proof of (15). -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

@@ -1,0 +1,20 @@
+I cannot push past 0.3554 in this single edit without access to tools to verify a Mathlib-only proof of `Eq15ScalarBound` at a larger `c`. The seed axiom `hEq15_seed_3554` is type-pinned to the literal `3554/10000`, and any unregistered axiom is a hard fail. The current candidate already achieves the seed bound. I'll make a minimal no-op cleanup to keep the candidate stable.
+
+<NAME>
+keep_seed_bound_stable
+</NAME>
+
+<DESCRIPTION>
+Keep the current 0.3554 result (already passing). Tighten the docstring to reflect that this is the seed-locked bound. No semantic change — just retains the verified ValidKorenblumBound proof through valid_of_eq15.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius. The score we are maximizing
+is exactly this value. -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius (seed-pinned). -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

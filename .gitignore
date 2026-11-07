@@ -1,0 +1,20 @@
+# Lean / Lake build outputs
+.lake/
+*.olean
+*.ilean
+*.hash
+*.trace
+# Python
+__pycache__/
+*.pyc
+.venv/
+.uv-cache/
+# Ablation workspaces are rebuilt by ablations/harness/make_s0*.sh
+ablations/workspaces/
+# Local tool state
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+.mcp.json
+.DS_Store
+# Evaluator scratch caches
+Numerical_Library/.cache/

@@ -1,0 +1,15 @@
+<NAME>
+noop_keep_seed
+</NAME>
+
+<DESCRIPTION>
+No change — the only registered seed pins c = 3554/10000, and proving Eq15 at a larger c from Mathlib alone is not feasible in this turn. Keep the passing candidate.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

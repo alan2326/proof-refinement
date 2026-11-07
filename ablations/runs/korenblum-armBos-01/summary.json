@@ -1,0 +1,38 @@
+{
+  "run_id": "korenblum-armBos-01",
+  "arm": "Bos",
+  "terminal_label": "D5",
+  "evidence": "terminated (SIGTERM 143); best=None",
+  "finished_utc": "2026-07-30T23:38:06Z",
+  "best_score": "17823/50000",
+  "wall_clock_s": 4099.0,
+  "output_tokens": 407860,
+  "input_tokens": 18,
+  "cache_creation_tokens": 1263195,
+  "cache_read_tokens": 3797652,
+  "model_calls_turns": 3,
+  "usd_total": 24.7274,
+  "lake_builds": 0,
+  "evaluator_runs": 0,
+  "failed_attempts": 0,
+  "per_model": {
+    "claude-opus-5": {
+      "in": 18,
+      "out": 407860,
+      "cr": 3797652,
+      "cw": 1263195,
+      "usd": 24.727366000000004
+    }
+  },
+  "protocol": "oneshot_best_of_n",
+  "stall_total_s": 0.0,
+  "stalls": 0,
+  "budget": {
+    "T_ref_s": 8322.0,
+    "O_ref_output_tokens": 230815
+  },
+  "attempts_with_candidate": 0,
+  "attempts_accepted": 0,
+  "best_attempt": 0,
+  "best_across_attempts": "None"
+}

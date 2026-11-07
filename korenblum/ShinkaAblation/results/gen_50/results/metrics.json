@@ -1,0 +1,21 @@
+{
+  "combined_score": 0.0,
+  "public": {
+    "passed": false,
+    "fail_reason": "evaluator failed",
+    "elapsed_s": 13.2,
+    "stage_workspace_imports": "PASS",
+    "stage_import_audit": "PASS",
+    "stage_compile": "FAIL"
+  },
+  "private": {
+    "summary": {
+      "exit_code": 1,
+      "elapsed_s": 13.2,
+      "passed": false,
+      "stage_workspace_imports": "PASS",
+      "stage_import_audit": "PASS",
+      "stage_compile": "FAIL"
+    }
+  }
+}

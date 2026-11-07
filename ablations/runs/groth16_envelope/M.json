@@ -1,0 +1,21 @@
+{
+  "oracle": "M",
+  "fn": "compute_M_bound_tight",
+  "default_n": 8192,
+  "rows": [
+    {
+      "n_per_edge": 8192,
+      "bound": "855827/2000",
+      "bound_float": 427.9135,
+      "ball_value": "427.90905761765316",
+      "elapsed_s": 1.6
+    },
+    {
+      "n_per_edge": 16384,
+      "bound": "1069619/2500",
+      "bound_float": 427.8476,
+      "ball_value": "427.84303331398405",
+      "elapsed_s": 3.1
+    }
+  ]
+}

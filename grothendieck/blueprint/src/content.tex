@@ -1,0 +1,533 @@
+% Blueprint for the Grothendieck Inequality formalization
+% Based on Braverman-Makarychev-Makarychev-Naor (2011)
+
+\chapter{Introduction}
+
+This blueprint describes the formalization of the main result of
+Braverman, Makarychev, Makarychev, and Naor~\cite{BMMN2011}:
+the Grothendieck constant $K_G$ is strictly less than
+the Krivine bound $\pi/(2\log(1+\sqrt{2}))$.
+
+\chapter{Definitions}
+
+\section{The Hermite polynomial \texorpdfstring{$h_5$}{h\_5}}
+
+\begin{definition}[Unnormalized Hermite polynomial]
+  \label{def:h5_unnorm}
+  \lean{Braverman.h5_unnorm}
+  \leanok
+  The unnormalized degree-5 Hermite polynomial:
+  \[
+    \tilde{h}_5(x) = 4x^5 - 20x^3 + 15x.
+  \]
+\end{definition}
+
+\begin{definition}[Normalized Hermite polynomial $h_5$]
+  \label{def:h5}
+  \lean{Braverman.h5}
+  \leanok
+  \uses{def:h5_unnorm}
+  The normalized fifth Hermite polynomial:
+  \[
+    h_5(x) = \frac{\tilde{h}_5(x)}{16\sqrt{15\pi}}.
+  \]
+\end{definition}
+
+\section{The partition function \texorpdfstring{$f_\eta$}{f\_eta}}
+
+\begin{definition}[Partition function]
+  \label{def:f_eta}
+  \lean{Braverman.f_eta}
+  \leanok
+  \uses{def:h5}
+  The partition function $f_\eta : \mathbb{R} \times (\mathbb{R} \times \mathbb{R}) \to \mathbb{R}$
+  from equation~(40):
+  \[
+    f_\eta(x_1, x_2) =
+    \begin{cases}
+      1 & \text{if } x_2 > \eta \cdot h_5(x_1), \\
+      -1 & \text{otherwise.}
+    \end{cases}
+  \]
+\end{definition}
+
+\section{The strip and disk domains}
+
+\begin{definition}[Strip $S$]
+  \label{def:strip}
+  \lean{Braverman.S}
+  \leanok
+  The open vertical strip $S = \{z \in \mathbb{C} : |\operatorname{Re}(z)| < 1\}$.
+\end{definition}
+
+\begin{definition}[Disk]
+  \label{def:disk}
+  \lean{Braverman.disk}
+  \leanok
+  The open disk of radius $r$ centered at the origin:
+  $\operatorname{disk}(r) = \{z \in \mathbb{C} : \|z\| < r\}$.
+\end{definition}
+
+\section{Kernel functions}
+
+\begin{definition}[Kernel $H_\eta$]
+  \label{def:H_eta}
+  \lean{Braverman.H_eta}
+  \leanok
+  \uses{def:f_eta, def:strip}
+  The generating kernel for the rounding scheme, defined as the 4D integral:
+  \[
+    H_\eta(z) = \int_{(\mathbb{R}^2)^2}
+    f_\eta(p_1)\, f_\eta(p_2)\,
+    \frac{\exp\!\bigl(K(p_1, p_2, z)\bigr)}{2\pi(1-z^2)}
+    \,dp
+  \]
+  where $K(x_1,x_2,y_1,y_2,z) = -\frac{x_1^2 + x_2^2 + y_1^2 + y_2^2 - 2z(x_1 y_1 + x_2 y_2)}{1-z^2}$.
+\end{definition}
+
+\begin{definition}[Kernel $H_0$]
+  \label{def:H0}
+  \lean{Braverman.H0}
+  \leanok
+  \uses{def:H_eta}
+  The specialization $H_0(z) := H_\eta(z)|_{\eta=0}$, i.e., using $f_0(x_1,x_2) = \operatorname{sign}(x_2)$.
+\end{definition}
+
+\begin{definition}[Interpolating family $F_p$]
+  \label{def:F_p}
+  \lean{Braverman.F_p}
+  \leanok
+  \uses{def:H_eta, def:H0}
+  $F_p(\eta, z) = (1-p)\,H_0(z) + p\,H_\eta(z)$.
+\end{definition}
+
+\begin{definition}[First-order correction $\psi$]
+  \label{def:psi}
+  \lean{Braverman.psi}
+  \leanok
+  \uses{def:H_eta, def:H0}
+  The first-order correction term from Lemma~5.4:
+  $\psi(\eta, z) = (z - (H_\eta(\sin z) - H_0(\sin z))) \cdot \cos z$.
+\end{definition}
+
+\section{Theorem 4.4 core objects}
+
+\begin{definition}[$\varphi$]
+  \label{def:varphi}
+  \lean{Braverman.varphi}
+  \leanok
+  \uses{def:H_eta}
+  The real-valued function $\varphi(\eta) = \operatorname{Re}(H_\eta(i)/i)$.
+\end{definition}
+
+\begin{definition}[$\Phi$]
+  \label{def:Phi}
+  \lean{Braverman.Phi}
+  \leanok
+  \uses{def:varphi}
+  The scaled version $\Phi(\eta) = 4\pi \cdot \varphi(\eta)$.
+\end{definition}
+
+\section{Main theorem objects}
+
+\begin{definition}[Grothendieck inequality predicate]
+  \label{def:GrothendieckIneq}
+  \lean{Braverman.GrothendieckIneq}
+  \leanok
+  $\operatorname{GrothendieckIneq}(K)$ holds iff $0 < K$ and for all
+  $n, m \in \mathbb{N}$, all $n \times m$ real matrices $A$,
+  all real inner product spaces $H$, and all unit vectors
+  $x_1, \ldots, x_n, y_1, \ldots, y_m \in H$, there exist signs
+  $\varepsilon_i, \delta_j \in \{-1, 1\}$ such that
+  \[
+    \sum_{i,j} a_{ij}\, \varepsilon_i\, \delta_j
+    \;\geq\; \frac{1}{K} \sum_{i,j} a_{ij}\, \langle x_i, y_j \rangle.
+  \]
+\end{definition}
+
+\begin{definition}[Krivine bound]
+  \label{def:KrivineBound}
+  \lean{Braverman.KrivineBound}
+  \leanok
+  $K_{\text{Krivine}} = \frac{\pi}{2\log(1+\sqrt{2})}$.
+\end{definition}
+
+\chapter{Hermite integral computations (Lemma 4.1)}
+
+\begin{lemma}[Equation 26: fourth moment of $h_5$]
+  \label{lem:4_1_eq26}
+  \lean{Braverman.lemma_4_1_eq26}
+  \leanok
+  \uses{def:h5}
+  \[
+    \int_{\mathbb{R}} h_5(x)^4\, e^{-x^2}\,dx
+    = \frac{16750800\,\sqrt{\pi}}{C^4}
+  \]
+  where $C = 16\sqrt{15\pi}$ is the normalization constant \texttt{h5\_norm\_const}.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{def:h5}
+  Expand $h_5(x)^4$ as a degree-20 polynomial, then reduce to
+  Gaussian moment integrals $I(n) = \int x^{2n} e^{-x^2}\,dx$ using the recursion
+  $I(n+1) = \frac{2n+1}{2} I(n)$ with $I(0) = \sqrt{\pi}$.
+\end{proof}
+
+\begin{lemma}[Equation 27: cosine cross-moment]
+  \label{lem:4_1_eq27}
+  \lean{Braverman.lemma_4_1_eq27}
+  \leanok
+  \uses{def:h5}
+  \[
+    \int_{\mathbb{R}^2} h_5(x)^2\, h_5(y)^2\,
+    e^{-(x^2+y^2)/2}\, \cos(xy)\,dx\,dy
+    = \frac{176400\,\sqrt{2}\,\pi}{C^4}.
+  \]
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{def:h5}
+  Expand using Gaussian sine/cosine moment identities and Fubini.
+\end{proof}
+
+\begin{lemma}[Equation 55: Hermite--sine Fourier transform]
+  \label{lem:4_4_eq55}
+  \lean{Braverman.lemma_4_4_eq55}
+  \leanok
+  \uses{def:h5}
+  For all $y \in \mathbb{R}$:
+  \[
+    \int_{\mathbb{R}} h_5(x)\, e^{-x^2/2}\, \sin(xy)\,dx
+    = \sqrt{2\pi}\, e^{-y^2/2}\, h_5(y).
+  \]
+  That is, $h_5$ is an eigenfunction of the Fourier sine transform weighted by the Gaussian.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{def:h5}
+  Expand the polynomial and reduce to Gaussian sine moments.
+\end{proof}
+
+\chapter{Analyticity and bounds (Lemma 4.2)}
+
+\begin{lemma}[$H_\eta$ is analytic on $S$]
+  \label{lem:H_eta_analytic}
+  \lean{Braverman.H_eta_analyticOnNhd}
+  \leanok
+  \uses{def:H_eta, def:strip}
+  For every $\eta \in \mathbb{R}$, the function $z \mapsto H_\eta(z)$
+  is analytic on $S$ (i.e., \texttt{AnalyticOnNhd~$\mathbb{C}$~(H\_eta~$\eta$)~S}).
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{def:H_eta, def:strip}
+  The integrand is holomorphic in $z$ for each fixed $(x,y)$ and dominated
+  by an integrable Gaussian bound uniform on compact subsets of $S$.
+  Apply differentiation under the integral sign (Leibniz + dominated convergence).
+\end{proof}
+
+\begin{lemma}[Bound (43)]
+  \label{lem:H_eta_bound}
+  \lean{Braverman.H_eta_bound_paper}
+  \leanok
+  \uses{def:H_eta, def:strip}
+  For $z = a + bi \in S$:
+  \[
+    \|H_\eta(z)\| \leq \frac{\pi\,\sqrt{(1-a^2+b^2)^2 + (2ab)^2}}{2(1-a^2)}
+    = \frac{\pi\,\|1-z^2\|}{2(1-a^2)}.
+  \]
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{def:H_eta, def:strip, def:f_eta}
+  Bound $|f_\eta| \leq 1$, take absolute values inside the integral,
+  and evaluate the resulting Gaussian integral in closed form.
+\end{proof}
+
+\begin{lemma}[$H_\eta$ is odd]
+  \label{lem:H_eta_odd}
+  \lean{Braverman.H_eta_odd}
+  \leanok
+  \uses{def:H_eta}
+  For $z \in S$: $H_\eta(-z) = -H_\eta(z)$.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{def:H_eta}
+  Substitute $y \mapsto -y$ in the integral and use oddness of the kernel.
+\end{proof}
+
+\chapter{\texorpdfstring{$H_0 = \arcsin$}{H\_0 = arcsin} on reals (Lemma 4.3)}
+
+\begin{lemma}[$H_0$ equals arcsin on real inputs]
+  \label{lem:4_3}
+  \lean{Braverman.sheppard_H0_eq_arcsin_v2}
+  \leanok
+  \uses{def:H0, def:strip}
+  For all $x \in \mathbb{R}$ with $|x| < 1$:
+  $H_0(\uparrow x) = \uparrow(\arcsin\, x)$,
+  where $\uparrow$ denotes the coercion $\mathbb{R} \to \mathbb{C}$.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{def:H0, lem:H_eta_analytic}
+  When $\eta = 0$, $f_0(x_1, x_2) = \operatorname{sign}(x_2)$, so the 4D integral
+  factors. Evaluating via Gaussian integrals and a polar coordinate computation
+  yields Sheppard's formula $H_0(x) = \arcsin(x)$.
+\end{proof}
+
+\chapter{Strict improvement over Krivine (Theorem 4.4)}
+
+\section{Core identities}
+
+\begin{lemma}[$\Phi = 4 F_{44}$ on the diagonal]
+  \label{lem:Phi_eq_F44_diag}
+  \lean{Braverman.Phi_eq_F44_diag}
+  \leanok
+  \uses{def:Phi}
+  $\Phi(\eta) = 4\,F_{44}(\eta, \eta)$, where $F_{44}$ is the two-parameter bridge function
+  defined as a 4D integral over half-spaces $\{x_2 > u_1 h_5(x_1)\} \times \{y_2 > u_2 h_5(y_1)\}$.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{def:Phi}
+  Specialize $H_\eta$ at $z = i$, extract the real part, decompose the $f_\eta$ product
+  into four quadrants via negation symmetry, and observe each contributes equally.
+\end{proof}
+
+\begin{lemma}[$\Phi$ is even]
+  \label{lem:Phi_even}
+  \lean{Braverman.Phi_even}
+  \leanok
+  \uses{def:Phi}
+  $\Phi(-\eta) = \Phi(\eta)$.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{def:Phi, def:H_eta}
+  Follows from $H_{-\eta}(z) = H_\eta(z)$ (since $h_5$ is odd, negating $\eta$ just
+  reflects the partition boundary).
+\end{proof}
+
+\begin{lemma}[$\varphi(0) = \log(1+\sqrt{2})$]
+  \label{lem:varphi_zero}
+  \lean{Braverman.varphi_zero}
+  \leanok
+  \uses{def:varphi, lem:4_3}
+  $\varphi(0) = \log(1 + \sqrt{2})$.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{def:varphi, lem:4_3}
+  Since $H_0 = \arcsin$ (Lemma~4.3), we compute
+  $\varphi(0) = \operatorname{Re}(H_0(i)/i) = \operatorname{Re}(\arcsin(i)/i) = \operatorname{arsinh}(1) = \log(1+\sqrt{2})$.
+\end{proof}
+
+\section{Second derivative vanishes}
+
+\begin{lemma}[$\Phi''(0) = 0$]
+  \label{lem:Phi_second_deriv_zero}
+  \lean{Braverman.Phi_iteratedDeriv2_at_zero}
+  \leanok
+  \uses{def:Phi, lem:4_1_eq26}
+  $\operatorname{iteratedDeriv}\;2\;\Phi\;0 = 0$.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{def:Phi, lem:4_1_eq26}
+  Differentiate the integral twice under the integral sign at $\eta = 0$
+  using the explicit formula from \texttt{Phi\_iteratedDeriv2\_eq\_integral},
+  then evaluate the resulting Gaussian-Hermite integrals.
+\end{proof}
+
+\section{Fourth derivative is positive}
+
+\begin{lemma}[$\Phi''''(0) > 0$]
+  \label{lem:Phi_fourth_deriv}
+  \lean{Braverman.Phi_fourth_deriv_pos}
+  \leanok
+  \uses{def:Phi, lem:4_1_eq26, lem:4_1_eq27, lem:4_4_eq55}
+  $\operatorname{iteratedDeriv}\;4\;\Phi\;0 > 0$.
+  The exact value is $\frac{75\sqrt{2}}{8\pi}$.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{def:Phi, lem:4_1_eq26, lem:4_1_eq27, lem:4_4_eq55}
+  Rewrite using \texttt{Phi\_iteratedDeriv4\_at\_zero} (which proves
+  $\operatorname{iteratedDeriv}\;4\;\Phi\;0 = 75\sqrt{2}/(8\pi)$),
+  then apply \texttt{positivity} (since $\sqrt{2} > 0$ and $\pi > 0$).
+\end{proof}
+
+\section{Main assembly}
+
+\begin{theorem}[Theorem 4.4]
+  \label{thm:4_4}
+  \lean{Braverman.theorem_4_4}
+  \leanok
+  \uses{def:H_eta, def:varphi, lem:varphi_zero, lem:Phi_even, lem:Phi_second_deriv_zero, lem:Phi_fourth_deriv}
+  There exists $\eta_0 > 0$ such that for all $\eta$ with $0 < \eta < \eta_0$:
+  \[
+    \operatorname{Re}(H_\eta(i)/i) > \log(1 + \sqrt{2}).
+  \]
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  \uses{lem:varphi_zero, lem:Phi_even, lem:Phi_second_deriv_zero, lem:Phi_fourth_deriv}
+  Since $\Phi$ is even, $\Phi'(0) = \Phi'''(0) = 0$.
+  Combined with $\Phi''(0) = 0$ and $\Phi''''(0) > 0$, Taylor--Lagrange with $n = 3$
+  on $[0, \eta]$ gives $\Phi(\eta) > \Phi(0)$ for small $\eta > 0$.
+  Converting back via $\Phi = 4\pi\,\varphi$ and $\varphi(0) = \log(1+\sqrt{2})$
+  yields the result.
+\end{proof}
+
+\chapter{Injectivity and image of \texorpdfstring{$H_0$}{H\_0} (Lemma 5.2)}
+
+\begin{lemma}[Lemma 5.2]
+  \label{lem:5_2}
+  \lean{Braverman.lemma_5_2}
+  \leanok
+  \uses{def:H0, def:strip, def:disk}
+  $H_0$ is injective on $S$ (i.e., \texttt{InjOn H0 S}) and $\operatorname{disk}(1) \subseteq H_0(S)$
+  (i.e., \texttt{disk 1 $\subseteq$ H0 '' S}).
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{lem:4_3}
+  Since $H_0 = \arcsin$ and $\sin$ is injective on the vertical strip
+  $\{w : |\operatorname{Re}(w)| < \pi/2\}$, the inverse $\arcsin$ is
+  injective on $S$. The image contains the unit disk because
+  $|\sin(w)| < 1$ when $|w| < 1$.
+\end{proof}
+
+\chapter{Analytic inverse \texorpdfstring{$F_p^{-1}$}{F\_p\^{}-1} (Lemma 5.3)}
+
+\begin{lemma}[Lemma 5.3]
+  \label{lem:5_3}
+  \lean{Braverman.lemma_5_3}
+  \leanok
+  \uses{def:F_p, def:strip, def:disk, lem:5_2, lem:H_eta_analytic}
+  For every $\eta \in \mathbb{R}$ and $r \in (0,1)$, there exists $p_r > 0$ such that
+  for all $p$ with $0 < p < p_r$, there exists $F_{\mathrm{inv}} : \mathbb{C} \to \mathbb{C}$
+  satisfying:
+  \begin{itemize}
+    \item $F_{\mathrm{inv}}$ is analytic on $\operatorname{disk}(r)$,
+    \item $F_p(\eta,\, F_{\mathrm{inv}}(z)) = z$ for all $z \in \operatorname{disk}(r)$,
+    \item $F_{\mathrm{inv}}(z) \in S$ for all $z \in \operatorname{disk}(r)$.
+  \end{itemize}
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{lem:5_2, lem:H_eta_analytic}
+  At $p = 0$, $F_0 = H_0$ is injective with nonvanishing derivative on $S$.
+  By continuity in $p$, $F_p' \neq 0$ on compact subsets of $S$ for small $p$.
+  The analytic inverse function theorem gives local inverses, extended to
+  $\operatorname{disk}(r)$ by connectedness.
+\end{proof}
+
+\chapter{First-order expansion (Lemma 5.4)}
+
+\begin{lemma}[Lemma 5.4]
+  \label{lem:5_4}
+  \lean{Braverman.lemma_5_4}
+  \leanok
+  \uses{def:F_p, def:H_eta, lem:5_3}
+  For every $\eta$ and $r \in (0,1)$, there exist $C_r > 0$ and $p_r > 0$ such that
+  for all $p$ with $0 < p < p_r$ and all $z \in \operatorname{disk}(r)$, there exists
+  $F_{\mathrm{inv}}$ with $F_p(\eta,\, F_{\mathrm{inv}}(w)) = w$ for all $w \in \operatorname{disk}(r)$, and
+  \[
+    \|F_{\mathrm{inv}}(z) - \sin(z) - p\,(z - H_\eta(\sin z))\cos z\| \leq C_r \cdot p^2.
+  \]
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  \uses{lem:5_3}
+  Use the error identity $w - s - p(\Delta \cos z) = p\Delta(1/D - \cos z) - R/D$
+  where each term is $O(p^2)$ by the mean value theorem on a segment.
+\end{proof}
+
+\chapter{Analytic inverse with improved radius (Theorem 5.1)}
+
+\begin{theorem}[Theorem 5.1]
+  \label{thm:5_1}
+  \lean{Braverman.theorem_5_1}
+  \leanok
+  \uses{thm:4_4, lem:5_3, lem:5_4}
+  There exist $\eta > 0$, $p > 0$, and $\gamma > \log(1+\sqrt{2})$, together with
+  $F_{\mathrm{inv}} : \mathbb{C} \to \mathbb{C}$, such that:
+  \begin{itemize}
+    \item $F_{\mathrm{inv}}$ is analytic on $\operatorname{disk}(\gamma)$,
+    \item $F_p(\eta,\, F_{\mathrm{inv}}(z)) = z$ for all $z \in \operatorname{disk}(\gamma)$,
+    \item $F_{\mathrm{inv}}(z) \in S$ for all $z \in \operatorname{disk}(\gamma)$.
+  \end{itemize}
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  \uses{thm:4_4, lem:5_3, lem:5_4}
+  Choose $\eta$ from Theorem~4.4 with $\operatorname{Re}(H_\eta(i)/i) > \log(1+\sqrt{2})$.
+  For small $p$, $F_p^{-1}$ is close to $\sin$, and the radius of analyticity of
+  the inverse approaches $H_\eta(i)/i > \log(1+\sqrt{2})$.
+\end{proof}
+
+\chapter{Rounding scheme}
+
+\begin{theorem}[Gaussian rounding with inverse]
+  \label{thm:rounding}
+  \lean{Braverman.gaussian_rounding_with_inverse}
+  \uses{def:F_p, def:f_eta, def:H_eta, def:strip, def:disk, thm:5_1}
+  Given $\gamma > 0$, parameters $(\eta, p)$ with $\eta > 0$, $p > 0$,
+  and an analytic inverse $F_{\mathrm{inv}}$ on $\operatorname{disk}(\gamma)$ satisfying
+  $F_p(\eta,\, F_{\mathrm{inv}}(z)) = z$ and $F_{\mathrm{inv}}(z) \in S$ for $z \in \operatorname{disk}(\gamma)$:
+  for any $n \times m$ real matrix $A$ and unit vectors
+  $x_i \in H$, $y_j \in H$, there exist signs $\varepsilon_i, \delta_j \in \{-1, 1\}$ with
+  \[
+    \sum_{i,j} a_{ij}\, \varepsilon_i\, \delta_j
+    \;\geq\;
+    \frac{2\gamma}{\pi} \sum_{i,j} a_{ij}\, \langle x_i, y_j \rangle.
+  \]
+  \textbf{Status}: Has one \texttt{sorry} --- requires Gaussian measure theory on
+  Hilbert spaces (not yet in Mathlib).
+\end{theorem}
+
+\chapter{Main theorem}
+
+\begin{theorem}[Theorem 1.1: $K_G < K_{\text{Krivine}}$]
+  \label{thm:1_1}
+  \lean{Braverman.theorem_1_1}
+  \uses{def:GrothendieckIneq, def:KrivineBound, thm:5_1, thm:rounding}
+  There exists $K < K_{\text{Krivine}}$ such that $\operatorname{GrothendieckIneq}(K)$.
+
+  Equivalently: $\exists\, K : \mathbb{R},\; K < \frac{\pi}{2\log(1+\sqrt{2})} \;\wedge\; \operatorname{GrothendieckIneq}(K)$.
+\end{theorem}
+
+\begin{proof}
+  \uses{thm:5_1, thm:rounding}
+  From Theorem~5.1, obtain $(\eta, p, \gamma, F_{\mathrm{inv}})$ with
+  $\gamma > \log(1+\sqrt{2})$. Set $K = \pi/(2\gamma)$.
+  Then $K < K_{\text{Krivine}}$ since $\gamma > \log(1+\sqrt{2})$.
+  Apply \texttt{grothendieck\_ineq\_of\_rounding} which delegates to
+  \texttt{rounding\_core\_inequality} (which has the sorry).
+\end{proof}
+
+\begin{thebibliography}{1}
+\bibitem{BMMN2011}
+M.~Braverman, K.~Makarychev, Y.~Makarychev, and A.~Naor,
+\emph{The Grothendieck constant is strictly smaller than Krivine's bound},
+Forum of Mathematics, Pi, vol.~1, e4, 2013.
+\end{thebibliography}

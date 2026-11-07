@@ -1,0 +1,25 @@
+# Computational: head contribution from the first n odd Taylor coefficients
+# of φ. Feeds Theorem 5.1's series argument (the "head" + "tail" split).
+name      = "head_contribution (Step 4)"
+slug      = "head_contribution"
+kind      = "computational"
+paper_ref = "Braverman §5; head term in Theorem 5.1"
+
+parents = ["compute_phi_taylor"]
+
+[python]
+module   = "proof_graph.oracle_wrappers"
+function = "head_contribution_pipeline"
+
+[python.inputs]
+p     = { source = "node:certify_invertibility:p_arb" }
+phi   = { source = "node:compute_phi_taylor:phi" }
+K_max = { source = "const:K_max", cast = "int" }
+
+[python.kwargs]
+prec    = 256
+verbose = false
+
+[python.outputs]
+head_contribution = "head_contribution"
+n                 = "n"

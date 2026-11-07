@@ -1,0 +1,22 @@
+# Theorem 4.4: the partition f_η gives strict improvement over Krivine.
+# Equivalently, H_η(i)/i > log(1+√2) for small η > 0.
+name      = "Theorem 4.4"
+slug      = "theorem_4_4"
+kind      = "statement"
+paper_ref = "Braverman et al. (2011), Theorem 4.4"
+
+parents = ["eval_h_eta_at_i"]
+
+[lean]
+sink           = "Braverman.theorem_4_4"
+file           = "LeanProof/Theorem44.lean"
+line           = 34
+effective      = "Braverman.Effective.theorem_4_4_effective"
+effective_file = "ProofGraph/Effective/Theorem44Effective.lean"
+
+[audit]
+# 1 oracle-backed numerical axiom: H_eta(eta_val)(i)/i > log(1+√2).
+allowed_axioms = [
+  "@axioms.lean_primitives",
+  "Braverman.Effective.h_eta_strict_improvement_oracle",
+]

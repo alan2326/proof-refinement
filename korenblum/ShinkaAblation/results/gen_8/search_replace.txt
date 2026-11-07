@@ -1,0 +1,20 @@
+<NAME>
+noop_keep_seed
+</NAME>
+
+<DESCRIPTION>
+The seed axiom `hEq15_seed_3554` only certifies Wang's (15) at the literal `3554/10000`. Without a Lean-checked proof of `Eq15ScalarBound` at a larger `c`, or an alternative direct route to `ValidKorenblumBound`, raising `c_value` above `3554/10000` cannot pass the axiom audit. I leave the file unchanged — it already achieves the maximum score reachable from the registered trust surface.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to seed; raising requires a Lean proof of Eq15 at larger c.
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to the registered seed axiom `hEq15_seed_3554`, which fixes
+-- Wang's equation (15) at the literal 3554/10000. Raising this value
+-- requires a Lean-checked proof of `Eq15ScalarBound K c_value` at a
+-- larger c, or a different `valid_of_*` route in `Proof/Reduction.lean`.
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

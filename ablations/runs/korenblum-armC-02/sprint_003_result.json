@@ -1,0 +1,77 @@
+{
+  "is_error": false,
+  "duration_api_ms": 1880950,
+  "num_turns": 12,
+  "stop_reason": "end_turn",
+  "session_id": "2ba135b9-f5b7-4ea1-a151-5863786cdf5d",
+  "total_cost_usd": 11.337150949999996,
+  "usage": {
+    "input_tokens": 23,
+    "cache_creation_input_tokens": 11804,
+    "cache_read_input_tokens": 385680,
+    "output_tokens": 3186,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 11804,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 726,
+        "cache_read_input_tokens": 38066,
+        "cache_creation_input_tokens": 659,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 659
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5": {
+      "inputTokens": 151,
+      "outputTokens": 156268,
+      "cacheReadInputTokens": 8284526,
+      "cacheCreationInputTokens": 452950,
+      "webSearchRequests": 0,
+      "costUSD": 10.924920499999995,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 24,
+      "outputTokens": 7304,
+      "cacheReadInputTokens": 406974,
+      "cacheCreationInputTokens": 48135,
+      "webSearchRequests": 0,
+      "costUSD": 0.41223045,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Sprint complete.\n\n**sprint_008 \u2014 the divisor reduction** (`Sprint_Contracts/sprint_008_divisor_reduction.md`) dropped the zero-freeness requirement on the multiplier-form weight and used the resulting weight-shift to peel Blaschke factors off `B` one at a time, giving the exact reduction `ValidKorenblumBound c \u27fa MultiplierBoundNZ c`; the planner chose it over three alternatives because it is the only candidate that attacks the hypothesis side and is exact at the `h = B` degeneracy that falsified every previously named target. The generator returned **`STATUS=READY_FOR_EVALUATION`**, shipping a new axiom-free `Proof/DivisorReduction.lean` (503 lines, built clean on the first `lake build`) plus `Candidates/V8.lean`, with both mandated falsifiable guards (`guard_tight_not_nz`, `korenblum_ceiling_nz`) in place and `lemma.toml` untouched. The evaluator returned **`STATUS=VERDICT_PASS`**: build OK, no `sorry`, axiom audit exactly `[propext, Classical.choice, Quot.sound, V0.hKorenblum_prev]`, no oracles, import audit PASS, **score 17823/50000** \u2014 equal to parent V7 as this contract requires, since the sprint ships a proof layer rather than a numeric gain (`c_value` stays at `0.35646`, 50.41 % of `1/\u221a2`). Verdict note: `ProofRefinement/Korenblum/Refinement_Log/verdict_sprint_008_divisor_reduction.md`; the Bulletin event line is appended, and the next target on record is the `n = 1` reduced instance, which `korenblum_ceiling_nz` shows now carries the whole constant.",
+  "ttft_ms": 1341,
+  "ttft_stream_ms": 920,
+  "time_to_request_ms": 46,
+  "type": "result",
+  "duration_ms": 2420298,
+  "uuid": "456bcbfc-e969-46e8-9c52-515f4c156b2f"
+}

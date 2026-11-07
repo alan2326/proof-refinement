@@ -1,0 +1,38 @@
+{
+  "run_id": "grothendieck016-armBos-01",
+  "arm": "Bos",
+  "terminal_label": "D5",
+  "evidence": "both budgets exhausted: active wall 9042s > T_ref 8652s and 781503 > O_ref 544294 output tokens (within-envelope best 1/14 at attempt 1, above BAR 1/6400)",
+  "finished_utc": "2026-07-30T04:55:34Z",
+  "best_score": "1/14",
+  "wall_clock_s": 9042.2,
+  "output_tokens": 781503,
+  "input_tokens": 30,
+  "cache_creation_tokens": 998834,
+  "cache_read_tokens": 5328950,
+  "model_calls_turns": 6,
+  "usd_total": 32.1905,
+  "lake_builds": 5,
+  "evaluator_runs": 5,
+  "failed_attempts": 1,
+  "per_model": {
+    "claude-opus-5": {
+      "in": 30,
+      "out": 781503,
+      "cr": 5328950,
+      "cw": 998834,
+      "usd": 32.19054
+    }
+  },
+  "protocol": "oneshot_best_of_n",
+  "stall_total_s": 0.0,
+  "stalls": 0,
+  "budget": {
+    "T_ref_s": 8651.9,
+    "O_ref_output_tokens": 544294
+  },
+  "attempts_with_candidate": 5,
+  "attempts_accepted": 4,
+  "best_attempt": 1,
+  "best_across_attempts": "1/14"
+}

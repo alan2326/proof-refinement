@@ -1,0 +1,20 @@
+<NAME>
+no_change_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+The only registered external input pins Wang's (15) to c = 3554/10000. Without a new oracle or a Mathlib-only proof of Eq15 at a larger c (which is a research-level task), c_value cannot be increased. The current program already achieves the seed's pinned bound. Make a trivial cosmetic comment-only change to keep the file well-documented while preserving the proven 0.3554.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to Wang (2025) seed: 0.3554.
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to Wang (2025) seed: 0.3554. The only registered external input
+-- (`hEq15_seed_3554`) fixes equation (15) at exactly 3554/10000, so without
+-- adding a new registered oracle or proving (15) at a larger c from Mathlib
+-- + KorenblumPaper.* alone (open research), this is the maximum achievable.
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

@@ -1,0 +1,17 @@
+<NAME>
+minor_cleanup
+</NAME>
+
+<DESCRIPTION>
+Keep seed-pinned bound; no path to raise c without new axioms.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to Wang (2025) seed: 0.3554.
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to Wang (2025) seed: 0.3554. Raising requires a Lean proof of (15) at larger c.
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

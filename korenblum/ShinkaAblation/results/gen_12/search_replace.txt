@@ -1,0 +1,17 @@
+<NAME>
+no_change_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+The trusted seed axiom `hEq15_seed_3554` pins Wang's equation (15) to exactly c = 3554/10000. Without a registered oracle or a Lean proof of `Eq15ScalarBound K c` at a larger c (which would require formalizing the analytic content of Wang's argument including the K-product bound, γ₂, and the integral inequality (15) — far beyond what's feasible in a targeted edit), we cannot push c_value above 3554/10000. The current candidate already attains the seed-maximal value. Making a no-op cosmetic edit to preserve the passing state.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius (seed-pinned). -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius (seed-pinned at 3554/10000). -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

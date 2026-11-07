@@ -1,0 +1,22 @@
+<NAME>
+no_change_seed_optimal
+</NAME>
+
+<DESCRIPTION>
+The seed axiom `hEq15_seed_3554` is pinned to c = 3554/10000, and no path is available in the trust surface to prove `Eq15ScalarBound` at a larger c without introducing an unregistered axiom. The current program already achieves the maximum attainable score under the registered axiom set. Make a trivial cosmetic comment update to preserve the proven path.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius. The score we are maximizing
+is exactly this value. This matches the seed axiom `hEq15_seed_3554`
+which pins `c = 3554/10000` exactly. -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius `c = 0.3554`. This matches
+the only registered seed axiom `hEq15_seed_3554`, which pins Wang's
+equation (15) to the literal `3554/10000`. Without an additional
+registered oracle, this is the largest provably-valid `c_value`. -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

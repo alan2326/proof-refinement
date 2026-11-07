@@ -1,0 +1,116 @@
+# Per-lemma config consumed by Evaluator.py.
+#
+# This file externalizes everything about Lemma 5.4 that the evaluator needs
+# to know: the sink theorem name, the score expression, the seed axioms it
+# may inherit from V0, and the numerical oracles it may invoke.
+#
+# Design rationale: see ../../docs/PROOF_REFINEMENT_DESIGN.md
+
+name        = "Lemma 5.4"
+slug        = "lemma_5_4"
+paper_ref   = "Braverman et al. (2011), §5"
+
+# The candidate must declare `theorem <sink_theorem>` (under the namespace
+# of its choice). The evaluator runs `#print axioms <namespace>.<sink_theorem>`
+# to enumerate transitive dependencies.
+sink_theorem = "lemma_5_4_search"
+
+# Score: a Python arithmetic expression over the candidate's `def *_val`
+# rationals (and the constants in [search_constants]). Smaller is better.
+score = "Cr_val"
+
+# Lean expressions the score evaluator should resolve to fixed rationals.
+[search_constants]
+"SearchConfig.r"   = "23/25"
+"SearchConfig.eta" = "1/100"
+
+# Axioms allowed in the audited set without an oracle backing.
+# `sorryAx` is never permitted.
+[seed_axioms]
+allowed = [
+  # Standard Lean.
+  "propext",
+  "Classical.choice",
+  "Quot.sound",
+
+  # 12 trusted analytic axioms about the IFT-supplied F_inv_paper family.
+  # Inherited from the production proof at
+  # ProofGraph/Effective/Lemma54Effective.lean. The agent may prove these
+  # as Lean theorems (which removes them from the audited set) but must
+  # not introduce new ones.
+  "Braverman.Paper.F_inv_paper",
+  "Braverman.Paper.F_inv_paper_eq",
+  "Braverman.Paper.F_inv_paper_zero",
+  "Braverman.Paper.F_inv_paper_mem_S",
+  "Braverman.Paper.F_inv_paper_R_bound",
+  "Braverman.Paper.F_inv_paper_analytic",
+  "Braverman.Paper.F_inv_paper_contdiff",
+  "Braverman.Paper.F_inv_paper_at_origin",
+  "Braverman.Paper.F_inv_paper_first_deriv_zero",
+  "Braverman.Paper.pr_paper",
+  "Braverman.Paper.pr_paper_pos",
+  "Braverman.Paper.pr_paper_le_one",
+
+  # Structural domain-containment axiom (Rouché-certified by the production
+  # runner; not numerically re-checked per candidate).
+  "Braverman.PaperV0.h_oracle_domain_contains_image",
+]
+
+# Oracle-backed axioms. Each axiom name (short, namespace-stripped) maps
+# to a `def <bound_field>_val : ℝ` and a Python function in
+# `Numerical_Library/` that recomputes a certified upper bound. The
+# evaluator demands `<bound_field>_val >= oracle_fn().bound`.
+
+[[oracles]]
+axiom       = "h_M_oracle"
+bound_field = "M_val"
+oracle_fn   = "compute_M_bound_tight"
+
+# Approved by proposal_001 (2026-04-30). Three η-aware oracles for sup-norms
+# of |H_η − H_0|, |H_η' − H_0'|, and |F_ww| on the oracle rectangle. See
+# Proposals/proposal_001_cr_refined_oracles.md for the math; see
+# Scratch/sprint_proposal_001_smoke.py for the certified numerical values.
+
+[[oracles]]
+axiom       = "h_M_phi_oracle"
+bound_field = "M_phi_val"
+oracle_fn   = "compute_M_phi_bound"
+
+[[oracles]]
+axiom       = "h_M_phi_prime_oracle"
+bound_field = "M_phi_prime_val"
+oracle_fn   = "compute_M_phi_prime_bound"
+
+[[oracles]]
+axiom       = "h_M_pp_oracle"
+bound_field = "M_pp_val"
+oracle_fn   = "compute_M_pp_bound"
+
+# Approved by sprint_014 (2026-04-30). Sup of `1 / ‖∂_z F_p(η, p, w)‖` over
+# `p ∈ [0, 1]` and `w ∈ Ω(δ, B)`. Replaces the loose paper bound
+# `1/‖∂_z F_p‖ ≤ 2R/(1−r) ≈ 28.75` from `F_p_deriv_lower_bound_at_F_inv`
+# with a direct η-aware ≈ 2 — a ~14× tightening of `invFp` (~196× of
+# `invFp²`), driving `Cr_phi_invD r M_phi M_phi_prime R inv_F_p_z` down
+# from 3.79 to ≈ 1.65 at the V9 parameters.
+
+[[oracles]]
+axiom       = "h_inv_F_p_z_oracle"
+bound_field = "inv_F_p_z_val"
+oracle_fn   = "compute_inv_F_p_z_bound"
+
+# Sibling of `h_M_pp_oracle`: the SAME sup-norm claim
+# (`‖iteratedDeriv 2 (F_p η p) w‖ ≤ bound` for `p ∈ Ioo 0 pr_paper`,
+# `w ∈ Ω(δ, B)`), on the SAME rectangle, certified by a tighter
+# computation. `compute_M_pp_bound` splits
+# `‖(1−p)H_0'' + pH_η''‖ ≤ sup‖H_0''‖ + sup‖H_η''‖` and Cauchy-bounds the
+# second summand from `H_η'` (giving ≈ 51, hence its ≈ 56 answer);
+# `compute_M_pp_tight_bound` instead writes
+# `(1−p)H_0'' + pH_η'' = H_0'' + p(H_η'' − H_0'')` and Cauchy-bounds the
+# difference `Φ' = H_η' − H_0'`, which is `O(η²) ≈ 0.054` rather than
+# `≈ 2` — a ~40× cut on that summand, landing near 6–8. The old row is
+# retained so earlier candidates (V11) keep validating.
+
+[[oracles]]
+axiom       = "h_M_pp_tight_oracle"
+bound_field = "M_pp_tight_val"
+oracle_fn   = "compute_M_pp_tight_bound"

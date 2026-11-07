@@ -1,0 +1,88 @@
+{
+  "run_id": "grothendieck016-armC-01",
+  "arm": "C",
+  "constant": "grothendieck_lemma54 (sprint-016 anchor)",
+  "workspace": "ablations/workspaces/groth16_armC",
+  "anchor": {
+    "parent": "Candidates/V11.lean",
+    "score_parent": "1",
+    "direction": "minimize",
+    "goal": "evaluator-accepted candidate with Cr_val <= BAR = 1/6400",
+    "reference_sprints": [
+      "016",
+      "017 (salvage of 016's G3 write-scope FAIL; V12 byte-identical)"
+    ],
+    "s0_commit": "5db00044",
+    "original_band_s": 2360,
+    "original_band_note": "07:40:56Z (S0^16, 5db00044) -> 08:20:16Z (verdict_017, 410a45c1). Corrects the sect. 13.1 draft (1,837 s to verdict_016 only, which was a FAIL).",
+    "no_lean_envelope": [
+      "6044806335974745213/15625000000000000000000",
+      0.0003868676055023837
+    ],
+    "envelope_route": "Cr_phi_uzz",
+    "BAR": [
+      "1/6400",
+      0.00015625
+    ],
+    "bar_rationale": "largest round rational <= envelope/2; unreachable by declared-value/resolution shaving on the frozen Lean surface (sect. 13.2)"
+  },
+  "snapshot_sha256": "1ae9ee8c20847d8a59f1f79788b183e926e944b74b0aa373f93f589e3ad6a72e",
+  "hardware": {
+    "cpu_model": "Intel(R) Xeon(R) Platinum 8352Y CPU @ 2.20GHz",
+    "cpu_logical": "128",
+    "cpu_cores_per_socket": "32",
+    "cpu_sockets": "2",
+    "ram_gb_total": "503",
+    "gpus": [
+      "NVIDIA A40, 46068 MiB",
+      "NVIDIA A40, 46068 MiB",
+      "NVIDIA A40, 46068 MiB",
+      "NVIDIA A40, 46068 MiB",
+      "NVIDIA A40, 46068 MiB"
+    ],
+    "gpu_used_by_workload": false,
+    "os": "Linux-5.15.0-185-generic-x86_64-with-glibc2.35",
+    "kernel": "5.15.0-185-generic",
+    "python": "3.13.9"
+  },
+  "toolchain": {
+    "lean_toolchain": "leanprover/lean4:v4.28.0",
+    "deps": {
+      "checkdecls": "3d425859e73fcfbef85b9638c2a91708ef4a22d4",
+      "mathlib": "8f9d9cff6bd728b17a24e163c9402775d9e6a365",
+      "batteries": "495c008c3e3f4fb4256ff5582ddb3abf3198026f"
+    },
+    "claude_code": "2.1.220 (Claude Code)",
+    "uv": "uv 0.9.10"
+  },
+  "prompt_sha256": {
+    ".claude/agents/refinement-planner.md": "85822f49184962f8b5e70f191f9e912f0ba7487421ce8e11018712b9f53bfffd",
+    ".claude/agents/refinement-generator.md": "5ae54f5edb8327361a0530e189240ef4a87d7e169105ead87768c40635ab8200",
+    ".claude/agents/refinement-evaluator.md": "f7de4315b4f5975179e2730c3dfb053844bee74390dd8e73763afeda6dc9491f",
+    ".claude/skills/run-next-sprint/SKILL.md": "7c818e987426eedbad67919053d5379f601e3bfa068316c6b87d9a2ddf0ca250",
+    "ProofRefinement/Lemma54/AGENT_BRIEF.md": "4d6384d69599d18127c9ac91ddf26d5894a75062d2ebd850342de3deb49e6266",
+    "ProofRefinement/Lemma54/README.md": "4d6384d69599d18127c9ac91ddf26d5894a75062d2ebd850342de3deb49e6266",
+    "ProofRefinement/Lemma54/Sprint_Contracts/TEMPLATE.md": "8b419841fd407eaaaf3dca6de330b6f9a1a35238a02588baa0ffd4a52cf2abeb",
+    "ProofRefinement/Lemma54/Proposals/TEMPLATE.md": "f419ef060c78ed6aec8b308ed295b5090bfa48a92e1d151c4588f4dd494001c6",
+    "ProofRefinement/Lemma54/Proposals/README.md": "bf4e18e319b46603fe002695dd417f865a54a0b5ab16fcaf83210ec00072b5f8",
+    "CLAUDE.md": "6c299bee8905c8ce4adcc90699edc1efa4d538c8398dbdbec94394cd96491173"
+  },
+  "started_utc": "2026-07-29T16:14:31Z",
+  "role": "ablation: partial formalization removed, agentic system kept",
+  "driver": "/run-next-sprint",
+  "driver_model": "opus",
+  "subagent_models": {
+    "planner": "opus",
+    "generator": "opus",
+    "evaluator": "sonnet"
+  },
+  "statement_level": "outermost (K_G), sect. 9.3 / 12.5 / 13.2",
+  "seed": "axiom hKrivine : GrothendieckIneq KrivineBound (exact real)",
+  "arm_c_parent": "891107/500000",
+  "success_criterion": "accepted rational K_val < KrivineBound, interval [1.782213978191369, 1.782213978191369] (50-digit certified); within-slack re-certifications are progress, not success (sect. 13.2)",
+  "stopping_rule": "matched wall-clock window (deadline file, t_ref_s = max(T_armA, 2360 s)); user decision 2026-07-29",
+  "baseline_log_rows": {
+    "evaluator_runs": 0,
+    "failures": 0
+  }
+}

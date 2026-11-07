@@ -1,0 +1,39 @@
+-- EVOLVE-BLOCK-START
+-- @parent seed
+import ProofRefinement.Korenblum.Proof.Main
+import ProofRefinement.Korenblum.Proof.ShinkaTrustedSeed
+
+noncomputable section
+
+namespace ProofRefinement.Korenblum.Candidates.SHINKA_PLACEHOLDER
+
+open ProofRefinement.Korenblum
+open ProofRefinement.Korenblum.ProblemAxioms
+
+/-- Wang 2025's published lower-bound radius. Pinned at 3554/10000, which
+is the ceiling reachable via the registered seed `hEq15_seed_3554`
+without introducing new axioms. -/
+def c_value : ℝ := 3554 / 10000
+
+theorem c_value_pos : (0 : ℝ) < c_value := by
+  norm_num [c_value]
+
+theorem c_value_lt_one : c_value < (1 : ℝ) := by
+  norm_num [c_value]
+
+/-- The candidate file is FORBIDDEN from declaring its own axioms.
+The trusted seed `ShinkaTrustedSeed.hEq15_seed_3554` pins Wang's
+equation `(15)` to the literal `3554/10000` and is the only registered
+external input you can use. To push `c_value` above `3554/10000` you
+must prove `Eq15ScalarBound K c_value` (or any other path to
+`ValidKorenblumBound c_value`) without introducing new axioms. -/
+theorem korenblum_constant_search : ValidKorenblumBound c_value := by
+  -- The trusted seed gives Wang's (15) at exactly c = 3554/10000. Our
+  -- c_value is 3554/10000, so we can use the seed directly.
+  exact valid_of_eq15 c_value_pos c_value_lt_one
+    (fun {K} => by
+      simpa [c_value] using
+        ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K)
+
+end ProofRefinement.Korenblum.Candidates.SHINKA_PLACEHOLDER
+-- EVOLVE-BLOCK-END

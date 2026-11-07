@@ -1,0 +1,27 @@
+<NAME>
+no_change_seed_optimal
+</NAME>
+
+<DESCRIPTION>
+The seed axiom `hEq15_seed_3554` pins c to exactly 3554/10000, and no axioms can be added. Without a Lean-internal proof of Eq15ScalarBound at a larger c (which requires substantial analytic work beyond the trust surface), 3554/10000 is the maximum achievable score. The current program already achieves this. Making a tiny no-op cleanup to keep the file minimal.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+theorem korenblum_constant_search : ValidKorenblumBound c_value := by
+  -- The trusted seed gives Wang's (15) at exactly c = 3554/10000. Our
+  -- c_value is 3554/10000, so we can use the seed directly.
+  have hEq15 : ∀ {K : ℝ → ℝ → ℝ}, Eq15ScalarBound K c_value := fun {K} => by
+    have h : Eq15ScalarBound K ((3554 : ℝ) / 10000) :=
+      ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K
+    simpa [c_value] using h
+  exact valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => hEq15)
+=======
+theorem eq15_bound_at_seed (K : ℝ → ℝ → ℝ) : Eq15ScalarBound K c_value := by
+  simpa [c_value] using
+    ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K
+
+theorem korenblum_constant_search : ValidKorenblumBound c_value :=
+  valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => eq15_bound_at_seed K)
+>>>>>>> REPLACE
+</DIFF>

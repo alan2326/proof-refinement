@@ -1,0 +1,77 @@
+{
+  "is_error": false,
+  "duration_api_ms": 2008835,
+  "num_turns": 12,
+  "stop_reason": "end_turn",
+  "session_id": "cbd85fcd-66e8-4273-8440-b97b1093d211",
+  "total_cost_usd": 13.5436239,
+  "usage": {
+    "input_tokens": 23,
+    "cache_creation_input_tokens": 12610,
+    "cache_read_input_tokens": 391106,
+    "output_tokens": 3493,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 12610,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 743,
+        "cache_read_input_tokens": 38813,
+        "cache_creation_input_tokens": 887,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 887
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5": {
+      "inputTokens": 185,
+      "outputTokens": 162342,
+      "cacheReadInputTokens": 11126293,
+      "cacheCreationInputTokens": 502512,
+      "webSearchRequests": 0,
+      "costUSD": 12.810609000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 34,
+      "outputTokens": 10005,
+      "cacheReadInputTokens": 946693,
+      "cacheCreationInputTokens": 79688,
+      "webSearchRequests": 0,
+      "costUSD": 0.7330148999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Sprint **009 \u2014 \"The moment envelope\"** ran end to end and closed clean. Preflight passed (note: the script is at `ProofRefinement/Korenblum/scripts/korenblum_harness_preflight.sh`, not the repo-root `scripts/` path the skill names \u2014 worth fixing in the skill). The planner wrote `Sprint_Contracts/sprint_009_moment_envelope.md`, targeting the workspace's first *quantitative* layer: LP duality on the Parseval moment sequence, proving that pointwise domination `\u2016f z\u2016 \u2264 \u2016z\u2016` on the annulus forces `bergmanNormSq f \u2264 \u03c0/2` for all `c\u00b2 \u2264 1/3`, with no appeal to `hKorenblum_prev`. The generator returned **`STATUS=READY_FOR_EVALUATION`**, shipping a new axiom-free `Proof/MomentEnvelope.lean` (~530 lines: abstract dual envelope, the `\u03b1 = 1/(2(1\u2212t))`, `\u03b2 = (1\u22122t)/(2(1\u2212t))` certificate, all four extraction steps with no integrability hypothesis, and three sharpness guards) plus `Candidates/V9.lean`; it used no reduced-scope fallback and deviated only cosmetically (one unused binder kept to preserve a verbatim contract signature). The evaluator returned **`STATUS=VERDICT_PASS`** with **score 17823/50000** \u2014 equal to parent V8, which is what this deliberately \"layer, not a number\" contract requires \u2014 after re-running build, sorry-scan, and the full evaluator literally, and independently confirming the sprint's central falsifiable claim via `lean_verify`: `V9.monomial_majorant_bound_5773` audits to exactly `[propext, Classical.choice, Quot.sound]` with `hKorenblum_prev` absent, while the sink still carries it. Verdict note: `ProofRefinement/Korenblum/Refinement_Log/verdict_sprint_009_moment_envelope.md`. Bulletin event line appended; the queued next target is the general monomial majorant `\u2016f z\u2016 \u2264 \u2016z\u2016^m` for `m \u2265 2`.",
+  "ttft_ms": 2119,
+  "ttft_stream_ms": 1589,
+  "time_to_request_ms": 44,
+  "type": "result",
+  "duration_ms": 2641304,
+  "uuid": "04fc0071-f3bc-4df7-b439-ec3c79daea0f"
+}

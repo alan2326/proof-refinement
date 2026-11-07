@@ -1,0 +1,16 @@
+<NAME>
+keep_seed
+</NAME>
+
+<DESCRIPTION>
+No registered path exists to exceed 0.3554 without a new oracle axiom. Keep the proven seed binding; minor cosmetic stability.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to seed axiom literal 3554/10000.
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

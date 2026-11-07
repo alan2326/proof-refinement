@@ -1,0 +1,15 @@
+<NAME>
+keep_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+Without a registered oracle for a larger c, the seed pins us at 3554/10000. Keep current passing proof unchanged.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

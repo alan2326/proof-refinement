@@ -1,0 +1,71 @@
+name = "Polygon Pi Bounds"
+slug = "polygonpi"
+paper_ref = "Archimedean inscribed-polygon bounds for π (fixed depth 10 = 4096-gon)"
+
+# ── The scored contract ──────────────────────────────────────────────────────
+sink_theorem        = "polygon_pi_constant_search"
+constant_def        = "kappa"          # upper coefficient; must parse as a rational
+lower_constant_def  = "lambda"         # lower coefficient; must parse as a rational
+score               = "kappa - lambda" # the width coefficient
+score_direction     = "minimize"
+
+contract_def        = "ValidPolygonBound"
+contract_namespace  = "ProofRefinement.PolygonPi"
+contract_module     = "ProofRefinement.PolygonPi.Proof.Main"
+fixed_depth_theorem = "certified_polygon_interval"
+
+# ── Optional secondary frontier (logged, never a substitute) ─────────────────
+secondary_sink_theorem       = "polygon_pi_depth10_search"
+secondary_constant_def       = "kappaDepth10"
+secondary_lower_constant_def = "lambdaDepth10"
+secondary_score              = "kappaDepth10 - lambdaDepth10"
+secondary_contract_def       = "ValidPolygonBoundAt"
+secondary_depth              = 10
+
+# The depth at which the reported interval width is computed. Must agree with
+# `PolygonCore.benchmarkDepth`; the evaluator asserts this at startup.
+benchmark_depth = 10
+
+[import_policy]                                  # the candidate file itself
+allowed_prefixes = ["Mathlib", "ProofRefinement.PolygonPi", "PolygonCore"]
+blocked_exact    = ["Mathlib"]                   # the bare mega-import
+blocked_prefixes = ["Mathlib.Analysis.Real.Pi"]  # Bounds / Wallis / Leibniz / …
+check_transitive = true
+
+[workspace_import_policy]                        # every .lean under the workspace
+allowed_prefixes = ["Mathlib", "ProofRefinement.PolygonPi", "PolygonCore"]
+blocked_exact    = ["Mathlib"]
+blocked_prefixes = ["Mathlib.Analysis.Real.Pi"]
+check_transitive = true
+
+[seed_axioms]
+# Decision D3: pure Lean. Exactly the three standard Lean axioms, nothing else,
+# ever. This automatically bans `native_decide`, whose closure would contain
+# `Lean.ofReduceBool` and `Lean.trustCompiler`.
+allowed = ["propext", "Classical.choice", "Quot.sound"]
+
+[forbidden_patterns]
+# Scanned against comment-stripped source, so a token appearing only in prose is
+# not a violation — what matters is whether the proof term can use it.
+tokens = [
+  "sorry", "admit", "axiom ", "opaque ", "unsafe ", "run_tac", "native_decide",
+  "elab ", "macro ", "syntax ", "IO.", "System.", "Lean.Parser", "Lean.Elab",
+  "Lean.ofReduceBool", "Lean.trustCompiler", "implemented_by", "extern",
+  # Mathlib's finished π-bound machinery. The whole point of the exercise is to
+  # rebuild the quantitative part, so reaching for these is out of bounds even
+  # if the module they live in were somehow importable.
+  "pi_lt_sqrtTwoAddSeries", "pi_gt_sqrtTwoAddSeries",
+  "pi_lower_bound_start", "pi_upper_bound_start",
+  "sqrtTwoAddSeries_step_up", "sqrtTwoAddSeries_step_down",
+  "pi_lt_d", "pi_gt_d", "pi_gt_three", "pi_gt_314", "pi_lt_315",
+  "pi_gt_3141592", "pi_lt_3141593",
+  "Mathlib.Analysis.Real.Pi",
+]
+
+[limits]
+max_lines_per_file = 2000
+max_bytes_per_file = 102400
+max_constant_digits = 30
+
+# [[oracles]] — intentionally absent. Decision D3 forbids numerical oracles, and
+# the evaluator hard-fails if this table is present and non-empty.

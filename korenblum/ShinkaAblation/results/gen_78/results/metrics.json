@@ -1,0 +1,8 @@
+{
+  "combined_score": 0.0,
+  "public": {
+    "passed": false,
+    "fail_reason": "FileNotFoundError: program_path korenblum/ShinkaAblation/results/gen_78/main.cpp not found"
+  },
+  "private": {}
+}

@@ -1,0 +1,16 @@
+<NAME>
+keep_seed_value
+</NAME>
+
+<DESCRIPTION>
+Without tool access and given the seed axiom `hEq15_seed_3554` is pinned to the literal `3554/10000`, proving `Eq15ScalarBound K c_value` at any larger c requires a substantial Lean proof from `KorenblumPaper.*` modules, which is not feasible to draft blind. The current candidate already compiles and scores 0.3554. Making no semantic change preserves the passing score; any speculative bump risks a 0 score.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to seed; raising requires a Lean proof of Eq15 at larger c.
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

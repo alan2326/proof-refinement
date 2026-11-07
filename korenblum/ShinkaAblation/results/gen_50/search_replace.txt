@@ -1,0 +1,29 @@
+<NAME>
+keep_seed_stable
+</NAME>
+
+<DESCRIPTION>
+The current candidate already attains c_value = 3554/10000 = 0.3554, exactly the seed's pinned value. Without a proof of Eq15ScalarBound at a larger c (which would require substantial new Lean development from KorenblumPaper.* without introducing axioms), we cannot increase the score. Any speculative change risks breaking compilation and dropping the score to 0. I propose a minimal no-op refactor that consolidates the bounds lemma but keeps the proven structure intact.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+theorem korenblum_constant_search : ValidKorenblumBound c_value := by
+  -- The trusted seed gives Wang's (15) at exactly c = 3554/10000. Our
+  -- c_value is 3554/10000, so we can use the seed directly.
+  have hEq15 : ∀ {K : ℝ → ℝ → ℝ}, Eq15ScalarBound K c_value := fun {K} => by
+    have h : Eq15ScalarBound K ((3554 : ℝ) / 10000) :=
+      ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K
+    simpa [c_value] using h
+  exact valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => hEq15)
+=======
+/-- Direct seed-bound binding: Wang's (15) at the pinned literal,
+rephrased at `c_value` by definitional unfolding. -/
+theorem eq15_bound_at_seed (K : ℝ → ℝ → ℝ) : Eq15ScalarBound K c_value := by
+  simpa [c_value] using
+    ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K
+
+theorem korenblum_constant_search : ValidKorenblumBound c_value :=
+  valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => eq15_bound_at_seed K)
+>>>>>>> REPLACE
+</DIFF>

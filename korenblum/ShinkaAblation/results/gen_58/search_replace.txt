@@ -1,0 +1,18 @@
+<NAME>
+keep_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+The trusted seed axiom `hEq15_seed_3554` pins Wang's equation (15) to exactly c = 3554/10000. Without a Lean-internal proof of (15) at a larger c (which would require formalizing Wang's Maple-verified inequality involving an infinite product K and integrals — well beyond reach without new oracles), we cannot push c_value higher. The current program already achieves the maximum attainable score (0.3554) via the cleanest single-hop seed-binding pattern. Any deviation risks compile failures with no upside. Make a minimal cosmetic doc-comment addition to confirm intent without altering proof structure.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang (2025) published lower bound, pinned by the trusted seed axiom
+`hEq15_seed_3554`. Raising this requires a Lean-internal proof of Wang's
+equation (15) at a larger c, or a registered numerical oracle. -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

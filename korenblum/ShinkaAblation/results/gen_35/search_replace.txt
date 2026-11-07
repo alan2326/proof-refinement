@@ -1,0 +1,18 @@
+<NAME>
+keep_seed_bound
+</NAME>
+
+<DESCRIPTION>
+The only registered axiom pins c = 3554/10000. Without a new oracle or full Lean proof of (15) at a larger c (which is not feasible in this turn), any larger c_value would fail. Keep current minimal proof.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+-- Note: the trusted seed pins c = 3554/10000 exactly. Increasing c_value
+-- would require either proving Eq15ScalarBound at a larger c from Mathlib
+-- (open problem) or a new registered oracle.
+>>>>>>> REPLACE
+</DIFF>

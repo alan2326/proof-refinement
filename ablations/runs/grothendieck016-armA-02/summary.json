@@ -1,0 +1,37 @@
+{
+  "run_id": "grothendieck016-armA-02",
+  "arm": "A",
+  "terminal_label": "S",
+  "evidence": "evaluator accepted score 1/400000 <= BAR 1/6400 after 1+3 sprint(s) (-01 + continuation)",
+  "finished_utc": "2026-07-29T22:15:24Z",
+  "best_score": "1/400000",
+  "wall_clock_s": 4341.5,
+  "output_tokens": 277553,
+  "input_tokens": 386,
+  "cache_creation_tokens": 773192,
+  "cache_read_tokens": 15813640,
+  "model_calls_turns": 34,
+  "usd_total": 18.3238,
+  "lake_builds": 0,
+  "evaluator_runs": 6,
+  "failed_attempts": 4,
+  "per_model": {
+    "claude-opus-5": {
+      "in": 300,
+      "out": 228969,
+      "cr": 11684872,
+      "cw": 624194,
+      "usd": 15.7974235
+    },
+    "claude-sonnet-5": {
+      "in": 86,
+      "out": 48584,
+      "cr": 4128768,
+      "cw": 148998,
+      "usd": 2.5263909
+    }
+  },
+  "stall_total_s": 0.0,
+  "stalls": 0,
+  "continues": "grothendieck016-armA-01"
+}

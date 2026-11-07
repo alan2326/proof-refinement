@@ -1,0 +1,26 @@
+{
+  "run": "run1-opus5",
+  "completed_utc": "2026-07-27T06:08:43Z",
+  "git_tag": "run1-opus5",
+  "git_commit_at_run_end": "70ee9bf",
+  "models_actually_used": {
+    "planner": "claude-opus-5",
+    "generator": "claude-opus-5",
+    "evaluator": "claude-sonnet-5"
+  },
+  "models_requested": "claude-opus-4-7 (did NOT take effect: agent definitions are cached at session start)",
+  "sprints": 5,
+  "all_passed": true,
+  "score_start": "1",
+  "score_end": "9816533/1000000000",
+  "width_start": "9.536743e-07",
+  "width_end": "9.361775e-09",
+  "width_reduction_x": 101.87,
+  "theoretical_max_x": 101.869,
+  "headroom_captured_pct": 99.999999,
+  "cost_usd_run": 64.01,
+  "cost_usd_session_incl_harness_build": 168.79,
+  "llm_calls_run": 702,
+  "wall_clock_min": 123.5,
+  "caveat": "Evaluated under the PRE-FIX evaluator. A constant-shadowing exploit was available (see validation_notes.md) but was not used; all six candidates were re-verified under the fixed evaluator and still pass."
+}

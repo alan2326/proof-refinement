@@ -1,0 +1,17 @@
+# Lemma 5.3: F_p has an analytic right-inverse on disk(r) for small p.
+name      = "Lemma 5.3"
+slug      = "lemma_5_3"
+kind      = "statement"
+paper_ref = "Braverman et al. (2011), Lemma 5.3"
+
+parents = ["certify_invertibility"]
+
+[lean]
+sink           = "Braverman.lemma_5_3"
+file           = "LeanProof/Lemma53.lean"
+line           = 692
+effective      = "Braverman.Effective.lemma_5_3_effective"
+effective_file = "ProofGraph/Effective/Lemma53Effective.lean"
+
+[audit]
+allowed_axioms = "@inherit:default"

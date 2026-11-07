@@ -1,0 +1,121 @@
+# Korenblum Proof Refinement Workspace
+
+This workspace clones the Lemma 5.4 harness structure for the Korenblum
+constant. The objective is different:
+
+- each candidate exports a **final lower-bound theorem** for a chosen `c`,
+- the score is the candidate's produced lower bound `c_value`,
+- and larger `c_value` is better.
+
+## Contract
+
+Every candidate must declare:
+
+- `def c_value : ℝ := <rational>`
+- `theorem korenblum_constant_search :
+    ProofRefinement.Korenblum.ValidKorenblumBound c_value`
+
+The contract itself lives in
+[Proof/CandidateContract.lean](korenblum/ProofRefinement/Korenblum/Proof/CandidateContract.lean).
+
+The search space is any Lean proof of that final theorem shape. Candidates are
+not required to go through Wang's equation `(15)` unless they choose to.
+
+## Seed
+
+[Candidates/V0.lean](korenblum/ProofRefinement/Korenblum/Candidates/V0.lean)
+is the paper-faithful seed at `c = 3554 / 10000 = 0.3554`.
+
+It uses:
+
+- the bundled paper surface from `KorenblumPaper.PaperAxioms`,
+- a generic Lean reduction from equation `(15)` to the final bound in
+  [Proof/Reduction.lean](korenblum/ProofRefinement/Korenblum/Proof/Reduction.lean),
+- and one seed axiom `hEq15_seed_3554` asserting Wang's scalar inequality
+  `(15)` at `c = 0.3554`.
+
+That is only the current seed route. Future candidates may prove
+`ValidKorenblumBound c_value` by any other argument.
+
+## Evaluator
+
+Run:
+
+```bash
+env UV_CACHE_DIR=korenblum/.uv-cache \
+  uv run ProofRefinement/Korenblum/Evaluator.py \
+  --file ProofRefinement/Korenblum/Candidates/V0.lean
+```
+
+The evaluator checks:
+
+1. candidate compile,
+2. exact theorem type,
+3. direct imports against `lemma.toml`'s `import_policy`,
+4. all workspace `.lean` imports against `lemma.toml`'s `workspace_import_policy`,
+5. axiom surface,
+6. registered oracles if any are used,
+7. score extraction and log append.
+
+## Layout
+
+```text
+ProofRefinement/Korenblum/
+├── Candidates/
+├── Proof/
+├── Numerical_Library/
+├── Proposals/
+├── Refinement_Log/
+├── Scratch/
+├── Sprint_Contracts/
+├── AGENT_BRIEF.md
+├── Bulletin.md
+├── Evaluator.py
+├── Experience.md
+├── README.md
+└── lemma.toml
+```
+
+## Long-running harness
+
+For the full Korenblum harness, including planner/generator/evaluator roles,
+see the folder-local copy at
+[docs/KORENBLUM_PROOF_REFINEMENT_HARNESS.md](korenblum/ProofRefinement/Korenblum/docs/KORENBLUM_PROOF_REFINEMENT_HARNESS.md).
+
+The folder-local harness wiring lives here:
+
+- `.claude/agents/korenblum-refinement-planner.md`
+- `.claude/agents/korenblum-refinement-generator.md`
+- `.claude/agents/korenblum-refinement-evaluator.md`
+- `.claude/skills/run-next-korenblum-sprint/SKILL.md`
+- `.claude/settings.json`
+
+Run one end-to-end sprint with:
+
+```text
+/run-next-korenblum-sprint
+```
+
+Run autonomously with the host loop runner:
+
+```text
+/loop 30m /run-next-korenblum-sprint
+```
+
+Important distinction:
+
+- the autonomous agent loop comes from the host `/loop` command invoking the
+  local skill above,
+- there is no folder-local shell scheduler here that spawns planner/generator/
+  evaluator agents by itself,
+- `scripts/korenblum_checkpoint_loop.sh` is only a periodic checkpoint-commit
+  loop.
+
+Helpful scripts:
+
+- `scripts/korenblum_harness_preflight.sh`
+- `scripts/korenblum_harness_reset.sh`
+- `scripts/korenblum_checkpoint_once.sh`
+- `scripts/korenblum_checkpoint_loop.sh`
+- `scripts/korenblum_lake_build.sh`
+- `scripts/korenblum_eval_candidate.sh`

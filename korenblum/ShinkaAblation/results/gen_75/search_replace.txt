@@ -1,0 +1,22 @@
+<NAME>
+keep_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+No safe path exists to exceed 3554/10000 without new registered axioms. Keep the proven seed-pinned candidate; make a tiny cosmetic tightening (inline the seed application) to preserve the passing score.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+  have hEq15 : ∀ {K : ℝ → ℝ → ℝ}, Eq15ScalarBound K c_value := fun {K} => by
+    have h : Eq15ScalarBound K ((3554 : ℝ) / 10000) :=
+      ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K
+    simpa [c_value] using h
+  exact valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => hEq15)
+=======
+  have hEq15 : ∀ {K : ℝ → ℝ → ℝ}, Eq15ScalarBound K c_value := fun {K} => by
+    simpa [c_value] using
+      ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K
+  exact valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => hEq15)
+>>>>>>> REPLACE
+</DIFF>

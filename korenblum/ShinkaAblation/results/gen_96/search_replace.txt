@@ -1,0 +1,15 @@
+<NAME>
+keep_seed
+</NAME>
+
+<DESCRIPTION>
+No axiom-free path to a higher c is available with current trust surface; keep the seed-pinned 3554/10000 proof. Minor cosmetic: no change.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

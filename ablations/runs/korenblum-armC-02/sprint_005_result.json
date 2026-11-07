@@ -1,0 +1,77 @@
+{
+  "is_error": false,
+  "duration_api_ms": 3649831,
+  "num_turns": 10,
+  "stop_reason": "end_turn",
+  "session_id": "5109d072-8e18-47f4-ba14-693642f11c77",
+  "total_cost_usd": 18.05622799999999,
+  "usage": {
+    "input_tokens": 19,
+    "cache_creation_input_tokens": 9669,
+    "cache_read_input_tokens": 307552,
+    "output_tokens": 2939,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 9669,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 545,
+        "cache_read_input_tokens": 36320,
+        "cache_creation_input_tokens": 439,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 439
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5": {
+      "inputTokens": 197,
+      "outputTokens": 300442,
+      "cacheReadInputTokens": 12232525,
+      "cacheCreationInputTokens": 586954,
+      "webSearchRequests": 0,
+      "costUSD": 17.333018749999997,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 1579,
+      "outputTokens": 9194,
+      "cacheReadInputTokens": 960595,
+      "cacheCreationInputTokens": 77969,
+      "webSearchRequests": 0,
+      "costUSD": 0.7232092500000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Sprint `sprint_010_mobius_transport` completed end to end: preflight passed (the script lives at `ProofRefinement/Korenblum/scripts/korenblum_harness_preflight.sh`, not the repo-root `scripts/` path the skill names \u2014 worth fixing in the skill). The planner chose a M\u00f6bius-covariance sprint \u2014 building an A\u00b2 transport `(T_a \u03a8)(\u03b6) = \u03a8(swap a \u03b6)\u00b7swap\u2032 a \u03b6` that is a hypothesis-free isometric involution, collapsing the general-centre axis at `n = 1` to an origin-majorant claim on a pseudohyperbolic region. The generator returned `STATUS=READY_FOR_EVALUATION`, shipping `Proof/MobiusTransport.lean` (602 lines, axiom-free) and `Candidates/V10.lean` with the full scope including \u00a75 (no reduced-scope drop), and it flagged one caveat for the next planner: transport reorganises the `n = 1` family but cannot improve `c_value` on its own. The evaluator returned `STATUS=VERDICT_PASS` with score **17823/50000** \u2014 equal to parent V9, which is what this layer-only contract explicitly required \u2014 after confirming the build, no `sorry`, the axiom audit on `V10.nonmonomial_majorant_bound` free of `hKorenblum_prev`, an unchanged sink, and a byte-identical `lemma.toml`. Verdict path: `ProofRefinement/Korenblum/Refinement_Log/verdict_sprint_010_mobius_transport.md`; bulletin event line appended.",
+  "ttft_ms": 2354,
+  "ttft_stream_ms": 1854,
+  "time_to_request_ms": 46,
+  "type": "result",
+  "duration_ms": 4415102,
+  "uuid": "f1d5f499-3c40-4765-8b1e-3cca5484e0a6"
+}

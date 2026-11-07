@@ -1,0 +1,37 @@
+# Computational: solve for γ such that the summability condition holds, given
+# all numerical inputs. Feeds Theorem 5.1's witness of γ > log(1+√2).
+name      = "solve_gamma (Step 9)"
+slug      = "solve_gamma"
+kind      = "computational"
+paper_ref = "Braverman §5; γ for Theorem 5.1"
+
+parents = [
+  "tail_bound",
+  "lipschitz_bounds",
+  "compute_cr",
+  "head_contribution",
+  "theorem_4_4",
+  "certify_invertibility",
+  "eval_h_eta_at_i",
+]
+
+[python]
+module   = "proof_graph.oracle_wrappers"
+function = "solve_gamma_pipeline"
+
+[python.inputs]
+p                 = { source = "node:certify_invertibility:p_arb" }
+H_eta_i_over_i    = { source = "node:eval_h_eta_at_i:H_eta_i_over_i" }
+L                 = { source = "node:lipschitz_bounds:L" }
+head_contribution = { source = "node:head_contribution:head_contribution" }
+epsilon           = { source = "node:tail_bound:epsilon" }
+C_r               = { source = "node:compute_cr:C_r" }
+r                 = { source = "node:certify_invertibility:r_arb" }
+
+[python.kwargs]
+prec    = 256
+verbose = false
+
+[python.outputs]
+gamma_best   = "gamma_best"
+series_error = "series_error"

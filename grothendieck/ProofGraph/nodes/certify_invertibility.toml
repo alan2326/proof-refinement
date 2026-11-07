@@ -1,0 +1,40 @@
+# Computational: Rouche-style certification of analytic invertibility of F_p
+# on the outer disk of radius (1+r)/2. Outputs r_arb, p_arb, delta_arb, B_arb.
+name      = "certify_invertibility (Step 1)"
+slug      = "certify_invertibility"
+kind      = "computational"
+paper_ref = "Braverman §5; underlies Lemma 5.3 (and feeds Lemma 5.4)"
+
+parents = []
+
+[python]
+module   = "proof_graph.oracle_wrappers"
+function = "certify_invertibility_with_override"
+
+# Input wiring. Each input name corresponds to a kwarg of the function.
+# Sources:
+#   "const:<key>"            — value from _index.toml [constants] (cast per type)
+#   "node:<slug>:<output>"   — output from another node (already typed)
+[python.inputs]
+r          = { source = "const:r",          cast = "float" }
+eta        = { source = "const:eta_max",    cast = "float" }
+p_override = { source = "const:p_override", cast = "str" }
+delta_override = { source = "const:delta",  cast = "str" }
+B_override     = { source = "const:B",      cast = "str" }
+
+[python.kwargs]
+prec    = 256
+verbose = false
+
+# Output extraction. Each entry: <output_name> = <dotted path into return value>.
+# `all_checks_passed` is a single bool the wrapper sets to True iff Step 1
+# certified imaginary containment, real containment, positive Rouché margin,
+# and `p · M_partial < margin`. It is the certificate-side witness behind
+# Lean's `h_oracle_domain_contains_image` axiom.
+[python.outputs]
+r_arb               = "r"
+p_arb               = "p"
+p_certified         = "p_certified"
+delta_arb           = "delta"
+B_arb               = "B"
+all_checks_passed   = "all_checks_passed"

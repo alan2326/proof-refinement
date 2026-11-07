@@ -1,0 +1,153 @@
+# Per-lemma config consumed by Evaluator.py.
+#
+# This file externalizes everything about Lemma 5.4 that the evaluator needs
+# to know: the sink theorem name, the score expression, the seed axioms it
+# may inherit from V0, and the numerical oracles it may invoke.
+#
+# Design rationale: see ../../docs/PROOF_REFINEMENT_DESIGN.md
+
+name        = "Lemma 5.4"
+slug        = "lemma_5_4"
+paper_ref   = "Braverman et al. (2011), §5"
+
+# The candidate must declare `theorem <sink_theorem>` (under the namespace
+# of its choice). The evaluator runs `#print axioms <namespace>.<sink_theorem>`
+# to enumerate transitive dependencies.
+sink_theorem = "lemma_5_4_search"
+
+# Score: a Python arithmetic expression over the candidate's `def *_val`
+# rationals (and the constants in [search_constants]). Smaller is better.
+score = "Cr_val"
+
+# Lean expressions the score evaluator should resolve to fixed rationals.
+[search_constants]
+"SearchConfig.r"   = "23/25"
+"SearchConfig.eta" = "1/100"
+
+# Axioms allowed in the audited set without an oracle backing.
+# `sorryAx` is never permitted.
+[seed_axioms]
+allowed = [
+  # Standard Lean.
+  "propext",
+  "Classical.choice",
+  "Quot.sound",
+
+  # 12 trusted analytic axioms about the IFT-supplied F_inv_paper family.
+  # Inherited from the production proof at
+  # ProofGraph/Effective/Lemma54Effective.lean. The agent may prove these
+  # as Lean theorems (which removes them from the audited set) but must
+  # not introduce new ones.
+  "Braverman.Paper.F_inv_paper",
+  "Braverman.Paper.F_inv_paper_eq",
+  "Braverman.Paper.F_inv_paper_zero",
+  "Braverman.Paper.F_inv_paper_mem_S",
+  "Braverman.Paper.F_inv_paper_R_bound",
+  "Braverman.Paper.F_inv_paper_analytic",
+  "Braverman.Paper.F_inv_paper_contdiff",
+  "Braverman.Paper.F_inv_paper_at_origin",
+  "Braverman.Paper.F_inv_paper_first_deriv_zero",
+  "Braverman.Paper.pr_paper",
+  "Braverman.Paper.pr_paper_pos",
+  "Braverman.Paper.pr_paper_le_one",
+
+  # Structural domain-containment axiom (Rouché-certified by the production
+  # runner; not numerically re-checked per candidate).
+  "Braverman.PaperV0.h_oracle_domain_contains_image",
+]
+
+# Oracle-backed axioms. Each axiom name (short, namespace-stripped) maps
+# to a `def <bound_field>_val : ℝ` and a Python function in
+# `Numerical_Library/` that recomputes a certified upper bound. The
+# evaluator demands `<bound_field>_val >= oracle_fn().bound`.
+
+[[oracles]]
+axiom       = "h_M_oracle"
+bound_field = "M_val"
+oracle_fn   = "compute_M_bound_tight"
+
+# Approved by proposal_001 (2026-04-30). Three η-aware oracles for sup-norms
+# of |H_η − H_0|, |H_η' − H_0'|, and |F_ww| on the oracle rectangle. See
+# Proposals/proposal_001_cr_refined_oracles.md for the math; see
+# Scratch/sprint_proposal_001_smoke.py for the certified numerical values.
+
+[[oracles]]
+axiom       = "h_M_phi_oracle"
+bound_field = "M_phi_val"
+oracle_fn   = "compute_M_phi_truncfree_bound"
+
+[[oracles]]
+axiom       = "h_M_phi_prime_oracle"
+bound_field = "M_phi_prime_val"
+oracle_fn   = "compute_M_phi_prime_truncfree_bound"
+
+[[oracles]]
+axiom       = "h_M_pp_oracle"
+bound_field = "M_pp_val"
+oracle_fn   = "compute_M_pp_truncfree_bound"
+
+# Approved by sprint_014 (2026-04-30). Sup of `1 / ‖∂_z F_p(η, p, w)‖` over
+# `p ∈ [0, 1]` and `w ∈ Ω(δ, B)`. Replaces the loose paper bound
+# `1/‖∂_z F_p‖ ≤ 2R/(1−r) ≈ 28.75` from `F_p_deriv_lower_bound_at_F_inv`
+# with a direct η-aware ≈ 2 — a ~14× tightening of `invFp` (~196× of
+# `invFp²`), driving `Cr_phi_invD r M_phi M_phi_prime R inv_F_p_z` down
+# from 3.79 to ≈ 1.65 at the V9 parameters.
+
+[[oracles]]
+axiom       = "h_inv_F_p_z_oracle"
+bound_field = "inv_F_p_z_val"
+oracle_fn   = "compute_inv_F_p_z_truncfree_bound"
+
+# Approved by sprint_016 (2026-04-30). Direct sup of the analytic quotient
+# `‖∂²_z F_p(η, p, w)‖ / ‖∂_z F_p(η, p, w)‖³ = ‖DD‖/‖D‖³` over
+# `p ∈ [0, 1]` and `w ∈ Ω(δ, B)`. Replaces V11's loose triangle product
+# `M_pp · inv_F_p_z³ ≈ 449` by a single combined sup ≈ 1.55, a ~289×
+# tightening of the term-2 chunk. Backs the new oracle-style axiom
+# `h_u_zz_oracle : ‖DD‖ ≤ ‖D‖³ · u_zz_bound_val`.
+
+[[oracles]]
+axiom       = "h_u_zz_oracle"
+bound_field = "u_zz_bound_val"
+oracle_fn   = "compute_u_zz_bound_truncfree_bound"
+
+# Approved by sprint_019 (2026-04-30). Direct sup of the joint analytic
+# quotient `‖Phi(w) · Phi'(w) / D(p, w)²‖` over `p ∈ [0, 1]` and
+# `w ∈ Ω(δ, B)`. Replaces V13's term-1 triangle product
+# `M_phi · M_phi_prime · inv_F_p_z² ≈ 0.00209` with a single combined
+# sup ≈ 0.0002 — a ~10× tightening of the term-1 chunk. Backs the new
+# oracle-style axiom `h_joint_phi_phip_invD2_oracle :
+# ‖Phi · Phi'‖ ≤ ‖D‖² · joint_phi_phip_invD2_val`.
+
+[[oracles]]
+axiom       = "h_joint_phi_phip_invD2_oracle"
+bound_field = "joint_phi_phip_invD2_val"
+oracle_fn   = "compute_joint_phi_phip_invD2_truncfree_bound"
+
+# Approved by sprint_020 (2026-04-30). Direct sup of the joint analytic
+# quotient `‖DD(p, w) · Phi(w)² / D(p, w)³‖` over `p ∈ [0, 1]` and
+# `w ∈ Ω(δ, B)`. Replaces V14's term-2 triangle product
+# `u_zz_bound · M_phi² ≈ 9.24·10⁻⁴` with a single combined sup ≈
+# 1.53·10⁻⁴ — a ~6× tightening of the term-2 chunk. Backs the new
+# oracle-style axiom `h_uzz_phi_sq_oracle :
+# ‖DD · Phi²‖ ≤ ‖D‖³ · uzz_phi_sq_val`.
+
+[[oracles]]
+axiom       = "h_uzz_phi_sq_oracle"
+bound_field = "uzz_phi_sq_val"
+oracle_fn   = "compute_uzz_phi_sq_bound"
+
+# Approved by sprint_030 (2026-04-30). Direct sup of the *exact* `|u''|`
+# quotient `‖2·Phi·Phi'·D − DD·Phi²‖ / ‖D‖³` over `p ∈ [0, 1]` and
+# `w ∈ Ω(δ, B)`. By the form-A identity (Proof/Lib/Lemma54_Paper_Pderiv_Single.lean:546-557)
+# combined with `u' = -Phi/D`, this quotient equals ‖u''‖ exactly. Replaces
+# V23's triangle-decomposition active bound `2·joint_phi_phip_invD2 +
+# uzz_phi_sq ≈ 9.285·10⁻⁶` with a single merged-numerator sup `≈ 8.087·10⁻⁶`
+# at n_per_edge=262144 (sprint_030 verification probe; ratio 0.871, capturing
+# the destructive-interference savings the triangle bound discards). Backs
+# the new oracle-style axiom `h_merged_uderiv_oracle :
+# ‖2·Phi·Phi'·D − DD·Phi²‖ ≤ ‖D‖³ · merged_uderiv_val`.
+
+[[oracles]]
+axiom       = "h_merged_uderiv_oracle"
+bound_field = "merged_uderiv_val"
+oracle_fn   = "compute_merged_uderiv_bound"

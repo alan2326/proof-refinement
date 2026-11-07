@@ -1,0 +1,22 @@
+<NAME>
+no_change_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+The seed axiom `hEq15_seed_3554` pins the scalar bound to exactly 3554/10000, and no registered oracle or theorem in the trust surface yields `Eq15ScalarBound K c` for any larger c, nor a direct `ValidKorenblumBound` at larger c. Any attempt to raise c_value would require either a new (unregistered) axiom — a hard fail — or a Mathlib-level proof of equation (15) at a larger c, which is not feasible in a single targeted edit. The current candidate already achieves the maximum scoring c_value reachable from the registered surface (0.3554). I propose a minimal cosmetic clarification only, preserving the working proof.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius (seed-pinned). -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius. Pinned to the literal
+`3554/10000` because the only registered external input
+`ShinkaTrustedSeed.hEq15_seed_3554` provides Wang's equation (15) at
+exactly this value. No registered oracle currently certifies (15) at
+any larger c, so this is the maximum c_value reachable without
+introducing a new (and unregistered) axiom. -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

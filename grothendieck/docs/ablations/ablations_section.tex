@@ -1,0 +1,87 @@
+% Main-text ablation subsection; replaces Section 5.3 and Table 3.
+% Needs amsmath, booktabs, and \usepackage[table]{xcolor} (or colortbl) in the
+% preamble for the shaded reference row. No macros required.
+\subsection{Ablations}
+\label{sec:ablations}
+
+\paragraph{Setup.}
+The framework has two components: the partially formalized blueprint of
+Section~\ref{sec:blueprint}, and the agentic system of
+Section~\ref{sec:agent}. We ablate each in turn, on both constants, and
+measure how much of one refinement step survives. Each case study restarts
+from an intermediate checkpoint of its main run and optimizes the same
+quantity. For the Grothendieck constant this is the Lemma~5.4 constant $C_r$ of
+Section~\ref{sec:grothendieck} restarted at $C_r = 1$, which we want to make
+smaller. For the Korenblum constant this is the certified radius $c$, which is
+the lower bound on $\mathcal{K}_K$, restarted at $c = 0.35646$, and which we
+want to make larger. We run the following four configurations, which share the
+same workspace, model, literature, and unmodified evaluator:
+\begin{itemize}
+\setlength{\itemsep}{0pt}\setlength{\topsep}{2pt}
+\item \textbf{Full framework} (reference, both components present): the system
+  of Section~\ref{sec:agent}.
+\item \textbf{Basic agent} (agentic system reduced to a feedback loop): one
+  tool-less model call per iteration; a harness writes the emitted files, runs
+  the build and evaluator, and returns the output. The blueprint is kept.
+\item \textbf{No agent} (agentic system removed): independent one-shot
+  samples, no feedback, best sample kept. The blueprint is kept.
+\item \textbf{No partial formalization} (blueprint removed): the full agentic
+  system, with the reduction chain and oracles removed; only the published
+  bound remains, as an axiom.
+\end{itemize}
+Every configuration runs until it has at least matched the full framework's
+own wall clock and output tokens, and we report its best accepted candidate
+among iterations that began within that token budget. On Korenblum the basic
+agent was additionally run to three times the budget; it reached $c = 0.35653$,
+still below the full framework (Appendix~\ref{app:ablations}). The appendix
+gives budgets, traces, compute, and the oracle-audit caveat that makes the
+$C_r$ values here incomparable with the final value in
+Section~\ref{sec:grothendieck}.
+
+\begin{table}[htbp]
+\centering
+\small
+\setlength{\tabcolsep}{7pt}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+& & \multicolumn{2}{c}{Grothendieck ($C_r\,\downarrow$)} & \multicolumn{2}{c}{Korenblum ($c\,\uparrow$)} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+Configuration & Ablated & $C_r$ & Reduction & $c$ & Gain \\
+\midrule
+Checkpoint (start)       & --             & $1$                & --                & $0.35646$ & -- \\
+\addlinespace[2pt]
+\rowcolor{gray!20}
+Full framework           & --             & $2.5\times10^{-6}$ & $400{,}000\times$ & $0.35658$ & $+1.2\times10^{-4}$ \\
+Basic agent              & agent, partly  & $4.0\times10^{-3}$ & $250\times$       & $0.35648$ & $+2.0\times10^{-5}$ \\
+No agent                 & agent          & $7.1\times10^{-2}$ & $14\times$        & --        & -- \\
+No partial formalization & blueprint      & --                 & --                & --        & -- \\
+\bottomrule
+\end{tabular}
+\caption{Ablations at a matched budget, one run per configuration, against the
+full framework (shaded). Arrows give the direction of improvement. $C_r$
+moves over orders of magnitude and enters the $K_G$ gap multiplicatively, so
+we report its ratio to the checkpoint; $c$ is a radius in $(0,1)$ whose
+improvements are in the fourth digit, so we report its increment. A dash in a
+result column means no accepted candidate improved on the checkpoint.}
+\label{tab:ablations}
+\end{table}
+
+\paragraph{Results.}
+Without the partial formalization, nothing improves. The agent wrote plenty of
+Lean ($5{,}646$ lines on Korenblum, all evaluator runs passing) but had no
+intermediate claim to sharpen, and spent its budget rebuilding one.
+
+Without the agentic system, progress degrades in steps. One-shot samples
+already contain a real analytic improvement (four of six accepted on
+Grothendieck, all with the same idea), but they stop there. The basic agent
+iterates past the first idea and even proposed the full framework's key
+structural change, but each build failure cost it a full model call and it
+completed that change only at the end of its budget. The full framework
+completed it, then built a second change on top, which accounts for the
+remaining factor of $1{,}600$. On Korenblum the basic agent re-pinned the
+construction it was given, and the full framework found a new criterion in one
+iteration.
+
+Each configuration is a single run, and the tool-less configurations ran in the
+same runtime with tools disabled, which if anything favors them.

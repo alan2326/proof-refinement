@@ -1,0 +1,15 @@
+<NAME>
+keep_seed_3554
+</NAME>
+
+<DESCRIPTION>
+The seed axiom only certifies c = 3554/10000. Without a registered oracle for a larger c, any attempt to raise c_value will fail to compile. Keep the working proof as-is (score 0.3554).
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

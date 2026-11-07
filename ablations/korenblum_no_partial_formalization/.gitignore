@@ -1,0 +1,10 @@
+.lake/
+build/
+__pycache__/
+*.olean
+*.ilean
+*.hash
+*.trace
+.DS_Store
+.venv/
+uv.lock

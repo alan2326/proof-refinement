@@ -1,0 +1,16 @@
+<NAME>
+keep_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+No safe path above 0.3554 without a new registered axiom. Keep the current minimal, axiom-free seed proof unchanged to preserve the 0.36 score.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to trusted seed (Wang 2025, eq. 15 at c = 0.3554).
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

@@ -1,0 +1,19 @@
+<NAME>
+noop_cleanup
+</NAME>
+
+<DESCRIPTION>
+Without new registered axioms or oracles, c_value cannot exceed 3554/10000 — the seed `hEq15_seed_3554` pins c to that literal, and no `valid_of_*` reduction in the trust surface produces `ValidKorenblumBound` at a larger c from currently available ingredients. The current program is already at the seed maximum (0.3554). I make a minimal stylistic tightening (no semantic change) to keep the candidate compiling deterministically.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+theorem korenblum_constant_search : ValidKorenblumBound c_value :=
+  valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => eq15_bound_at_seed K)
+=======
+theorem korenblum_constant_search : ValidKorenblumBound c_value :=
+  valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => eq15_bound_at_seed K)
+-- Note: pinned at seed maximum c = 3554/10000. Improvement requires a new
+-- registered oracle/axiom or a fully proved Eq15ScalarBound at larger c.
+>>>>>>> REPLACE
+</DIFF>

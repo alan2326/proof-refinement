@@ -1,0 +1,184 @@
+# INDIVIDUAL PROGRAM SUMMARIES
+
+The following are summaries of individual programs evaluated since the last meta update:
+
+**Program Name: Shinka Korenblum Bound Verification**
+- **Implementation**: A Lean-like noncomputable proof file defining c_value as 3554/10000, proving its positivity and that it is less than 1, and deriving ValidKorenblumBound(c_value) by leveraging the trusted seed hEq15_seed_3554 through a local wrapper hEq15 and valid_of_eq15. The file forbids declaring new axioms and relies on the external seed to pin Wang’s equation (Eq15) at the exact literal value, using simpa to align with c_value.
+- **Performance**: Performance metrics show a combined score of 0.36 with tests passing; c_value_str = 1777/5000, c_value_float = 0.36, and total elapsed time ~28.50s.
+- **Feedback**: Evaluation confirms correctness and demonstrates the design’s reliance on a trusted seed to certify the bound without introducing new axioms; raising c_value would require proving Eq15ScalarBound or an alternative ValidKorenblumBound path without new axioms, preserving verifiability.
+**Program Identifier:** Generation 0 - Patch Name initial_program - Correct Program: True
+
+**Program Name: Korenblum Bound Validation via Trusted Seed**
+- **Implementation**: Fixes c_value to 3554/10000, proves c_value > 0 and c_value < 1, then uses the trusted seed hEq15_seed_3554 to obtain Eq15ScalarBound for all K, packaging this via a helper hEq15 and concluding with valid_of_eq15 to produce ValidKorenblumBound c_value. The code sits in a SHINKA_PLACEHOLDER namespace and adheres to a constraint of not declaring new axioms.
+- **Performance**: 0.36; tests pass (c_value_str = 1777/5000, c_value_float = 0.36; elapsed_s ≈ 27.80).
+- **Feedback**: Leverages an external trusted seed to certify the exact bound without introducing new axioms, ensuring deterministic verification for the fixed c_value; pushing c_value beyond the seed would require alternative proofs or new axioms, maintaining the stated constraint.
+**Program Identifier:** Generation 1 - Patch Name no_change_seed_limit - Correct Program: True
+
+**Program Name: Korenblum Bound via Trusted Seed Verification**
+- **Implementation**: Defines c_value as 3554/10000, proves 0 < c_value < 1, and constructs ValidKorenblumBound c_value by using the ShinkaTrustedSeed hEq15_seed_3554 to obtain Eq15ScalarBound K c_value, then applying valid_of_eq15. The seed is used through a nested hEq15 lemma and is re-wrapped to match c_value via simp [c_value].
+- **Performance**: Combined score 0.36 with a success rate (passed: True); c_value_str = 1777/5000, c_value_float = 0.36, elapsed_s = 27.14.
+- **Feedback**: The approach cleanly pins the constant to a known seed without introducing new axioms, ensuring correctness through the trusted seed path. Evaluation confirms the solution is valid and fully passes tests, though it remains contingent on the external seed input.
+**Program Identifier:** Generation 2 - Patch Name keep_seed_value - Correct Program: True
+
+**Program Name: Korenblum Constant Bound via Trusted Seed**
+- **Implementation**: Noncomputable Lean code defines c_value = 3554/10000, proves positivity and < 1 with norm_num, and lifts a seed-based bound via hEq15_seed_3554 to obtain Eq15ScalarBound for c_value, finally concluding ValidKorenblumBound c_value using valid_of_eq15.
+- **Performance**: Combined score 0.36; test passed with c_value_float 0.36 and runtime 27.45s.
+- **Feedback**: The proof effectively reuses a pre-proven seed (hEq15_seed_3554) to derive a universal Eq15ScalarBound and then applies valid_of_eq15, yielding a concise and verifiable Kor­enblum bound; evaluation indicates correctness and a modest runtime reliant on the seed-based approach.
+**Program Identifier:** Generation 3 - Patch Name keep_seed_3554 - Correct Program: True
+
+**Program Name: Constant-Bound Proof via Trusted Seed**
+- **Implementation**: Defines c_value as 3554/10000, proves positivity and less-than-one via norm_num, and builds a korenblum_constant_search proof that uses the trusted seed hEq15_seed_3554 to obtain Eq15ScalarBound and then derives ValidKorenblumBound c_value with valid_of_eq15.
+- **Performance**: Passed; combined score 0.36 with c_value_str 1777/5000, c_value_float 0.36, elapsed 26.85s.
+- **Feedback**: The approach tightly ties the bound to a trusted external seed to avoid introducing axioms, producing a straightforward proof path; reliability depends on the seed's integrity and it may limit generalization beyond the pinned value.
+**Program Identifier:** Generation 4 - Patch Name keep_seed_bound_stable - Correct Program: True
+
+**Program Name: Korenblum bound verification with Shinka seed**
+- **Implementation**: Lean noncomputable section defines c_value as 3554/10000, proves c_value > 0 and < 1, and proves korenblum_constant_search by deriving hEq15 for any K from the Shinka seed (hEq15_seed_3554) and then applying valid_of_eq15.
+- **Performance**: Combined score to maximize: 0.36; passed: True; c_value_str: 1777/5000; c_value_float: 0.36; elapsed_s: 27.31
+- **Feedback**: The bound is pinned to a specific seed and lifted to all K via a higher-order Eq15ScalarBound argument, yielding correct validation with the given seed within ~27 seconds.
+**Program Identifier:** Generation 5 - Patch Name keep_seed_value - Correct Program: True
+
+**Program Name: Korenblum bound verification using Shinka seed**
+- **Implementation**: The code defines c_value = 3554/10000, proves its positivity and that it’s less than one using norm_num, then builds a proof of ValidKorenblumBound c_value by creating a helper hEq15 that yields Eq15ScalarBound K c_value from the trusted seed lemma hEq15_seed_3554, and finally applies valid_of_eq15 with the bounds and hEq15.
+- **Performance**: The run reports a combined score of 0.36 with a successful pass, c_value_float 0.36, c_value_str 1777/5000, and elapsed time around 29.13 seconds.
+- **Feedback**: The implementation is correct and passes all tests, effectively delegating the core bound verification to the Shinka seed lemma (hEq15_seed_3554) via valid_of_eq15; this modular approach hinges on the external lemma’s correctness and results in a moderate runtime.
+**Program Identifier:** Generation 6 - Patch Name keep_seed_3554 - Correct Program: True
+
+**Program Name: Korenblum constant bound using Eq15 seed**
+- **Implementation**: The code fixes c_value = 3554/10000, proves 0 < c_value and c_value < 1, derives Eq15ScalarBound K via a trusted seed hEq15_seed_3554, and then builds ValidKorenblumBound c_value with valid_of_eq15 using the established bounds; all within a noncomputable section and a dedicated SHINKA_PLACEHOLDER namespace.
+- **Performance**: Combined score 0.36; tests pass; c_value represented as 1777/5000 (≈ 0.3554) with runtime ~28.42s.
+- **Feedback**: The approach effectively leverages a precomputed trusted seed to certify a concrete Korenblum bound, and the evaluation confirms correctness and end-to-end validity, with modest runtime.
+**Program Identifier:** Generation 7 - Patch Name seed_pinned_036 - Correct Program: True
+
+**Program Name: Korenblum Bound via Trusted Seed**
+- **Implementation**: Pins c_value to the trusted seed 3554/10000 and proves c_value > 0 and c_value < 1; constructs a universal Eq15ScalarBound at c_value from the seed, then uses valid_of_eq15 to derive ValidKorenblumBound c_value. The proof relies on noncomputable Lean section, imported modules, and a simpa rewrite to align with the defined c_value.
+- **Performance**: Performance metrics report a 0.36 combined score with a successful pass, including c_value_str 1777/5000, c_value_float 0.36, and approximately 28.05 seconds runtime.
+- **Feedback**: The approach leverages a fixed trusted seed to certify the bound at a specific c_value; raising c_value would require a new Lean-checked Eq15ScalarBound proof at the larger c or an alternative validation route, impacting both flexibility and verification effort.
+**Program Identifier:** Generation 8 - Patch Name noop_keep_seed - Correct Program: True
+
+**Program Name: Pinned-Seed Korenblum Bound via Eq15 Seed**
+- **Implementation**: Pins c_value to 3554/10000 and obtains Eq15ScalarBound for this exact value from a trusted seed (hEq15_seed_3554), then lifts it to a full ValidKorenblumBound using valid_of_eq15 with basic positivity and upper-bound proofs (c_value_pos, c_value_lt_one) proven via norm_num. The code is organized under a SHINKA_PLACEHOLDER namespace and relies on noncomputable Lean sections and external seeds.
+- **Performance**: Combined score 0.36; passed = True; c_value_str = 1777/5000; c_value_float = 0.36; elapsed_s ≈ 28.68; overall correctness verified by validation tests.
+- **Feedback**: The approach successfully yields a bound using a pinned seed, but remains anchored to that seed until a larger-c proof is provided; evaluation confirms correctness but highlights reliance on the seed and placeholder structure (e.g., SHINKA_PLACEHOLDER, EVOLVE-BLOCK).
+**Program Identifier:** Generation 9 - Patch Name no_change_seed_pinned - Correct Program: True
+
+# GLOBAL INSIGHTS SCRATCHPAD
+
+The following are global insights about optimization approaches and their effectiveness:
+
+Below is evidence-based analysis focused on concrete performance data and concrete implementation details from the evaluated programs. The current best program is identified as Generation 8 - Patch Name noop_keep_seed, but I also reference faster/worse variants to contextualize patterns.
+
+1) Successful Algorithmic Patterns
+
+- Rely on a pinned external seed to certify the bound without adding axioms
+  - All evaluated programs rely on a trusted seed to pin Wang’s equation (Eq15) at the exact literal c_value = 3554/10000. The current best program (Generation 8 - noop_keep_seed) uses ShinkaTrustedSeed.hEq15_seed_3554 to obtain Eq15ScalarBound and then lifts it via valid_of_eq15. This approach is consistent across programs (e.g., Generation 0, 1, 2, 3, 4, 5, 6, 7, 9 as well), and the evaluation explicitly notes: “The trusted seed gives Wang's (15) at exactly c_value; using the seed directly.”
+  - Example from the current best: the hEq15 construction is defined as a lambda producing Eq15ScalarBound K c_value via the seed, then simpa [c_value] to align with the defined c_value, and finally apply valid_of_eq15.
+
+- Use of a local bound wrapper and a universal bound pattern
+  - Several variants create a local wrapper hEq15 (or an equivalent nested lemma) to map the seed-provided bound to the concrete c_value, then feed that into valid_of_eq15. For instance:
+    - Gen2 mentions a nested hEq15 lemma and simpa to match c_value.
+    - Gen8 (the current best) uses a straightforward hEq15 defined as a wrapper that draws from the seed and then uses simpa to align with c_value.
+  - The overarching pattern is: obtain Eq15ScalarBound from the seed for c_value, then pass that bound to valid_of_eq15 along with c_value_pos/proof of c_value_lt_one.
+
+- Final assembly via valid_of_eq15 with simple positivity and bound proofs
+  - All variants finish with a standard invocation of valid_of_eq15 using:
+    - c_value_pos: (0 < c_value)
+    - c_value_lt_one: c_value < 1
+    - A bound provider (the hEq15 wrapper) yielding Eq15ScalarBound K c_value
+  - This path ensures a concise, uniform correctness proof that is tightly coupled to the seed-based valuation and avoids introducing any new axioms.
+
+- Structural organization that avoids new axioms
+  - Each program is implemented in a noncomputable section within a SHINKA_PLACEHOLDER or similar namespace, and explicitly admonishes that no new axioms are declared. This consistent constraint is preserved across all variants, aligning with the feedback emphasizing determinism and seed-driven verifiability.
+
+2) Ineffective Approaches
+
+- No observed regression in score or correctness
+  - All evaluated programs report the same combined score: 0.36 and pass status: True. There are no explicit examples in the dataset of a program that failed validation or received a worse score.
+  - Given the uniformity of the scoring metric (0.36) across all variants, there isn’t an explicit “ineffective” approach documented here.
+
+- Potential risks not realized in the data (conceptual, not observed)
+  - Approaches that would push c_value beyond the pinned seed without providing a new, axiom-free Eq15ScalarBound prove are not present. The feedback repeatedly notes the need to either prove Eq15ScalarBound at a larger c_value or accept the seed-based limitation; such approaches could compromise verifiability or require new axioms.
+  - Attempts to avoid using the trusted seed entirely or to generalize beyond 3554/10000 via internal arithmetic would violate the “no new axioms” constraint and are not part of the observed results.
+
+3) Implementation Insights
+
+- Concrete code patterns that drive correctness and stability
+  - Definition of c_value as a fixed rational 3554/10000 and immediate positivity/less-than-one proofs via norm_num or equivalent:
+    - This avoids heavy numeric machinery and ensures quick gratification of basic numeric constraints.
+  - Seed-driven derivation of Eq15ScalarBound
+    - The code consistently invokes ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 (or its SHinka namespace variant) to obtain a bound for K at c_value, then uses simpa [c_value] to align with the declared c_value.
+  - Packaging the bound through hEq15 and using valid_of_eq15
+    - A typical pattern is to define a local hEq15: ∀ {K}, Eq15ScalarBound K c_value and then pass (fun {K} => hEq15) into valid_of_eq15.
+    - This yields a compact, modular verification block: seed-bound → hEq15 wrapper → valid_of_eq15.
+  - Use of noncomputable sections and SHINKA_PLACEHOLDER namespaces
+    - The structural choice standardizes the approach across variants and emphasizes the external seed as the sole source of truth, avoiding the introduction of new axioms.
+  - Patch naming conventions (e.g., noop_keep_seed)
+    - The current best uses the “noop_keep_seed” approach, suggesting that minimal adjustments to integrate the seed with the existing checker are sufficient to reach the target bound while preserving verifiability.
+
+- What makes the current best program effective
+  - The current best (Generation 8 - noop_keep_seed) demonstrates that a lean, seed-driven binding with a minimal wrapper (no extra axioms or extensive rework) suffices to obtain a correct ValidKorenblumBound for c_value.
+  - The simpa [c_value] step is a small but important optimization to align the seed-bound to the exact literal c_value, reducing boilerplate and potential mismatches.
+  - The modular use of hEq15 and valid_of_eq15 keeps the logic neatly separated: the seed determines the bound, while the outer proof handles positivity and the final validity condition.
+
+4) Performance Analysis
+
+- Score stability and interpretation
+  - Across all programs, the Combined score to maximize is 0.36, and all reported runs pass validation. This indicates that the principal differentiator among variants is not the score but runtime variability, given the same structural guarantees.
+- Runtime variations and their practical significance
+  - Reported elapsed_s values (approximate):
+    - Gen0: ~28.50
+    - Gen1: ~27.80
+    - Gen2: ~27.14
+    - Gen3: ~27.45
+    - Gen4: ~26.85 (fastest in the observed set)
+    - Gen5: ~27.31
+    - Gen6: ~29.13
+    - Gen7: ~27.31–28.42 range
+    - Gen8 (current best): ~28.05–28.68 range
+    - Gen9: ~28.68
+  - The fastest among the evaluated variants is Generation 4: Constant-Bound Proof via Trusted Seed at about 26.85 seconds. The current best (Generation 8 - noop_keep_seed) reports around 28.05–28.50 seconds.
+  - The modest spread (roughly 26.85–29.13 seconds) underlines that runtime is dominated by seed invocation and the subsequent bound lifting, while the core logical structure remains constant. The degradation or improvement of ~1–2 seconds likely reflects minor environment or term-aggregation differences rather than fundamental algorithmic changes.
+
+- Correlation observations
+  - All variants share the same accuracy outcome (ValidKorenblumBound for c_value) and identical target bound (1777/5000 ≈ 0.3554). The only observed differences are minor runtime fluctuations and slight organizational changes (e.g., nested vs. flat hEq15 wrappers, or simpa usage).
+  - The presence of the pinned seed (hEq15_seed_3554) is the dominant driver of correctness; deviations that rely on changing the seed or removing the seed would likely affect both correctness and verifiability, which is not observed in the current set.
+
+In summary:
+- The primary successful pattern across all evaluated programs is a seed-driven, axiom-free certification of a fixed c_value via Eq15ScalarBound and valid_of_eq15, implemented inside a noncomputable section with SHINKA_PLACEHOLDER scaffolding.
+- The current best (Generation 8 - noop_keep_seed) demonstrates that minimal code changes plus a reliable seed binding can achieve a correct and verifiable bound with acceptable runtime (~28 seconds). The fastest variant observed (Generation 4) demonstrates that modest structural simplifications can shave a few seconds off runtime without sacrificing correctness.
+- No ineffective approaches are evidenced by the data; the set consistently maintains the seed-based, axiom-free verification pattern, with uniform correctness and scores.
+
+# META RECOMMENDATIONS
+
+The following are actionable recommendations for the next program generations:
+
+1) Inline the seed-bound derivation to reduce wrapper depth
+- What to implement: Replace the nested lambda hEq15 used to map the seed-bound to c_value with a direct, inline bound definition that immediately rewrites the seed bound to c_value. Concretely, define a small alias eq15_bound_at_seed {K} : Eq15ScalarBound K c_value := by simpa [c_value] using ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K, and then feed eq15_bound_at_seed directly into valid_of_eq15.
+- Why it’s beneficial: The current best uses an extra layer of wrappers (a lambda producing Eq15ScalarBound K c_value) which adds a small, repeatable rewriting cost during proof checking. A direct alias reduces indirection, simplifies the term, and can shave a few milliseconds in compilation/runtime without changing correctness.
+
+2) Factor a named lemma eq15_bound_at_seed for reuse and readability
+- What to implement: Introduce a named lemma eq15_bound_at_seed (or eq15_bound_at_seed_K) that states Eq15ScalarBound K c_value, derived from the seed via simpa [c_value]. Then rewrite valid_of_eq15 to use (fun {K} => eq15_bound_at_seed K) or simply eq15_bound_at_seed wherever a bound is needed.
+- Why it’s beneficial: Named lemmas improve maintainability and readability, and often enable the compiler to inline or specialize more aggressively. This mirrors the successful approach seen in Gen2/Gen8, and it makes future mutations (e.g., adding an alternate seed or c_value) easier to manage without duplicating the wrapper code.
+
+3) Introduce a small reusable seed-bound helper to prepare for future c_value variants
+- What to implement: Add a lightweight helper like:
+  def eq15_bound_at_seed (K) : Eq15ScalarBound K c_value := by
+    simpa [c_value] using ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K
+  def seed_bound (K) := eq15_bound_at_seed K
+  Then use exact valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => seed_bound K)
+- Why it’s beneficial: This abstracts the seed-based binding into a single, reusable interface. If you ever want to test a nearby c_value (within the no-new-axioms constraint) or swap in another seed variant, you only adjust the helper, not the entire proof structure. It aligns with the modular pattern observed in the strongest variants.
+
+4) Flatten the final assembly into a single-hop, minimal-proof pattern
+- What to implement: Move toward a top-level, single proof construction like:
+  def korenblum_bound_at_seed : ValidKorenblumBound c_value :=
+    by
+      have h := eq15_bound_at_seed (K := …)
+      exact valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => h)
+  End result: a compact, flat structure with a single call to valid_of_eq15, using a directly named eq15_bound_at_seed.
+- Why it’s beneficial: Reducing nested local lemmas and wrapper layers can improve both readability and the Lean reduction steps during verification. This keeps the successful seed-based path intact while making the proof skeleton more amenable to small mutations and quicker re-verification.
+
+5) Create a lightweight seed-bound template to standardize future variants (without changing axioms)
+- What to implement: Establish a small template within the same noncomputable/namespace scope that standardizes how seed-derived bounds are obtained and consumed. For example:
+  - a locally defined eq15_bound_at_seed {K} as in Recommendation 2
+  - a one-line final call to valid_of_eq15 using that bound
+- Why it’s beneficial: The evaluations consistently hinge on the same seed-driven pattern. A standardized template reduces copy-paste drift across future mutations (e.g., trying a different K or a nearby c_value under the same seed constraint) and helps ensure continued axiom-free verification while enabling quicker iteration. It also makes it easier to compare performance across small, disciplined structural changes rather than random wrapper reorganizations.

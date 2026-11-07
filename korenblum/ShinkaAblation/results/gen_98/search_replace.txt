@@ -1,0 +1,19 @@
+<NAME>
+no_change_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+Without a registered oracle or a Lean proof of Eq15 at c > 0.3554 from KorenblumPaper.* primitives, the seed pins us at 3554/10000. Any attempt to raise c_value will fail to compile or fail axiom audit. Keep the current minimal, working candidate.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+-- Pinned to the trusted seed `hEq15_seed_3554`. Raising this constant
+-- requires either (a) a Lean-internal proof of `Eq15ScalarBound K c`
+-- at a larger `c` from `KorenblumPaper.*` + Mathlib, or (b) a newly
+-- registered oracle axiom in `lemma.toml`. Neither is available here.
+>>>>>>> REPLACE
+</DIFF>

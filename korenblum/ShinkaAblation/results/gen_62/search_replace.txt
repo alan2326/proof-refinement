@@ -1,0 +1,16 @@
+<NAME>
+no_change_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+The seed axiom `hEq15_seed_3554` pins the only available external input to c = 3554/10000. Without registering a new oracle (which only the human can do) or proving Eq15ScalarBound at a larger c from Mathlib + KorenblumPaper modules (a substantial analytic project not feasible here), we cannot exceed 0.3554. The current program already achieves the seed-pinned maximum. Making a tiny no-op cleanup edit.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Pinned to the registered seed `hEq15_seed_3554`. -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

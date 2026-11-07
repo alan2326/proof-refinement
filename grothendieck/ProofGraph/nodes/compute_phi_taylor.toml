@@ -1,0 +1,24 @@
+# Computational: H_η Taylor coefficients and φ(z) = (z − H_η(sin z))·cos z
+# coefficients up to K_max. Feeds head_contribution, M_rho, lipschitz, solve_gamma.
+name      = "compute_phi_taylor (Step 3)"
+slug      = "compute_phi_taylor"
+kind      = "computational"
+paper_ref = "Braverman §5 numerics; φ Taylor coefficients"
+
+parents = ["eval_h_eta_at_i"]
+
+[python]
+module   = "proof_graph.oracle_wrappers"
+function = "compute_phi_taylor_pipeline"
+
+[python.inputs]
+b_series_path = { source = "const:b_series_path", cast = "str" }
+K_max         = { source = "const:K_max",         cast = "int" }
+
+[python.kwargs]
+prec    = 256
+verbose = false
+
+[python.outputs]
+h_eta_series = "h_eta_series"
+phi          = "phi"

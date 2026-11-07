@@ -1,0 +1,4 @@
+{
+  "correct": false,
+  "error": "FileNotFoundError: program_path korenblum/ShinkaAblation/results/gen_38/main.cpp not found"
+}

@@ -1,0 +1,27 @@
+# Lemma 5.4 (paper-faithful): Taylor remainder bound for F_inv with explicit Cr_paper.
+name      = "Lemma 5.4 (paper-faithful)"
+slug      = "lemma_5_4"
+kind      = "statement"
+paper_ref = "Braverman et al. (2011), Lemma 5.4 / eqs. (75)–(76)"
+
+parents = ["lemma_5_3", "compute_cr", "compute_m_rho"]
+
+[lean]
+sink           = "Braverman.Paper.lemma_5_4_paper"
+file           = "ProofRefinement/Lemma54/Proof/Lib/Lemma54_Paper_Main.lean"
+line           = 87
+effective      = "Braverman.Effective.lemma_5_4_effective"
+effective_file = "ProofGraph/Effective/Lemma54Effective.lean"
+
+[audit]
+# 12 trusted analytic axioms + 2 oracle-backed numerical axioms:
+# (1) `h_M_oracle`: single M bound on max{|H_0|, |H_η|, |H_0'|, |H_η'|}
+#     over the explicit Step-1/Step-2 rectangle Ω(δ, B).
+# (2) `h_oracle_domain_contains_image`: the same rectangle contains the
+#     `F_inv_paper` image on disk r.
+allowed_axioms = [
+  "@axioms.lean_primitives",
+  "@axioms.trusted_analytic",
+  "Braverman.Effective.h_M_oracle",
+  "Braverman.Effective.h_oracle_domain_contains_image",
+]

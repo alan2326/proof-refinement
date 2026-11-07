@@ -1,0 +1,613 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancyvrb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\hypersetup{colorlinks,urlcolor=blue!60!black,linkcolor=black!80!black}
+
+\newcommand{\KG}{{\mathcal{K}_G}}
+\newcommand{\Cr}{C_r}
+\newcommand{\Cval}{{C_r^{\mathrm{val}}}}
+\newcommand{\Cpatched}{{C_r^{\mathrm{patched}}}}
+\newcommand{\Heta}{H_{\eta}}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\Role}[1]{\textsc{#1}}
+
+\title{The proof-refinement harness:\\
+       a system description}
+\date{}
+\author{}
+
+\begin{document}
+\maketitle
+
+\noindent\textit{Companion document to the main paper.} This appendix
+describes the multi-agent harness that drove the certified upper bound on
+$\KG$ from the Braverman~et~al.\ baseline ($\KG \le \pi/(2\ln(1+\sqrt2))-3\!\cdot\!10^{-32}$)
+to the present $\KG \le \pi/(2\ln(1+\sqrt2))-10^{-17}$. The harness is
+file-based, agentic, and structured around a small number of explicit
+guarantees about who may write what. We describe the components in the
+order they fire during a single iteration of the loop.
+
+\bigskip
+
+%======================================================================
+\section{Goal and game}
+%======================================================================
+
+Lemma~5.4 of \cite{braverman2011} bounds the second-order Taylor remainder
+of an implicit-function family at $p=0$ by $\Cr\, p^2$. The constant
+$\Cr$ propagates verbatim into the certified $\KG$-upper-bound:
+shrinking $\Cr$ shrinks the gap to Krivine.
+
+The harness curates a sequence of \emph{candidates}
+$V_0, V_1, V_2,\dots,V_N$, each a self-contained Lean~4 file in
+\code{ProofRefinement/Lemma54/Candidates/} that proves Lemma~5.4 with a
+declared rational $\Cval_K$. The seed $V_0$ mirrors a paper-faithful
+production proof; later candidates explore departures. The harness's only
+goal is
+\[
+   V_{N+1} \text{ exists, compiles, audits clean, and has } \Cval_{N+1} < \Cval_N.
+\]
+Strictly smaller score wins. Everything else---formalization style,
+oracle technology, formula choice---is means.
+
+%======================================================================
+\section{The artifacts (file-based state)}
+%======================================================================
+
+The harness has no in-memory state. Every fact that survives across
+agent invocations lives in one of these files. The table below is the
+complete enumeration; nothing else persists.
+
+\begin{center}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.52\textwidth}@{}}
+\toprule
+\textbf{Path} & \textbf{Purpose} \\
+\midrule
+\code{Candidates/V<K>.lean}                        & Append-only sequence of Lean candidates. $V_0$ is the seed. \\
+\code{Sprint_Contracts/sprint_<NNN>.md}            & One contract per planned sprint, written by the \Role{Planner}. Append-only. \\
+\code{Refinement_Log/log.jsonl}                    & Append-only JSONL: one line per evaluator run (compile, axiom audit, score, oracle results, timing). \\
+\code{Refinement_Log/verdict_<NNN>.md}             & Markdown verdict file written by the \Role{Evaluator} per sprint. \\
+\code{Bulletin.md}                                 & Volatile signaling between sprints ($\le$100 lines, trimmed). The current priority directive lives here. \\
+\code{Experience.md}                               & Narrative agent log: what was tried, what worked, what didn't. Written by the \Role{Generator}. \\
+\code{Scratch/sprint_<NNN>_<topic>.{py,md,txt}}    & Persistent research notebook. Numerical experiments by all roles. \\
+\code{Proposals/proposal_<NNN>_<slug>.md}          & Human-approval queue for non-oracle trust expansions. Status: \code{pending}/\code{approved}/\code{rejected}. \\
+\code{lemma.toml}                                  & Single source of truth for the sink theorem, the score expression, the seed-axiom allowlist, and the oracle table. \\
+\code{PATCH_NOTES.md}                              & Binding-rule document for any rule introduced retroactively (e.g., the $K_{\max}$-truncation regression of 2026-05-03). \\
+\code{Cache/Backups/<date>_<purpose>/}             & Cached canonical numerical outputs (production chunks, subdivision rounds, audit JSONs). \\
+\code{Numerical_Library/}                          & Python package of certified-arb oracle implementations, indexed by \code{lemma.toml}'s \code{[[oracles]]} table. \\
+\code{Proof/Lib/Lemma54_Paper*.lean}               & Shared infrastructure: Cauchy estimates, identity~(75), Taylor-in-$p$ machinery. Editable by the \Role{Generator} only when the contract names them. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The discipline is exact: every other file is read-only or absent. In
+particular there is no shared in-memory orchestrator; each agent invocation
+is a fresh process that reads files, writes files, and exits.
+
+%======================================================================
+\section{The three roles}
+%======================================================================
+
+The harness consists of three agent roles, each defined by a Markdown
+prompt in \code{.claude/agents/}. They are spawned sequentially, never
+concurrently, and never co-resident in the same process.
+
+\subsection{The \Role{Planner}}
+
+\paragraph{Inputs.} Bulletin, Experience, the last 10 log entries, the
+last contract, the production trust-boundary status, the agent brief,
+all proposals (just their \code{Status} lines), and PATCH\_NOTES.
+
+\paragraph{Output.} \emph{Exactly one} Sprint Contract file
+\code{Sprint_Contracts/sprint_<NNN>.md} per invocation, plus optional
+Bulletin appends and Scratch/ exploration scripts.
+
+\paragraph{Discipline.} The Planner never edits Lean. Its sole
+deliverable is a contract that prescribes what edits the
+\Role{Generator} should make. It must (i) work out the right move via
+\code{Scratch/} numerical experiments before drafting (\emph{Scratch-first}),
+(ii) not repeat the same direction more than three sprints in a row
+(\emph{no-same-axis-three-times}), and (iii) schedule a wildcard sprint
+branched from $V_0$ at least every fourth sprint
+(\emph{forced trajectory escape}).
+
+\paragraph{Sprint Contract structure.} A contract is a Markdown file
+with a fixed set of fields:
+\begin{itemize}[leftmargin=2em,itemsep=0pt]
+  \item \textbf{Parent candidate.} Which $V_K$ the new candidate branches
+        from (typically $V_{N-1}$, but explicit non-default parents are
+        permitted and required for wildcard sprints).
+  \item \textbf{Target file.} The new candidate path
+        $V_{N+1}\code{.lean}$ (or, rarely, a research script under
+        \code{Scratch/}).
+  \item \textbf{Direction.} A short tag such as
+        \code{formula-change}, \code{contour-change}, \code{inline-oracle},
+        \code{oracle-resolution-tightening}, \code{research}.
+  \item \textbf{Tier.} \code{cheap} (≤ 30~min, surgical) or
+        \code{ambitious} (≤ 3~h, substantial new Lean).
+  \item \textbf{Goal} (one declarative sentence).
+  \item \textbf{Mathematical insight} (≤ 5 sentences). What
+        inequality, identity, or proof-method shift is being attempted,
+        with citations to \code{Proof/Lib/Lemma54_Paper*.lean} or to the
+        paper.
+  \item \textbf{Why} (≤ 3 sentences with numerical evidence). Cite a
+        \code{Scratch/sprint_<NNN>_planner_<topic>.py} run that supports
+        the proposed move.
+  \item \textbf{Concrete edits expected.} The exhaustive list of files
+        the Generator may write to. Anything else is a write-scope
+        violation (gate~G3, below).
+  \item \textbf{Acceptance criteria.} 2–5 mechanically checkable
+        \code{bash} / \code{jq} / \code{grep} predicates --- each one
+        either an exit code or a \code{log.jsonl} field comparison.
+  \item \textbf{Out of scope.} Explicit no-touch list, beyond the
+        always-forbidden defaults.
+  \item \textbf{Time budget} and \textbf{Stop conditions for the
+        Generator.} Including the labeled status sentinels
+        \code{STATUS=READY_FOR_EVALUATION}, \code{STATUS=BLOCKED},
+        \code{STATUS=BLOCKED_NEEDS_HUMAN}.
+\end{itemize}
+
+A typical contract is 2–6 pages, with the bulk of the content in
+\textbf{Mathematical insight} and \textbf{Concrete edits}. The
+contract is the harness's \emph{atomic unit of work}: one contract
+$\to$ one Generator session $\to$ one Evaluator session $\to$ one
+verdict $\to$ at most one new candidate.
+
+\subsection{The \Role{Generator}}
+
+\paragraph{Inputs.} The contract path it was given; the parent
+candidate; the brief; PATCH\_NOTES; the specific files the contract
+names.
+
+\paragraph{Output.} The new candidate file (or research script);
+optional Edits to the files the contract names; an Experience.md
+append; a labeled terminating \code{STATUS=} sentinel.
+
+\paragraph{Discipline.} The Generator never grades its own work, never
+edits the contract, never edits older candidates, never edits the
+Evaluator or runner code, never adds a new (non-oracle) axiom. The
+write-scope is gated mechanically: only the files in the contract's
+\textbf{Concrete edits expected} list, plus three always-allowed paths
+(\code{Experience.md}, \code{Bulletin.md} (one-line append),
+\code{Scratch/}). Everything else is a write-scope violation.
+
+\paragraph{Inline oracle creation.} A central feature: if the
+mathematical move requires a new sup-norm bound on an analytic
+expression over the oracle rectangle $\Omega(\delta,B)$, the Generator
+mints the oracle \emph{in the same sprint}, without going through the
+proposal queue. The recipe is:
+\begin{enumerate}[leftmargin=2em,itemsep=0pt]
+  \item Write \code{Numerical_Library/m_<name>.py} computing
+        $\sup_{w\in\Omega(\delta,B)}|\text{expr}(w)|$ via
+        certified-arb interval arithmetic, returning an
+        \code{OracleResult(bound: Fraction, ball_value: float, ...)}.
+  \item Append a new \code{[[oracles]]} block to \code{lemma.toml}
+        with the axiom short name, the bound-field, and the
+        \code{oracle_fn} attribute name.
+  \item Declare a Lean axiom in the candidate of the form
+        \(
+          \forall p\in[0,1],\, \forall w\in\Omega(\delta,B),\,
+          \|\text{expr}(p,w)\| \le \text{bound\_field\_val}
+          \cdot \|D(p,w)\|^k,
+        \)
+        which the Generator then consumes in the proof.
+\end{enumerate}
+This is safe because the runtime arb pipeline re-verifies every oracle
+on \emph{every} audit (gate~G5). A wrong Python implementation is
+caught structurally by the bound-field-vs-recomputed-bound inequality
+and content-wise by the human's morning-after diff review. Oracle-shaped
+axioms cannot be used to ``prove'' arbitrary statements: their
+syntactic form constrains them to numerical sup-norm claims.
+
+\subsection{The \Role{Evaluator}}
+
+\paragraph{Inputs.} The contract path; the candidate file; access to
+\code{lake env lean} and \code{Numerical_Library}.
+
+\paragraph{Output.} A Markdown verdict file
+\code{Refinement_Log/verdict_<NNN>.md} and a single appended JSON line
+to \code{log.jsonl}. Terminates with
+\code{STATUS=VERDICT_PASS} or \code{STATUS=VERDICT_FAIL}.
+
+\paragraph{Discipline.} The Evaluator never edits Lean, never argues
+with a failing gate, never reads the Generator's narrative when
+deciding pass/fail. Gates are binary.
+
+\paragraph{Gates (in order, terminating on first failure).} The seven
+gates are deliberately cheap. Aggregate runtime $\sim$30~s.
+
+\begin{description}[leftmargin=4em,style=nextline,itemsep=0.4em]
+  \item[G1: Compile (focused).] After clearing stale \code{.olean},
+        \code{lake env lean} the new candidate. Pass = exit 0, no
+        \code{error:} lines.
+  \item[G2: No \code{sorry}.] \code{grep} the candidate. Any match fails.
+  \item[G3: Write scope.] \code{git diff --name-only HEAD} must be a
+        subset of (contract-named files) $\cup$ (always-allowed paths)
+        $\cup$ (a new $V_{N+1}$ file). Older candidates are sacrosanct.
+  \item[G4: No new non-oracle axioms.] Compare the new candidate's
+        \code{#print axioms} set to the parent's. New axioms are
+        permitted only if their \code{kind = oracle} and they appear
+        in \code{lemma.toml}'s \code{[[oracles]]} table. Seed or
+        unregistered axiom additions fail with
+        \code{NEW_AXIOM_INTRODUCED}.
+  \item[G5: Per-candidate evaluator.] Run
+        \code{Evaluator.py --file <cand>}. This recomputes every oracle
+        bound by calling its registered \code{oracle_fn}, and checks
+        \(
+          \text{bound\_field\_val} \;\ge\; \text{oracle\_fn}().\text{bound}.
+        \)
+        Pass = exit 0 and \code{pass = true} in the JSON record.
+  \item[G7: Rigor (anti-truncation + audit-floor).] Two parts; both
+        must pass. \emph{G7.a} \code{grep}s the candidate and every
+        oracle source it depends on for the four forbidden symbols
+        (\code{eval_H_eta_at_acb}, \code{eval_phi_at_acb},
+        \code{eval_H_eta_deriv_at_acb}, \code{eval_phi_and_deriv_at_acb}).
+        These are the $K_{\max}$-truncated evaluators that admit no
+        rigorous tail bound; any candidate whose oracle path reaches
+        them is invalid by construction. \emph{G7.b} parses the
+        candidate's mandatory audit-block header (PATCH\_NOTES Rule~R5),
+        looks up the named row in the cached audit JSON, and checks
+        \(
+          \Cpatched_{\text{audit}} \;\le\; \Cval_{\text{declared}}.
+        \)
+        This binary reconciliation between the declared and the
+        truncation-free-recomputed bound is the gate that would have
+        caught the $K_{\max}$ regression had it existed earlier.
+  \item[G6: Score.] Parse the just-appended \code{log.jsonl} line.
+        Confirm $\Cval_{N+1} < \Cval_N$ (or whatever inequality the
+        contract declared).
+\end{description}
+
+The order \emph{G5 $\to$ G7 $\to$ G6} is deliberate: a candidate that
+has already passed the per-candidate evaluator should still be rejected
+if its rigor floor is wrong, before its score is even compared.
+
+%======================================================================
+\section{The trust boundary}
+%======================================================================
+
+Every axiom transitively depended on by the sink theorem
+\code{lemma_5_4_search} falls into exactly one of three classes,
+recognized by \code{Evaluator.py} via \code{lemma.toml}.
+
+\paragraph{Lean primitives.} \code{propext}, \code{Classical.choice},
+\code{Quot.sound}. Always permitted.
+
+\paragraph{Seed axioms.} A whitelist in
+\code{lemma.toml:[seed_axioms.allowed]}. The 12 paper-cited analytic
+axioms about the implicit-function family $F^{-1}_{\text{paper}}$
+(\code{F_inv_paper}, \code{F_inv_paper_eq}, \code{F_inv_paper_zero},
+\code{F_inv_paper_R_bound}, \code{F_inv_paper_analytic},
+\code{F_inv_paper_contdiff}, \code{F_inv_paper_first_deriv_zero},
+\code{F_inv_paper_mem_S}, \code{pr_paper}, \code{pr_paper_pos},
+\code{pr_paper_le_one}, and the structural domain-containment
+\code{h_oracle_domain_contains_image}) live here. Each represents a
+fact the formalization takes on paper-faith.
+
+\paragraph{Oracle axioms.} An array of \code{[[oracles]]} records, each
+of which has the form
+\begin{Verbatim}[fontsize=\small,xleftmargin=2em]
+[[oracles]]
+axiom       = "h_<name>_oracle"
+bound_field = "<field>_val"
+oracle_fn   = "compute_<name>_truncfree_bound"
+\end{Verbatim}
+The Lean axiom must be of the sup-norm shape
+\(
+  \forall p\in[0,1],\,\forall w\in\Omega(\delta,B),\,
+  \|\text{expr}(p,w)\| \le \text{<field>\_val}\cdot \|D(p,w)\|^k.
+\)
+At every audit, the Evaluator runs the registered \code{oracle\_fn}
+(certified arb computation) and rejects the candidate if the declared
+\code{<field>\_val} fails to dominate the recomputed bound.
+
+\paragraph{Anything else} (\code{sorryAx}, an unregistered axiom, an
+oracle whose short-name is missing from \code{lemma.toml}) is a hard
+fail.
+
+\paragraph{Trust expansion.} The Generator may freely add an
+oracle-shaped axiom by minting a new \code{[[oracles]]} block (Inline
+oracle creation). It may not add anything else. To expand the
+non-oracle trust base, see \S\ref{sec:proposals}.
+
+%======================================================================
+\section{The proposal queue (asynchronous human approval)}\label{sec:proposals}
+%======================================================================
+
+A proposal is the Planner's request for the human to expand the
+non-oracle trust base. Trust-base expansions of the following kinds
+require a proposal:
+\begin{itemize}[leftmargin=2em,itemsep=0pt]
+  \item A new free-floating analytic axiom (e.g., a wider analyticity
+        domain for $F^{-1}_{\text{paper}}$).
+  \item A non-trivial Mathlib import bringing in disputed/heavy
+        infrastructure.
+  \item A statement reformulation (rare; typically forbidden as a
+        weakening of Lemma~5.4).
+\end{itemize}
+
+A proposal is a Markdown file
+\code{Proposals/proposal_<NNN>_<slug>.md} naming, in mechanically
+actionable detail, the Lean axiom to add, the lemma.toml entry to
+modify, the math content (with paper citation), the numerical win
+unlocked (with a Scratch/ run cited), and the trust cost.
+
+\paragraph{Async discipline.}
+\begin{enumerate}[leftmargin=2em,itemsep=0pt]
+  \item The Planner files a proposal \emph{and queues a regular sprint
+        in the same invocation} so the loop never stalls. The queued
+        sprint must not depend on the pending proposal.
+  \item Budget: at most 3 \code{pending} proposals at any time.
+  \item The human reviews on their own time, edits the proposal's
+        \code{Status:} field to \code{approved} or \code{rejected},
+        appends a status-log line, and (if approved) lands the
+        infrastructure (Lean axiom + lemma.toml entry).
+  \item The Planner reads \code{Status: approved} on its next
+        invocation and queues a sprint that consumes the new
+        infrastructure.
+\end{enumerate}
+
+In our run the proposal queue surfaced one approved proposal
+(\code{proposal_001_cr_refined_oracles}: three $\eta$-aware oracles
+$M_\Phi, M_{\Phi'}, M_{\Phi\Phi}$ that unlocked the $\eta^2$-tight
+$C_r^{\text{refined}}$ formula) and one pending one
+(\code{proposal_003_wider_analyticity_domain}: a paper-citable wider
+analyticity disk that would lift the Cauchy contour radius by~$1.5\times$).
+
+%======================================================================
+\section{The numerical library and the certified-arb pipeline}
+%======================================================================
+
+\code{Numerical_Library/} is a Python package indexed by
+\code{lemma.toml}'s oracle table. Each oracle module exposes a single
+\code{compute_<name>_bound(...)} entry point that returns
+\code{OracleResult(bound, ball_value, ...)}, where:
+\begin{itemize}[leftmargin=2em,itemsep=0pt]
+  \item \code{ball_value} is a single \code{float} approximating the
+        sup the oracle bounds;
+  \item \code{bound} is a \code{Fraction} rationalized upward from the
+        certified arb interval, with safety parameters
+        \code{(safety_rel, safety_abs, max_denom)} producing a small
+        but \emph{provably valid} excess over the arb upper bound.
+\end{itemize}
+The library wraps the lower-level certified-arb infrastructure at
+\code{grothendieck/proof/certified/}, which is the same code base the
+production proof-graph runner consumes (\S\ref{sec:proofgraph}).
+
+\paragraph{Truncation-free oracles.} The 2026-05-03 patch
+(PATCH\_NOTES.md) introduced
+\code{Numerical_Library/truncfree/}, a parallel oracle suite that
+evaluates $\Heta, \Heta', \Heta''$ via Price's-theorem path integrals
+and chunk-bounds them via real-positive Gaussian majorants---no
+$\phi$-series truncation anywhere in the call graph. The deprecated
+top-level oracles are kept only to satisfy backwards-compat for older
+candidates; G7.a forbids any \emph{new} candidate from reaching them.
+
+%======================================================================
+\section{The proof graph (production layer)}\label{sec:proofgraph}
+%======================================================================
+
+The harness above operates on the Lemma~5.4 \emph{candidate workspace}
+\code{ProofRefinement/Lemma54/}. Adjacent to it---and connected only
+through file-based handoff---is the \emph{proof graph}, the production
+trust boundary at \code{ProofGraph/}. The proof graph is a static DAG
+of nodes representing each step in the end-to-end argument
+$\Heta \to \text{Lemma 5.3} \to \text{Lemma 5.4} \to
+\text{Theorem 5.1} \to \KG_{\text{lt}}^{\text{Krivine}}$. Each node has:
+\begin{itemize}[leftmargin=2em,itemsep=0pt]
+  \item a Lean theorem name (the production-faithful statement),
+  \item an \code{Effective} companion (instantiated at the locked tuple
+        $\eta=1/100$, $r=23/25$),
+  \item a \code{nodes/<name>.toml} declaring its trust dependencies and
+        registered oracles,
+  \item a runner-side certified-arb computation that emits a
+        \code{certificate.json} cross-validating every oracle assumption.
+\end{itemize}
+
+The candidate workspace is a \emph{playground} for the harness; the
+proof graph is the \emph{commitment surface}. A winning candidate is
+ported to the proof graph by hand: a tightened formula becomes a
+parallel \code{Cr_*} definition, a newly-proved analytic axiom drops
+from the trust base, a tightened numerical bound is reflected in the
+runner's certificate. This separation is by design: the harness can
+run autonomously without touching the production trust boundary, and
+only after a winning candidate has been cross-validated by hand does
+its content move into \code{ProofGraph/}.
+
+%======================================================================
+\section{The audit floor and PATCH\_NOTES}
+%======================================================================
+
+A subtle but important property of the harness is that retroactive
+rule-tightening is supported through the
+\code{PATCH_NOTES.md} mechanism. When a regression is discovered in the
+trust base---e.g., the 2026-05-03 finding that every existing oracle
+inherited a $K_{\max}$-truncated $\phi$-series with no rigorous tail
+bound---the discovery is documented as a binding directive in
+\code{PATCH_NOTES.md}: a new gate is added (G7), a parallel
+truncation-free pipeline is built, a per-candidate audit re-evaluates
+each $V_K$ under the post-patch oracles, and the resulting
+$\Cpatched_K$ becomes the new floor.
+
+The audit table records, for each $V_K$, three numbers: $\Cval_K$
+(declared), $\Cpatched_K$ (production-evaluated under post-patch
+oracles), and a structural label indicating which $\Cr$ formula and
+oracle constellation $V_K$ uses. The table is the basis for the
+\textbf{audit-floor consistency} gate G7.b: a new candidate
+$V_{N+1}$'s audit-block header must name the cached audit JSON and the
+specific $\Cpatched_{N+1}$ it claims, and the Evaluator rejects
+$V_{N+1}$ if the audit JSON's $\Cpatched > \Cval$.
+
+The take-away for the planner: a sprint cannot beat $\Cval$ by
+literal-tightening alone. It must \emph{move the audit floor}, by
+formula-switching, deeper subdivision, sharper joint oracles, or
+alternative contours. Re-rationalising an oracle ceiling against a
+non-rigorous floor is not a permitted direction.
+
+%======================================================================
+\section{Iteration loop and slash commands}
+%======================================================================
+
+A complete sprint, from the human's perspective, is a single slash
+command:
+\begin{Verbatim}[fontsize=\small,xleftmargin=2em]
+/run-next-sprint
+\end{Verbatim}
+The skill spawns the \Role{Planner} with no arguments; it reads the
+inputs above and writes \code{Sprint_Contracts/sprint_<NNN+1>.md}.
+Then it spawns the \Role{Generator} with the contract path; the
+Generator edits Lean and terminates with a labeled status. Then it
+spawns the \Role{Evaluator} with the same contract path; the Evaluator
+runs G1--G7 and writes a verdict. Total wall-clock: 5--30~minutes
+depending on tier and Lean compile time.
+
+For autonomous operation:
+\begin{Verbatim}[fontsize=\small,xleftmargin=2em]
+/loop 30m /run-next-sprint
+\end{Verbatim}
+The harness self-paces; \code{scripts/harness_preflight.sh} halts the
+loop if the same goal fails three sprints in a row.
+
+%======================================================================
+\section{Safety properties}
+%======================================================================
+
+The harness is engineered around five guarantees, each enforced
+mechanically by a different combination of file conventions and
+gates.
+
+\begin{description}[leftmargin=2em,itemsep=0.3em]
+  \item[(P1) The sink theorem statement is pinned.] $V_0$ declares
+        \code{theorem lemma_5_4_search : <signature>}. Every later
+        candidate must declare a theorem with the same name and
+        statement (\code{lemma.toml:sink_theorem}). The Evaluator
+        runs \code{#print axioms} on whatever the candidate names
+        \code{lemma_5_4_search}; weakening the statement renders the
+        \code{Cval} comparison meaningless and is treated as cheating
+        by code review.
+  \item[(P2) History is sacrosanct.] Older candidates and Sprint
+        Contracts are immutable. Gate~G3 rejects any diff touching
+        them. The Lean \code{olean} cache is wiped per sprint to
+        avoid stale-binary leakage.
+  \item[(P3) The trust base is on-paper.] \code{lemma.toml} is the
+        only declaration of which seed axioms and which oracles a
+        candidate may use. Any axiom outside this declaration is a
+        gate~G4 failure, regardless of how it was introduced.
+  \item[(P4) The trust base is re-checked every audit.] Every oracle
+        is re-run on every G5; the Python implementation is the
+        certificate. A bug in the implementation is caught by the
+        bound-field-vs-recomputed-bound inequality.
+  \item[(P5) Retroactive regression recovery is supported.] When a
+        previously-trusted construction is found unsound (the
+        $K_{\max}$ truncation), a new PATCH\_NOTES rule + new gate +
+        new audit table re-classify every prior candidate. The
+        framework does not ``patch in place''; the old cache stays,
+        the new gate fails any future candidate that depends on the
+        retired construction.
+\end{description}
+
+%======================================================================
+\section{Per-candidate proof graph visualisation}
+%======================================================================
+
+A complementary artifact, useful both for sanity-checking and for
+paper-figure inclusion, is a \emph{per-candidate Lean dependency graph}:
+for each $V_K$, the cone of \code{theorem}/\code{lemma}/\code{def}/\code{axiom}
+declarations transitively reachable from \code{lemma_5_4_search} in
+$V_K$ together with the seven shared
+\code{Lemma54_Paper*.lean} library files.
+
+\code{paper_artifacts/proof_graph/build_per_candidate.py} parses each
+candidate, strips Lean comments to suppress false-positive
+declarations, builds the directed graph by name-reference, restricts
+to the cone reachable from the entry point, and renders with
+Graphviz. Outputs:
+\begin{itemize}[leftmargin=2em,itemsep=0pt]
+  \item \code{per_candidate/V<K>_proof_graph.{png,svg,pdf,dot}} --- one
+        per candidate.
+  \item \code{proof_graph_progression.gif} --- a 29-frame animation of
+        the cone evolving across $V_0,\dots,V_{28}$.
+  \item \code{proof_graph_progression.pdf} --- the same frames concatenated.
+\end{itemize}
+Node convention: \code{theorem}/\code{lemma} are rounded boxes,
+\code{def} ellipses, \code{axiom} octagons; colour encodes the source
+file, with the candidate's own decls in orange. The entry point's
+border is bolder than the rest. The figures make the
+\emph{formula~$\times$~oracle constellation} structure of the audit
+table immediately visible: when $V_{N}$ replaces a triangle product by
+a joint oracle, two former leaves
+($M_\Phi, M_{\Phi'}, \mathrm{inv}_{F_p^z}$) become orphaned and
+disappear; when $V_{N}$ adopts the merged-numerator form, the
+$u_{zz}$ branch collapses entirely.
+
+%======================================================================
+\section{Summary of the run that produced the bound}
+%======================================================================
+
+Across 34 sprints (29 candidates, several of which were
+research-only or salvage runs), the certified $\Cval$ traced
+\[
+   8.2\!\times\!10^{14} \;\to\; 1.13\!\times\!10^{9} \;\to\; 3.79
+   \;\to\; 1 \;\to\; 1/268{,}000
+   \xrightarrow{K_{\max}\text{-patch}}
+   0.3255 \;\to\; 0.2857.
+\]
+The trace shows three regimes:
+\begin{enumerate}[leftmargin=2em,itemsep=0pt]
+  \item \emph{Numerical tightening of the paper formula}
+        ($V_0\!\to\!V_8$): rectangle retargeting, $R$-rationalisation,
+        oracle-precision bumps. Score moves $\sim 10^5\times$.
+  \item \emph{Structural formula refinements} ($V_9\!\to\!V_{26}$): the
+        auxiliary $z$-identity, joint sup-bounds replacing triangle
+        products, the merged-numerator form, oracle-resolution
+        scans. Score moves $\sim 10^{6}\times$ on the $K_{\max}$-era
+        scale.
+  \item \emph{Truncation-free re-baseline} ($V_{27}\!\to\!V_{28}$):
+        post-PATCH\_NOTES, the score is now reported on the rigorous
+        floor; the apparent regression to $0.33$ is the cost of
+        retiring a non-rigorous oracle and the gain is that every
+        future bound is honest at the $10^{-17}$ scale.
+\end{enumerate}
+The current best is $\Cval_{V_{28}} = 2/7$, against an audit floor
+of $\Cpatched_{V_{28}} = 0.2810$ on $V_{14}$'s
+$\Cr^{\phi,u_{zz},\text{joint}}$ formula at three rounds of corner
+subdivision. The path forward, per
+\code{PATCH_NOTES.md~§3a}, is to move the audit floor itself: a
+fourth subdivision round, a fourth-order Taylor pad in $w$, a
+sharper $M_{\Phi'''}$ Cauchy bound, or the wider analyticity domain
+of \code{proposal_003}.
+
+%======================================================================
+\section{Provenance}
+%======================================================================
+
+The agent prompts that define the three roles are checked in at
+\code{.claude/agents/refinement-\{planner,generator,evaluator\}.md} and
+were not modified during the run except for two policy updates:
+(i) \code{2026-04-30} relocating oracle creation from the proposal
+queue to inline-Generator self-serve; (ii) \code{2026-05-03} adding
+G7 in response to the $K_{\max}$ regression discovery.
+
+The reading list every agent must consult, in priority order:
+PATCH\_NOTES, the candidate it branches from,
+\code{Proof/Lib/Lemma54_Paper.lean}, \code{lemma.toml}, the relevant
+section of the Braverman et al.\ paper, and the most recent
+\code{Bulletin.md} priority directive.
+
+\bigskip
+
+\begin{thebibliography}{1}
+\bibitem{braverman2011} M.~Braverman, K.~Makarychev, Y.~Makarychev, A.~Naor.
+  \emph{The Grothendieck constant is strictly smaller than Krivine's bound}.
+  Forum of Mathematics, Pi~1 (2013), e4.
+\end{thebibliography}
+
+\end{document}

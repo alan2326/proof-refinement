@@ -1,0 +1,95 @@
+{
+  "run_id": "grothendieck016-armBos-01",
+  "arm": "Bos",
+  "constant": "grothendieck_lemma54 (sprint-016 anchor)",
+  "workspace": "ablations/workspaces/groth16_armBos",
+  "anchor": {
+    "parent": "Candidates/V11.lean",
+    "score_parent": "1",
+    "direction": "minimize",
+    "goal": "evaluator-accepted candidate with Cr_val <= BAR = 1/6400",
+    "reference_sprints": [
+      "016",
+      "017 (salvage of 016's G3 write-scope FAIL; V12 byte-identical)"
+    ],
+    "s0_commit": "5db00044",
+    "original_band_s": 2360,
+    "original_band_note": "07:40:56Z (S0^16, 5db00044) -> 08:20:16Z (verdict_017, 410a45c1). Corrects the sect. 13.1 draft (1,837 s to verdict_016 only, which was a FAIL).",
+    "no_lean_envelope": [
+      "6044806335974745213/15625000000000000000000",
+      0.0003868676055023837
+    ],
+    "envelope_route": "Cr_phi_uzz",
+    "BAR": [
+      "1/6400",
+      0.00015625
+    ],
+    "bar_rationale": "largest round rational <= envelope/2; unreachable by declared-value/resolution shaving on the frozen Lean surface (sect. 13.2)"
+  },
+  "snapshot_sha256": "e836de82dda1d44dc9b10ac4ff0bb22b076b9b622f6e2ebc34ad0d1fd17acc53",
+  "hardware": {
+    "cpu_model": "Intel(R) Xeon(R) Platinum 8352Y CPU @ 2.20GHz",
+    "cpu_logical": "128",
+    "cpu_cores_per_socket": "32",
+    "cpu_sockets": "2",
+    "ram_gb_total": "503",
+    "gpus": [
+      "NVIDIA A40, 46068 MiB",
+      "NVIDIA A40, 46068 MiB",
+      "NVIDIA A40, 46068 MiB",
+      "NVIDIA A40, 46068 MiB",
+      "NVIDIA A40, 46068 MiB"
+    ],
+    "gpu_used_by_workload": false,
+    "os": "Linux-5.15.0-185-generic-x86_64-with-glibc2.35",
+    "kernel": "5.15.0-185-generic",
+    "python": "3.13.9"
+  },
+  "toolchain": {
+    "lean_toolchain": "leanprover/lean4:v4.28.0",
+    "deps": {
+      "checkdecls": "3d425859e73fcfbef85b9638c2a91708ef4a22d4",
+      "mathlib": "8f9d9cff6bd728b17a24e163c9402775d9e6a365",
+      "batteries": "495c008c3e3f4fb4256ff5582ddb3abf3198026f"
+    },
+    "claude_code": "2.1.220 (Claude Code)",
+    "uv": "uv 0.9.10"
+  },
+  "prompt_sha256": {
+    ".claude/agents/refinement-planner.md": "85822f49184962f8b5e70f191f9e912f0ba7487421ce8e11018712b9f53bfffd",
+    ".claude/agents/refinement-generator.md": "5ae54f5edb8327361a0530e189240ef4a87d7e169105ead87768c40635ab8200",
+    ".claude/agents/refinement-evaluator.md": "f7de4315b4f5975179e2730c3dfb053844bee74390dd8e73763afeda6dc9491f",
+    ".claude/skills/run-next-sprint/SKILL.md": "7c818e987426eedbad67919053d5379f601e3bfa068316c6b87d9a2ddf0ca250",
+    "ProofRefinement/Lemma54/AGENT_BRIEF.md": "6e7a8ff2313c06c95ffa4959dc51f28f748cc197827d4daabc1b28e27f084558",
+    "ProofRefinement/Lemma54/README.md": "e3aaf4d301fc693d5a16598d171f0943409c95373e0619024e1e39353d5488e8",
+    "ProofRefinement/Lemma54/Sprint_Contracts/TEMPLATE.md": "8b419841fd407eaaaf3dca6de330b6f9a1a35238a02588baa0ffd4a52cf2abeb",
+    "ProofRefinement/Lemma54/Proposals/TEMPLATE.md": "f419ef060c78ed6aec8b308ed295b5090bfa48a92e1d151c4588f4dd494001c6",
+    "ProofRefinement/Lemma54/Proposals/README.md": "bf4e18e319b46603fe002695dd417f865a54a0b5ab16fcaf83210ec00072b5f8",
+    "CLAUDE.md": "15386d25dde4333ab15912240712dc6a1cfe3143ad7887cd886804d21bb79c9c"
+  },
+  "started_utc": "2026-07-30T02:25:06Z",
+  "role": "ablation: agentic system removed, partial formalization kept, MEMORYLESS ONE-SHOT best-of-N (strongest no-agent form: Arm B's feedback/history/workspace loop is agentic in spirit; user decision 2026-07-30)",
+  "protocol": "oneshot_best_of_n",
+  "memoryless": "no history window, no build/evaluator feedback, fresh conversation per attempt; the Lemma54 tree is rsync-reset to the pristine S0^16 state between attempts, so every attempt is an independent draw from the identical prompt",
+  "selection": "best evaluator-accepted candidate across attempts; the workspace is left holding the winning attempt's Lemma54 tree",
+  "model": "opus",
+  "resolved_model": "claude-opus-5",
+  "invocation": "claude -p, tools disallowed, subscription auth",
+  "limitation": "runs inside Claude Code, so its agentic system prompt is present and some tools remain visible though blocked; weaker than an SDK bare-model call, and biased in the ablation's favour (sect. 10d)",
+  "history_window": 0,
+  "tools": "none (no tool use, no subagents, no file access)",
+  "bar_in_prompt": "1/6400",
+  "budget": {
+    "T_ref_s": 8651.9,
+    "O_ref_output_tokens": 544294,
+    "source": "ablations/runs/reference_budget_groth16.json",
+    "rule": "stop before an attempt once active wall > T_ref AND recorded output tokens > O_ref; B received both grants (-01/-02 time window + -03 token parity), so the one-shot arm gets the same combined envelope; one-attempt overshoot possible, recorded",
+    "caveat": "timed-out calls leave server-side generation unrecorded; recorded tokens are the gate (same convention as B)"
+  },
+  "stopping_rule": "success (accepted Cr_val <= BAR), or BOTH budgets exhausted: active wall > T_ref and recorded output tokens > O_ref",
+  "disclosures": [
+    "runs solo: no concurrent A/C CPU contention (favourable to Bos)",
+    "static context is built from the pristine S0^16 anchor -- the same starting context Arm B's -01 received; none of B's later artifacts are visible",
+    "identical prompt every attempt -> later attempts benefit from prompt-cache reads (cost only; the model sees the same input)"
+  ]
+}

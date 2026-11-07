@@ -1,0 +1,47 @@
+[armC16c] ws=ablations/workspaces/groth16_armC (continues grothendieck016-armC-01, used 4119.9s)
+[armC16c] seed=891107/500000; success iff accepted K_val < 1.782213978191
+[armC16c] sprint 1 (active 0.2m, stalled 0.0m, out_tok 0, $0.00)
+       -> turns=7 $8.099 best=None (none)
+[armC16c] sprint 2 (active 32.4m, stalled 0.0m, out_tok 128130, $8.10)
+       -> turns=13 $8.172 best=None (none)
+[armC16c] sprint 3 (active 64.4m, stalled 0.0m, out_tok 268442, $16.27)
+       -> turns=13 $9.053 best=1782213978231/1000000000000 (within_slack)
+[armC16c] NEW BEST: 1782213978231/1000000000000 (within_slack)
+{
+  "run_id": "grothendieck016-armC-02",
+  "arm": "C",
+  "terminal_label": "D5",
+  "evidence": "matched window closed: 4120s (-01) + 5973s (-02 active) > T_ref 8652s; best=1782213978231/1000000000000 (within_slack)",
+  "finished_utc": "2026-07-29T23:28:25Z",
+  "best_score": "1782213978231/1000000000000",
+  "wall_clock_s": 5973.3,
+  "output_tokens": 409797,
+  "input_tokens": 2305,
+  "cache_creation_tokens": 1035971,
+  "cache_read_tokens": 20031293,
+  "model_calls_turns": 33,
+  "usd_total": 25.3237,
+  "lake_builds": 0,
+  "evaluator_runs": 6,
+  "failed_attempts": 0,
+  "per_model": {
+    "claude-opus-5": {
+      "in": 473,
+      "out": 347827,
+      "cr": 17145950,
+      "cw": 829006,
+      "usd": 22.74692125
+    },
+    "claude-sonnet-5": {
+      "in": 1832,
+      "out": 61970,
+      "cr": 2885343,
+      "cw": 206965,
+      "usd": 2.57676765
+    }
+  },
+  "stall_total_s": 0.0,
+  "stalls": 0,
+  "continues": "grothendieck016-armC-01",
+  "used_s_prior": 4119.9
+}

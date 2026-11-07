@@ -1,0 +1,21 @@
+<NAME>
+no_change_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+Without a Lean-level proof of `Eq15ScalarBound K c` at any `c > 3554/10000` (and no registered oracle for that), the seed `hEq15_seed_3554` pins us at `0.3554`. Any unregistered axiom is a hard fail. Keep the working candidate as-is.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to seed; raising requires a Lean proof of Eq15 at larger c.
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to seed; raising requires a Lean proof of Eq15 at larger c.
+-- The trusted seed `hEq15_seed_3554` has type pinned to the literal
+-- 3554/10000, so this is the maximum honest score until a Lean proof
+-- of `Eq15ScalarBound K c` at larger `c` is available.
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+
+</DIFF>

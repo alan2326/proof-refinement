@@ -1,0 +1,23 @@
+<NAME>
+no_change_keep_seed
+</NAME>
+
+<DESCRIPTION>
+The trusted seed axiom `hEq15_seed_3554` is type-pinned to the literal `3554/10000`. Without a Lean-checked proof of `Eq15ScalarBound K c` at a larger `c` (which would require substantial new development across `KorenblumPaper.*`), the maximum honest score is `3554/10000 = 0.3554`. The current candidate already achieves this. Any attempt to assert a larger `c_value` without a corresponding proof would either introduce an unregistered axiom (hard fail) or fail to type-check. I propose a minimal cosmetic edit only.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to seed; raising requires a Lean proof of Eq15 at larger c.
+-- The trusted seed `hEq15_seed_3554` has type pinned to the literal
+-- 3554/10000, so this is the maximum honest score until a Lean proof
+-- of `Eq15ScalarBound K c` at larger `c` is available.
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to Wang (2025) seed: c = 3554/10000 = 0.3554.
+-- The trusted seed `hEq15_seed_3554` has its type pinned to this exact
+-- literal, so this is the maximum honest score until a Lean-checked
+-- proof of `Eq15ScalarBound K c` at a larger `c` is available.
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

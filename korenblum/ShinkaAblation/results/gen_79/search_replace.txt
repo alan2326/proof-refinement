@@ -1,0 +1,20 @@
+<NAME>
+no_op_keep_seed
+</NAME>
+
+<DESCRIPTION>
+No registered seed exists for c > 3554/10000, and proving Eq15 at a larger c from Mathlib alone is out of reach in this turn. Keep the current passing 0.3554 candidate; make a minimal cosmetic tweak (docstring) to record the rationale without changing semantics.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius (seed-pinned at 3554/10000).
+The trusted seed pins c exactly here; raising requires a Lean proof of (15). -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius (seed-pinned at 3554/10000).
+The trusted seed pins c exactly here; raising requires a Lean proof of (15)
+at a larger c from Mathlib + KorenblumPaper.* without new axioms. -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

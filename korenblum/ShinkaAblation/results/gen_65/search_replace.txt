@@ -1,0 +1,17 @@
+<NAME>
+noop_keep_seed
+</NAME>
+
+<DESCRIPTION>
+No viable path to exceed 0.3554 without a registered higher seed/oracle. Keep current passing proof.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to Wang (2025) seed: 0.3554. Raising requires a Lean proof of (15) at larger c.
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to Wang (2025) seed: 0.3554 (max under registered axioms).
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

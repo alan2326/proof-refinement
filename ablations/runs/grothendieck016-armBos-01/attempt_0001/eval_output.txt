@@ -1,0 +1,40 @@
+$ lake build ProofRefinement.Lemma54.Candidates.V12
+[OK]
+
+$ Evaluator.py --file ProofRefinement/Lemma54/Candidates/V12.lean
+# Lemma 5.4 (Braverman et al. (2011), §5)
+[1/5] PARSE       V12.lean
+  namespace:    Braverman.PaperV0
+  parent:       Candidates/V11.lean
+  def *_val:    9 (['M_val', 'delta_val', 'B_val', 'M_phi_val', 'M_phi_prime_val', 'inv_F_p_z_val', 'M_pp_val', 'M_pp_tight_val', 'Cr_val'])
+  axioms:       7 (['h_oracle_domain_contains_image', 'h_M_oracle', 'h_M_phi_oracle', 'h_M_phi_prime_oracle', 'h_inv_F_p_z_oracle', 'h_M_pp_oracle', 'h_M_pp_tight_oracle'])
+  sink:         found
+[2/5] COMPILE     lake env lean ...
+  pass (4.0s)
+[3/5] AXIOM AUDIT #print axioms Braverman.PaperV0.lemma_5_4_search
+  seed  propext
+  seed  Classical.choice
+  seed  Quot.sound
+  seed  Braverman.Paper.F_inv_paper
+  seed  Braverman.Paper.F_inv_paper_R_bound
+  seed  Braverman.Paper.F_inv_paper_analytic
+  seed  Braverman.Paper.F_inv_paper_contdiff
+  seed  Braverman.Paper.F_inv_paper_eq
+  seed  Braverman.Paper.F_inv_paper_first_deriv_zero
+  seed  Braverman.Paper.F_inv_paper_mem_S
+  seed  Braverman.Paper.pr_paper
+  seed  Braverman.Paper.pr_paper_pos
+  oracle Braverman.PaperV0.h_M_phi_oracle (entry: h_M_phi_oracle)
+  oracle Braverman.PaperV0.h_M_phi_prime_oracle (entry: h_M_phi_prime_oracle)
+  oracle Braverman.PaperV0.h_M_pp_tight_oracle (entry: h_M_pp_tight_oracle)
+  oracle Braverman.PaperV0.h_inv_F_p_z_oracle (entry: h_inv_F_p_z_oracle)
+  seed  Braverman.PaperV0.h_oracle_domain_contains_image
+[4/5] ORACLE
+  pass Braverman.PaperV0.h_M_phi_oracle: declared M_phi_val=239/5000 ≥ oracle 61/2500
+  pass Braverman.PaperV0.h_M_phi_prime_oracle: declared M_phi_prime_val=543/10000 ≥ oracle 59/2000
+  pass Braverman.PaperV0.h_M_pp_tight_oracle: declared M_pp_tight_val=10 ≥ oracle 61373/10000
+  pass Braverman.PaperV0.h_inv_F_p_z_oracle: declared inv_F_p_z_val=7/4 ≥ oracle 3407/2000
+[5/5] SCORE
+  Cr_val: 1/14 ≈ 0.071429
+
+PASS

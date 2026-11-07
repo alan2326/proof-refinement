@@ -1,0 +1,453 @@
+database_config:
+  archive_size: 30
+  db_path: korenblum/ShinkaAblation/resultskorenblum/ShinkaAblation/evolution_db.sqlite
+  elite_selection_ratio: 0.3
+  embedding_model: text-embedding-3-small
+  enforce_island_separation: true
+  exploitation_alpha: 1.0
+  exploitation_ratio: 0.2
+  island_elitism: true
+  migration_interval: 10
+  migration_rate: 0.1
+  num_archive_inspirations: 2
+  num_beams: 5
+  num_islands: 4
+  num_top_k_inspirations: 2
+  parent_selection_lambda: 10.0
+  parent_selection_strategy: weighted
+evolution_config:
+  code_embed_sim_threshold: 0.995
+  embedding_model: text-embedding-3-small
+  enable_tool_use: false
+  init_program_path: korenblum/ShinkaAblation/initial.lean
+  job_type: local
+  language: cpp
+  llm_dynamic_selection: ucb1
+  llm_dynamic_selection_kwargs:
+    exploration_coef: 1.0
+  llm_kwargs:
+    max_tokens: 32768
+    reasoning_efforts:
+    - medium
+    temperatures:
+    - 0.5
+    - 1.0
+  llm_models:
+  - claude-opus-4-7
+  max_novelty_attempts: 3
+  max_parallel_jobs: 16
+  max_patch_attempts: 3
+  max_patch_resamples: 3
+  meta_llm_kwargs:
+    max_tokens: 16384
+    temperatures:
+    - 0.0
+  meta_llm_models:
+  - gpt-5-nano
+  meta_max_recommendations: 5
+  meta_rec_interval: 10
+  novelty_llm_kwargs:
+    max_tokens: 16384
+    temperatures:
+    - 0.0
+  novelty_llm_models:
+  - gpt-5-nano
+  num_generations: 100
+  patch_type_probs:
+  - 0.6
+  - 0.3
+  - 0.1
+  patch_types:
+  - diff
+  - full
+  - cross
+  results_dir: korenblum/ShinkaAblation/results
+  task_sys_msg: "You are an expert in complex analysis, Bergman spaces, and Lean 4\
+    \ formalization. You are participating in a search for a larger lower bound on\
+    \ the Korenblum constant. The current best, due to Wang (2025), is c \u2265 0.3554.\
+    \ Your goal is to push that bound up.\n\n# Task\n\nImprove the candidate Lean\
+    \ file. The improvement objective is to **maximize** `c_value`, defined as:\n\n\
+    ```lean\ndef c_value : \u211D := <a closed-form rational>\n```\n\nThe candidate\
+    \ must close the theorem\n\n```lean\ntheorem korenblum_constant_search : ProofRefinement.Korenblum.ValidKorenblumBound\
+    \ c_value\n```\n\nA candidate is *correct* iff:\n\n1. The Lean file compiles via\
+    \ `lake build`.\n2. `korenblum_constant_search` has the exact contract type\n\
+    \   `ValidKorenblumBound c_value`.\n3. Every axiom transitively used by the proof\
+    \ is either a standard Lean axiom (`Classical.choice`, `propext`, `Quot.sound`,\
+    \ etc.), a seed axiom listed in `lemma.toml`, or a registered oracle axiom listed\
+    \ in `lemma.toml`.\n4. `sorryAx` is a hard fail.\n5. All imports are allowed by\
+    \ `lemma.toml`'s `[import_policy]` and `[workspace_import_policy]`.\n\nThe score\
+    \ is exactly the rational value of `c_value` (parsed by the evaluator as a `Fraction`).\
+    \ Larger is better.\n\n# Search space\n\nThe full search space is **any Lean proof\
+    \ of `ValidKorenblumBound c_value`**, for any rational `c_value` in (0, 1). The\
+    \ published seed route uses Wang's equation (15) at c = 0.3554; that is one path\
+    \ among many. Strengthening the (15)-style scalar inequality, replacing it with\
+    \ a direct disk-vs-annulus argument, or proving the bound via a new analytic strategy\
+    \ are all in scope.\n\nTool use is disabled \u2014 you cannot interactively look\
+    \ up Mathlib lemmas or inspect proof states. You may only modify the candidate\
+    \ file. The system message below contains the trust surface you can rely on; everything\
+    \ else must be derived in Lean from these inputs and Mathlib.\n\n# Wang's paper\
+    \ (verbatim)\n\n```\nPROCEEDINGS OF THE\nAMERICAN MATHEMATICAL SOCIETY\nVolume\
+    \ 153, Number 3, March 2025, Pages 1209\u20131214\nhttps://doi.org/10.1090/proc/17112\n\
+    Article electronically published on January 8, 2025\n\nA LOWER BOUND ON KORENBLUM\u2019\
+    S CONSTANT\nCHUNJIE WANG\n(Communicated by Javad Mashreghi)\nAbstract. Let A2\
+    \ (D) be the Bergman space over the open unit disk D in the\ncomplex plane. In\
+    \ this paper we obtain a new lower bound on Korenblum\u2019s\nconstant c2 : c2\
+    \ \u2265 0.3554.\n\n1. Introduction and main results\nLet D be the open unit disk\
+    \ in the complex plane C. For p > 0 the Bergman\nspace Ap (D) consists of analytic\
+    \ functions f in D such that\n\x02\x03\n\x02f \x02Ap =\n\nD\n\n|f (z)|p dA(z)\n\
+    \n\x04 p1\n< +\u221E,\n\nwhere dA(z) is the Lebesgue area measure. For p \u2265\
+    \ 1, Korenblum\u2019s maximum\nprinciple (also refer to as the Bergman space maximum\
+    \ principle) states that there\nis an absolute constant c \u2208 (0, 1) (may depend\
+    \ on p), such that whenever |f (z)| \u2264\n|g(z)| (f, g \u2208 Ap (D)) in the\
+    \ annulus c < |z| < 1, then \x02f \x02Ap \u2264 \x02g\x02Ap . For p \u2265 1,\n\
+    let cp be the largest value of c for which Korenblum\u2019s maximum principle\
+    \ holds. c2\nis called Korenblum\u2019s constant.\nFirst conjectured by Korenblum\
+    \ [5], the maximum principle was proved by Hayman [3] for p = 2 in 1999. Very\
+    \ soon, Hinkkanen [4] proved that the maximum\nprinciple holds for the Bergman\
+    \ space Ap (D) (p \u2265 1) with an absolute constant\nc = 0.15724. Recently Boz\u030C\
+    in and Karapetrovic\u0301 [1] show the failure of the maximum\nprinciple for Ap\
+    \ (D) when 0 < p < 1. However, the sharp value of cp (p \u2265 1) even\nwhen p\
+    \ = 2 remains unknown.\nAn example due to Martin (see [5]) shows c2 < \u221A12\
+    \ and, in fact, gives an upper\nbound on c2 (see [7]): c2 < 0.70450 \xB7 \xB7\
+    \ \xB7 . Wang [9] proved that c2 < 0.67789 \xB7 \xB7 \xB7 . On\nthe other hand,\
+    \ Hayman [3] gave the \uFB01rst lower bound on c2 : c2 > 0.04. Hinkkanen\n[4]\
+    \ proved that c2 > 0.15724. Schuster [6] showed that c2 \u2265 0.21 in term of\
+    \ Mo\u0308bius\npseudodistance for the annulus. And Wang [10] proved that c2 \u2265\
+    \ 0.28185.\nIn this paper we obtain a new lower bound on c2 : c2 \u2265 0.3554.\
+    \ Our main result\nis Theorem 1.\nReceived by the editors May 23, 2024, and, in\
+    \ revised form, September 23, 2024.\n2020 Mathematics Subject Classi\uFB01cation.\
+    \ Primary 30H20.\nKey words and phrases. Bergman space, Korenblum\u2019s maximum\
+    \ principle, Korenblum\u2019s\nconstant.\nThe author was supported by the Natural\
+    \ Science Foundation of Hebei Province (Grant\nNumber A2023202037) and the National\
+    \ Natural Science Foundation of China (Grant Number\n12171136).\nc\n\x022025\n\
+    American Mathematical Society\n\n1209\n\nLicensed to AMS.\nLicense or copyright\
+    \ restrictions may apply to redistribution; see https://www.ams.org/journal-terms-of-use\n\
+    \n\f1210\n\nCHUNJIE WANG\n\nTheorem 1. Let f and g be analytic functions in the\
+    \ unit disk D. Suppose that\n|f (z)| \u2264 |g(z)| whenever c < |z| < 1, where\
+    \ c = 0.3554. Then \x02f \x02A2 \u2264 \x02g\x02A2 .\nLemma 2 is well known.\n\
+    Lemma 2 (see [2]). Suppose that f (z) =\n1\n2\u03C0\n\n\u221E\n\x05\n\nak z k\
+    \ is analytic in D. Then\n\nk=0\n\n\x03 2\u03C0\n|f (rei\u03B8 )|2 d\u03B8 =\n\
+    0\n\n\u221E\n\x06\n\n|ak |2 r 2k ,\n\n0 \u2264 r < 1.\n\nk=0\n\n2. Proof of Theorem\
+    \ 1\nLet c \u2208 (0, 1) be a constant to be determined later. We write D(c) =\
+    \ {z \u2208 C :\n|z| \u2264 c} and A(c, 1) = {z \u2208 C : c < |z| < 1}. To prove\
+    \ Theorem 1, it su\uFB03ces to\nshow that\n\x03\n\x03\n(1)\n(|f (z)|2 \u2212 |g(z)|2\
+    \ )dA(z) \u2264\n(|g(z)|2 \u2212 |f (z)|2 )dA(z).\nD(c)\n\nA(c,1)\n\nTo obtain\
+    \ a better constant c, we follow [10]. We may assume that \x02g\x02A2 is\n\uFB01\
+    nite, and so \x02f \x02A2 is also \uFB01nite, for otherwise the result holds trivially.\
+    \ We may\nalso assume that g is not identically equal to 0, and g has at least\
+    \ one zero in D(c),\nfor otherwise the result holds trivially. De\uFB01ne \u03C9\
+    (z) = f (z)/g(z) for c < |z| < 1, so\nthat |\u03C9| \u2264 1. We may assume that\
+    \ |\u03C9(z)| < 1 in c < |z| < 1, since otherwise the\nresult is trivial.\nAssume\
+    \ that 0 \u2264 r \u2264 c \u2264 \u03C1 < 1. Let\nf (z) =\n\n\u221E\n\x06\n\n\
+    ak z k ,\n\ng(z) =\n\nk=0\n\n\u221E\n\x06\n\nbk z k\n\nk=0\n\nbe the power series\
+    \ expansion of f and g, respectively. Denote by N the set of all\npositive integers,\
+    \ and let\nN1 = {k \u2208 N : |ak | \u2265 |bk |} \u222A {0},\nN2 = {k \u2208\
+    \ N : |ak | < |bk |}.\nWe consider three functions\n\x06 \a\n\b\n\u03A3+ (s) =\n\
+    |ak |2 \u2212 |bk |2 s2k ,\n\n0 \u2264 s < 1,\n\nk\u2208N1\n\n\u03A3\u2212 (s)\
+    \ =\n\n\x06 \a\n\b\n|bk |2 \u2212 |ak |2 s2k ,\n\n0 \u2264 s < 1,\n\nk\u2208N2\n\
+    \n\u03A3\u2212\n0 (s) =\n\n\x06 \a\n\b\n|bk |2 \u2212 |ak |2 s2k\u22122 ,\n\n\
+    0 \u2264 s < 1.\n\nk\u2208N2\n2\nNote that both \u03A3+ (s) and \u03A3\u2212\n\
+    0 (s) are increasing and convex in s . For 0 \u2264 r < c <\n\u03C1 < 1, we have\n\
+    \u03C12 \u2212 c 2 \u2212\nc2 \u2212 r 2 \u2212\n\u03A30 (r) + 2\n\u03A3 (\u03C1\
+    ),\n\u03A3\u2212\n0 (c) \u2264 2\n2\n\u03C1 \u2212r\n\u03C1 \u2212 r2 0\nthat\
+    \ is,\n\n(2)\n\n\u03A3\u2212\n0 (r) \u2265\n\n\u03C12 \u2212 r 2 \u2212\nc2 \u2212\
+    \ r 2 \u2212\n\u03A3\n(c)\n\u2212\n\u03A3 (\u03C1).\n\u03C12 \u2212 c 2 0\n\u03C1\
+    2 \u2212 c 2 0\n\nLicensed to AMS.\nLicense or copyright restrictions may apply\
+    \ to redistribution; see https://www.ams.org/journal-terms-of-use\n\n\fA LOWER\
+    \ BOUND ON KORENBLUM\u2019S CONSTANT\n\n1211\n\nNow we apply Lemma 2 to obtain\n\
+    \x03 2\u03C0\n\x03 2\u03C0\n1\n1\ni\u03B8 2\n|f (re )| d\u03B8 \u2212\n|g(rei\u03B8\
+    \ )|2 d\u03B8\n2\u03C0 0\n2\u03C0 0\n\u221E\n\x06\n\a\n\b\n|ak |2 \u2212 |bk |2\
+    \ r 2k\n=\nk=0\n\n=\n\n\x06 \a\n\n\x06 \a\n\b\n\b\n|ak |2 \u2212 |bk |2 r 2k \u2212\
+    \n|bk |2 \u2212 |ak |2 r 2k\n\nk\u2208N1\n+\n\n(3)\n\n=\u03A3\n\nk\u2208N2\n\n\
+    (r) \u2212 r \u03A3\u2212\n0 (r).\n2\n\nNote that |f (z)| \u2264 |g(z)| for z\
+    \ on |z| = c implies that \u03A3+ (c) \u2264 \u03A3\u2212 (c). We have\n\u03A3\
+    + (r) \u2264 \u03A3+ (c) \u2264 \u03A3\u2212 (c) = c2 \u03A3\u2212\n0 (c).\n\n\
+    (4)\n\nIt follows from (2), (3) and (4) that\n\x03 2\u03C0\n\x03 2\u03C0\n1\n\
+    1\n|f (rei\u03B8 )|2 d\u03B8 \u2212\n|g(rei\u03B8 )|2 d\u03B8\n2\u03C0 0\n2\u03C0\
+    \ 0\n2\n2\n2\n2\n2\u03C1 \u2212 r\n2c \u2212r\n\u03A3\u2212\n\u03A3\u2212 (\u03C1\
+    ).\n\u2264 c 2 \u03A3\u2212\n0 (c) \u2212 r\n0 (c) + r\n2\n2\n2\n\u03C1 \u2212\
+    c\n\u03C1 \u2212 c2 0\nLet us keep \u03C1 \uFB01xed and multiply both sides of\
+    \ this inequality by 2\u03C0r and then\nintegrate with respect to r from 0 to\
+    \ c. We obtain\n\x03\n(|f (z)|2 \u2212 |g(z)|2 )dA(z)\nD(c)\n\n3\u03C12 c4 \u2212\
+    \ 2c6 \u2212\nc6\n\u03A3\n\u03A3\u2212 (\u03C1)\n(c)\n+\n0\n6(\u03C12 \u2212 c2\
+    \ )\n6(\u03C12 \u2212 c2 ) 0\nc6\n3\u03C12 c4 \u2212 4c6 \u2212\n\u03A3\n\u03A3\
+    \u2212 (\u03C1).\n(c)\n+\n=\n0\n6(\u03C12 \u2212 c2 )\n6(\u03C12 \u2212 c2 ) 0\n\
+    \u2264 c 4 \u03A3\u2212\n0 (c) \u2212\n\nIf c < \u03C1 <\n\n4\n3 c,\n\n\x03\n\
+    (|f (z)|2 \u2212 |g(z)|2 )dA(z)\nD(c)\n\n\u2264\n(5)\nIf\n\n=\n\nc6\n6(\u03C1\
+    2 \u2212 c2 )\n\n\u03A3\u2212\n0 (\u03C1)\n\nc6\n6\u03C12 (\u03C12 \u2212 c2 )\n\
+    \n\u03A3\u2212 (\u03C1).\n\n\u2212\n\u2212\n4\n3 c < \u03C1 < 1, since \u03A3\
+    0 (c) \u2264 \u03A30 (\u03C1),\n\n\x03\n\n(|f (z)|2 \u2212 |g(z)|2 )dA(z)\nD(c)\n\
+    \n3\u03C12 c4 \u2212 4c6 \u2212\nc6\n\u03A3\n\u03A3\u2212 (\u03C1)\n(\u03C1)\n\
+    +\n6(\u03C12 \u2212 c2 ) 0\n6(\u03C12 \u2212 c2 ) 0\nc4\n= 2 \u03A3\u2212 (\u03C1\
+    ).\n2\u03C1\n\u2264\n\n(6)\n\nLicensed to AMS.\nLicense or copyright restrictions\
+    \ may apply to redistribution; see https://www.ams.org/journal-terms-of-use\n\n\
+    \f1212\n\nCHUNJIE WANG\n\nDe\uFB01ne\n\u03C90 = \u03C90 (\u03C1) = max{|\u03C9\
+    (z)| : |z| = \u03C1}.\nThen 0 \u2264 \u03C90 < 1. As in [8] we choose a = \u03C9\
+    0\u03B1 , where\n\u03B1=\n\n1 + 3K 2\n1 \u2212 K2\n\nand\n(7)\n\nK = 2\u03C1(1\
+    \ + \u03C1\u22122 c)\n\n\u221E\n\n(1 + \u03C12 c2n\u22121 )(1 + \u03C1\u22122\
+    \ c2n+1 )(1 + c2n )2\n.\n(1 + \u03C12 c2n\u22122 )(1 + \u03C1\u22122 c2n )(1 +\
+    \ c2n\u22121 )2\nn=1\n\nThen\n\u03A3\u2212 (\u03C1) =\n\n\x06 \a\n\b\n|bk |2 \u2212\
+    \ |ak |2 \u03C12k\nk\u2208N2\n\n=\n\n\x06 |bk \u2212 aak |2 \u2212 |ak \u2212\
+    \ abk |2\n1 \u2212 a2\n\nk\u2208N2\n\n\u2264\n\n\x06 |bk \u2212 aak |2\n1 \u2212\
+    \ a2\n\nk\u2208N2\n\u221E\n\x06\n\n\u03C12k\n\n\u03C12k\n\n|bk \u2212 aak |2 2k\n\
+    \u03C1\n1 \u2212 a2\nk=0\n\x03 2\u03C0\n|g(\u03C1ei\u03B8 ) \u2212 af (\u03C1\
+    ei\u03B8 )|2\n1\n=\nd\u03B8.\n2\u03C0 0\n1 \u2212 a2\n\u2264\n\n(8)\n\nWang [10]\
+    \ proved that for |z| = \u03C1,\n\x03 2\u03C0\n\n(9)\n\n|g(\u03C1ei\u03B8 ) \u2212\
+    \ af (\u03C1ei\u03B8 )|2\nd\u03B8\n1 \u2212 a2\n0\n\x04\n\x03 2\u03C0 \x02\n|\u03C9\
+    (\u03C1ei\u03B8 ) \u2212 a|2\n=\n1+\n(|g(\u03C1ei\u03B8 )|2 \u2212 |f (\u03C1\
+    ei\u03B8 )|2 )d\u03B8\n(1 \u2212 a2 )(1 \u2212 |\u03C9(\u03C1ei\u03B8 )|2 )\n\
+    0\n\x03 2\u03C0\n\u2264 (1 + \u03B32 (\u03C1))\n(|g(\u03C1ei\u03B8 )|2 \u2212\
+    \ |f (\u03C1ei\u03B8 )|2 )d\u03B8,\n0\n\nwhere\n\u03B32 (\u03C1) =\n\n1\n2\n\n\
+    1 + 3K 2\n\u22121 .\n1 \u2212 K2\n\nIt follows from (5), (6), (8) and (9) that\n\
+    \n(10)\n\n\x03\n6\u03C12 (\u03C12 \u2212 c2 )\n(|f (z)|2 \u2212 |g(z)|2 )dA(z)\n\
+    c6 (1 + \u03B32 (\u03C1)) D(c)\n\x03 2\u03C0\n1\n\u2264\n(|g(\u03C1ei\u03B8 )|2\
+    \ \u2212 |f (\u03C1ei\u03B8 )|2 )d\u03B8\n2\u03C0 0\n\nLicensed to AMS.\nLicense\
+    \ or copyright restrictions may apply to redistribution; see https://www.ams.org/journal-terms-of-use\n\
+    \n\fA LOWER BOUND ON KORENBLUM\u2019S CONSTANT\n\nfor c < \u03C1 <\n\n1213\n\n\
+    4\n3 c, and\n\n\x03\n2\u03C12\n(|f (z)|2 \u2212 |g(z)|2 )dA(z)\nc4 (1 + \u03B3\
+    2 (\u03C1)) D(c)\n\x03 2\u03C0\n1\n\u2264\n(|g(\u03C1ei\u03B8 )|2 \u2212 |f (\u03C1\
+    ei\u03B8 )|2 )d\u03B8\n2\u03C0 0\n\n(11)\n\n4\n3 c < \u03C1 < 1.\n\nfor\n\nMultiplying\
+    \ both sides of (10) by 2\u03C0\u03C1 and integrating with respect to \u03C1 from\
+    \ c\n4\n3 c yields\n\nto\n\n\x03 \u221A 43 c\nc\n\n\x03\n\n12\u03C13 (\u03C12\
+    \ \u2212 c2 )\nd\u03C1\nc6 (1 + \u03B32 (\u03C1))\n\n\u2264\n\n(12)\n\n(|f (z)|2\
+    \ \u2212 |g(z)|2 )dA(z)\nD(c)\n\n\u221A 4 (|g(z)| \u2212 |f (z)| )dA(z).\n2\n\n\
+    c\u2264|z|<\n\n\x03\n\n2\n\n3c\n\nMultiplying both sides of (11) by 2\u03C0\u03C1\
+    \ and integrating with respect to \u03C1 from\nto 1 yields\n\n4\n3c\n\n\x03 1\n\
+    \n\x03\n4\u03C13\n(|f (z)|2 \u2212 |g(z)|2 )dA(z)\n\u221A 4 c4 (1 + \u03B3 (\u03C1\
+    )) d\u03C1\n2\nc\nD(c)\n\x033\n\u2264 \u221A\n(|g(z)|2 \u2212 |f (z)|2 )dA(z).\n\
+    \n(13)\n\n4\n3 c\u2264|z|<1\n\nCombining (12) with (13), we obtain\n\x03 \u221A\
+    \ 43 c\nc\n\n\x03 1\n\x03\n12\u03C13 (\u03C12 \u2212 c2 )\n4\u03C13\nd\u03C1\n\
+    +\nd\u03C1\n(|f (z)|2 \u2212 |g(z)|2 )dA(z)\n\u221A 4 c4 (1 + \u03B3 (\u03C1))\n\
+    c6 (1 + \u03B32 (\u03C1))\n2\nD(c)\n3c\n\n(14)\n\x03\n\u2264\n\n(|g(z)|2 \u2212\
+    \ |f (z)|2 )dA(z).\nA(c,1)\n\nThus if we can choose c so that\n\x03 \u221A 43\
+    \ c\n(15)\nc\n\n\x03 1\n12\u03C13 (\u03C12 \u2212 c2 )\n4\u03C13\nd\u03C1\n+\n\
+    d\u03C1 \u2265 1,\n\u221A\n6\n4\n4\nc (1 + \u03B32 (\u03C1))\nc (1 + \u03B32 (\u03C1\
+    ))\n3c\n\nthen inequality (1) is proved.\nUsing Maple, we obtain that (15) holds\
+    \ with c = 0.3554. This completes the\nproof of Theorem 1.\n\nLicensed to AMS.\n\
+    License or copyright restrictions may apply to redistribution; see https://www.ams.org/journal-terms-of-use\n\
+    \n\f1214\n\nCHUNJIE WANG\n\n3. The case of Fock spaces\nThe Fock space F consists\
+    \ of entire functions f such that\n\x02\x03\n\x04 12\n2 \u2212|z|2\n\x02f \x02\
+    F =\n|f (z)| e\ndA(z)\n< +\u221E,\nC\n\nwhere dA(z) denote the Lebesgue area measure.\
+    \ It is well known that F is a Hilbert\nspace with the following inner product:\n\
+    \x03\n2\nf (z)g(z)e\u2212|z| dA(z).\nf, g =\nC\n\nSee [11] for the theory of Fock\
+    \ spaces.\nThe version of Korenblum\u2019s maximum principle in the Fock space\
+    \ setting was\n\uFB01rst proved in [6]. Following Schuster [6] and using the same\
+    \ method as that in\nTheorem 1 here, we can prove that Theorem 2 in [6] holds\
+    \ with c = 0.8724. Namely,\nwe have\nTheorem 3. Suppose that f (z) and g(z) are\
+    \ two entire functions satisfying |f (z)| \u2264\n|g(z)| for |z| > c, where c\
+    \ = 0.8724. Then \x02f \x02F \u2264 \x02g\x02F .\nReferences\n[1] Vladimir Boz\u030C\
+    in and Boban Karapetrovic\u0301, Failure of Korenblum\u2019s maximum principle\
+    \ in\nBergman spaces with small exponents, Proc. Amer. Math. Soc. 146 (2018),\
+    \ no. 6, 2577\u20132584,\nDOI 10.1090/proc/13946. MR3778159\n[2] Peter L. Duren,\
+    \ Theory of H p spaces, Pure and Applied Mathematics, Vol. 38, Academic\nPress,\
+    \ New York-London, 1970. MR268655\n[3] Walter Kurt Hayman, On a conjecture of\
+    \ Korenblum, Analysis (Munich) 19 (1999), no. 2,\n195\u2013205, DOI 10.1524/anly.1999.19.2.195.\
+    \ MR1705360\n[4] A. Hinkkanen, On a maximum principle in Bergman space, J. Anal.\
+    \ Math. 79 (1999), 335\u2013\n344, DOI 10.1007/BF02788246. MR1749317\n[5] Boris\
+    \ Korenblum, A maximum principle for the Bergman space, Publ. Mat. 35 (1991),\
+    \ no. 2,\n479\u2013486, DOI 10.5565/PUBLMAT 35291 12. MR1201570\n[6] Alexander\
+    \ Schuster, The maximum principle for the Bergman space and the Mo\u0308bius pseudodistance\
+    \ for the annulus, Proc. Amer. Math. Soc. 134 (2006), no. 12, 3525\u20133530,\
+    \ DOI\n10.1090/S0002-9939-06-08378-X. MR2240664\n[7] Chunjie Wang, Re\uFB01ning\
+    \ the constant in a maximum principle for the Bergman space,\nProc. Amer. Math.\
+    \ Soc. 132 (2004), no. 3, 853\u2013855, DOI 10.1090/S0002-9939-03-07137-5.\nMR2019965\n\
+    [8] Chunjie Wang, On Korenblum\u2019s maximum principle, Proc. Amer. Math. Soc.\
+    \ 134 (2006),\nno. 7, 2061\u20132066, DOI 10.1090/S0002-9939-06-08311-0. MR2215775\n\
+    [9] Chunjie Wang, Domination in the Bergman space and Korenblum\u2019s constant,\
+    \ Integral\nEquations Operator Theory 61 (2008), no. 3, 423\u2013432, DOI 10.1007/s00020-008-1587-4.\n\
+    MR2417506\n[10] Chunjie Wang, Some results on Korenblum\u2019s maximum principle,\
+    \ J. Math. Anal. Appl. 373\n(2011), no. 2, 393\u2013398, DOI 10.1016/j.jmaa.2010.07.052.\
+    \ MR2720689\n[11] Kehe Zhu, Analysis on Fock spaces, Graduate Texts in Mathematics,\
+    \ vol. 263, Springer, New\nYork, 2012, DOI 10.1007/978-1-4419-8801-0. MR2934601\n\
+    Department of Mathematics, Hebei University of Technology, Tianjin 300401, People\u2019\
+    s Republic of China\nEmail address: wcj@hebut.edu.cn\n\nLicensed to AMS.\nLicense\
+    \ or copyright restrictions may apply to redistribution; see https://www.ams.org/journal-terms-of-use\n\
+    \n\f\n```\n\n# Contract (read-only, defines the theorem you must prove)\n\n```lean\n\
+    import ProofRefinement.Korenblum.Proof.ProblemAxioms\n\nopen MeasureTheory\n\n\
+    noncomputable section\n\nnamespace ProofRefinement.Korenblum\n\nopen ProblemAxioms\n\
+    \n/--\nA candidate proves that `c` is a valid Korenblum lower bound if:\n\n1.\
+    \ `0 < c < 1`, and\n2. for every paper Section 2 instance at radius `c`, the inner\
+    \ disk excess is\n   dominated by the outer annulus excess.\n-/\ndef ValidKorenblumBound\
+    \ (c : \u211D) : Prop :=\n  0 < c \u2227 c < 1 \u2227\n    \u2200 {a b : \u2115\
+    \ \u2192 \u2102} {K : \u211D \u2192 \u211D \u2192 \u211D}\n      (paper : Section2Assumptions\
+    \ a b K c),\n        diskExcess paper.circleGap c \u2264 annulusExcess paper.circleGap\
+    \ c\n\nend ProofRefinement.Korenblum\n\n```\n\n# Problem axioms (read-only, defines\
+    \ `Section2Assumptions`, `Eq15ScalarBound`, `diskExcess`, `annulusExcess`)\n\n\
+    ```lean\nimport KorenblumPaper.PaperAxioms\nimport KorenblumPaper.PaperEq15\n\n\
+    /-!\n# Problem Axioms Veneer\n\nThis file is only a thin convenience layer over\
+    \ the built\n`KorenblumPaper.PaperAxioms` surface. It re-exports a few names used\
+    \ by\nthe current seed and contract so candidates can import a short, stable path.\n\
+    \nIt does **not** define the search space and it does **not** force candidates\
+    \ to\ngo through equation `(15)`. Candidates may prove\n`ProofRefinement.Korenblum.ValidKorenblumBound\
+    \ c_value` by any route, subject\nto the import policies recorded in `lemma.toml`.\n\
+    -/\n\nopen MeasureTheory\n\nnoncomputable section\n\nnamespace ProofRefinement.Korenblum.ProblemAxioms\n\
+    \nopen KorenblumPaper\n\nabbrev Eq15ScalarBound := PaperAxioms.Eq15ScalarBound\n\
+    abbrev Section2Assumptions := PaperAxioms.Section2Assumptions\nabbrev diskExcess\
+    \ := PaperAxioms.diskExcess\nabbrev annulusExcess := PaperAxioms.annulusExcess\n\
+    \nend ProofRefinement.Korenblum.ProblemAxioms\n\n```\n\n# `lemma.toml` (workspace\
+    \ policy \u2014 read carefully; any axiom you introduce must be registered here)\n\
+    \n```toml\nname = \"Korenblum Constant\"\nslug = \"korenblum\"\npaper_ref = \"\
+    Wang (2025), Section 2 / equation (15)\"\n\nsink_theorem = \"korenblum_constant_search\"\
+    \nconstant_def = \"c_value\"\nscore = \"c_value\"\nscore_direction = \"maximize\"\
+    \n\n[search_constants]\n\n[import_policy]\n# Candidate-side imports the evaluator\
+    \ allows in your `.lean` file.\nallowed_exact = []\nallowed_prefixes = [\n  \"\
+    ProofRefinement.Korenblum.Proof\",\n  \"Mathlib\",\n]\n\n[workspace_import_policy]\n\
+    # Imports the evaluator allows in the rest of the workspace.\nallowed_exact =\
+    \ [\n  \"KorenblumPaper.PaperAxioms\",\n  \"KorenblumPaper.PaperEq15\",\n  \"\
+    KorenblumPaper.OneModePaperBridge\",\n]\nallowed_prefixes = [\n  \"ProofRefinement.Korenblum\"\
+    ,\n  \"Mathlib\",\n]\n\n[seed_axioms]\n# Standard Lean axioms plus the single\
+    \ paper-faithful seed input\n# (Wang's equation (15) at c = 0.3554). Any axiom\
+    \ you introduce in your\n# candidate must be in this list, otherwise the evaluator\
+    \ rejects the\n# candidate at the axiom-audit stage.\nallowed = [\n  \"Classical.choice\"\
+    ,\n  \"Lean.ofReduceBool\",\n  \"Lean.trustCompiler\",\n  \"Quot.sound\",\n  \"\
+    propext\",\n  \"hEq15_seed_3554\",\n]\n\n```\n\n# Module index \u2014 workspace\
+    \ trust surface (read-only)\n\nThe workspace pre-proves a set of intermediate\
+    \ theorems for you. You can `import` any of these modules (subject to `lemma.toml:[import_policy]`)\
+    \ and use any public theorem they expose. The full source is not in this prompt;\
+    \ rely on the docstring summaries below.\n\n### `ProofRefinement.Korenblum.Proof.*`\
+    \ (workspace trust surface)\n\n- `CandidateContract.lean` \u2014 (no docstring)\n\
+    - `DiskInnerSeriesBridge.lean` \u2014 Summability of the gap-weighted series,\
+    \ derived from the two\n- `Integrability.lean` \u2014 (no docstring)\n- `Main.lean`\
+    \ \u2014 (no docstring)\n- `ProblemAxioms.lean` \u2014 (no docstring)\n- `Reduction.lean`\
+    \ \u2014 Generic paper-faithful closure: if Wang's equation `(15)` holds at `c`,\
+    \ then\n- `ShinkaTrustedSeed.lean` \u2014 (no docstring)\n- `Summability.lean`\
+    \ \u2014 Pointwise bound: the coefficient gap is sandwiched by the H\xB2 envelope\n\
+    \n\n### `KorenblumPaper.*` (paper-faithful trust surface)\n\n- `AnnulusIntegralReduction.lean`\
+    \ \u2014 The radial annulus contribution over `[a, b]`.\n- `CertificateCore.lean`\
+    \ \u2014 (no docstring)\n- `ConstantCertificateCore.lean` \u2014 (no docstring)\n\
+    - `FiniteModeWindow.lean` \u2014 (no docstring)\n- `ModeBridge.lean` \u2014 The\
+    \ scalar integrand attached to a fixed one-mode coefficient term.\n- `OneModeAlgebra.lean`\
+    \ \u2014 (no docstring)\n- `OneModeKernel.lean` \u2014 The pointwise kernel contribution\
+    \ of the `j`th negative mode at radius `\u03C1`.\n- `OneModeMax.lean` \u2014 `term\
+    \ c \u03C1 j` is `c^2` times the normalized mode sequence at\n- `OneModePaperBridge.lean`\
+    \ \u2014 Coefficient-side disk excess obtained by integrating the coefficient\
+    \ gaps with\n- `OneModeSeries.lean` \u2014 Generic `\u03A3`-type series `\u2211\
+    \ u_n s^(2n)`.\n- `OneModeSup.lean` \u2014 Positive mode indices `j >= 1`.\n-\
+    \ `OneModeSupBridge.lean` \u2014 The scalar integrand associated with the full\
+    \ one-mode supremum kernel.\n- `OneModeTail.lean` \u2014 The normalized one-mode\
+    \ sequence `j/(j+1) * t^j` after factoring out the common\n- `OneModeTauWindow.lean`\
+    \ \u2014 (no docstring)\n- `PaperAxioms.lean` \u2014 Wang's branch split `sqrt(4/3)\
+    \ c`.\n- `PaperEq15.lean` \u2014 Integrand for branch 1 of Wang's equation (15):\n\
+    - `WangCertificateCore.lean` \u2014 The outer-control factor from equation (9),\
+    \ written as a function of `K^2`.\n- `WangKernelExact.lean` \u2014 (no docstring)\n\
+    - `WangPaperSideConditions.lean` \u2014 (no docstring)\n\n\n# Numerical_Library\
+    \ (oracle support code)\n\nThe workspace exposes registered Python oracles in\
+    \ `Numerical_Library/`. The evaluator calls these only when a candidate's proof\
+    \ depends on an oracle axiom registered in `lemma.toml:[[oracles]]`. You may study\
+    \ the source to understand what numerical bounds can be certified; you may also\
+    \ propose a new oracle (but the human registers it via `lemma.toml`, you cannot).\n\
+    \n### `Numerical_Library/` \u2014 registered oracle code (Python; called by the\
+    \ evaluator only when an oracle axiom is referenced)\n\n#### `Numerical_Library/wang_k_kernel.py`\n\
+    \n```python\nfrom __future__ import annotations\n\nfrom fractions import Fraction\n\
+    \nfrom flint import arb, ctx, fmpq\n\nfrom .types import RationalBound\n\n\ndef\
+    \ _fmpq(fr: Fraction) -> fmpq:\n    return fmpq(fr.numerator, fr.denominator)\n\
+    \n\ndef _arb_exact(fr: Fraction) -> arb:\n    return arb(_fmpq(fr))\n\n\ndef _arb_box(lo:\
+    \ Fraction, hi: Fraction) -> arb:\n    mid = (lo + hi) / 2\n    rad = (hi - lo)\
+    \ / 2\n    return arb(_fmpq(mid), _fmpq(rad))\n\n\ndef _arb_floor_to_int(x: arb)\
+    \ -> int:\n    floored = x.lower().floor()\n    exact = floored.unique_fmpz()\n\
+    \    if exact is not None:\n        return int(str(exact))\n    text = str(floored)\n\
+    \    if \" +/- \" in text:\n        text = text.split(\" +/- \")[0]\n    return\
+    \ int(text.split(\".\")[0])\n\n\ndef _arb_ceil_to_int(x: arb) -> int:\n    ceiled\
+    \ = x.upper().ceil()\n    exact = ceiled.unique_fmpz()\n    if exact is not None:\n\
+    \        return int(str(exact))\n    text = str(ceiled)\n    if \" +/- \" in text:\n\
+    \        text = text.split(\" +/- \")[0]\n    return int(text.split(\".\")[0])\n\
+    \n\ndef rbound_upper_arb(x: arb, denom: int = 10**18) -> RationalBound:\n    return\
+    \ RationalBound(num=_arb_ceil_to_int(x * denom), den=denom)\n\n\ndef rbound_upper_arb_below_one(\n\
+    \    x: arb,\n    *,\n    denom: int = 10**18,\n    max_steps: int = 8,\n) ->\
+    \ RationalBound:\n    if not (x < 1):\n        raise ValueError(\"cannot certify\
+    \ a strict < 1 upper rational bound\")\n    current = denom\n    for _ in range(max_steps\
+    \ + 1):\n        rb = rbound_upper_arb(x, denom=current)\n        if rb.to_fraction()\
+    \ < 1:\n            return rb\n        current *= 10\n    raise ValueError(\"\
+    failed to find a strict < 1 rational upper bound\")\n\n\ndef rho_to_t(c: Fraction,\
+    \ rho: Fraction) -> Fraction:\n    rho2 = rho * rho\n    return ((rho2 - c) **\
+    \ 2) / (4 * c * rho2)\n\n\ndef phi_fraction(a: Fraction) -> Fraction:\n    return\
+    \ Fraction(4) * a / (1 + a) ** 2\n\n\ndef log_k_t_derivative_lower(\n    c: Fraction,\n\
+    \    lo: Fraction,\n    hi: Fraction,\n    *,\n    n_terms: int = 30,\n) -> Fraction:\n\
+    \    t_lo = min(rho_to_t(c, lo), rho_to_t(c, hi))\n    t_hi = max(rho_to_t(c,\
+    \ lo), rho_to_t(c, hi))\n\n    dec_upper = -Fraction(1, 1) / (2 * (1 + t_hi) **\
+    \ 2)\n    for n in range(1, n_terms + 1):\n        p = phi_fraction(c ** (2 *\
+    \ n))\n        q = phi_fraction(c ** (2 * n - 1))\n        dec_upper += q**2 /\
+    \ (1 + q * t_lo) ** 2 - p**2 / (1 + p * t_lo) ** 2\n    dec_upper += 16 * c **\
+    \ (4 * n_terms + 2)\n    if dec_upper >= 0:\n        raise ValueError(\"failed\
+    \ to certify decrease of d/dt log K\")\n\n    total = Fraction(1, 1) / (2 * (1\
+    \ + t_hi))\n    for n in range(1, n_terms + 1):\n        p = phi_fraction(c **\
+    \ (2 * n))\n        q = phi_fraction(c ** (2 * n - 1))\n        total += p / (1\
+    \ + p * t_hi) - q / (1 + q * t_hi)\n\n    tail = 4 * c ** (2 * n_terms + 1) /\
+    \ (1 + c)\n    lower = total - tail\n    if lower <= 0:\n        raise ValueError(\"\
+    failed to certify positivity of d/dt log K\")\n    return lower\n\n\ndef k_upper_at_point(\n\
+    \    c: Fraction,\n    rho: Fraction,\n    *,\n    n_terms: int = 80,\n    dps:\
+    \ int = 100,\n) -> arb:\n    with ctx.workdps(dps):\n        rho_arb = _arb_exact(rho)\n\
+    \        rho2 = rho_arb ** 2\n        rho_inv2 = 1 / rho2\n\n        total = 2\
+    \ * rho_arb * (1 + _arb_exact(c) / rho2)\n        c_powers = [_arb_exact(Fraction(1,\
+    \ 1))]\n        for _ in range(2 * n_terms + 2):\n            c_powers.append(c_powers[-1]\
+    \ * _arb_exact(c))\n\n        for n in range(1, n_terms + 1):\n            num1\
+    \ = 1 + rho2 * c_powers[2 * n - 1]\n            num2 = 1 + rho_inv2 * c_powers[2\
+    \ * n + 1]\n            num3 = (1 + c_powers[2 * n]) ** 2\n            den1 =\
+    \ 1 + rho2 * c_powers[2 * n - 2]\n            den2 = 1 + rho_inv2 * c_powers[2\
+    \ * n]\n            den3 = (1 + c_powers[2 * n - 1]) ** 2\n            total *=\
+    \ (num1 * num2 * num3) / (den1 * den2 * den3)\n        return total\n\n\ndef k_upper_on_interval(\n\
+    \    c: Fraction,\n    lo: Fraction,\n    hi: Fraction,\n    *,\n    n_terms:\
+    \ int = 80,\n    dps: int = 100,\n) -> arb:\n    monotone_lb = log_k_t_derivative_lower(c,\
+    \ lo, hi, n_terms=min(n_terms, 30))\n    if monotone_lb <= 0:\n        raise ValueError(\"\
+    failed to certify K-monotonicity\")\n\n    t_lo = rho_to_t(c, lo)\n    t_hi =\
+    \ rho_to_t(c, hi)\n    rho_max = lo if t_lo >= t_hi else hi\n    return k_upper_at_point(c,\
+    \ rho_max, n_terms=n_terms, dps=dps)\n\n\ndef k_sq_upper_on_interval(\n    c:\
+    \ Fraction,\n    lo: Fraction,\n    hi: Fraction,\n    *,\n    n_terms: int =\
+    \ 80,\n    dps: int = 100,\n    rat_denom: int = 10**18,\n    k_sq_denom: int\
+    \ = 10**24,\n) -> tuple[RationalBound, RationalBound]:\n    with ctx.workdps(dps):\n\
+    \        k_upper = k_upper_on_interval(c, lo, hi, n_terms=n_terms, dps=dps)\n\
+    \        if k_upper < 1:\n            k_upper_rb = rbound_upper_arb_below_one(k_upper,\
+    \ denom=rat_denom)\n        else:\n            k_upper_rb = rbound_upper_arb(k_upper,\
+    \ denom=rat_denom)\n        k_sq_upper_rb = rbound_upper_arb_below_one(k_upper\
+    \ * k_upper, denom=k_sq_denom)\n        return k_upper_rb, k_sq_upper_rb\n```\n\
+    \n\n# Hard constraint \u2014 no local axiom declarations\n\nThe candidate file\
+    \ MUST NOT declare any new `axiom`. The evaluator's\nparse-time gate rejects any\
+    \ candidate whose source contains a line\nmatching `^\\s*axiom\\s+`. Reason: the\
+    \ agent harness's V0 candidate\ndeclared `hEq15_seed_3554` locally, scoped to\
+    \ a re-bindable `c_value`.\nThat made it possible to \"prove\" the bound at any\
+    \ `c < 1` simply by\noverriding `c_value` and keeping the axiom name. We close\
+    \ that loophole\nhere.\n\nThe only registered external input is\n\n```lean\nProofRefinement.Korenblum.Proof.ShinkaTrustedSeed.hEq15_seed_3554\n\
+    \    : \u2200 (K : \u211D \u2192 \u211D \u2192 \u211D), Eq15ScalarBound K ((3554\
+    \ : \u211D) / 10000)\n```\n\nNote that the type pins `c` to the literal `3554\
+    \ / 10000`. Even if your\ncandidate sets `c_value` to a different rational, this\
+    \ axiom still only\ngives Wang's `(15)` at `c = 0.3554`.\n\nTherefore, to push\
+    \ `c_value` above `0.3554`, your candidate must:\n\n* prove `Eq15ScalarBound K\
+    \ c_value` at the larger `c_value` from\n  Mathlib + `KorenblumPaper.*` + `ProofRefinement.Korenblum.Proof.*`\n\
+    \  (no new axioms), or\n* prove `ValidKorenblumBound c_value` directly via a different\n\
+    \  reduction (e.g. via `valid_of_eq2_eq3_eq4_annulus_budget`,\n  `valid_of_eq10_subinterval_branch1`,\
+    \ or any other `valid_of_*`\n  lemma in `Proof/Reduction.lean`).\n\nIf you can\
+    \ prove neither, the highest passing `c_value` you can ship\nis `3554 / 10000`.\
+    \ That is fine \u2014 many generations will reasonably\nre-derive the seed; an\
+    \ honest `0.3554` candidate still scores.\n\n# Strategy notes\n\n- The seed pulls\
+    \ Wang (15) in scalar form via `hEq15_seed_3554`. To increase `c_value` past 0.3554\
+    \ you must either (a) prove (15) at a larger c using paper-pinned ingredients\
+    \ in `KorenblumPaper.*`, (b) replace the (15)-route with a direct argument bridging\
+    \ `diskExcess` and `annulusExcess`, or (c) introduce a new oracle axiom \u2014\
+    \ but only if you can register it in `lemma.toml` (you cannot; the registration\
+    \ must come from the human). In practice (a) and (b) are the open avenues.\n\n\
+    - Every axiom you add MUST already be in `seed_axioms.allowed` or `[[oracles]]`.\
+    \ Adding a new axiom that is not registered is a hard fail. The seed axiom `hEq15_seed_3554`\
+    \ is allowed; you can replace it with a stronger fully-proved theorem at a different\
+    \ c, but you cannot just rename it to `hEq15_seed_<bigger>` and assert without\
+    \ proof \u2014 that would be unregistered.\n\n- Mathlib (4.28.0) is available\
+    \ throughout. Use `nlinarith`, `polyrith`, `linear_combination`, `field_simp`,\
+    \ `ring`, `norm_num`, and friends.\n\n- Do not edit the placeholder namespace\
+    \ `ProofRefinement.Korenblum.Candidates.SHINKA_PLACEHOLDER`. The evaluator rewrites\
+    \ it at staging time; if you change the name your file will still compile because\
+    \ the rewrite is regex-based.\n\n# Output discipline\n\nMake targeted improvements\
+    \ that compile end-to-end. A failed compile gets `combined_score = 0`. Prefer\
+    \ small, verified increments over speculative large rewrites.\n"
+  tool_config:
+    max_tool_cost: 2.0
+    max_tool_turns: 20
+    tool_timeout: 60
+  tool_definitions: null
+  tool_executors: null
+  use_text_feedback: false
+job_config:
+  conda_env: null
+  eval_program_path: korenblum/ShinkaAblation/evaluate.py
+  extra_cmd_args: {}
+  time: null
+results_directory: korenblum/ShinkaAblation/results
+timestamp: '2026-05-07T02:14:15.144379'

@@ -1,0 +1,35 @@
+{
+  "run_id": "grothendieck016-armA-01",
+  "arm": "A",
+  "terminal_label": "D5",
+  "evidence": "max sprints (8) reached; best=7/1000 (within-envelope improvement only)",
+  "finished_utc": "2026-07-29T17:26:07Z",
+  "best_score": "7/1000",
+  "wall_clock_s": 4310.4,
+  "output_tokens": 266741,
+  "input_tokens": 323,
+  "cache_creation_tokens": 756093,
+  "cache_read_tokens": 12871356,
+  "model_calls_turns": 18,
+  "usd_total": 17.2669,
+  "lake_builds": 0,
+  "evaluator_runs": 3,
+  "failed_attempts": 1,
+  "per_model": {
+    "claude-opus-5": {
+      "in": 263,
+      "out": 230869,
+      "cr": 11782870,
+      "cw": 687087,
+      "usd": 16.14336625
+    },
+    "claude-sonnet-5": {
+      "in": 60,
+      "out": 35872,
+      "cr": 1088486,
+      "cw": 69006,
+      "usd": 1.1235783
+    }
+  },
+  "_correction": "token totals recomputed from modelUsage; the top-level `usage` block excludes subagents (266741 vs 266741)"
+}

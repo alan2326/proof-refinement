@@ -1,0 +1,24 @@
+# Computational: Lipschitz constant L for the Taylor map. Feeds solve_gamma
+# (perturbation control of γ as p varies).
+name      = "lipschitz_bounds (Step 8)"
+slug      = "lipschitz_bounds"
+kind      = "computational"
+paper_ref = "Braverman §5; Lipschitz of Taylor map"
+
+parents = ["compute_phi_taylor"]
+
+[python]
+module   = "proof_graph.oracle_wrappers"
+function = "lipschitz_bounds_pipeline"
+
+[python.inputs]
+p             = { source = "node:certify_invertibility:p_arb" }
+h_eta_series  = { source = "node:compute_phi_taylor:h_eta_series" }
+K_max         = { source = "const:K_max", cast = "int" }
+
+[python.kwargs]
+prec    = 256
+verbose = false
+
+[python.outputs]
+L = "L"

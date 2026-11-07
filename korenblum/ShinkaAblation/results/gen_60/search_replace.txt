@@ -1,0 +1,15 @@
+<NAME>
+keep_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+The trusted seed axiom pins Eq15 to exactly 3554/10000, and no Mathlib-level proof of Eq15 at a larger c is available without registering a new oracle. Any attempt to set c_value > 3554/10000 will fail to typecheck the simpa step. Keep the current minimal proof unchanged.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

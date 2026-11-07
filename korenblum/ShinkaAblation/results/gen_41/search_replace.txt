@@ -1,0 +1,16 @@
+<NAME>
+no_change_keep_seed
+</NAME>
+
+<DESCRIPTION>
+The seed axiom pins c to 3554/10000 exactly, and no path to a higher c without new registered oracles. Current code already achieves the maximum reachable score. Make a trivial whitespace-preserving comment addition for documentation only.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang (2025) seed-pinned constant 0.3554. -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

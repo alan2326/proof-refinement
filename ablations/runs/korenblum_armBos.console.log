@@ -1,0 +1,47 @@
+[armBos] static context: 946155 chars (~236538 tokens)
+[armBos] parent 17823/50000 = 0.356460; budget: 8322s AND 230815 output tokens (both must exhaust)
+[armBos] attempt 1 (active 0.1m/139m, tok 0/230815, stalled 0.0m, $0.00, best=None)
+       -> wrote ['ProofRefinement/Korenblum/lemma.toml'] but no candidate; scores nothing
+[armBos] attempt 2 (active 21.9m/139m, tok 132462/230815, stalled 0.0m, $14.94, best=None)
+       -> wrote ['ProofRefinement/Korenblum/Numerical_Library/two_window_v65.py', 'ProofRefinement/Korenblum/lemma.toml'] but no candidate; scores nothing
+[armBos] attempt 3 (active 45.1m/139m, tok 271238/230815, stalled 0.0m, $19.86, best=None)
+       -> wrote ['ProofRefinement/Korenblum/Numerical_Library/two_window_v65.py', 'ProofRefinement/Korenblum/lemma.toml'] but no candidate; scores nothing
+[armBos] attempt 4 (active 68.2m/139m, tok 407860/230815, stalled 0.0m, $24.73, best=None)
+{
+  "run_id": "korenblum-armBos-01",
+  "arm": "Bos",
+  "terminal_label": "D5",
+  "evidence": "terminated (SIGTERM 143); best=None",
+  "finished_utc": "2026-07-30T23:38:06Z",
+  "best_score": "17823/50000",
+  "wall_clock_s": 4099.0,
+  "output_tokens": 407860,
+  "input_tokens": 18,
+  "cache_creation_tokens": 1263195,
+  "cache_read_tokens": 3797652,
+  "model_calls_turns": 3,
+  "usd_total": 24.7274,
+  "lake_builds": 0,
+  "evaluator_runs": 0,
+  "failed_attempts": 0,
+  "per_model": {
+    "claude-opus-5": {
+      "in": 18,
+      "out": 407860,
+      "cr": 3797652,
+      "cw": 1263195,
+      "usd": 24.727366000000004
+    }
+  },
+  "protocol": "oneshot_best_of_n",
+  "stall_total_s": 0.0,
+  "stalls": 0,
+  "budget": {
+    "T_ref_s": 8322.0,
+    "O_ref_output_tokens": 230815
+  },
+  "attempts_with_candidate": 0,
+  "attempts_accepted": 0,
+  "best_attempt": 0,
+  "best_across_attempts": "None"
+}

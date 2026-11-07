@@ -1,0 +1,15 @@
+<NAME>
+keep_seed_3554
+</NAME>
+
+<DESCRIPTION>
+Without a way to prove Eq15 at a larger c without new axioms, the seed-pinned 0.3554 is the best achievable. Keep current passing proof unchanged.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

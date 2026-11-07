@@ -1,0 +1,25 @@
+# Computational: certified Cr_paper for Lemma 5.4's Taylor remainder.
+name      = "compute_cr (Step 2)"
+slug      = "compute_cr"
+kind      = "computational"
+paper_ref = "Braverman §5 / Lemma 5.4 numerics"
+
+parents = ["certify_invertibility"]
+
+[python]
+module   = "grothendieck.proof.certified.compute_cr"
+function = "compute_Cr_full"
+
+[python.inputs]
+r     = { source = "node:certify_invertibility:r_arb" }
+delta = { source = "node:certify_invertibility:delta_arb" }
+B     = { source = "node:certify_invertibility:B_arb" }
+
+[python.kwargs]
+prec    = 256
+verbose = false
+
+[python.outputs]
+M   = "M"
+R   = "R"
+C_r = "C_r"

@@ -1,0 +1,42 @@
+# Sink node: KG < KrivineBound.
+name      = "K_G < Krivine bound"
+slug      = "kg_lt_krivine"
+kind      = "statement"
+paper_ref = "Braverman et al. (2011), Theorem 1.1"
+
+parents = ["theorem_5_1"]
+
+[lean]
+sink           = "Braverman.KG_lt_Krivine"
+file           = "LeanProof/MainTheorem.lean"
+line           = 140
+effective      = "Braverman.Effective.KG_lt_Krivine_effective"
+effective_file = "ProofGraph/Effective/KGBound.lean"
+
+[audit]
+# Allowed axiom set at the sink:
+#   - Lean primitives (3)
+#   - 12 trusted analytic axioms transitively via lemma_5_4_strong_via_paper
+#   - 1 oracle-backed M-bound axiom (paper-faithful single-M, Lemma54Effective)
+#   - 1 oracle-backed domain-containment axiom on the Step-1/Step-2 rectangle
+#   - 1 oracle-backed η-improvement axiom (Theorem44Effective)
+#   - 1 oracle-backed γ-sandwich axiom (Python-emitted rational endpoints)
+#   - 4 oracle-backed threshold axioms at p_explicit_rat = 1e-30
+#     (h_p_explicit_lt_pr_paper, h_F_p_deriv_at_p_explicit,
+#      h_gap_ratio_at_p_explicit_with_B_phi, h_summability_at_p_explicit) —
+#     these pin Lean's `(η, p)` to match the certified-arb pipeline so the
+#     IVT-chosen γ is the same γ the arb pipeline computes.
+#   - sorryAx (until Rounding.lean's two non-quantitative sorries are filled).
+allowed_axioms = [
+  "@axioms.lean_primitives",
+  "@axioms.trusted_analytic",
+  "Braverman.Effective.h_M_oracle",
+  "Braverman.Effective.h_oracle_domain_contains_image",
+  "Braverman.Effective.h_eta_strict_improvement_oracle",
+  "Braverman.Effective.h_gamma_explicit_sandwich",
+  "Braverman.Effective.h_p_explicit_lt_pr_paper",
+  "Braverman.Effective.h_F_p_deriv_at_p_explicit",
+  "Braverman.Effective.h_gap_ratio_at_p_explicit_with_B_phi",
+  "Braverman.Effective.h_summability_at_p_explicit",
+  "sorryAx",
+]

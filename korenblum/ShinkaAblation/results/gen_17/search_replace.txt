@@ -1,0 +1,25 @@
+<NAME>
+no_change_keep_seed
+</NAME>
+
+<DESCRIPTION>
+Without a registered axiom or a Lean proof of Eq15 at c > 3554/10000, we cannot raise c_value. Any attempt would fail compilation and yield score 0. Keep current proof but slightly refactor to a named helper for cleanliness, no semantic change.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+theorem korenblum_constant_search : ValidKorenblumBound c_value := by
+  have hEq15 : ∀ {K : ℝ → ℝ → ℝ}, Eq15ScalarBound K c_value := fun {K} => by
+    have h : Eq15ScalarBound K ((3554 : ℝ) / 10000) :=
+      ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K
+    simpa [c_value] using h
+  exact valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => hEq15)
+=======
+private theorem eq15_bound_at_seed (K : ℝ → ℝ → ℝ) : Eq15ScalarBound K c_value := by
+  simpa [c_value] using
+    ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K
+
+theorem korenblum_constant_search : ValidKorenblumBound c_value :=
+  valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => eq15_bound_at_seed K)
+>>>>>>> REPLACE
+</DIFF>

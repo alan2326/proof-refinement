@@ -1,0 +1,232 @@
+candidate:     ProofRefinement/Korenblum/Candidates/Shinka_gen_50_554d53.lean
+namespace:     ProofRefinement.Korenblum.Candidates.Shinka_gen_50_554d53
+parent:        seed
+workspace imports: PASS
+  Candidates/Shinka_gen_50_554d53.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/Shinka_gen_50_554d53.lean: allow ProofRefinement.Korenblum.Proof.ShinkaTrustedSeed
+  Candidates/V0.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V1.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V10.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V11.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V12.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V13.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V14.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V15.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V16.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V17.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V18.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V19.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V2.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V20.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V21.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V22.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V23.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V24.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V25.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V26.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V27.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V28.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V29.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V3.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V30.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V31.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V32.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V33.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V34.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V35.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V36.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V37.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V38.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V39.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V4.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V40.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V41.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V42.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V43.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V44.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V45.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V46.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V47.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V48.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V49.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V5.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V50.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V51.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V52.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V53/ThetaStep.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V53.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V53.lean: allow ProofRefinement.Korenblum.Candidates.V53.ThetaStep
+  Candidates/V54/LiftIdentity.lean: allow Mathlib.Analysis.Complex.Norm
+  Candidates/V54.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V54.lean: allow ProofRefinement.Korenblum.Candidates.V54.LiftIdentity
+  Candidates/V55/LiftSeriesBridge.lean: allow Mathlib.Topology.Algebra.InfiniteSum.Basic
+  Candidates/V55/LiftSeriesBridge.lean: allow Mathlib.Topology.Algebra.InfiniteSum.Group
+  Candidates/V55/LiftSeriesBridge.lean: allow Mathlib.Topology.Algebra.InfiniteSum.Ring
+  Candidates/V55/LiftSeriesBridge.lean: allow KorenblumPaper.PaperAxioms
+  Candidates/V55/LiftSeriesBridge.lean: allow ProofRefinement.Korenblum.Candidates.V54.LiftIdentity
+  Candidates/V55.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V55.lean: allow ProofRefinement.Korenblum.Candidates.V55.LiftSeriesBridge
+  Candidates/V56.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V57/DiskExcessLiftIntegrated.lean: allow Mathlib.Topology.Algebra.InfiniteSum.Basic
+  Candidates/V57/DiskExcessLiftIntegrated.lean: allow Mathlib.Topology.Algebra.InfiniteSum.Group
+  Candidates/V57/DiskExcessLiftIntegrated.lean: allow Mathlib.Topology.Algebra.InfiniteSum.Ring
+  Candidates/V57/DiskExcessLiftIntegrated.lean: allow KorenblumPaper.PaperAxioms
+  Candidates/V57/DiskExcessLiftIntegrated.lean: allow ProofRefinement.Korenblum.Candidates.V54.LiftIdentity
+  Candidates/V57/DiskExcessLiftIntegrated.lean: allow ProofRefinement.Korenblum.Candidates.V55.LiftSeriesBridge
+  Candidates/V57.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V57.lean: allow ProofRefinement.Korenblum.Candidates.V57.DiskExcessLiftIntegrated
+  Candidates/V58/AnnulusExcessLiftIntegrated.lean: allow Mathlib.Topology.Algebra.InfiniteSum.Basic
+  Candidates/V58/AnnulusExcessLiftIntegrated.lean: allow Mathlib.Topology.Algebra.InfiniteSum.Group
+  Candidates/V58/AnnulusExcessLiftIntegrated.lean: allow Mathlib.Topology.Algebra.InfiniteSum.Ring
+  Candidates/V58/AnnulusExcessLiftIntegrated.lean: allow KorenblumPaper.PaperAxioms
+  Candidates/V58/AnnulusExcessLiftIntegrated.lean: allow ProofRefinement.Korenblum.Candidates.V54.LiftIdentity
+  Candidates/V58/AnnulusExcessLiftIntegrated.lean: allow ProofRefinement.Korenblum.Candidates.V57.DiskExcessLiftIntegrated
+  Candidates/V58/AnnulusExcessLiftIntegrated.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V58.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V58.lean: allow ProofRefinement.Korenblum.Candidates.V58.AnnulusExcessLiftIntegrated
+  Candidates/V59.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V59.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V6.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V60/PerKAlphaVaryingLiftIdentity.lean: allow Mathlib.Analysis.Complex.Norm
+  Candidates/V60/PerKAlphaVaryingLiftIdentity.lean: allow ProofRefinement.Korenblum.Candidates.V54.LiftIdentity
+  Candidates/V60.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V60.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V60.lean: allow ProofRefinement.Korenblum.Candidates.V60.PerKAlphaVaryingLiftIdentity
+  Candidates/V61.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V61.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V62.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V62.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V63/DiskInnerSeriesBridge.lean: allow ProofRefinement.Korenblum.Proof.DiskInnerSeriesBridge
+  Candidates/V63/Integrability.lean: allow ProofRefinement.Korenblum.Proof.Integrability
+  Candidates/V63/Summability.lean: allow ProofRefinement.Korenblum.Proof.Summability
+  Candidates/V63.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V63.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V63.lean: allow ProofRefinement.Korenblum.Candidates.V63.Integrability
+  Candidates/V63.lean: allow ProofRefinement.Korenblum.Candidates.V63.Summability
+  Candidates/V63.lean: allow ProofRefinement.Korenblum.Candidates.V63.DiskInnerSeriesBridge
+  Candidates/V64/TauWindowEndpoints.lean: allow Mathlib.Analysis.SpecialFunctions.Pow.Real
+  Candidates/V64/TauWindowEndpoints.lean: allow Mathlib.Analysis.SpecialFunctions.Sqrt
+  Candidates/V64/TauWindowEndpoints.lean: allow KorenblumPaper.OneModePaperBridge
+  Candidates/V64.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V64.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V64.lean: allow ProofRefinement.Korenblum.Proof.Integrability
+  Candidates/V64.lean: allow ProofRefinement.Korenblum.Proof.Summability
+  Candidates/V64.lean: allow ProofRefinement.Korenblum.Proof.DiskInnerSeriesBridge
+  Candidates/V64.lean: allow ProofRefinement.Korenblum.Candidates.V64.TauWindowEndpoints
+  Candidates/V65.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V65.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V65.lean: allow ProofRefinement.Korenblum.Proof.Integrability
+  Candidates/V65.lean: allow ProofRefinement.Korenblum.Proof.Summability
+  Candidates/V65.lean: allow ProofRefinement.Korenblum.Proof.DiskInnerSeriesBridge
+  Candidates/V65.lean: allow ProofRefinement.Korenblum.Candidates.V64.TauWindowEndpoints
+  Candidates/V66/Branch1Integrability.lean: allow KorenblumPaper.PaperAxioms
+  Candidates/V66/Branch1Integrability.lean: allow KorenblumPaper.PaperEq15
+  Candidates/V66/Branch1Integrability.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V66/Branch1Integrability.lean: allow ProofRefinement.Korenblum.Candidates.V66.SevenWindowEndpoints
+  Candidates/V66/SevenWindowEndpoints.lean: allow Mathlib.Analysis.SpecialFunctions.Pow.Real
+  Candidates/V66/SevenWindowEndpoints.lean: allow Mathlib.Analysis.SpecialFunctions.Sqrt
+  Candidates/V66/SevenWindowEndpoints.lean: allow KorenblumPaper.OneModePaperBridge
+  Candidates/V66/SevenWindowEndpoints.lean: allow KorenblumPaper.PaperAxioms
+  Candidates/V66/SevenWindowEndpoints.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V66.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V66.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V66.lean: allow ProofRefinement.Korenblum.Proof.Integrability
+  Candidates/V66.lean: allow ProofRefinement.Korenblum.Proof.Summability
+  Candidates/V66.lean: allow ProofRefinement.Korenblum.Proof.DiskInnerSeriesBridge
+  Candidates/V66.lean: allow ProofRefinement.Korenblum.Candidates.V66.SevenWindowEndpoints
+  Candidates/V66.lean: allow ProofRefinement.Korenblum.Candidates.V66.Branch1Integrability
+  Candidates/V67/EightWindowEndpoints.lean: allow Mathlib.Analysis.SpecialFunctions.Pow.Real
+  Candidates/V67/EightWindowEndpoints.lean: allow Mathlib.Analysis.SpecialFunctions.Sqrt
+  Candidates/V67/EightWindowEndpoints.lean: allow KorenblumPaper.OneModePaperBridge
+  Candidates/V67/EightWindowEndpoints.lean: allow KorenblumPaper.PaperAxioms
+  Candidates/V67/EightWindowEndpoints.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V67.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V67.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V67.lean: allow ProofRefinement.Korenblum.Proof.Integrability
+  Candidates/V67.lean: allow ProofRefinement.Korenblum.Proof.Summability
+  Candidates/V67.lean: allow ProofRefinement.Korenblum.Proof.DiskInnerSeriesBridge
+  Candidates/V67.lean: allow ProofRefinement.Korenblum.Candidates.V66.Branch1Integrability
+  Candidates/V67.lean: allow ProofRefinement.Korenblum.Candidates.V67.EightWindowEndpoints
+  Candidates/V68/ElevenWindowEndpoints.lean: allow Mathlib.Analysis.SpecialFunctions.Pow.Real
+  Candidates/V68/ElevenWindowEndpoints.lean: allow Mathlib.Analysis.SpecialFunctions.Sqrt
+  Candidates/V68/ElevenWindowEndpoints.lean: allow KorenblumPaper.OneModePaperBridge
+  Candidates/V68/ElevenWindowEndpoints.lean: allow KorenblumPaper.PaperAxioms
+  Candidates/V68/ElevenWindowEndpoints.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V68.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V68.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Candidates/V68.lean: allow ProofRefinement.Korenblum.Proof.Integrability
+  Candidates/V68.lean: allow ProofRefinement.Korenblum.Proof.Summability
+  Candidates/V68.lean: allow ProofRefinement.Korenblum.Proof.DiskInnerSeriesBridge
+  Candidates/V68.lean: allow ProofRefinement.Korenblum.Candidates.V66.Branch1Integrability
+  Candidates/V68.lean: allow ProofRefinement.Korenblum.Candidates.V68.ElevenWindowEndpoints
+  Candidates/V7.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V8.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Candidates/V9.lean: allow ProofRefinement.Korenblum.Proof.Main
+  Proof/CandidateContract.lean: allow ProofRefinement.Korenblum.Proof.ProblemAxioms
+  Proof/DiskInnerSeriesBridge.lean: allow Mathlib
+  Proof/DiskInnerSeriesBridge.lean: allow KorenblumPaper.PaperAxioms
+  Proof/DiskInnerSeriesBridge.lean: allow KorenblumPaper.OneModePaperBridge
+  Proof/DiskInnerSeriesBridge.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Proof/Integrability.lean: allow Mathlib.MeasureTheory.Constructions.BorelSpace.Metrizable
+  Proof/Integrability.lean: allow KorenblumPaper.PaperAxioms
+  Proof/Integrability.lean: allow KorenblumPaper.OneModePaperBridge
+  Proof/Main.lean: allow ProofRefinement.Korenblum.Proof.CandidateContract
+  Proof/Main.lean: allow ProofRefinement.Korenblum.Proof.Reduction
+  Proof/ProblemAxioms.lean: allow KorenblumPaper.PaperAxioms
+  Proof/ProblemAxioms.lean: allow KorenblumPaper.PaperEq15
+  Proof/Reduction.lean: allow ProofRefinement.Korenblum.Proof.CandidateContract
+  Proof/Reduction.lean: allow KorenblumPaper.OneModePaperBridge
+  Proof/ShinkaTrustedSeed.lean: allow ProofRefinement.Korenblum.Proof.ProblemAxioms
+  Proof/Summability.lean: allow Mathlib
+  Proof/Summability.lean: allow KorenblumPaper.PaperAxioms
+  Proof/Summability.lean: allow KorenblumPaper.OneModePaperBridge
+import audit:  PASS
+  allow ProofRefinement.Korenblum.Proof.Main
+  allow ProofRefinement.Korenblum.Proof.ShinkaTrustedSeed
+compile:       FAIL (13.18s)
+arning: ProofRefinement/Korenblum/Proof/Reduction.lean:7502:9: unused variable `paper`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ProofRefinement/Korenblum/Proof/Reduction.lean:7818:9: unused variable `paper`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ProofRefinement/Korenblum/Proof/Reduction.lean:8308:10: This simp argument is unused:
+  Fin.sum_univ_one
+
+Hint: Omit it from the simp argument list.
+  simp [Fin.s̵u̵m̵_̵u̵n̵i̵v̵_̵o̵n̵e̵,̵ ̵F̵i̵n̵.̵last]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ProofRefinement/Korenblum/Proof/Reduction.lean:8346:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: ProofRefinement/Korenblum/Proof/Reduction.lean:8389:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: ProofRefinement/Korenblum/Proof/Reduction.lean:8431:9: unused variable `paper`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ProofRefinement/Korenblum/Proof/Reduction.lean:8942:9: unused variable `paper`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ProofRefinement/Korenblum/Proof/Reduction.lean:9400:6: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: ProofRefinement/Korenblum/Proof/Reduction.lean:9407:6: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+✖ [8050/8050] Building ProofRefinement.Korenblum.Candidates.Shinka_gen_50_554d53 (5.1s)
+trace: .> LEAN_PATH=korenblum/.lake/packages/Cli/.lake/build/lib/lean:korenblum/.lake/packages/batteries/.lake/build/lib/lean:korenblum/.lake/packages/Qq/.lake/build/lib/lean:korenblum/.lake/packages/aesop/.lake/build/lib/lean:korenblum/.lake/packages/proofwidgets/.lake/build/lib/lean:korenblum/.lake/packages/importGraph/.lake/build/lib/lean:korenblum/.lake/packages/LeanSearchClient/.lake/build/lib/lean:korenblum/.lake/packages/plausible/.lake/build/lib/lean:korenblum/.lake/packages/mathlib/.lake/build/lib/lean:korenblum/.lake/packages/checkdecls/.lake/build/lib/lean:korenblum/.lake/build/lib/lean $HOME/.elan/toolchains/leanprover--lean4---v4.28.0/bin/lean korenblum/ProofRefinement/Korenblum/Candidates/Shinka_gen_50_554d53.lean -o korenblum/.lake/build/lib/lean/ProofRefinement/Korenblum/Candidates/Shinka_gen_50_554d53.olean -i korenblum/.lake/build/lib/lean/ProofRefinement/Korenblum/Candidates/Shinka_gen_50_554d53.ilean -c korenblum/.lake/build/ir/ProofRefinement/Korenblum/Candidates/Shinka_gen_50_554d53.c --setup korenblum/.lake/build/ir/ProofRefinement/Korenblum/Candidates/Shinka_gen_50_554d53.setup.json --json
+error: ProofRefinement/Korenblum/Candidates/Shinka_gen_50_554d53.lean:27:65: unexpected token '/--'; expected 'lemma'
+warning: ProofRefinement/Korenblum/Candidates/Shinka_gen_50_554d53.lean:38:19: '' starts on column 19, but all commands should start at the beginning of the line.
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+error: Lean exited with code 1
+Some required targets logged failures:
+- ProofRefinement.Korenblum.Candidates.Shinka_gen_50_554d53
+error: build failed
+
+
+--- stderr ---

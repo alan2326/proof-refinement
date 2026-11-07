@@ -1,0 +1,21 @@
+<NAME>
+keep_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+The trusted seed pins Wang (15) at exactly c = 3554/10000. Without registering a new oracle (which the agent cannot do), no path to a strictly larger c_value exists. Keep the current verified proof; making no logical change preserves the passing 0.3554 = 1777/5000 score. (Trivial whitespace-equivalent edit to satisfy the diff format.)
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius. The score we are maximizing
+is exactly this value. -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius (seed-pinned at 3554/10000).
+This is the maximum c reachable without registering a new oracle: the
+only available external input `hEq15_seed_3554` has its `c` literal
+pinned to `3554/10000` in its type. -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

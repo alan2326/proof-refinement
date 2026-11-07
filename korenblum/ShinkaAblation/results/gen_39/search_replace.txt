@@ -1,0 +1,16 @@
+<NAME>
+noop_keep_seed
+</NAME>
+
+<DESCRIPTION>
+The seed axiom pins c to 3554/10000, and no Mathlib-only proof of Eq15 at larger c is feasible in this context. Keep the current minimal seed-driven proof.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+-- Honest maximum given the only registered seed `hEq15_seed_3554`.
+>>>>>>> REPLACE
+</DIFF>

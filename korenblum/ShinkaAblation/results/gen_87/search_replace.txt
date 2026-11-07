@@ -1,0 +1,15 @@
+<NAME>
+keep_seed
+</NAME>
+
+<DESCRIPTION>
+The seed axiom pins c to exactly 3554/10000 and there is no axiom-free path in scope to prove (15) at a larger c. Keep the working candidate as-is (no change).
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

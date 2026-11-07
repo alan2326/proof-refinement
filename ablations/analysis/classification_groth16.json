@@ -1,0 +1,115 @@
+{
+  "protocol": "sect. 13.2 / 13.4, BAR = 1/6400",
+  "A": {
+    "run_id": "grothendieck016-armA-01 + grothendieck016-armA-02",
+    "arm": "A",
+    "classifier_label": "S",
+    "flagged_for_review": true,
+    "BAR": "1/6400",
+    "best_accepted": "1/400000",
+    "accepted_below_bar": [
+      [
+        "Candidates/V13.lean",
+        "1/400000"
+      ],
+      [
+        "Candidates/V13.lean",
+        "1/400000"
+      ]
+    ],
+    "within_envelope_improvements": [
+      [
+        "Candidates/V12.lean",
+        "7/1000"
+      ],
+      [
+        "Candidates/V12.lean",
+        "7/1000"
+      ]
+    ],
+    "n_new_rows": 9,
+    "audits": {
+      "frozen_surface": [
+        "ProofRefinement/Lemma54/Proof/Lib/Lemma54_Paper.lean: MODIFIED (frozen Lib)",
+        "ProofRefinement/Lemma54/Proof/Lib/Lemma54_Paper_Main.lean: MODIFIED (frozen Lib)",
+        "ProofRefinement/Lemma54/Proof/Lib/Lemma54_Paper_Pderiv_Single.lean: MODIFIED (frozen Lib)"
+      ],
+      "oracle_modules": [
+        "Numerical_Library/__init__.py: NON-KNOB diff (4 lines): +from .m_upp import compute_M_upp_bound | +from .m_upp_lens import compute_M_upp_lens_bound | +    \"compute_M_upp_bound\", | +    \"compute_M_upp_lens_bound\","
+      ],
+      "rectangle_trust": [],
+      "conclusion_axioms": [],
+      "stub_oracles": [],
+      "transcript_snoop": []
+    }
+  },
+  "B": {
+    "run_id": "grothendieck016-armB-01 + grothendieck016-armB-02",
+    "arm": "B",
+    "classifier_label": "D1",
+    "flagged_for_review": true,
+    "BAR": "1/6400",
+    "best_accepted": "1113/100000",
+    "accepted_below_bar": [],
+    "within_envelope_improvements": [
+      [
+        "Candidates/V12.lean",
+        "9/100"
+      ],
+      [
+        "Candidates/V13.lean",
+        "3/250"
+      ],
+      [
+        "Candidates/V14.lean",
+        "1113/100000"
+      ]
+    ],
+    "n_new_rows": 3,
+    "audits": {
+      "frozen_surface": [],
+      "oracle_modules": [
+        "Numerical_Library/__init__.py: NON-KNOB diff (2 lines): +from .m_pp_tight import compute_M_pp_tight_bound | +    \"compute_M_pp_tight_bound\","
+      ],
+      "rectangle_trust": [],
+      "conclusion_axioms": [],
+      "stub_oracles": [],
+      "transcript_snoop": []
+    }
+  },
+  "C": {
+    "run_id": "grothendieck016-armC-01 + grothendieck016-armC-02",
+    "arm": "C",
+    "classifier_label": "D1",
+    "flagged_for_review": false,
+    "krivine_interval": [
+      "1.782213978191369064",
+      "1.782213978191369064"
+    ],
+    "best_accepted": "1782213978231/1000000000000",
+    "below_krivine": [],
+    "interval_review": [],
+    "within_slack_recerts": [
+      [
+        "Candidates/V6.lean",
+        "1782213978231/1000000000000"
+      ],
+      [
+        "Candidates/V6.lean",
+        "1782213978231/1000000000000"
+      ],
+      [
+        "Candidates/V6.lean",
+        "1782213978231/1000000000000"
+      ],
+      [
+        null,
+        "1782213978231/1000000000000"
+      ]
+    ],
+    "audits": {
+      "conclusion_axioms": [],
+      "transcript_snoop": []
+    }
+  }
+}

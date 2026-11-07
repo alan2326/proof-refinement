@@ -1,0 +1,16 @@
+<NAME>
+keep_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+No safe path to exceed 3554/10000 without an unregistered axiom or a full Lean proof of Eq15 at a larger c. Keep the working seed-based proof.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+-- Pinned to the trusted seed; raising requires a Lean-proved Eq15 at larger c.
+>>>>>>> REPLACE
+</DIFF>

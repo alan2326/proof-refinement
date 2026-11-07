@@ -1,0 +1,22 @@
+<NAME>
+keep_seed_3554
+</NAME>
+
+<DESCRIPTION>
+No honest path to a larger c_value exists without proving Eq15 at larger c or registering a new oracle. Keep the current 0.3554 seed proof; make only a minor cosmetic tweak to retain passing status.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to seed; raising requires a Lean proof of Eq15 at larger c.
+-- The trusted seed `hEq15_seed_3554` has type pinned to the literal
+-- 3554/10000, so this is the maximum honest score until a Lean proof
+-- of `Eq15ScalarBound K c` at larger `c` is available.
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to Wang (2025) seed: 3554/10000. The trusted seed
+-- `hEq15_seed_3554` pins Eq15 to this literal; raising requires a
+-- new Lean proof of Eq15 at larger c (no new axioms allowed).
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

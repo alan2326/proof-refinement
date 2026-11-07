@@ -1,0 +1,37 @@
+[armB16] static context: 664929 chars (~166232 tokens)
+[armB16] BAR=1/6400 (~0.000156); deadline file: ablations/runs/groth16_deadline.json
+[armB16] iter 1 (elapsed 0.2m, out_tok 0, $0.00)
+[armB16] iter 2 (elapsed 13.8m, out_tok 72848, $6.76)
+       -> wrote ['ProofRefinement/Lemma54/Numerical_Library/m_pp_tight.py', 'ProofRefinement/Lemma54/Numerical_Library/__init__.py', 'ProofRefinement/Lemma54/lemma.toml', 'ProofRefinement/Lemma54/Candidates/V12.lean'] passed=True score=9/100 $11.90
+[armB16] NEW BEST: 9/100 = 9.000e-02 (BAR 1.563e-04)
+[armB16] iter 3 (elapsed 24.2m, out_tok 119117, $11.90)
+       -> wrote ['ProofRefinement/Lemma54/Candidates/V13.lean'] passed=True score=3/250 $22.28
+[armB16] NEW BEST: 3/250 = 1.200e-02 (BAR 1.563e-04)
+[armB16] iter 4 (elapsed 44.4m, out_tok 212510, $22.28)
+{
+  "run_id": "grothendieck016-armB-01",
+  "arm": "B",
+  "terminal_label": "D5",
+  "evidence": "terminated at matched window (SIGTERM 143); best=3/250",
+  "finished_utc": "2026-07-29T17:29:07Z",
+  "best_score": "3/250",
+  "wall_clock_s": 4490.6,
+  "output_tokens": 212510,
+  "input_tokens": 10,
+  "cache_creation_tokens": 1675188,
+  "cache_read_tokens": 438972,
+  "model_calls_turns": 3,
+  "usd_total": 22.2842,
+  "lake_builds": 2,
+  "evaluator_runs": 2,
+  "failed_attempts": 0,
+  "per_model": {
+    "claude-opus-5": {
+      "in": 10,
+      "out": 212510,
+      "cr": 438972,
+      "cw": 1675188,
+      "usd": 22.284166
+    }
+  }
+}

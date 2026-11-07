@@ -1,0 +1,77 @@
+{
+  "is_error": false,
+  "duration_api_ms": 3752814,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "53e78152-c2ef-43fe-ad9f-bdf20408aaa9",
+  "total_cost_usd": 18.02807835,
+  "usage": {
+    "input_tokens": 27,
+    "cache_creation_input_tokens": 22117,
+    "cache_read_input_tokens": 462860,
+    "output_tokens": 3489,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 22117,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 650,
+        "cache_read_input_tokens": 39635,
+        "cache_creation_input_tokens": 563,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 563
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5": {
+      "inputTokens": 304,
+      "outputTokens": 306058,
+      "cacheReadInputTokens": 10865483,
+      "cacheCreationInputTokens": 687104,
+      "webSearchRequests": 0,
+      "costUSD": 17.463050250000002,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 30,
+      "outputTokens": 10930,
+      "cacheReadInputTokens": 593652,
+      "cacheCreationInputTokens": 59438,
+      "webSearchRequests": 0,
+      "costUSD": 0.5650280999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Sprint **007 \u2014 multiplier normal form** completed all three stages. The planner wrote `Sprint_Contracts/sprint_007_multiplier_normal_form.md`, targeting a weight-free reformulation of the Korenblum bound: factor `f = h\u00b7G` so the zero-free factor `G` drops out of the hypothesis (`\u2016h z\u2016 \u2264 \u2016B z\u2016` on the annulus) and survives only as the weight in the Bergman comparison \u2014 a statement that stays tight at `f = g`, the test that had killed three earlier targets. The generator returned `STATUS=READY_FOR_EVALUATION`, having shipped `Proof/MultiplierForm.lean` (~370 lines, axiom-free) with the full round trip `ValidKorenblumBound c \u2194 0 < c \u2227 c < 1 \u2227 MultiplierBound c`, the analytic-quotient existence lemma closed on its first route, and \u2014 the calibration payoff \u2014 `korenblum_ceiling : ValidKorenblumBound c \u2192 c\u00b2 \u2264 1/2`, the project's first hard upper bound, putting the shipped `c_value = 0.35646` at 50.4 % of `1/\u221a2`. The evaluator returned `STATUS=VERDICT_PASS`: build clean, no `sorry` (the single grep hit at `Proof/MultiplierForm.lean:34` is docstring prose), axiom audit exactly the four seeds, no oracles, and **score 17823/50000** \u2014 equal to parent V6, which is what this contract specifies, since it ships a layer and a ceiling rather than a number. Verdict note: `ProofRefinement/Korenblum/Refinement_Log/verdict_sprint_007_multiplier_normal_form.md`. Bulletin event line appended; next target per the planner is the weight reduction via the log-subharmonic Poisson bound on `|G|\u00b2`, whose two endpoint cases are both already provable.",
+  "ttft_ms": 1346,
+  "ttft_stream_ms": 832,
+  "time_to_request_ms": 47,
+  "type": "result",
+  "duration_ms": 4163990,
+  "uuid": "268bb0ba-2a88-43be-8a5e-5362f376b1c8"
+}

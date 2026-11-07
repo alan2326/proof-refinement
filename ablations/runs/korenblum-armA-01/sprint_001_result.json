@@ -1,0 +1,77 @@
+{
+  "is_error": false,
+  "duration_api_ms": 2728597,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "99090c6c-5c72-4231-ac06-a2eed1a9a817",
+  "total_cost_usd": 20.647955749999994,
+  "usage": {
+    "input_tokens": 27,
+    "cache_creation_input_tokens": 77695,
+    "cache_read_input_tokens": 455825,
+    "output_tokens": 4592,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 77695
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 757,
+        "cache_read_input_tokens": 58365,
+        "cache_creation_input_tokens": 1464,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 1464,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5": {
+      "inputTokens": 273,
+      "outputTokens": 222080,
+      "cacheReadInputTokens": 21460888,
+      "cacheCreationInputTokens": 604822,
+      "webSearchRequests": 0,
+      "costUSD": 20.063946499999993,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 28,
+      "outputTokens": 8735,
+      "cacheReadInputTokens": 670905,
+      "cacheCreationInputTokens": 67101,
+      "webSearchRequests": 0,
+      "costUSD": 0.58400925,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Sprint complete.\n\n**Sprint 084** (`sprint_084_termwise_perMode_criterion_full_interval_c_push_35658`) ran end to end: preflight exited 0, the planner wrote one contract, the generator returned `STATUS=READY_FOR_EVALUATION`, and the evaluator returned `STATUS=VERDICT_PASS`. The score is **17829/50000 = 0.35658**, a +1.2e-4 push over V64's 0.35646 \u2014 12\u00d7 the size of the previous sprint's gain, and obtained by replacing the sup-envelope/\u03c4-window disk-side bound with a termwise per-mode comparison rather than by re-pinning numerics; the new chain drops the window partition, the adjacency constraint, and the `Real.sqrt` endpoints entirely, while keeping the free-axiom count at two and the paper-axiom set at `{eq3, eq4, eq8, eq9}`. The verdict is at `ProofRefinement/Korenblum/Refinement_Log/verdict_sprint_084_termwise_perMode_criterion_full_interval_c_push_35658.md`.\n\nThree things from this run that the next planner needs, all recorded in `Bulletin.md`:\n\n- The planner found the standing V38 \"Sprint C\" directive is arithmetically obsolete \u2014 its target `0.356401` is *below* the current score, because V38's masses are rational box-sum lower bounds under-reporting the true integral by \u22481.4e-4 in `c`.\n- The `eq3/eq4/eq8/eq9` + one-mode-kernel family is now measured as exhausted at `c \u2248 0.3565924`; at most +1e-5 of headroom remains, so further gains need a structurally different input (the Bulletin note lists three candidate directions).\n- The generator deviated from contract \u00a7B2 deliberately: the numerical shim raises `RuntimeError` on rejection instead of returning `Fraction(0,1)`. I had the evaluator assess this rather than take it at face value; it verified the reasoning holds (the Evaluator checks `bound <= declared` against `declared = 1`, so `0` would pass and silently certify an unverified axiom) and that every other shim in `rigorous_scalar.py` already uses the same convention.",
+  "ttft_ms": 3539,
+  "ttft_stream_ms": 2313,
+  "time_to_request_ms": 127,
+  "type": "result",
+  "duration_ms": 3275128,
+  "uuid": "4af82709-0926-4d93-8c07-16a560f2e5e8"
+}

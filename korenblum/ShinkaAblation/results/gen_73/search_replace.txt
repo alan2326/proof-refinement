@@ -1,0 +1,18 @@
+<NAME>
+no_change_keep_seed
+</NAME>
+
+<DESCRIPTION>
+The seed axiom `hEq15_seed_3554` pins c to exactly 3554/10000. Without a registered higher seed or a Lean-proof of Eq15 at larger c (which requires real analysis machinery not in the current trust surface), 0.3554 is the maximum achievable. Keep current passing program.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to Wang (2025) seed: 0.3554. Raising requires a Lean proof of (15) at larger c.
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to Wang (2025) seed: 0.3554. Raising requires a Lean proof of (15) at larger c
+-- using only Mathlib + KorenblumPaper.* (no new axioms allowed).
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

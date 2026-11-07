@@ -1,0 +1,56 @@
+% Standalone wrapper for compiling the ablation section and appendix on their
+% own. The real paper should \input{ablations_section} in place of Section 5.3
+% and \input{ablations_appendix} in the appendix. The preamble below only
+% approximates the NeurIPS 2026 style (the official .sty was not available
+% offline); the body files use only amsmath, booktabs, and enumitem.
+\documentclass[10pt]{article}
+\usepackage[letterpaper,textwidth=5.5in,textheight=9in,top=1in]{geometry}
+\usepackage{times}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+\captionsetup{font=small}
+
+\newcommand{\KG}{K_G}
+\newcommand{\KK}{K_K}
+\newcommand{\Cr}{C_r}
+
+% Placeholder labels so cross-references resolve in this standalone build.
+\makeatletter
+\newcommand{\fakelabel}[2]{\protected@write\@auxout{}{\string\newlabel{#1}{{#2}{1}{}{Doc-Start}{}}}}
+\makeatother
+
+\title{Ablations (camera-ready draft)\\[2pt]
+\large Optimizing Analytic Constants via AI-Guided Lean Proof Refinement}
+\date{Draft of \today}
+\author{}
+
+\begin{document}
+\maketitle
+\fakelabel{sec:grothendieck}{5.1}
+\fakelabel{sec:korenblum}{5.2}
+\fakelabel{sec:blueprint}{4.1}
+\fakelabel{sec:agent}{4.3}
+\fakelabel{tab:grothendieck-history}{1}
+\fakelabel{tab:korenblum-history}{2}
+
+\setcounter{section}{5}
+\setcounter{subsection}{2}
+\setcounter{table}{2}
+\input{ablations_section}
+
+\clearpage
+\appendix
+\setcounter{section}{3}   % appears as Appendix D in this standalone build
+\input{ablations_appendix}
+
+\begin{thebibliography}{1}
+\bibitem{shinkaevolve} Robert T. Lange, Yuki Imajuku, and Edoardo Cetin.
+ShinkaEvolve: Towards open-ended and sample-efficient program evolution, 2025.
+arXiv:2509.19349.
+\end{thebibliography}
+\end{document}

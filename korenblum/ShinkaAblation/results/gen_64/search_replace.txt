@@ -1,0 +1,21 @@
+<NAME>
+no_change_keep_seed
+</NAME>
+
+<DESCRIPTION>
+The seed axiom `hEq15_seed_3554` pins c at exactly 3554/10000. Without registering a new oracle (which the agent cannot do) or constructing a Lean proof of `Eq15ScalarBound K c'` at c' > 0.3554 from scratch (a substantial analysis effort beyond a single edit), the maximum achievable score is 0.3554. The current file already attains this. Make a trivial whitespace-only docstring tweak to preserve the working program.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius. The score we are maximizing
+is exactly this value. This matches the seed axiom `hEq15_seed_3554`
+which pins `c = 3554/10000` exactly. -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius `c = 3554/10000`. This is the
+score; it matches the seed axiom `hEq15_seed_3554` which pins
+`c = 3554/10000` exactly, the ceiling reachable without new axioms. -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

@@ -1,0 +1,77 @@
+{
+  "is_error": false,
+  "duration_api_ms": 2234327,
+  "num_turns": 12,
+  "stop_reason": "end_turn",
+  "session_id": "2668525d-5793-44fa-af78-429474c05555",
+  "total_cost_usd": 16.00503755,
+  "usage": {
+    "input_tokens": 23,
+    "cache_creation_input_tokens": 24637,
+    "cache_read_input_tokens": 377327,
+    "output_tokens": 3380,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 24637,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 552,
+        "cache_read_input_tokens": 39228,
+        "cache_creation_input_tokens": 677,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 677
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5": {
+      "inputTokens": 199,
+      "outputTokens": 177222,
+      "cacheReadInputTokens": 12498194,
+      "cacheCreationInputTokens": 752207,
+      "webSearchRequests": 0,
+      "costUSD": 15.4743245,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    },
+    "claude-sonnet-5": {
+      "inputTokens": 30,
+      "outputTokens": 11459,
+      "cacheReadInputTokens": 541856,
+      "cacheCreationInputTokens": 52315,
+      "webSearchRequests": 0,
+      "costUSD": 0.5307130500000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Sprint **006 \u2014 Blaschke normal form** ran end to end and passed. Preflight was clean (the script lives at `ProofRefinement/Korenblum/scripts/korenblum_harness_preflight.sh`, not the `scripts/` path the skill names \u2014 worth fixing in the skill). The planner falsified its own predecessor's named next target (the annulus-slack lower bound is false at `f = g`) and instead specified the finite zero-divisor extraction that sprint 005's machinery had been assuming without any theorem producing it. The generator returned `STATUS=READY_FOR_EVALUATION`, shipping `Proof/BlaschkeNormalForm.lean` (663 lines, axiom-free) plus a re-routed `Candidates/V6.lean`, and the evaluator returned `STATUS=VERDICT_PASS` with score **17823/50000** \u2014 deliberately equal to parent V5, which the evaluator independently re-measured rather than taking on trust, since this sprint ships a layer rather than a number. Verdict note: `ProofRefinement/Korenblum/Refinement_Log/verdict_sprint_006_blaschke_normal_form.md`. Two items for whoever picks up next: the evaluator found a stale V6 self-check line in `Refinement_Log/log.jsonl` whose sha256 doesn't match the on-disk file (its own fresh entry does), and the constant is still unmoved at 0.35646 after six sprints of layer-building \u2014 the named next target is a joint `f`-and-`g` comparison, since the recurring failure mode is that any bound ignoring `g`'s inner mass collapses at `f = g`.",
+  "ttft_ms": 1464,
+  "ttft_stream_ms": 954,
+  "time_to_request_ms": 76,
+  "type": "result",
+  "duration_ms": 2994809,
+  "uuid": "77a35f23-8f37-43e3-86ef-a13b51b884a2"
+}

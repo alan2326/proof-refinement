@@ -1,0 +1,16 @@
+# Physically removed from the PRIVATE Mathlib copy at
+#   polygon_pi/.lake/packages/mathlib
+# (never from korenblum). Plan §8.2 'physical layer'.
+# Recorded BEFORE deletion: sha256, byte size, path.
+#
+# Deviation from plan C4: the plan named {Bounds,Wallis,Leibniz}. All five
+# modules under Mathlib/Analysis/Real/Pi/ are removed instead, so the physical
+# layer exactly matches the policy layer's blocked prefix
+# 'Mathlib.Analysis.Real.Pi'. Chudnovsky and Irrational are imported only by
+# the root Mathlib.lean, so this costs nothing extra.
+
+cd27c20532d48e41badb558b90859836cd7f0384def607f2f06cdbe3fcb8110f  11771  Mathlib/Analysis/Real/Pi/Bounds.lean
+44e5228b6f489dbab8fac77aaf369c60bd34a8c140a6cfcf683c04a1fcbcc555  2333  Mathlib/Analysis/Real/Pi/Chudnovsky.lean
+8a7ec89568dd89aeadd3875b786304d42ad6245251ddf0c5c92faeee7ebebecc  14134  Mathlib/Analysis/Real/Pi/Irrational.lean
+4230ed49e23b55c65c46d4095af930d1ed1f869576723412f31d4eb193e7295f  2782  Mathlib/Analysis/Real/Pi/Leibniz.lean
+905ab00c3d241cad412843a3e363075d23c2802466271b488ffa5e3ff6f18613  4516  Mathlib/Analysis/Real/Pi/Wallis.lean

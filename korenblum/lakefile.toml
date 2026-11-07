@@ -1,0 +1,27 @@
+name = "korenblum"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["KorenblumPaper", "ProofRefinement"]
+
+[leanOptions]
+pp.unicode.fun = true
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.28.0"
+
+[[require]]
+name = "checkdecls"
+git = "https://github.com/PatrickMassot/checkdecls.git"
+
+[[lean_lib]]
+name = "KorenblumPaper"
+roots = ["KorenblumPaper"]
+
+[[lean_lib]]
+name = "ProofRefinement"
+roots = ["ProofRefinement"]

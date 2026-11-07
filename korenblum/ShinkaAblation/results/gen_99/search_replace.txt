@@ -1,0 +1,21 @@
+<NAME>
+keep_seed_baseline
+</NAME>
+
+<DESCRIPTION>
+The seed axiom pins c=3554/10000 exactly, and no Lean-level proof of Eq15ScalarBound at a larger c is achievable here without new axioms. Keep the current passing baseline; make a trivial cosmetic no-op edit to preserve score.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius. The score we are maximizing
+is exactly this value. This matches the seed axiom `hEq15_seed_3554`
+which pins `c = 3554/10000` exactly. -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius `c = 3554/10000`.
+The seed axiom `hEq15_seed_3554` pins this constant exactly; raising it
+would require a Lean proof of equation (15) at a larger `c`. -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

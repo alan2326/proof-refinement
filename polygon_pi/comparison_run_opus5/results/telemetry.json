@@ -1,0 +1,337 @@
+{
+  "generated_utc": "2026-07-27T06:08:43.937691+00:00",
+  "pricing_usd_per_mtok": {
+    "claude-opus-5": {
+      "in": 5.0,
+      "out": 25.0
+    },
+    "claude-opus-4-8": {
+      "in": 5.0,
+      "out": 25.0
+    },
+    "claude-opus-4-7": {
+      "in": 5.0,
+      "out": 25.0
+    },
+    "claude-sonnet-5": {
+      "in": 3.0,
+      "out": 15.0
+    },
+    "claude-sonnet-4-6": {
+      "in": 3.0,
+      "out": 15.0
+    },
+    "claude-haiku-4-5": {
+      "in": 1.0,
+      "out": 5.0
+    },
+    "claude-fable-5": {
+      "in": 10.0,
+      "out": 50.0
+    },
+    "_cache_write_multiplier_1h": 2.0,
+    "_cache_write_multiplier_5m": 1.25,
+    "_cache_read_multiplier": 0.1
+  },
+  "hardware": {
+    "cpu_model": "Intel(R) Xeon(R) Platinum 8352Y CPU @ 2.20GHz",
+    "cpu_cores": "128",
+    "threads_per_core": "2",
+    "sockets": "2",
+    "cpu_max_mhz": "3400.0000",
+    "memory_total": "503Gi",
+    "kernel": "Linux neptune 5.15.0-185-generic #195-Ubuntu SMP Fri Jun 19 17:11:50 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux",
+    "lean": "Lean (version 4.28.0, x86_64-unknown-linux-gnu, commit 7e01a1bf5c70fc6167d49c345d3bf80596e9a79b, Release)",
+    "lake": "Lake version 5.0.0-src+7e01a1b (Lean version 4.28.0)",
+    "elan": "elan 4.2.0 (861dbdae2 2026-02-25)",
+    "mathlib_commit": "8f9d9cff6bd728b17a24e163c9402775d9e6a365",
+    "python": "Python 3.13.9",
+    "uv": "uv 0.9.10"
+  },
+  "sprints": [
+    {
+      "sprint": "sprint_001",
+      "start": "2026-07-27T04:00:20.951778Z",
+      "end": "2026-07-27T04:19:45.850127Z",
+      "outcome": "PASS",
+      "note": "lambda 0 -> 29/100, score 71/100, architectural/lower",
+      "wall_clock_s": 1164.9,
+      "llm_calls": 132,
+      "llm_calls_main": 12,
+      "llm_calls_subagent": 120,
+      "input_tokens": 263,
+      "output_tokens": 90585,
+      "cache_write_1h_tokens": 32046,
+      "cache_write_5m_tokens": 474211,
+      "cache_read_tokens": 11933673,
+      "cost_usd": 10.7598,
+      "by_model": {
+        "claude-opus-5": {
+          "calls": 88,
+          "output_tokens": 79409,
+          "cost_usd": 9.624
+        },
+        "claude-sonnet-5": {
+          "calls": 44,
+          "output_tokens": 11176,
+          "cost_usd": 1.1358
+        }
+      },
+      "total_tokens": 12530778
+    },
+    {
+      "sprint": "sprint_002",
+      "start": "2026-07-27T04:20:31.808244Z",
+      "end": "2026-07-27T04:40:28.230028Z",
+      "outcome": "PASS",
+      "note": "kappa 1 -> 0.3229947, score 0.0329947, architectural/upper",
+      "wall_clock_s": 1196.4,
+      "llm_calls": 129,
+      "llm_calls_main": 8,
+      "llm_calls_subagent": 121,
+      "input_tokens": 255,
+      "output_tokens": 87079,
+      "cache_write_1h_tokens": 16689,
+      "cache_write_5m_tokens": 515741,
+      "cache_read_tokens": 10669819,
+      "cost_usd": 10.1917,
+      "by_model": {
+        "claude-opus-5": {
+          "calls": 95,
+          "output_tokens": 79240,
+          "cost_usd": 9.1241
+        },
+        "claude-sonnet-5": {
+          "calls": 34,
+          "output_tokens": 7839,
+          "cost_usd": 1.0676
+        }
+      },
+      "total_tokens": 11289583
+    },
+    {
+      "sprint": "sprint_003",
+      "start": "2026-07-27T04:41:26.941249Z",
+      "end": "2026-07-27T05:01:40.793630Z",
+      "outcome": "PASS",
+      "note": "lambda -> 0.313165, score 0.0098297, architectural/lower",
+      "wall_clock_s": 1213.9,
+      "llm_calls": 132,
+      "llm_calls_main": 8,
+      "llm_calls_subagent": 124,
+      "input_tokens": 263,
+      "output_tokens": 88823,
+      "cache_write_1h_tokens": 16101,
+      "cache_write_5m_tokens": 538789,
+      "cache_read_tokens": 11034491,
+      "cost_usd": 10.6957,
+      "by_model": {
+        "claude-opus-5": {
+          "calls": 99,
+          "output_tokens": 82796,
+          "cost_usd": 9.8378
+        },
+        "claude-sonnet-5": {
+          "calls": 33,
+          "output_tokens": 6027,
+          "cost_usd": 0.8578
+        }
+      },
+      "total_tokens": 11678467
+    },
+    {
+      "sprint": "sprint_004",
+      "start": "2026-07-27T05:02:58.232401Z",
+      "end": "2026-07-27T05:28:21.518132Z",
+      "outcome": "PASS",
+      "note": "score 0.0098297 -> 0.009816589, architectural/both",
+      "wall_clock_s": 1523.3,
+      "llm_calls": 115,
+      "llm_calls_main": 11,
+      "llm_calls_subagent": 104,
+      "input_tokens": 16654,
+      "output_tokens": 109037,
+      "cache_write_1h_tokens": 20621,
+      "cache_write_5m_tokens": 748258,
+      "cache_read_tokens": 12585341,
+      "cost_usd": 13.4075,
+      "by_model": {
+        "claude-opus-5": {
+          "calls": 89,
+          "output_tokens": 102597,
+          "cost_usd": 12.5417
+        },
+        "claude-sonnet-5": {
+          "calls": 26,
+          "output_tokens": 6440,
+          "cost_usd": 0.8658
+        }
+      },
+      "total_tokens": 13479911
+    },
+    {
+      "sprint": "sprint_005",
+      "start": "2026-07-27T05:30:04.894649Z",
+      "end": "2026-07-27T06:08:43.766691Z",
+      "outcome": "PASS",
+      "note": "score 0.009816589 -> 0.009816533, infrastructure/both, optimality certificate",
+      "wall_clock_s": 2318.9,
+      "llm_calls": 194,
+      "llm_calls_main": 7,
+      "llm_calls_subagent": 187,
+      "input_tokens": 385,
+      "output_tokens": 136812,
+      "cache_write_1h_tokens": 14672,
+      "cache_write_5m_tokens": 890936,
+      "cache_read_tokens": 21170478,
+      "cost_usd": 18.9593,
+      "by_model": {
+        "claude-opus-5": {
+          "calls": 156,
+          "output_tokens": 131195,
+          "cost_usd": 17.8144
+        },
+        "claude-sonnet-5": {
+          "calls": 38,
+          "output_tokens": 5617,
+          "cost_usd": 1.1449
+        }
+      },
+      "total_tokens": 22213283
+    }
+  ],
+  "run_totals_sprints_only": {
+    "llm_calls": 702,
+    "llm_calls_main": 46,
+    "llm_calls_subagent": 656,
+    "input_tokens": 17820,
+    "output_tokens": 512336,
+    "cache_write_1h_tokens": 100129,
+    "cache_write_5m_tokens": 3167935,
+    "cache_read_tokens": 67393802,
+    "cost_usd": 64.014,
+    "by_model": {
+      "claude-opus-5": {
+        "calls": 527,
+        "output_tokens": 475237,
+        "cost_usd": 58.9421
+      },
+      "claude-sonnet-5": {
+        "calls": 175,
+        "output_tokens": 37099,
+        "cost_usd": 5.0719
+      }
+    },
+    "total_tokens": 71192022
+  },
+  "session_totals_including_harness_buildout": {
+    "llm_calls": 1188,
+    "llm_calls_main": 532,
+    "llm_calls_subagent": 656,
+    "input_tokens": 18766,
+    "output_tokens": 1543177,
+    "cache_write_1h_tokens": 2987790,
+    "cache_write_5m_tokens": 3167935,
+    "cache_read_tokens": 167650754,
+    "cost_usd": 168.7949,
+    "by_model": {
+      "claude-opus-5": {
+        "calls": 1013,
+        "output_tokens": 1506078,
+        "cost_usd": 163.723
+      },
+      "claude-sonnet-5": {
+        "calls": 175,
+        "output_tokens": 37099,
+        "cost_usd": 5.0719
+      }
+    },
+    "total_tokens": 175368422
+  },
+  "lean_compiles": [
+    {
+      "candidate": "Candidates/V0.lean",
+      "pass": true,
+      "score": "1",
+      "compile_elapsed_s": 2.626,
+      "user_cpu_s": 2.71,
+      "sys_cpu_s": 1.04,
+      "max_rss_kb": 834100.0,
+      "typecheck_elapsed_s": 2.804,
+      "timestamp_utc": "2026-07-27T02:46:48.249905+00:00"
+    },
+    {
+      "candidate": "Candidates/V1.lean",
+      "pass": true,
+      "score": "71/100",
+      "compile_elapsed_s": 2.6,
+      "user_cpu_s": 2.71,
+      "sys_cpu_s": 1.05,
+      "max_rss_kb": 834880.0,
+      "typecheck_elapsed_s": 3.26,
+      "timestamp_utc": "2026-07-27T04:18:23.143027+00:00"
+    },
+    {
+      "candidate": "Candidates/V2.lean",
+      "pass": true,
+      "score": "329947/10000000",
+      "compile_elapsed_s": 2.483,
+      "user_cpu_s": 2.58,
+      "sys_cpu_s": 1.05,
+      "max_rss_kb": 828304.0,
+      "typecheck_elapsed_s": 3.244,
+      "timestamp_utc": "2026-07-27T04:39:11.990541+00:00"
+    },
+    {
+      "candidate": "Candidates/V3.lean",
+      "pass": true,
+      "score": "98297/10000000",
+      "compile_elapsed_s": 2.613,
+      "user_cpu_s": 2.64,
+      "sys_cpu_s": 1.07,
+      "max_rss_kb": 831156.0,
+      "typecheck_elapsed_s": 3.062,
+      "timestamp_utc": "2026-07-27T05:00:19.190628+00:00"
+    },
+    {
+      "candidate": "Candidates/V4.lean",
+      "pass": true,
+      "score": "9816589/1000000000",
+      "compile_elapsed_s": 2.634,
+      "user_cpu_s": 2.77,
+      "sys_cpu_s": 1.08,
+      "max_rss_kb": 831956.0,
+      "typecheck_elapsed_s": 3.196,
+      "timestamp_utc": "2026-07-27T05:26:21.915424+00:00"
+    },
+    {
+      "candidate": "Candidates/V5.lean",
+      "pass": true,
+      "score": "9816533/1000000000",
+      "compile_elapsed_s": 2.6,
+      "user_cpu_s": 2.68,
+      "sys_cpu_s": 1.02,
+      "max_rss_kb": 834204.0,
+      "typecheck_elapsed_s": 3.019,
+      "timestamp_utc": "2026-07-27T06:06:26.659265+00:00"
+    }
+  ],
+  "transcript_files": [
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89/subagents/agent-a16a4c3192fd854ab.jsonl",
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89/subagents/agent-a3c46215992a9d3ef.jsonl",
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89/subagents/agent-a46e575a9af6f2963.jsonl",
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89/subagents/agent-a54e5759cf517d46a.jsonl",
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89/subagents/agent-a64f9f2f54398e3b0.jsonl",
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89/subagents/agent-a67f0ea05354e3d2b.jsonl",
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89/subagents/agent-a7734715356667f70.jsonl",
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89/subagents/agent-a80fae10384c1cdb2.jsonl",
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89/subagents/agent-a8d0d58209d0cbb97.jsonl",
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89/subagents/agent-aa04053227cd25c27.jsonl",
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89/subagents/agent-aa5a4639cdb690d60.jsonl",
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89/subagents/agent-ab450f34c1d5878ee.jsonl",
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89/subagents/agent-ab79013c8d95b5638.jsonl",
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89/subagents/agent-af6d9b77471ad5bc0.jsonl",
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89/subagents/agent-afe494549a8d4bd14.jsonl",
+    "$HOME/.claude/projects/-home-user-pi-polygon/1d3a3fcc-f1b5-463f-9643-67fcc8c1dd89.jsonl"
+  ]
+}

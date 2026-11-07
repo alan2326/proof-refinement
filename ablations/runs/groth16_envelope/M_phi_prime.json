@@ -1,0 +1,70 @@
+{
+  "oracle": "M_phi_prime",
+  "fn": "compute_M_phi_prime_bound",
+  "default_n": 1024,
+  "rows": [
+    {
+      "n_per_edge": 1024,
+      "bound": "59/2000",
+      "bound_float": 0.0295,
+      "ball_value": "0.029365087823302185",
+      "elapsed_s": 0.0
+    },
+    {
+      "n_per_edge": 2048,
+      "bound": "83/5000",
+      "bound_float": 0.0166,
+      "ball_value": "0.01638942763411614",
+      "elapsed_s": 1.6
+    },
+    {
+      "n_per_edge": 4096,
+      "bound": "113/10000",
+      "bound_float": 0.0113,
+      "ball_value": "0.011137274839627951",
+      "elapsed_s": 2.9
+    },
+    {
+      "n_per_edge": 8192,
+      "bound": "89/10000",
+      "bound_float": 0.0089,
+      "ball_value": "0.008737596080968186",
+      "elapsed_s": 5.2
+    },
+    {
+      "n_per_edge": 16384,
+      "bound": "79/10000",
+      "bound_float": 0.0079,
+      "ball_value": "0.007740725434401876",
+      "elapsed_s": 10.3
+    },
+    {
+      "n_per_edge": 32768,
+      "bound": "3/400",
+      "bound_float": 0.0075,
+      "ball_value": "0.007370981810558407",
+      "elapsed_s": 19.0
+    },
+    {
+      "n_per_edge": 65536,
+      "bound": "37/5000",
+      "bound_float": 0.0074,
+      "ball_value": "0.007235788377263665",
+      "elapsed_s": 39.3
+    },
+    {
+      "n_per_edge": 131072,
+      "bound": "73/10000",
+      "bound_float": 0.0073,
+      "ball_value": "0.007181998968795446",
+      "elapsed_s": 77.1
+    },
+    {
+      "n_per_edge": 262144,
+      "bound": "73/10000",
+      "bound_float": 0.0073,
+      "ball_value": "0.007158550611169864",
+      "elapsed_s": 154.5
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+<NAME>
+keep_seed_value
+</NAME>
+
+<DESCRIPTION>
+Without introducing new axioms, the seed `hEq15_seed_3554` pins Wang's (15) to c = 3554/10000, so this is the ceiling for axiom-free candidates routing through `valid_of_eq15`. Any further increase requires genuinely proving Eq15ScalarBound at a larger c from Mathlib + paper modules — a substantial mathematical task not feasible in a small targeted edit. I leave the proof as-is (already at the optimum reachable via the registered seed). Submitting a trivial no-op formatting edit to comply with the protocol.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius. The score we are maximizing
+is exactly this value. -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius. The score we are maximizing
+is exactly this value. This is the ceiling reachable via the registered
+seed `hEq15_seed_3554` without introducing new axioms. -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

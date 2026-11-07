@@ -1,0 +1,25 @@
+<NAME>
+keep_seed_minor_cleanup
+</NAME>
+
+<DESCRIPTION>
+The seed axiom pins c to 3554/10000 exactly, and no Lean-checked proof of Eq15ScalarBound at a larger c is available within Mathlib + workspace modules. Any attempt to raise c_value without a new registered oracle or proof breaks the build, scoring 0. So preserve the working seed proof. Minor cleanup only.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+theorem korenblum_constant_search : ValidKorenblumBound c_value := by
+  -- The trusted seed gives Wang's (15) at exactly c = 3554/10000. Our
+  -- c_value is 3554/10000, so we can use the seed directly.
+  have hEq15 : ∀ {K : ℝ → ℝ → ℝ}, Eq15ScalarBound K c_value := fun {K} => by
+    have h : Eq15ScalarBound K ((3554 : ℝ) / 10000) :=
+      ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K
+    simpa [c_value] using h
+  exact valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => hEq15)
+=======
+theorem korenblum_constant_search : ValidKorenblumBound c_value :=
+  valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => by
+    simpa [c_value] using
+      ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K)
+>>>>>>> REPLACE
+</DIFF>

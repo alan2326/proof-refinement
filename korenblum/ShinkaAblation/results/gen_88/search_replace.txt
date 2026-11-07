@@ -1,0 +1,17 @@
+<NAME>
+keep_seed
+</NAME>
+
+<DESCRIPTION>
+The seed axiom pins c=3554/10000. No registered path exists to a larger c, so keep the working candidate unchanged (trivial no-op edit to a comment to preserve structure).
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to seed; raising requires a Lean proof of Eq15 at larger c.
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to seed (3554/10000); raising requires a Lean proof of Eq15 at larger c.
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

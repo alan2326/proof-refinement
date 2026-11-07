@@ -1,0 +1,18 @@
+<NAME>
+keep_seed_at_3554
+</NAME>
+
+<DESCRIPTION>
+Without a Lean proof of Eq15 at a larger c, the seed bound 3554/10000 is the maximum honest score. Keep current proof structure (already passing).
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to Wang (2025) seed: 0.3554. Raising requires a Lean proof
+-- of Eq15ScalarBound at a larger c (no new axioms allowed).
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to Wang (2025) seed: 0.3554.
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

@@ -1,0 +1,16 @@
+<NAME>
+keep_seed
+</NAME>
+
+<DESCRIPTION>
+The seed axiom pins c = 3554/10000 exactly, and there is no registered path to a higher constant. Keep the current minimal proof.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+-- Seed-pinned: hEq15_seed_3554 fixes c at this literal; raising requires a Lean proof of (15).
+>>>>>>> REPLACE
+</DIFF>

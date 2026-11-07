@@ -1,0 +1,19 @@
+<NAME>
+no_change_keep_seed
+</NAME>
+
+<DESCRIPTION>
+Without a registered oracle for a larger c, the highest provable value is 3554/10000. Keep the working proof as-is (trivial whitespace tweak to be a valid diff is unnecessary; instead make a no-op cosmetic change to the docstring to preserve current score).
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius. The score we are maximizing
+is exactly this value. -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius (pinned to the trusted
+seed `hEq15_seed_3554`). The score we are maximizing is exactly this value. -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

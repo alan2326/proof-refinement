@@ -1,0 +1,17 @@
+<NAME>
+noop_keep_seed
+</NAME>
+
+<DESCRIPTION>
+No honest path exists to exceed 3554/10000 without a new registered axiom or a Lean proof of Eq15 at larger c (which is not derivable from the current trust surface). Keep the minimal seed-driven proof intact.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+-- Pinned to the seed literal; cannot be raised without a Lean proof of
+-- Eq15ScalarBound at a larger c from KorenblumPaper.* + Mathlib.
+>>>>>>> REPLACE
+</DIFF>

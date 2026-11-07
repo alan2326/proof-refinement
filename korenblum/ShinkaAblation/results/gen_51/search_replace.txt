@@ -1,0 +1,27 @@
+<NAME>
+no_change_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+The seed axiom `hEq15_seed_3554` is type-pinned to `3554/10000`, and no registered oracle or seed exists for a larger c. Any rewrite that increases `c_value` without a Lean-level proof of `Eq15ScalarBound K c` at the larger c will fail compilation or the axiom audit. The current candidate is already optimal under the available trust surface; making a tiny harmless cleanup edit to keep the structure crisp.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to seed; raising requires a Lean proof of Eq15 at larger c.
+-- The trusted seed `hEq15_seed_3554` has type pinned to the literal
+-- 3554/10000, so this is the maximum honest score until a Lean proof
+-- of `Eq15ScalarBound K c` at larger `c` is available.
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to seed; raising requires a Lean proof of Eq15 at larger c.
+-- The trusted seed `hEq15_seed_3554` has type pinned to the literal
+-- 3554/10000, so this is the maximum honest score until a Lean proof
+-- of `Eq15ScalarBound K c` at larger `c` is available.
+def c_value : ℝ := 3554 / 10000
+
+-- Single-source numeric preconditions for the final lift.
+theorem c_value_bounds : (0 : ℝ) < c_value ∧ c_value < 1 := by
+  refine ⟨?_, ?_⟩ <;> norm_num [c_value]
+>>>>>>> REPLACE
+</DIFF>

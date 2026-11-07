@@ -1,0 +1,20 @@
+<NAME>
+keep_seed_036
+</NAME>
+
+<DESCRIPTION>
+No safe path to exceed 0.3554 without unregistered axioms. Keep the working seed proof as-is (trivial no-op edit to preserve compile).
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius. The score we are maximizing
+is exactly this value. -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius (3554/10000). Pinned to the
+trusted seed; raising requires a Lean proof of `Eq15ScalarBound` at a
+larger `c`, which is not currently available without new axioms. -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

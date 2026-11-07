@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Edit",
+      "Write",
+      "Agent",
+      "Skill",
+      "mcp__lean-lsp__*",
+      "mcp__lean-explore__*",
+      "Bash(lake build*)",
+      "Bash(lake env*)",
+      "Bash(cd * && lake build*)",
+      "Bash(cat *)",
+      "Bash(ls *)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git checkout*)",
+      "Bash(git branch*)",
+      "Bash(git worktree*)",
+      "Bash(wc *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(echo *)",
+      "Bash(test *)",
+      "Bash(mkdir *)"
+    ],
+    "deny": []
+  },
+  "enableAllProjectMcpServers": true
+}

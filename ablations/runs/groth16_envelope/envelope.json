@@ -1,0 +1,355 @@
+{
+  "protocol": "design doc sect. 13.2 (P1)",
+  "workspace": "ablations/workspaces/groth16_envelope",
+  "parent": "V11, Cr_val = 1",
+  "oracle_convergence": {
+    "M": {
+      "declared_v11": "428",
+      "rows": [
+        {
+          "n_per_edge": 8192,
+          "bound": "855827/2000",
+          "bound_float": 427.9135,
+          "ball_value": "427.90905761765316",
+          "elapsed_s": 1.6
+        },
+        {
+          "n_per_edge": 16384,
+          "bound": "1069619/2500",
+          "bound_float": 427.8476,
+          "ball_value": "427.84303331398405",
+          "elapsed_s": 3.1
+        }
+      ],
+      "default_res_bound": "855827/2000",
+      "converged_bound": "1069619/2500",
+      "last_step_rel_change": 0.00015400308707250415,
+      "slack_vs_declared": 1.000356201600757
+    },
+    "M_phi": {
+      "declared_v11": "239/5000",
+      "rows": [
+        {
+          "n_per_edge": 1024,
+          "bound": "61/2500",
+          "bound_float": 0.0244,
+          "ball_value": "0.024255247011398424",
+          "elapsed_s": 0.0
+        },
+        {
+          "n_per_edge": 2048,
+          "bound": "101/10000",
+          "bound_float": 0.0101,
+          "ball_value": "0.009921229373056223",
+          "elapsed_s": 1.5
+        },
+        {
+          "n_per_edge": 4096,
+          "bound": "7/1250",
+          "bound_float": 0.0056,
+          "ball_value": "0.0054089250729942315",
+          "elapsed_s": 3.0
+        },
+        {
+          "n_per_edge": 8192,
+          "bound": "33/10000",
+          "bound_float": 0.0033,
+          "ball_value": "0.003153495608015806",
+          "elapsed_s": 5.0
+        },
+        {
+          "n_per_edge": 16384,
+          "bound": "11/5000",
+          "bound_float": 0.0022,
+          "ball_value": "0.0020262079026418154",
+          "elapsed_s": 11.2
+        },
+        {
+          "n_per_edge": 32768,
+          "bound": "19/10000",
+          "bound_float": 0.0019,
+          "ball_value": "0.0017616364636477155",
+          "elapsed_s": 18.6
+        },
+        {
+          "n_per_edge": 65536,
+          "bound": "9/5000",
+          "bound_float": 0.0018,
+          "ball_value": "0.0016787412373772074",
+          "elapsed_s": 37.0
+        },
+        {
+          "n_per_edge": 131072,
+          "bound": "9/5000",
+          "bound_float": 0.0018,
+          "ball_value": "0.0016441501723005805",
+          "elapsed_s": 74.0
+        },
+        {
+          "n_per_edge": 262144,
+          "bound": "9/5000",
+          "bound_float": 0.0018,
+          "ball_value": "0.0016284195209232749",
+          "elapsed_s": 151.8
+        }
+      ],
+      "default_res_bound": "61/2500",
+      "converged_bound": "9/5000",
+      "last_step_rel_change": 0.0,
+      "slack_vs_declared": 26.555555555555557
+    },
+    "M_phi_prime": {
+      "declared_v11": "543/10000",
+      "rows": [
+        {
+          "n_per_edge": 1024,
+          "bound": "59/2000",
+          "bound_float": 0.0295,
+          "ball_value": "0.029365087823302185",
+          "elapsed_s": 0.0
+        },
+        {
+          "n_per_edge": 2048,
+          "bound": "83/5000",
+          "bound_float": 0.0166,
+          "ball_value": "0.01638942763411614",
+          "elapsed_s": 1.6
+        },
+        {
+          "n_per_edge": 4096,
+          "bound": "113/10000",
+          "bound_float": 0.0113,
+          "ball_value": "0.011137274839627951",
+          "elapsed_s": 2.9
+        },
+        {
+          "n_per_edge": 8192,
+          "bound": "89/10000",
+          "bound_float": 0.0089,
+          "ball_value": "0.008737596080968186",
+          "elapsed_s": 5.2
+        },
+        {
+          "n_per_edge": 16384,
+          "bound": "79/10000",
+          "bound_float": 0.0079,
+          "ball_value": "0.007740725434401876",
+          "elapsed_s": 10.3
+        },
+        {
+          "n_per_edge": 32768,
+          "bound": "3/400",
+          "bound_float": 0.0075,
+          "ball_value": "0.007370981810558407",
+          "elapsed_s": 19.0
+        },
+        {
+          "n_per_edge": 65536,
+          "bound": "37/5000",
+          "bound_float": 0.0074,
+          "ball_value": "0.007235788377263665",
+          "elapsed_s": 39.3
+        },
+        {
+          "n_per_edge": 131072,
+          "bound": "73/10000",
+          "bound_float": 0.0073,
+          "ball_value": "0.007181998968795446",
+          "elapsed_s": 77.1
+        },
+        {
+          "n_per_edge": 262144,
+          "bound": "73/10000",
+          "bound_float": 0.0073,
+          "ball_value": "0.007158550611169864",
+          "elapsed_s": 154.5
+        }
+      ],
+      "default_res_bound": "59/2000",
+      "converged_bound": "73/10000",
+      "last_step_rel_change": 0.0,
+      "slack_vs_declared": 7.438356164383562
+    },
+    "M_pp": {
+      "declared_v11": "1402/25",
+      "rows": [
+        {
+          "n_per_edge": 1024,
+          "bound": "35048/625",
+          "bound_float": 56.0768,
+          "ball_value": "56.02067009152182",
+          "elapsed_s": 0.0
+        },
+        {
+          "n_per_edge": 2048,
+          "bound": "279869/5000",
+          "bound_float": 55.9738,
+          "ball_value": "55.917713645505486",
+          "elapsed_s": 1.6
+        },
+        {
+          "n_per_edge": 4096,
+          "bound": "279623/5000",
+          "bound_float": 55.9246,
+          "ball_value": "55.868584364128694",
+          "elapsed_s": 3.0
+        },
+        {
+          "n_per_edge": 8192,
+          "bound": "279503/5000",
+          "bound_float": 55.9006,
+          "ball_value": "55.84458753383657",
+          "elapsed_s": 5.0
+        },
+        {
+          "n_per_edge": 16384,
+          "bound": "558887/10000",
+          "bound_float": 55.8887,
+          "ball_value": "55.832728471533855",
+          "elapsed_s": 11.4
+        },
+        {
+          "n_per_edge": 32768,
+          "bound": "139707/2500",
+          "bound_float": 55.8828,
+          "ball_value": "55.82683342993497",
+          "elapsed_s": 19.8
+        }
+      ],
+      "default_res_bound": "35048/625",
+      "converged_bound": "139707/2500",
+      "last_step_rel_change": 0.00010556695718454714,
+      "slack_vs_declared": 1.0035288138747522
+    },
+    "inv_F_p_z": {
+      "declared_v11": "2",
+      "rows": [
+        {
+          "n_per_edge": 512,
+          "bound": "3407/2000",
+          "bound_float": 1.7035,
+          "ball_value": "1.7016035126833915",
+          "elapsed_s": 0.0
+        },
+        {
+          "n_per_edge": 1024,
+          "bound": "3267/2000",
+          "bound_float": 1.6335,
+          "ball_value": "1.6317302170723695",
+          "elapsed_s": 0.7
+        },
+        {
+          "n_per_edge": 2048,
+          "bound": "15991/10000",
+          "bound_float": 1.5991,
+          "ball_value": "1.597314738443705",
+          "elapsed_s": 1.3
+        },
+        {
+          "n_per_edge": 4096,
+          "bound": "3171/2000",
+          "bound_float": 1.5855,
+          "ball_value": "1.5837388958818275",
+          "elapsed_s": 2.3
+        },
+        {
+          "n_per_edge": 8192,
+          "bound": "15793/10000",
+          "bound_float": 1.5793,
+          "ball_value": "1.577600375330489",
+          "elapsed_s": 4.7
+        },
+        {
+          "n_per_edge": 16384,
+          "bound": "1971/1250",
+          "bound_float": 1.5768,
+          "ball_value": "1.5750522803634799",
+          "elapsed_s": 8.1
+        },
+        {
+          "n_per_edge": 32768,
+          "bound": "7879/5000",
+          "bound_float": 1.5758,
+          "ball_value": "1.5741001208319283",
+          "elapsed_s": 16.2
+        }
+      ],
+      "default_res_bound": "3407/2000",
+      "converged_bound": "7879/5000",
+      "last_step_rel_change": 0.0006341958396752917,
+      "slack_vs_declared": 1.269196598553116
+    }
+  },
+  "routes_at_converged_bounds": {
+    "Cr_phi_uzz": [
+      "6044806335974745213/15625000000000000000000",
+      0.0003868676055023837
+    ],
+    "Cr_phi_invD": [
+      "45785888453457/20000000000000000",
+      0.00228929442267285
+    ],
+    "Cr_phi": [
+      "9964575250801910016036633/800000000000000000000000000",
+      0.012455719063502388
+    ],
+    "Cr_tight": [
+      "26958033078719485467816787140401009/25000000000000000000000000",
+      1078321323.1487794
+    ]
+  },
+  "routes_at_default_res_bounds": {
+    "Cr_phi_uzz": [
+      "330503166194381309/3906250000000000000",
+      0.08460881054576161
+    ],
+    "Cr_phi_invD": [
+      "416758118552723/1000000000000000",
+      0.416758118552723
+    ],
+    "Cr_phi": [
+      "77869305130146997911287431/80000000000000000000000000",
+      0.9733663141268375
+    ],
+    "Cr_tight": [
+      "17258456472212161407377146152257201/16000000000000000000000000",
+      1078653529.5132601
+    ]
+  },
+  "routes_at_declared_values": {
+    "Cr_phi_uzz": [
+      "163411709/312500000",
+      0.5229174688
+    ],
+    "Cr_phi_invD": [
+      "6407109491529373/4000000000000000",
+      1.6017773728823432
+    ],
+    "Cr_phi": [
+      "2884808741182179805405153913/800000000000000000000000000",
+      3.6060109264777247
+    ],
+    "Cr_tight": [
+      "269772414882152053688894081/250000000000000000",
+      1079089659.5286083
+    ]
+  },
+  "R_hi_used_for_legacy_routes": "111440290813/100000000000",
+  "envelope": [
+    "6044806335974745213/15625000000000000000000",
+    0.0003868676055023837
+  ],
+  "envelope_route": "Cr_phi_uzz",
+  "repin_only_floor": [
+    "163411709/312500000",
+    0.5229174688
+  ],
+  "improvement_at_envelope_vs_parent": 2584.863622017167,
+  "BAR": [
+    "1/6400",
+    0.00015625
+  ],
+  "bar_margin_vs_envelope": 2.4759526752152556,
+  "original_sprint016_result": "1/32 = 0.03125",
+  "original_clears_bar_by": 0.005
+}

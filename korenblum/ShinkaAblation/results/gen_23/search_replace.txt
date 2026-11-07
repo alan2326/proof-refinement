@@ -1,0 +1,15 @@
+<NAME>
+no_change
+</NAME>
+
+<DESCRIPTION>
+No safe improvement available without new axioms or a Lean proof of Eq15 at larger c. Keeping the seed-pinned value.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

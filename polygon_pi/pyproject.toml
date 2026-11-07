@@ -1,0 +1,13 @@
+[project]
+name = "polygonpi-eval"
+version = "0.0.0"
+description = "Runtime Python deps for the Polygon-Pi Evaluator and reporting scripts"
+requires-python = ">=3.11"
+# Intentionally empty. Decision D3 forbids numerical oracles, so unlike the
+# Korenblum workspace there is no mpmath / python-flint dependency: every check
+# the Evaluator performs is either a stdlib computation (`fractions.Fraction`,
+# `tomllib`) or a subprocess call to `lake`.
+dependencies = []
+
+[tool.uv]
+package = false

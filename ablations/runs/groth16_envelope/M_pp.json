@@ -1,0 +1,49 @@
+{
+  "oracle": "M_pp",
+  "fn": "compute_M_pp_bound",
+  "default_n": 1024,
+  "rows": [
+    {
+      "n_per_edge": 1024,
+      "bound": "35048/625",
+      "bound_float": 56.0768,
+      "ball_value": "56.02067009152182",
+      "elapsed_s": 0.0
+    },
+    {
+      "n_per_edge": 2048,
+      "bound": "279869/5000",
+      "bound_float": 55.9738,
+      "ball_value": "55.917713645505486",
+      "elapsed_s": 1.6
+    },
+    {
+      "n_per_edge": 4096,
+      "bound": "279623/5000",
+      "bound_float": 55.9246,
+      "ball_value": "55.868584364128694",
+      "elapsed_s": 3.0
+    },
+    {
+      "n_per_edge": 8192,
+      "bound": "279503/5000",
+      "bound_float": 55.9006,
+      "ball_value": "55.84458753383657",
+      "elapsed_s": 5.0
+    },
+    {
+      "n_per_edge": 16384,
+      "bound": "558887/10000",
+      "bound_float": 55.8887,
+      "ball_value": "55.832728471533855",
+      "elapsed_s": 11.4
+    },
+    {
+      "n_per_edge": 32768,
+      "bound": "139707/2500",
+      "bound_float": 55.8828,
+      "ball_value": "55.82683342993497",
+      "elapsed_s": 19.8
+    }
+  ]
+}

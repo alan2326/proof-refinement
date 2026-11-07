@@ -1,0 +1,34 @@
+{
+  "run_id": "korenblum-armC-02",
+  "arm": "C",
+  "terminal_label": "D5",
+  "evidence": "3x budget exhausted: 7.06h > 6.93h and 1800402 > 692445.0 output tokens",
+  "finished_utc": "2026-07-29T00:19:15Z",
+  "best_score": "17823/50000",
+  "wall_clock_s": 25409.6,
+  "output_tokens": 1800402,
+  "input_tokens": 2733,
+  "cache_creation_tokens": 3299272,
+  "cache_read_tokens": 58456791,
+  "model_calls_turns": 60,
+  "usd_total": 118.3801,
+  "lake_builds": 0,
+  "evaluator_runs": 19,
+  "failed_attempts": 0,
+  "per_model": {
+    "claude-opus-5": {
+      "in": 1036,
+      "out": 1102332,
+      "cr": 55007021,
+      "cw": 2981727,
+      "usd": 74.005923
+    },
+    "claude-sonnet-5": {
+      "in": 1697,
+      "out": 48892,
+      "cr": 3449770,
+      "cw": 317545,
+      "usd": 2.96419575
+    }
+  }
+}

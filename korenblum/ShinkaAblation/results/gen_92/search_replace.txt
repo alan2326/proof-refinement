@@ -1,0 +1,15 @@
+<NAME>
+keep_seed
+</NAME>
+
+<DESCRIPTION>
+No registered ingredient lets us exceed 3554/10000 without introducing an unregistered axiom. Keep the current proof.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

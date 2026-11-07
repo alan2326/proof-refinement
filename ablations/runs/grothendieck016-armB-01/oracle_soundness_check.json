@@ -1,0 +1,11 @@
+{
+  "purpose": "sect 13.8 soundness cross-check of Arm B iter-2 oracle m_pp_tight (h_M_pp_tight_oracle)",
+  "oracle_certified_upper": "61373/10000 (6.1373), recomputed by unmodified Evaluator.py",
+  "sampled_lower_bound_true_sup": 5.08396919954,
+  "method": "closed-form |H_0''(w)| dense boundary grid n=20000/edge (p=0 endpoint of DD; valid lower bound on sup_{p,w}|DD|), mpmath dps=30",
+  "attained_at": "w = 0.8365 (real-axis edge midpoint, not corner)",
+  "sound_consistent": true,
+  "bracket_upper_over_lower": 1.2072,
+  "note": "full check incl. p=1 endpoint (needs H_eta second derivative) deferred to P5; dominant term verified",
+  "t": "2026-07-29T16:48:04Z"
+}

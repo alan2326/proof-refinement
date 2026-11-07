@@ -1,0 +1,24 @@
+# Computational: sup-norm M_ρ of φ on the disk of radius ρ (chosen via
+# choose_rho with α). Feeds Lemma 5.4 (M_diff, etc.) and tail_bound.
+name      = "compute_m_rho (Steps 5–6)"
+slug      = "compute_m_rho"
+kind      = "computational"
+paper_ref = "Braverman §5; sup-norm bound used in Lemma 5.4 / tail estimate"
+
+parents = ["compute_phi_taylor"]
+
+[python]
+module   = "proof_graph.oracle_wrappers"
+function = "compute_m_rho_pipeline"
+
+[python.inputs]
+phi   = { source = "node:compute_phi_taylor:phi" }
+alpha = { source = "const:alpha", cast = "float" }
+
+[python.kwargs]
+prec    = 256
+verbose = false
+
+[python.outputs]
+rho   = "rho"
+M_rho = "M_rho"

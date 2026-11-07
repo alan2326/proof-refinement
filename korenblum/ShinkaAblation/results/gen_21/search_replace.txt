@@ -1,0 +1,28 @@
+<NAME>
+no_change_seed_locked
+</NAME>
+
+<DESCRIPTION>
+The only registered external input is `hEq15_seed_3554`, which pins c = 3554/10000. Without a new oracle or a Mathlib-level proof of `Eq15ScalarBound K c` at a larger c (which is far beyond what's tractable here), we cannot exceed 0.3554. The current program already achieves the maximum attainable score given the trust surface. A no-op micro-cleanup is proposed to keep the program identical in score while slightly tightening the proof term.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+theorem korenblum_constant_search : ValidKorenblumBound c_value := by
+  -- The trusted seed gives Wang's (15) at exactly c = 3554/10000. Our
+  -- c_value is 3554/10000, so we can use the seed directly.
+  have hEq15 : ∀ {K : ℝ → ℝ → ℝ}, Eq15ScalarBound K c_value := fun {K} => by
+    have h : Eq15ScalarBound K ((3554 : ℝ) / 10000) :=
+      ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K
+    simpa [c_value] using h
+  exact valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => hEq15)
+=======
+/-- Seed-pinned bound at `c_value = 3554/10000`. -/
+theorem eq15_bound_at_seed (K : ℝ → ℝ → ℝ) : Eq15ScalarBound K c_value := by
+  simpa [c_value] using
+    ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K
+
+theorem korenblum_constant_search : ValidKorenblumBound c_value :=
+  valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => eq15_bound_at_seed K)
+>>>>>>> REPLACE
+</DIFF>

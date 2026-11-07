@@ -1,0 +1,54 @@
+[armA16] run_id=grothendieck016-armA-01 ws=ablations/workspaces/groth16_armA
+[armA16] start score=1  BAR=1/6400 (~0.000156)
+[armA16] sprint attempt 1 (elapsed 0.2 min, $0.00, out_tok=0)
+       -> turns=8 $11.391 score=7/1000 evals=+3 fails=+1
+[armA16] NEW BEST: 7/1000 = 7.000e-03 (BAR 1.563e-04)
+[armA16] sprint attempt 2 (elapsed 43.1 min, $11.39, out_tok=171771)
+       -> turns=4 $5.876 score=7/1000 evals=+3 fails=+1
+[armA16] sprint attempt 3 (elapsed 71.6 min, $17.27, out_tok=266741)
+       -> turns=1 $0.000 score=7/1000 evals=+3 fails=+1
+[armA16] sprint attempt 4 (elapsed 71.7 min, $17.27, out_tok=266741)
+       -> turns=1 $0.000 score=7/1000 evals=+3 fails=+1
+[armA16] sprint attempt 5 (elapsed 71.7 min, $17.27, out_tok=266741)
+       -> turns=1 $0.000 score=7/1000 evals=+3 fails=+1
+[armA16] sprint attempt 6 (elapsed 71.7 min, $17.27, out_tok=266741)
+       -> turns=1 $0.000 score=7/1000 evals=+3 fails=+1
+[armA16] sprint attempt 7 (elapsed 71.8 min, $17.27, out_tok=266741)
+       -> turns=1 $0.000 score=7/1000 evals=+3 fails=+1
+[armA16] sprint attempt 8 (elapsed 71.8 min, $17.27, out_tok=266741)
+       -> turns=1 $0.000 score=7/1000 evals=+3 fails=+1
+{
+  "run_id": "grothendieck016-armA-01",
+  "arm": "A",
+  "terminal_label": "D5",
+  "evidence": "max sprints (8) reached; best=7/1000 (within-envelope improvement only)",
+  "finished_utc": "2026-07-29T17:26:07Z",
+  "best_score": "7/1000",
+  "wall_clock_s": 4310.4,
+  "output_tokens": 266741,
+  "input_tokens": 323,
+  "cache_creation_tokens": 756093,
+  "cache_read_tokens": 12871356,
+  "model_calls_turns": 18,
+  "usd_total": 17.2669,
+  "lake_builds": 0,
+  "evaluator_runs": 3,
+  "failed_attempts": 1,
+  "per_model": {
+    "claude-opus-5": {
+      "in": 263,
+      "out": 230869,
+      "cr": 11782870,
+      "cw": 687087,
+      "usd": 16.14336625
+    },
+    "claude-sonnet-5": {
+      "in": 60,
+      "out": 35872,
+      "cr": 1088486,
+      "cw": 69006,
+      "usd": 1.1235783
+    }
+  }
+}
+[armA16] wrote reference_budget_groth16.json: {'T_ref_s': 4310.4, 'T_armA_measured_s': 4310.4, 'O_ref_output_tokens': 266741, 'usd_ref': 17.2669, 'source_run': 'grothendieck016-armA-01', 'terminal_label': 'D5', 'floor_note': 'T_ref floored at original band 2360s'}

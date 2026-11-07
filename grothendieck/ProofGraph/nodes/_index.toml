@@ -1,0 +1,58 @@
+# Global config for the proof graph.
+# See ../../docs/PROOF_GRAPH_DESIGN.md §3.3.
+
+sink_node = "kg_lt_krivine"
+
+# Lean primitives that are always allowed (every Mathlib-using theorem pulls these in).
+[axioms]
+lean_primitives = ["propext", "Classical.choice", "Quot.sound"]
+
+# The 12 trusted analytic axioms supplied by the implicit function theorem
+# applied to (p, w) ↦ F_p η p w near (0, sin z). Only `lemma_5_4_paper` and
+# its consumers are allowed to inherit these.
+trusted_analytic = [
+  "Braverman.Paper.F_inv_paper",
+  "Braverman.Paper.F_inv_paper_eq",
+  "Braverman.Paper.F_inv_paper_zero",
+  "Braverman.Paper.F_inv_paper_mem_S",
+  "Braverman.Paper.F_inv_paper_R_bound",
+  "Braverman.Paper.F_inv_paper_analytic",
+  "Braverman.Paper.F_inv_paper_contdiff",
+  "Braverman.Paper.F_inv_paper_first_deriv_zero",
+  "Braverman.Paper.F_inv_paper_at_origin",
+  "Braverman.Paper.pr_paper",
+  "Braverman.Paper.pr_paper_pos",
+  "Braverman.Paper.pr_paper_le_one",
+]
+
+# Inheritance shorthand: a node's `audit.allowed_axioms` field can be either
+# a list or a string of the form "@inherit:<name>". Names resolve here.
+[axiom_inherit]
+default = ["@axioms.lean_primitives"]
+lemma_5_4_paper = ["@axioms.lean_primitives", "@axioms.trusted_analytic"]
+
+# Global numerical parameters (matching ProofRefinement/Lemma54/Proof/SearchConfig.lean).
+[constants]
+r        = "23/25"
+eta_max  = "1/100"
+# Explicit Step-1/Step-2 rectangle used by the active Lean oracle domain.
+# These rationals are re-checked by the Python Step 1 pipeline itself.
+delta    = "57/1000"
+B        = "293/250"
+alpha    = "11/10"
+# prec=256 is needed because the certified γ−γ₀ improvement at p_override=1e-30
+# is ~5·10⁻³⁸, which is right at the edge of prec=128 (~38 decimal digits).
+prec     = 256
+# K_max = 250 lets the head/tail split go far enough into the φ Taylor series
+# that the certified pipeline produces strict improvement γ > log(1+√2).
+K_max    = 250
+# p_override = 1e-30: the certified `p_arb` from `certify_invertibility` is
+# only ~2.4·10⁻⁴, which leaves Cr·p² far above the Δ ≈ 5.3·10⁻⁸ improvement
+# margin. Overriding `p` to a much smaller value drops Cr·p² below Δ and
+# lets `solve_gamma` certify γ > log(1+√2). The override is sound because
+# Rouche still applies for any p ≤ p_certified.
+p_override = "1e-30"
+
+# Cached b-series file for `compute_h_eta_series` — bypasses the slow GH/GL
+# integration in `compute_phi_taylor`. Path is relative to project root.
+b_series_path = "grothendieck/proof/certified/b_series_eta0p01_K250_dps100.json"

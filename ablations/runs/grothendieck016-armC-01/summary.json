@@ -1,0 +1,34 @@
+{
+  "run_id": "grothendieck016-armC-01",
+  "arm": "C",
+  "terminal_label": "D5",
+  "evidence": "1x matched wall-clock window closed: 4311s > T_ref 4310s; best=None (none)",
+  "finished_utc": "2026-07-29T17:26:08Z",
+  "best_score": "None",
+  "wall_clock_s": 4311.2,
+  "output_tokens": 328469,
+  "input_tokens": 443,
+  "cache_creation_tokens": 745210,
+  "cache_read_tokens": 12601038,
+  "model_calls_turns": 47,
+  "usd_total": 18.7362,
+  "lake_builds": 0,
+  "evaluator_runs": 1,
+  "failed_attempts": 0,
+  "per_model": {
+    "claude-opus-5": {
+      "in": 389,
+      "out": 297525,
+      "cr": 11331507,
+      "cw": 665302,
+      "usd": 17.59133225
+    },
+    "claude-sonnet-5": {
+      "in": 54,
+      "out": 30944,
+      "cr": 1269531,
+      "cw": 79908,
+      "usd": 1.1448363
+    }
+  }
+}

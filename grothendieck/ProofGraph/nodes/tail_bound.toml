@@ -1,0 +1,24 @@
+# Computational: tail epsilon — bound on the remainder of φ's series past
+# the head. Feeds Theorem 5.1.
+name      = "tail_bound (Step 7)"
+slug      = "tail_bound"
+kind      = "computational"
+paper_ref = "Braverman §5; tail estimate in Theorem 5.1"
+
+parents = ["compute_m_rho"]
+
+[python]
+module   = "proof_graph.oracle_wrappers"
+function = "tail_bound_pipeline"
+
+[python.inputs]
+M_rho      = { source = "node:compute_m_rho:M_rho" }
+alpha      = { source = "const:alpha", cast = "float" }
+n_for_tail = { source = "node:head_contribution:n", cast = "int" }
+
+[python.kwargs]
+prec    = 256
+verbose = false
+
+[python.outputs]
+epsilon = "epsilon"

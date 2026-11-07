@@ -1,0 +1,294 @@
+% ---------------------------------------------------------------------------
+% Appendix: full setup, traces, failure modes, and compute for the ablations.
+% ---------------------------------------------------------------------------
+\section{Ablation details}
+\label{app:ablations}
+
+This appendix records the setup, per-run traces, and compute behind
+Table~\ref{tab:ablations}. Run directories, manifests, prompts, event logs, and
+transcripts are released with the code; the identifiers in parentheses below
+name them.
+
+\subsection{Checkpoints}
+
+Both ablations restart from a mid-trajectory state of the main run rather than
+from the published bound, for two reasons. First, the step the original run
+took at the chosen point is known, so there is a reference for what one
+iteration of the full framework achieves there. Second, the point was chosen so
+that this step was a change to the proof, which lets the ablation distinguish
+structural progress from parameter tuning.
+
+\paragraph{Grothendieck.}
+The checkpoint is the state of the Lemma~5.4 workspace at the start of the
+iteration that took the certified value from $\Cr = 1$ to $\Cr = 1/32$. The
+original iteration replaced the bound
+$M_{pp}\cdot \|\partial F_p\|^{-3}$, a product of separately certified
+suprema, with a single certified supremum of the quotient
+$\|\partial^2 F_p\| / \|\partial F_p\|^{3}$, which is roughly $300$ times
+smaller on the dominant term. The workspace is reconstructed from a
+commit-pinned git archive, so the snapshot is exact; a leak gate checks that no
+artifact of the original iteration (its oracle module, its candidate file, its
+values) is present. We measured, before any configuration ran, how far the
+checkpoint could be improved without new mathematics, by recomputing every
+registered oracle to convergence and re-declaring the certified values: this
+``no-Lean envelope'' is $\Cr \approx 3.9\times10^{-4}$, and a bar of
+$\Cr \le 1/6400$ was fixed in advance as the success criterion for the
+configurations that keep the formalization. The full framework crossed it; no
+ablated configuration did. The envelope also explains why the original
+iteration's $1/32$ is not the right yardstick: resolution and declared-value
+slack alone reach far past it, which is why Table~\ref{tab:ablations} reports
+the certified values rather than success labels.
+
+One disclosure must accompany these values. The checkpoint is dated
+2026-04-30. On 2026-05-03 the framework itself found that every oracle of that
+era evaluated a series truncated at a fixed number of terms without a rigorous
+tail bound, re-audited every candidate under truncation-free oracles, and
+re-based the main run's $\Cr$ accordingly; the final $\Cr$ of
+Section~\ref{sec:grothendieck} is a post-audit value. The ablation anchors
+before the audit because the post-audit states have no reproducible snapshot
+(their backing certificate caches were not retained) and because the
+post-audit iterations are repair work rather than a discovery step. The flaw
+lives in the trusted oracle layer that all four configurations share
+unchanged, so the between-configuration comparison measures what it claims.
+The $\Cr$ values in Table~\ref{tab:ablations} are on the checkpoint's
+pre-audit scale and should not be compared with the post-audit $\Cr$.
+
+\paragraph{Korenblum.}
+The checkpoint is the candidate V64 certifying $c = 17823/50000 = 0.35646$, at
+the start of the five iterations in which the original run reached
+$0.356562$ by partitioning the radial interval into seven windows with a
+per-mode kernel. The direction of that step was already named in the workspace
+notes at the checkpoint, so this ablation isolates execution rather than
+discovery: every configuration starts knowing the intended construction. The
+workspace was reconstructed from the final state of the run by removing every
+artifact dated after the checkpoint, and gated by rebuilding V64 and re-running
+the evaluator on it.
+
+\subsection{What each configuration receives}
+
+Table~\ref{tab:capabilities} lists the inputs by configuration. The two
+tool-less configurations receive byte-identical static context: the full partial
+formalization, the source paper, the workspace notes and analysis scripts, and
+the two most recent candidates. The no-partial-formalization configuration keeps
+the full agentic system, including Lean language-server tools and web access,
+and the source paper; it loses the reduction chain, the numerical library, and
+every registered oracle. Its seed is a single axiom asserting the published bound
+at its exact real value (Krivine's constant for Grothendieck; $c = 0.35646$,
+the checkpoint value, for Korenblum, so that the target matches the other
+configurations). Adding a direct-conclusion axiom at a better value is not
+progress and is rejected by the evaluator's axiom audit.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+& Full & Basic agent & No agent & No partial form. \\
+\midrule
+Partial formalization (Lean chain)        & yes & as text & as text & no \\
+Numerical library, registered oracles     & yes & text; edits allowed & text; edits allowed & no \\
+Source paper                              & yes & as text & as text & yes \\
+Planner / generator / evaluator agents    & yes & no  & no  & yes \\
+Tools (shell, file edits, Lean LSP, web)  & yes & no  & no  & yes \\
+Feedback from build and evaluator         & yes & verbatim, last 3 steps & none & yes \\
+Persistent workspace memory               & yes & files only & none (reset) & yes \\
+Foundation model                          & \multicolumn{4}{c}{same} \\
+Lean and Mathlib version, evaluator       & \multicolumn{4}{c}{same, unmodified} \\
+\bottomrule
+\end{tabular}
+\caption{Inputs and capabilities by configuration.}
+\label{tab:capabilities}
+\end{table}
+
+\subsection{Budgets and the matched window}
+
+The full framework runs until its evaluator accepts a candidate meeting a
+success criterion fixed in advance (Korenblum: any certified gain over the
+checkpoint, the goal the original run's notes set for the next iteration;
+Grothendieck: $C_r \le 1/6400$, the bar derived above), or until a sprint cap
+(eight on Grothendieck). Its measured wall clock and output tokens define the
+reference budget.
+
+Each ablated configuration runs until it has at least matched the reference on
+both axes. The budget is checked before each iteration or sample, so an
+iteration that starts inside the window runs to completion. For the cells of
+Table~\ref{tab:ablations} we count an iteration if it began before the
+configuration's recorded output tokens reached the reference; wall clock is
+matched in every case but is not used to cut, since it varies with concurrent
+load on the shared server. A more generous cut, stopping only once both axes
+are over, would change one cell: the Korenblum basic agent's third iteration
+(accepted at $0.35651$) began with wall clock under the reference and would
+then count, giving $+5\times10^{-5}$ instead of $+2\times10^{-5}$. No other
+cell depends on the choice.
+
+Two Korenblum runs went beyond the reference. The basic agent was continued to
+about three times the reference wall clock and four times the tokens, to
+measure its ceiling rather than its first accepted value; the
+no-partial-formalization run had a three-times budget. Their results are in
+the traces below. Wall clock excludes time during which all runs were stalled
+by a provider usage limit; the stalls are recorded in each manifest. Output
+tokens are recorded tokens; a call that timed out before returning left its
+generation unrecorded and is not counted.
+
+\subsection{Traces and failure modes}
+
+\paragraph{Grothendieck, full framework (\texttt{grothendieck016-armA-01/02}).}
+Four iterations, two of which produced accepted candidates. The first iteration
+accepted $\Cr = 7/1000$. The last iteration accepted $\Cr = 1/400000$ by two
+changes made in Lean: the merged quotient oracle over the exact closed form, and
+a change of the supremum domain from the certified rectangle to a lens in
+arcsine coordinates, which removes the dominant corner contributions. Both
+required new proved Lean and new certified numerics, produced and checked inside
+the loop. The run was interrupted once by a provider usage limit and resumed;
+the error-burn tail after the interruption is charged to the reference budget,
+which is generous to the ablations.
+
+\paragraph{Grothendieck, basic agent (\texttt{grothendieck016-armB-01/02/03}).}
+Seven completed calls. Accepted candidates at $9/100$, $3/250$, $1113/100000$,
+and $1/250$; two rejections. At the time-matched point its best was
+$1113/100000$; the final $1/250$ came from the token-parity extension, which
+started inside the window on the token axis. The first three accepted candidates
+are numerical refinements of the one-shot idea (an $\eta$-aware split of the
+$M_{pp}$ oracle). In the extension the model proposed the merged-oracle route
+of the full framework, with the same exact identity and cancellation and no
+trace of the idea in its context, first as a new library module, which failed to
+compile on a Mathlib style linter. Two calls later it rebuilt the argument inside
+the candidate file, $287$ lines of new proof, which compiled and passed the
+evaluator. It never found the domain change. Each build failure cost a full
+model call of $15$ to $45$ minutes, which is the measured price of having no
+way to run, test, and repair.
+
+\paragraph{Grothendieck, no agent (\texttt{grothendieck016-armBos-01}).}
+Six samples of about $130$k output tokens each. One emitted no file, one
+compiled but was rejected by the evaluator, and four were accepted, at
+$1/14$, $1/10$, $2/25$, and $8143/100000$. All four accepted samples contain
+the same idea, and the sampler's stopping rule (draw until both budgets are
+spent) overran the token budget by $44\%$. The output distribution is
+concentrated on one idea at scores between $0.07$ and $0.10$.
+
+\paragraph{Grothendieck, no partial formalization (\texttt{grothendieck016-armC-01/02}).}
+Six iterations, seven evaluator runs, no evaluator failures. One accepted
+candidate: a re-certification of Krivine's constant at
+$1.782213978231$, which is $4\times10^{-11}$ above it and inside the
+rationalization slack of the seed. Nothing below the published bound is
+derivable from the seed without new mathematics, and none was produced.
+
+\paragraph{Korenblum, full framework (\texttt{korenblum-armA-01}).}
+One iteration, two evaluator runs, no failures: $c = 17829/50000 = 0.35658$.
+The route differs from the original run's seven-window partition: a termwise
+per-mode criterion over the full interval with three rational endpoints, with
+one new oracle axiom asserting a scalar inequality between two explicit
+integrals, recomputed by the evaluator and recorded with its falsification point
+($c = 35660/100000$ returns false).
+
+\paragraph{Korenblum, basic agent (\texttt{korenblum-armB-01/02}).}
+Iteration 1 produced no candidate; iteration 2, which began at $150$k of the
+$231$k-token reference, was accepted at $0.35648$, a re-pin of the inherited
+two-window construction, after $2{,}721$\,s and $253$k output tokens in
+total. Beyond the reference: iteration 3 accepted at $0.35651$, iteration 4
+rejected for three unregistered axioms (the candidate was emitted without the
+file that registers them), iteration 5 accepted at $0.35653$, iteration 6
+emitted a new three-window helper module but no candidate file, and
+iteration 7 repeated the registration failure. The run ended at $10{,}590$\,s
+and $969$k output tokens, below the full framework's one-sprint value. Every
+rejected candidate compiled and type-checked. The accepted Lean is mostly
+template substitution: ignoring numerals and version names, each candidate
+differs from the checkpoint by about $23$ lines, and the one new proof is a
+twelve-line endpoint inequality closed by \texttt{norm\_num} and
+\texttt{linarith}. The configuration's one attempt at a structural change
+(iteration 6) never reached the evaluator.
+
+\paragraph{Korenblum, no agent (\texttt{korenblum-armBos-01}).}
+Three completed samples; none emitted a candidate file. Each wrote the
+numerical wrapper and the oracle registration and stopped, so nothing was
+scored. A fourth sample was in flight when the run was terminated, after the
+wall clock had exceeded the reference and recorded tokens had exceeded it by
+$77\%$.
+
+\paragraph{Korenblum, no partial formalization (\texttt{korenblum-armC-02}).}
+Nine iterations, nineteen evaluator runs, no failures, eleven candidates. The
+agent followed a coherent plan to rebuild Wang's Section~2 from Mathlib: radial
+reduction, a Parseval coefficient layer, the $\Omega$-transfer identity, a sharp
+outer majorant, Blaschke and multiplier normal forms, and a divisor reduction,
+$5{,}646$ lines across eleven Lean modules with no \texttt{axiom} declaration
+and no \texttt{sorry}. Each candidate re-proved the sink theorem through the new
+layer at the unchanged seed value. Its first attempt at a larger $c$ came in
+the ninth iteration, at which point it had exhausted three times the reference
+budget on both axes.
+
+\subsection{Compute}
+
+Table~\ref{tab:ablation-compute} reports consumption per configuration. Model
+calls count role-level agent turns for the agentic configurations (a planner,
+generator, or evaluator turn, each a multi-turn session) and completed model
+calls for the tool-less ones; neither is an API request count. Cost is at
+published list prices for the models used, not billed cost.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+Case study & Configuration & Wall (s) & Output tokens & Calls & Evaluator runs & Cost (USD) \\
+\midrule
+Grothendieck & Full framework           & 8{,}652  & 544{,}294   & 52 & 9  & 35.59 \\
+             & Basic agent              & 11{,}379 & 567{,}988   & 7  & 6  & 54.70 \\
+             & No agent                 & 9{,}042  & 781{,}503   & 6  & 5  & 32.19 \\
+             & No partial formalization & 10{,}093 & 738{,}266   & 80 & 7  & 44.06 \\
+\midrule
+Korenblum    & Full framework           & 3{,}285  & 230{,}815   & 14 & 2  & 20.65 \\
+             & Basic agent (in budget)  & 2{,}721  & 253{,}391   & 2  & 1  & 23.44 \\
+             & Basic agent (full run)   & 10{,}590 & 968{,}606   & 7  & 5  & 93.68 \\
+             & No agent                 & 4{,}093  & 407{,}860   & 3  & 0  & 24.73 \\
+             & No partial formalization & 25{,}410 & 1{,}800{,}402 & 60 & 19 & 118.38 \\
+\bottomrule
+\end{tabular}
+\caption{Compute per configuration, one run each. Grothendieck rows are the
+complete runs, gated at the matched window. For the Korenblum basic agent the
+first row is consumption through the last iteration that began within the
+token budget, and the second is the whole run; the Korenblum
+no-partial-formalization run had three times the reference budget.}
+\label{tab:ablation-compute}
+\end{table}
+
+\subsection{Evolutionary search baseline from the submission}
+
+The submitted version also reported an LLM-guided evolutionary baseline,
+ShinkaEvolve~\cite{shinkaevolve}, on the Korenblum constant. That run is not
+part of the matched-budget design above and is kept here as recorded. It started
+from the published bound $c = 0.3554$ rather than from the checkpoint, used the
+same unmodified evaluator and trust surface, disabled tool use, and ran Claude
+Opus~4.7 for $100$ generations with four islands and sixteen parallel jobs. Of
+$103$ evaluated programs, $88$ passed the evaluator at the seed value and $15$
+failed; no program certified a value above $0.3554$. The evolutionary operators
+re-emitted the seed with cosmetic edits and did not attempt a change to the
+proof structure.
+
+\subsection{Hardware, software, and models}
+
+All runs executed on one shared server with two Intel Xeon Platinum 8352Y
+processors ($128$ threads) and $503$\,GB of memory, with Lean~4 v4.28.0 and
+Mathlib v4.28.0; the server's accelerators were not used. Inference was hosted.
+The ablations were run in July 2026 and their logs record Claude Opus~5
+(\texttt{claude-opus-5}) for all generative work, with a Claude Sonnet~5
+subagent for evaluator plumbing in the full framework and the
+no-partial-formalization configuration. The main runs of
+Sections~\ref{sec:grothendieck} and~\ref{sec:korenblum} were run in April and
+May 2026 on the Claude Opus~4.7 generation named in Section~\ref{sec:agent};
+the evolutionary baseline below pinned \texttt{claude-opus-4-7}. The tool-less configurations
+ran inside the same agent runtime with tools disallowed rather than through a
+bare API call, so the runtime's system prompt was present and a few tool names
+remained visible although none executed (verified from the transcripts: zero
+tool invocations). This favors the ablated configurations. No human touched any
+run while it executed; the only human actions were starting runs, restarting
+after the usage-limit interruption, and setting budgets. Post-run audits on
+every configuration compared the frozen Lean surface byte for byte against the
+checkpoint, diffed oracle parameters, scanned for conclusion-shaped axioms, and
+scanned transcripts for reads of the study's own files; no violations were
+found. Each configuration is a single run, so no variance estimate is claimed.
+The two new numerical oracles introduced by the Grothendieck tool-less
+configurations were re-verified by the evaluator but have not yet received an
+independent dense-sampling cross-check; the full framework's result does not
+depend on them.

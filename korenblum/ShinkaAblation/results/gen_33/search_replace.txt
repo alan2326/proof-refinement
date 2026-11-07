@@ -1,0 +1,21 @@
+<NAME>
+keep_seed_bound
+</NAME>
+
+<DESCRIPTION>
+No safe path to exceed 0.3554 without introducing unregistered axioms or proving Wang's (15) at a larger c from scratch (which is infeasible in this context). Make a tiny cosmetic tweak (no semantic change) to keep the passing seed-bound proof intact.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius. The score we are maximizing
+is exactly this value. This matches the seed axiom `hEq15_seed_3554`
+which pins `c = 3554/10000` exactly. -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius (3554/10000). This is the
+ceiling reachable via the registered seed `hEq15_seed_3554` without
+introducing new axioms. -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

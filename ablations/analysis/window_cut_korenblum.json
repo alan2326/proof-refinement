@@ -1,0 +1,108 @@
+{
+  "parent": "17823/50000",
+  "parent_float": 0.35646,
+  "reference": {
+    "source": "korenblum-armA-01 measured usage",
+    "T_s": 3285.4,
+    "O_output_tokens": 230815
+  },
+  "arms": {
+    "B (basic agent)": {
+      "gate": {
+        "T_s": 3285.4,
+        "O_output_tokens": 230815,
+        "rule": "both-exceeded, checked before each iteration/attempt"
+      },
+      "iterations_included": [
+        {
+          "run": "korenblum-armB-01",
+          "n": 1,
+          "start_wall": 8.2,
+          "end_wall": 1502.8,
+          "tok_before": 0,
+          "tok_after": 149515,
+          "passed": null,
+          "score": null
+        },
+        {
+          "run": "korenblum-armB-01",
+          "n": 2,
+          "start_wall": 1502.8,
+          "end_wall": 2721.3,
+          "tok_before": 149515,
+          "tok_after": 253391,
+          "passed": true,
+          "score": "1114/3125"
+        },
+        {
+          "run": "korenblum-armB-02",
+          "n": 3,
+          "start_wall": 2729.3,
+          "end_wall": 3425.2,
+          "tok_before": 253391,
+          "tok_after": 316291,
+          "passed": true,
+          "score": "35651/100000"
+        }
+      ],
+      "state_at_stop": {
+        "wall_s": 3425.2,
+        "output_tokens": 316291
+      },
+      "first_excluded": {
+        "run": "korenblum-armB-02",
+        "n": 4
+      },
+      "best_in_window": "35651/100000",
+      "best_in_window_float": 0.35651,
+      "gain_over_parent": 5e-05
+    },
+    "Bos (no agent)": {
+      "gate": {
+        "T_s": 3285.4,
+        "O_output_tokens": 230815,
+        "rule": "both-exceeded, checked before each iteration/attempt"
+      },
+      "iterations_included": [
+        {
+          "run": "korenblum-armBos-01",
+          "n": 1,
+          "start_wall": 8.2,
+          "end_wall": 1315.2,
+          "tok_before": 0,
+          "tok_after": 132462,
+          "passed": null,
+          "score": null
+        },
+        {
+          "run": "korenblum-armBos-01",
+          "n": 2,
+          "start_wall": 1315.3,
+          "end_wall": 2707.5,
+          "tok_before": 132462,
+          "tok_after": 271238,
+          "passed": null,
+          "score": null
+        },
+        {
+          "run": "korenblum-armBos-01",
+          "n": 3,
+          "start_wall": 2707.5,
+          "end_wall": 4092.6,
+          "tok_before": 271238,
+          "tok_after": 407860,
+          "passed": null,
+          "score": null
+        }
+      ],
+      "state_at_stop": {
+        "wall_s": 4092.6,
+        "output_tokens": 407860
+      },
+      "first_excluded": "none -- recorded run never crossed the gate",
+      "best_in_window": null,
+      "best_in_window_float": null,
+      "gain_over_parent": 0.0
+    }
+  }
+}

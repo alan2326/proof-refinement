@@ -1,0 +1,18 @@
+<NAME>
+no_change_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+The trusted seed axiom pins c to exactly 3554/10000, and no oracle or paper-proven Eq15 at a larger c is available in the workspace. Any attempt to set c_value above 3554/10000 cannot discharge `Eq15ScalarBound K c_value` without an unregistered axiom (hard fail) or a Mathlib-only proof of (15) at a larger c (not feasible in this turn). The current program already achieves the maximum reachable score 0.3554. Make a trivial no-op refactor (whitespace) to keep the file passing without regression.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+theorem korenblum_constant_search : ValidKorenblumBound c_value :=
+  valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => eq15_bound_at_seed K)
+=======
+theorem korenblum_constant_search : ValidKorenblumBound c_value :=
+  valid_of_eq15 c_value_pos c_value_lt_one
+    (fun {K} => eq15_bound_at_seed K)
+>>>>>>> REPLACE
+</DIFF>

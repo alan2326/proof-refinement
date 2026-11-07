@@ -1,0 +1,29 @@
+# Computational leaf: evaluate H_η(i)/i with certified Arb arithmetic.
+# Output: H_eta_i_over_i (and a Δ := H_eta_i_over_i − log(1+√2) certified > 0).
+name      = "eval_h_eta_at_i (Step 0)"
+slug      = "eval_h_eta_at_i"
+kind      = "computational"
+paper_ref = "Braverman §4 numerics; underlies Theorem 4.4"
+
+parents = []
+
+[python]
+module   = "grothendieck.proof.certified.h_eta_evaluator"
+function = "eval_h_eta_at_i_arb"
+
+[python.inputs]
+eta = { source = "const:eta_max", cast = "float" }
+
+[python.kwargs]
+prec     = 256
+L_outer  = 10
+n_panels = 10
+n_gl     = 16
+verbose  = false
+
+# eval_h_eta_at_i_arb returns a 3-tuple: (H_eta_i_over_i, H_0_i_over_i, Delta).
+# The runner supports `tuple_index:<i>` for tuple-returning functions.
+[python.outputs]
+H_eta_i_over_i = "tuple_index:0"
+H_0_i_over_i   = "tuple_index:1"
+Delta          = "tuple_index:2"

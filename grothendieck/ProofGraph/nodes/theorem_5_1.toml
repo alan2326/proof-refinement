@@ -1,0 +1,44 @@
+# Theorem 5.1: there exists γ > log(1+√2) with the analytic-inverse summability
+# condition. The "main quantitative" theorem of Braverman §5.
+name      = "Theorem 5.1"
+slug      = "theorem_5_1"
+kind      = "statement"
+paper_ref = "Braverman et al. (2011), Theorem 5.1"
+
+# Mixed dependency node:
+# - `lemma_5_3`, `lemma_5_4`, `theorem_4_4` are on the Lean theorem path.
+# - `solve_gamma`, `head_contribution`, `tail_bound`, `lipschitz_bounds`
+#   currently feed the sidecar numerical certificate produced by `--run-all`.
+#   Their outputs are not yet imported as the concrete Lean witness in
+#   `Theorem51PaperEffective.lean`.
+parents = [
+  "lemma_5_4",
+  "lemma_5_3",
+  "theorem_4_4",
+  "solve_gamma",
+  "head_contribution",
+  "tail_bound",
+  "lipschitz_bounds",
+]
+
+[lean]
+sink           = "Braverman.theorem_5_1"
+file           = "LeanProof/Theorem51.lean"
+line           = 1568
+effective      = "Braverman.Effective.theorem_5_1_paper_effective"
+effective_file = "ProofGraph/Effective/Theorem51PaperEffective.lean"
+
+[audit]
+# theorem_5_1 itself uses no axioms; the paper-faithful effective version
+# transitively brings in the 12 trusted analytic axioms +
+# 3 oracle-backed numerical axioms:
+# - `h_M_oracle`: single-M sup bound on Ω(δ, B);
+# - `h_oracle_domain_contains_image`: F_inv_paper image lands in Ω(δ, B);
+# - `h_eta_strict_improvement_oracle`: H_η(I)/I improvement at I.
+allowed_axioms = [
+  "@axioms.lean_primitives",
+  "@axioms.trusted_analytic",
+  "Braverman.Effective.h_M_oracle",
+  "Braverman.Effective.h_oracle_domain_contains_image",
+  "Braverman.Effective.h_eta_strict_improvement_oracle",
+]

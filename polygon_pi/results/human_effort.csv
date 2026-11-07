@@ -1,0 +1,9 @@
+phase,activity,hours,estimated,notes
+0,"bootstrap: Mathlib copy, stripping, git init",,yes,
+1,trusted Lean surface,,yes,
+2,V0 baseline proof,,yes,
+3,reachability references,,yes,
+4,harness infrastructure,,yes,
+5,pilot sprint,,yes,
+6,long run supervision,,yes,
+7,reporting,,yes,

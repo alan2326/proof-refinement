@@ -1,0 +1,20 @@
+<NAME>
+no_change_seed_ceiling
+</NAME>
+
+<DESCRIPTION>
+The current candidate already achieves the ceiling reachable via the registered seed `hEq15_seed_3554` (c = 3554/10000 = 0.3554). Any increase requires either a Lean-internal proof of `Eq15ScalarBound K c` at larger c (a substantial analytic formalization not achievable in a small targeted edit) or a new registered oracle axiom (which the agent cannot register). I make a no-op cosmetic comment update to acknowledge the ceiling without risking regression.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius (seed-pinned at 3554/10000). -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius (seed-pinned at 3554/10000).
+This is the maximum `c_value` reachable via the only registered external
+input `hEq15_seed_3554`; raising it requires either a Lean-internal proof
+of `Eq15ScalarBound K c` at larger c, or a newly registered oracle axiom. -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

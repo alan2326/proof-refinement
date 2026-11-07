@@ -1,0 +1,15 @@
+<NAME>
+no_change
+</NAME>
+
+<DESCRIPTION>
+Without proving Eq15ScalarBound at a larger c (which requires substantial Mathlib work involving the K kernel from equation (7), the γ₂ formula, and certified integration of the (15) integrand), and with the only registered seed axiom pinned to c = 3554/10000, the maximum achievable c_value is 3554/10000 ≈ 0.3554. The current program already achieves this. Any attempt to bump c_value (e.g. to 3555/10000) would fail because `valid_of_eq15` requires `Eq15ScalarBound K c_value` and the seed only provides it at exactly 3554/10000. I propose no change.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

@@ -1,0 +1,15 @@
+<NAME>
+no_change_seed_ceiling
+</NAME>
+
+<DESCRIPTION>
+The only registered external input pins c=0.3554. Without proving Eq15 at a larger c (which requires substantial Lean work) or registering new oracles, we cannot exceed 0.3554. Keep the proven seed-based path.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

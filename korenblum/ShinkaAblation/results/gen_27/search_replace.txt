@@ -1,0 +1,25 @@
+<NAME>
+no_change_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+The trusted seed axiom `hEq15_seed_3554` is type-pinned to the literal `3554/10000`, and no other registered oracle exists in `lemma.toml` to certify Eq15 at a larger c. Proving Eq15ScalarBound at a larger c from Mathlib alone would require formalizing Wang's analytic estimates (K-product, γ₂, integral inequality) end-to-end, which is far beyond a targeted edit. The current program already achieves the maximum reachable score (0.3554) given the registered axiom surface. I make a tiny no-op stylistic tweak to keep the file compiling and unchanged in score.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+private theorem eq15_bound_at_seed (K : ℝ → ℝ → ℝ) : Eq15ScalarBound K c_value := by
+  simpa [c_value] using ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K
+
+theorem korenblum_constant_search : ValidKorenblumBound c_value :=
+  valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => eq15_bound_at_seed K)
+=======
+private theorem eq15_bound_at_seed (K : ℝ → ℝ → ℝ) : Eq15ScalarBound K c_value := by
+  simpa [c_value] using ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K
+
+/-- Final validity. Pinned to the seed `c = 3554/10000`; lifting requires
+new registered ingredients in `lemma.toml` (oracle or proved Eq15 at larger c). -/
+theorem korenblum_constant_search : ValidKorenblumBound c_value :=
+  valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => eq15_bound_at_seed K)
+>>>>>>> REPLACE
+</DIFF>

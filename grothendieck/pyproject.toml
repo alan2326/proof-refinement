@@ -1,0 +1,15 @@
+[project]
+name = "grothendieck-proof-refinement"
+version = "0.1.0"
+description = "Runtime Python deps for the Lemma 5.4 evaluator, the certified-arb oracles, and the proof-graph runner"
+requires-python = ">=3.11"
+dependencies = [
+    "mpmath>=1.3",
+    "python-flint>=0.8",
+]
+
+[project.optional-dependencies]
+plots = ["matplotlib>=3.8"]
+
+[tool.uv]
+package = false

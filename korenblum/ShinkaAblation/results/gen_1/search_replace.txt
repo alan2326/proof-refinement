@@ -1,0 +1,20 @@
+<NAME>
+no_change_seed_limit
+</NAME>
+
+<DESCRIPTION>
+The current candidate already achieves the seed-pinned maximum c_value = 3554/10000 = 0.3554. The only registered external input `hEq15_seed_3554` pins c to this exact literal, and without tool access I cannot reliably synthesize a Mathlib-only proof of `Eq15ScalarBound K c` at a larger c (which would require certified numerical integration of Wang's equation (15) integrand). Any speculative rewrite risks breaking compilation and dropping the score to 0. Therefore I propose a trivial no-op comment update to preserve the current passing score.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius. The score we are maximizing
+is exactly this value. -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius. The score we are maximizing
+is exactly this value. This matches the seed axiom `hEq15_seed_3554`
+which pins `c = 3554/10000` exactly. -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

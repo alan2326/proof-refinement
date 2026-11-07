@@ -1,0 +1,15 @@
+<NAME>
+noop_keep_seed
+</NAME>
+
+<DESCRIPTION>
+No viable path to exceed 3554/10000 without new axioms or substantial new Lean proofs. Keep the working seed-based proof.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

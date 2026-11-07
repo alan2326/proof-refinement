@@ -1,0 +1,17 @@
+<NAME>
+keep_seed
+</NAME>
+
+<DESCRIPTION>
+No registered path exists to exceed 0.3554 without a new oracle. Keep the working seed proof.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+/-- Wang 2025's published lower-bound radius (seed-pinned). -/
+def c_value : ℝ := 3554 / 10000
+=======
+/-- Wang 2025's published lower-bound radius (seed-pinned at 3554/10000). -/
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

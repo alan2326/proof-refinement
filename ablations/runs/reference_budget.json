@@ -1,0 +1,19 @@
+{
+  "T_ref_s": 8322,
+  "O_ref_output_tokens": 230815,
+  "usd_ref": 20.648,
+  "source_run": "korenblum-armA-01",
+  "terminal_label": "S",
+  "multiplier": 3.0,
+  "T_budget_s": 24966.0,
+  "O_budget_output_tokens": 692445.0,
+  "provenance": {
+    "armA_measured_wall_s": 3285.4,
+    "armA_sprints_to_goal": 1,
+    "original_run_band_s": 8322,
+    "original_run_band": "2026-05-05 sprints 084-088, 04:00:25->06:19:07",
+    "wall_clock_floored_at_original": true,
+    "why": "Arm A beat the original run's 5-sprint result in 1 sprint, so 3x its wall-clock would give the ablations less time than the framework itself originally used. Floored at the original band to keep the ablations generously resourced.",
+    "token_reference_note": "No token data survives for the original run (transcripts purged), so O_ref comes solely from Arm A's measured modelUsage."
+  }
+}

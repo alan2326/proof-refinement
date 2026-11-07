@@ -1,0 +1,19 @@
+<NAME>
+keep_seed
+</NAME>
+
+<DESCRIPTION>
+The seed axiom `hEq15_seed_3554` pins Wang's equation (15) at exactly c = 3554/10000. Without introducing a new (unregistered) axiom or producing a full Lean-level proof of (15) at a larger c (which would require formalizing the integral inequality and the K-product analysis from the paper — far beyond a small targeted edit), no improvement above 0.3554 is achievable. Maintain current passing candidate.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to Wang (2025) seed: 0.3554. Raising requires a Lean proof of (15) at larger c.
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to Wang (2025) seed: 0.3554 = 1777/5000. Raising c_value requires
+-- a Lean-level proof of equation (15) at a larger c without introducing
+-- unregistered axioms; the only registered seed pins c to 3554/10000.
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

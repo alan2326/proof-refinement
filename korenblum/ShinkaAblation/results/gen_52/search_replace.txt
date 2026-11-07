@@ -1,0 +1,23 @@
+<NAME>
+no_change_seed_optimal
+</NAME>
+
+<DESCRIPTION>
+The only registered external input is `hEq15_seed_3554` which pins c = 3554/10000 exactly. Without a new oracle (which we cannot register) or a full Lean proof of Eq15ScalarBound at a larger c (which would require formalizing Wang's analytic argument from KorenblumPaper.* — not feasible in this turn), 3554/10000 is the optimal achievable score. The current program already achieves this cleanly. Make a trivial whitespace-preserving simplification to keep the proof minimal and auditable.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+theorem korenblum_constant_search : ValidKorenblumBound c_value :=
+  valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => by
+    simpa [c_value] using
+      ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K)
+=======
+theorem eq15_bound_at_seed (K : ℝ → ℝ → ℝ) : Eq15ScalarBound K c_value := by
+  simpa [c_value] using
+    ProofRefinement.Korenblum.ShinkaTrustedSeed.hEq15_seed_3554 K
+
+theorem korenblum_constant_search : ValidKorenblumBound c_value :=
+  valid_of_eq15 c_value_pos c_value_lt_one (fun {K} => eq15_bound_at_seed K)
+>>>>>>> REPLACE
+</DIFF>

@@ -1,0 +1,20 @@
+<NAME>
+no_op_keep_seed
+</NAME>
+
+<DESCRIPTION>
+Without a Lean proof of Eq15 at larger c, the maximum honest score is 0.3554. Keep the current minimal seed-based proof; add a small documentation comment for clarity.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to Wang (2025) seed: 0.3554. Raising requires a Lean proof
+-- of Eq15ScalarBound at a larger c (no new axioms allowed).
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to Wang (2025) seed: 0.3554. Raising requires a Lean proof
+-- of Eq15ScalarBound at a larger c (no new axioms allowed).
+-- The trusted seed `hEq15_seed_3554` is pinned to literal 3554/10000.
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

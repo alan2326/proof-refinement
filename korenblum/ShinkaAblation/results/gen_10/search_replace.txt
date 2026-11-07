@@ -1,0 +1,18 @@
+<NAME>
+no_change_safe
+</NAME>
+
+<DESCRIPTION>
+Without a registered axiom or a Lean-proven Eq15 bound at a larger c, any attempt to raise c_value will fail compilation and score 0. Keeping the verified seed value preserves the 0.36 score. Minor cosmetic cleanup only.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to seed; raising requires a Lean proof of Eq15 at larger c.
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to Wang (2025) seed: 0.3554. Raising requires a Lean proof
+-- of Eq15ScalarBound at a larger c (no new axioms allowed).
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

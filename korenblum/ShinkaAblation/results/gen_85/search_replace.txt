@@ -1,0 +1,17 @@
+<NAME>
+try_3555
+</NAME>
+
+<DESCRIPTION>
+Attempt a tiny bump to 3555/10000 by reusing the seed's (15) bound, exploiting the fact that Eq15ScalarBound is monotone in c only if proved — since we cannot prove that, fall back. Keep current safe candidate.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+-- Note: raising c_value would require proving Eq15ScalarBound at the new c
+-- without new axioms. The seed only pins c = 3554/10000.
+>>>>>>> REPLACE
+</DIFF>

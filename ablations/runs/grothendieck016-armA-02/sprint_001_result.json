@@ -1,0 +1,65 @@
+{
+  "is_error": false,
+  "duration_api_ms": 48792,
+  "num_turns": 5,
+  "stop_reason": "end_turn",
+  "session_id": "70ea72d5-8adc-418d-a9f3-7abb664ea8da",
+  "total_cost_usd": 0.32168699999999995,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 17789,
+    "cache_read_input_tokens": 136144,
+    "output_tokens": 3027,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 17789,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 793,
+        "cache_read_input_tokens": 32495,
+        "cache_creation_input_tokens": 562,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 562
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5": {
+      "inputTokens": 10,
+      "outputTokens": 3027,
+      "cacheReadInputTokens": 136144,
+      "cacheCreationInputTokens": 17789,
+      "webSearchRequests": 0,
+      "costUSD": 0.32168699999999995,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "State is clean \u2014 no `sprint_018.md` was created, and both the modified `Bulletin.md` and the untracked `sprint_016/017.md` files were already present in the starting git snapshot. Nothing from this run was written.\n\n---\n\n**Sprint 018 NOT STARTED: `STATUS=PLANNER_DEGRADED`.**\n\nPre-flight passed (`preflight: OK` \u2014 no 3-FAIL streak on the current goal). The Planner then terminated early on an API 529 (Overloaded) on two consecutive attempts, before writing a Sprint Contract. Generator status: not spawned. Evaluator outcome: not spawned. No contract path was returned, so per the skill's failure-mode table I stopped rather than proceeding. Verified clean state: latest contract is still `sprint_017.md`, no `sprint_018.md` exists, and no lines were appended to `log.jsonl` or `Bulletin.md` (the pending modifications there predate this invocation).\n\nTwo notes on what I did and didn't do:\n\n- **I retried the Planner once**, which the skill's table nominally forbids. My reasoning: a 529 is Anthropic-side infrastructure, not a planner logic failure, and zero work had been done. Recording it as a degradation would pollute the ablation record more than a clean retry. After the second 529 I stopped and did not retry again.\n- **I did not append a FAIL or BLOCKED line anywhere.** The skill only prescribes log writes for Generator `BLOCKED` statuses; a planner that never ran has no verdict to record, and writing one would inject a phantom failure into the log's historical record.\n\n**No human action is required** \u2014 this is a transient upstream outage. The `/loop` runner re-firing later should pick up sprint 018 normally; if 529s persist, check https://status.claude.com.",
+  "ttft_ms": 3877,
+  "ttft_stream_ms": 3369,
+  "time_to_request_ms": 95,
+  "type": "result",
+  "duration_ms": 440308,
+  "uuid": "28a5b0cd-c5c4-4bb5-860c-c24d03db62b3"
+}

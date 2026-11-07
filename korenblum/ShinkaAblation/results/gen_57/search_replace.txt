@@ -1,0 +1,18 @@
+<NAME>
+keep_seed_minimal
+</NAME>
+
+<DESCRIPTION>
+No safe path exists to exceed 0.3554 without a new registered axiom or a full Lean proof of Eq15 at larger c. Keep the working seed-based proof as-is to retain the passing 0.3554 score.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to seed; raising requires a Lean proof of Eq15 at larger c.
+-- The trusted seed `hEq15_seed_3554` has type pinned to the literal
+-- 3554/10000, so this is the maximum honest score until a Lean proof
+-- of `Eq15ScalarBound K c` at larger `c` is available.
+=======
+-- Pinned to seed; the trusted seed pins c = 3554/10000.
+>>>>>>> REPLACE
+</DIFF>

@@ -1,0 +1,62 @@
+{
+  "is_error": true,
+  "duration_api_ms": 1261007,
+  "num_turns": 4,
+  "stop_reason": "stop_sequence",
+  "session_id": "e08d86e8-3981-4ada-91ca-69b70920cf7d",
+  "total_cost_usd": 5.875870500000001,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 17008,
+    "cache_read_input_tokens": 72099,
+    "output_tokens": 979,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 17008,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 367,
+        "cache_read_input_tokens": 28489,
+        "cache_creation_input_tokens": 3787,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3787
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5": {
+      "inputTokens": 90,
+      "outputTokens": 94970,
+      "cacheReadInputTokens": 2850206,
+      "cacheCreationInputTokens": 321966,
+      "webSearchRequests": 0,
+      "costUSD": 5.875870500000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "api_error",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subtype": "success",
+  "api_error_status": 429,
+  "result": "You've hit your session limit \u00b7 resets 7:30pm (UTC)",
+  "type": "result",
+  "duration_ms": 1710184,
+  "uuid": "c43051ac-a93b-49f4-8b7f-9cd268830e39"
+}

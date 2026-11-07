@@ -1,0 +1,19 @@
+<NAME>
+no_change_keep_seed
+</NAME>
+
+<DESCRIPTION>
+The seed axiom is pinned to c = 3554/10000 and any larger c requires a full Lean proof of Eq15ScalarBound (or alternative reduction) which is not feasible in this short edit. Keep the current minimal, compiling proof.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+-- Pinned to Wang (2025) seed: 0.3554. Raising requires a Lean proof
+-- of Eq15ScalarBound at a larger c (no new axioms allowed).
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to Wang (2025) seed: 0.3554. Raising requires a Lean proof
+-- of Eq15ScalarBound at a larger c (no new axioms allowed).
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

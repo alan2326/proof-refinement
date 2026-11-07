@@ -1,0 +1,16 @@
+<NAME>
+keep_seed_clean
+</NAME>
+
+<DESCRIPTION>
+No viable path to exceed 0.3554 without a new registered seed/oracle. Keep the clean working proof.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+-- Seed pins c to 3554/10000 exactly; no axiom-free route to a larger c known.
+>>>>>>> REPLACE
+</DIFF>

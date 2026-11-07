@@ -1,0 +1,27 @@
+{
+  "T_ref_s": 8651.9,
+  "O_ref_output_tokens": 544294,
+  "usd_ref": 35.5908,
+  "source_run": "grothendieck016-armA-01 + grothendieck016-armA-02",
+  "terminal_label": "S",
+  "multiplier": 1.0,
+  "T_budget_s": 8651.9,
+  "O_budget_output_tokens": 544294.0,
+  "gating": "TIME ONLY (matched window); tokens recorded",
+  "provenance": {
+    "armA_wall_s_by_run": {
+      "grothendieck016-armA-01": 4310.4,
+      "grothendieck016-armA-02": 4341.5
+    },
+    "armA_sprint_files_by_run": {
+      "grothendieck016-armA-01": 8,
+      "grothendieck016-armA-02": 3
+    },
+    "armA_combined_wall_s": 8651.9,
+    "interruption": "-01 sprints 2..8 starved by the claude.ai session limit (reset 19:30 UTC 2026-07-29); -02 granted the remaining attempts, limit stalls excluded from its wall clock (stall_total_s in its summary)",
+    "error_burn_tail_kept": "-01's post-limit error-burn tail stays in T_ref because B/C already consumed that window concurrently; generous to B/C, conservative for A",
+    "original_run_band_s": 2360,
+    "wall_clock_floored_at_original": false,
+    "why": "never hand the ablations less wall clock than the original framework consumed for the anchor (sect. 10c correction 2); 1x multiplier: user decision 2026-07-29"
+  }
+}

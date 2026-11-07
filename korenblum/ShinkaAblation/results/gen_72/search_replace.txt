@@ -1,0 +1,15 @@
+<NAME>
+no_change_keep_seed
+</NAME>
+
+<DESCRIPTION>
+Without a registered oracle or a Lean-checked proof of Eq15ScalarBound at a larger c, the maximum achievable score using only the trusted seed `hEq15_seed_3554` is 0.3554. The current program already achieves this. Any attempt to set c_value higher would require proving Eq15ScalarBound at the larger c without new axioms, which is not feasible in this single-file edit. Keep the proven minimal candidate.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

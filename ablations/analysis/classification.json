@@ -1,0 +1,112 @@
+[
+  {
+    "run_id": "korenblum-armA-01",
+    "arm": "A",
+    "harness_label": "S",
+    "classified_label": "S",
+    "label_meaning": "SUCCESS -- certified c > parent under an intact trust surface",
+    "evidence": "certified 17829/50000 > 17823/50000",
+    "best_certified_c": "17829/50000",
+    "max_proposed_c": "17829/50000",
+    "trust_violations": [],
+    "infra_events": 0,
+    "totals": {
+      "wall_clock_s": 3285.4,
+      "output_tokens": 230815,
+      "input_tokens": 301,
+      "cache_read_tokens": 22131793,
+      "model_calls_turns": 14,
+      "usd_total": 20.648,
+      "evaluator_runs": 2,
+      "failed_attempts": 0
+    }
+  },
+  {
+    "run_id": "korenblum-armB-01",
+    "arm": "B",
+    "harness_label": "S",
+    "classified_label": "S",
+    "label_meaning": "SUCCESS -- certified c > parent under an intact trust surface",
+    "evidence": "certified 1114/3125 > 17823/50000",
+    "best_certified_c": "1114/3125",
+    "max_proposed_c": "35653/100000",
+    "trust_violations": [],
+    "infra_events": 0,
+    "totals": {
+      "wall_clock_s": 2721.3,
+      "output_tokens": 253391,
+      "input_tokens": 10,
+      "cache_read_tokens": 1114175,
+      "model_calls_turns": 2,
+      "usd_total": 23.437,
+      "evaluator_runs": 1,
+      "failed_attempts": 0
+    }
+  },
+  {
+    "run_id": "korenblum-armB-02",
+    "arm": "B",
+    "harness_label": "D5",
+    "classified_label": "S",
+    "label_meaning": "SUCCESS -- certified c > parent under an intact trust surface",
+    "evidence": "certified 35653/100000 > 17823/50000",
+    "best_certified_c": "35653/100000",
+    "max_proposed_c": "35653/100000",
+    "trust_violations": [],
+    "infra_events": 0,
+    "totals": {
+      "wall_clock_s": 7868.9,
+      "output_tokens": 715215,
+      "input_tokens": 20,
+      "cache_read_tokens": 2230119,
+      "model_calls_turns": 5,
+      "usd_total": 70.2399,
+      "evaluator_runs": 4,
+      "failed_attempts": 2
+    }
+  },
+  {
+    "run_id": "korenblum-armC-01",
+    "arm": "C",
+    "harness_label": "D5",
+    "classified_label": "D1",
+    "label_meaning": "STRATEGY-DNF -- never proposed a candidate with c' > parent",
+    "evidence": "no candidate above parent was ever evaluated (max proposed 17823/50000)",
+    "best_certified_c": "17823/50000",
+    "max_proposed_c": "17823/50000",
+    "trust_violations": [],
+    "infra_events": 0,
+    "totals": {
+      "wall_clock_s": 13986.7,
+      "output_tokens": 886780,
+      "input_tokens": 844,
+      "cache_read_tokens": 41521697,
+      "model_calls_turns": 1046,
+      "usd_total": 57.0348,
+      "evaluator_runs": 17,
+      "failed_attempts": 0
+    }
+  },
+  {
+    "run_id": "korenblum-armC-02",
+    "arm": "C",
+    "harness_label": "D5",
+    "classified_label": "D1",
+    "label_meaning": "STRATEGY-DNF -- never proposed a candidate with c' > parent",
+    "evidence": "no candidate above parent was ever evaluated (max proposed 17823/50000)",
+    "best_certified_c": "17823/50000",
+    "max_proposed_c": "17823/50000",
+    "trust_violations": [],
+    "infra_events": 0,
+    "totals": {
+      "wall_clock_s": 25409.6,
+      "output_tokens": 1800402,
+      "input_tokens": 2733,
+      "cache_read_tokens": 58456791,
+      "model_calls_turns": 60,
+      "usd_total": 118.3801,
+      "evaluator_runs": 19,
+      "failed_attempts": 0
+    }
+  }
+]

@@ -1,0 +1,21 @@
+# Lean build artifacts and vendored packages (6.9 GB — copied, never committed)
+.lake/
+
+# The answer key: plan, runbook, floor constants, reference candidates.
+# Never agent-visible, never committed. See POLYGON_PI_HARNESS_PLAN.md §8.3.
+validation-private/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.uv-cache/
+
+# Evaluator scratch wrappers (written and unlinked per run; listed in case of a crash)
+.polygonpi_evaluator_typecheck.lean
+.polygonpi_axioms_check.lean
+.polygonpi_*.lean
+
+# Editor / OS
+*.swp
+.DS_Store

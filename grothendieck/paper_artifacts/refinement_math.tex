@@ -1,0 +1,606 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\KG}{\mathcal{K}_G}
+\newcommand{\Heta}{H_{\eta}}
+\newcommand{\HzeroP}{H_0'}
+\newcommand{\HzeroPP}{H_0''}
+\newcommand{\HetaP}{H_{\eta}'}
+\newcommand{\HetaPP}{H_{\eta}''}
+\newcommand{\Phizz}{\Phi}
+\newcommand{\Fmap}{F}
+\newcommand{\Finvmap}{F^{-1}}
+\newcommand{\Om}{\Omega}
+\newcommand{\dOm}{\partial\Omega}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\abslb}[1]{\underline{|#1|}}
+\newcommand{\absub}[1]{\overline{|#1|}}
+
+\title{Novel mathematical insights from the proof-refinement loop \\
+       (Lemma~5.4 of Braverman~et~al., \emph{The Grothendieck constant is strictly smaller than Krivine's bound})}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\textit{Appendix to the main paper.}
+This appendix collects the genuine mathematical content discovered while driving the
+constant $C_r$ in the rigorous certificate of Lemma~5.4 down through several orders of
+magnitude. We follow the convention that $\KG$ denotes the (real) Grothendieck constant.
+The Krivine upper bound is $\KG \le \pi/(2\ln(1+\sqrt 2))\approx 1.7822$;
+each refinement of the inequality below produces a strictly smaller certified upper
+bound for $\KG$. Throughout, $\eta=1/100$ and $r=23/25$ unless stated otherwise, and
+$\Om(\delta,B)\subset\C$ denotes the rectangle $\{w:|\Re w|\le 1-\delta,\ |\Im w|\le B\}$
+on which the implicit-function family is analytic.
+
+\bigskip
+
+%-------------------------------------------------------------------------
+\section{The improvement-over-Krivine quantity}\label{sec:KG-quantity}
+
+In the Braverman--Guruswami--Lee--Naor program, the certified upper bound on $\KG$
+takes the form
+\begin{equation}\label{eq:KG-bound}
+   \KG \;\le\; \frac{1}{c_{f,g}}, \qquad
+   c_{f,g} = \tfrac{2}{\pi}\,\gamma, \qquad
+   \gamma = \gamma_0 + \Delta\gamma,
+\end{equation}
+where $\gamma_0=\operatorname{atanh}(1/\sqrt 2)=\ln(1+\sqrt 2)$ is the value the inequality
+collapses to in the absence of the Lemma~5.4 refinement. Setting $\Delta\gamma = 0$ recovers
+the classical Krivine bound $\pi/(2\ln(1+\sqrt 2))$. The whole program is the
+construction of a strictly positive, rigorously certified $\Delta\gamma>0$. The natural
+\emph{quantity of merit} is therefore the gap between Krivine's constant and the new
+upper bound,
+\begin{equation}\label{eq:KGimp}
+   \KG\text{-improvement}
+   \;\coloneqq\;
+   \frac{\pi}{2\ln(1+\sqrt 2)} \;-\; \frac{1}{c_{f,g}}
+   \;=\;
+   \frac{\Delta\KG}{c_{\text{base}}\,(c_{\text{base}}+\Delta\KG)},
+\end{equation}
+with $c_{\text{base}}=(2/\pi)\gamma_0$ and $\Delta\KG=(2/\pi)\Delta\gamma$. Two
+properties of \eqref{eq:KGimp} are used systematically in the audits and figures.
+
+\paragraph{Inversion stability.}
+Because $c_{\text{base}}=(2/\pi)\ln(1+\sqrt 2) \approx 0.5611$ is bounded away from zero,
+the radius of the interval $1/c_{f,g}$ in arb (interval-ball) arithmetic is comparable to
+the radius of $c_{f,g}$ itself: a relative widening by the factor
+$1/c_{\text{base}}^2\approx 3.18$. Subtraction with the constant $\pi/(2\gamma_0)$ does
+\emph{not} suffer cancellation in arb because the radius is bounded above by the
+upstream stored radius $\sim 10^{-41}$, well below the actual gap $\Delta\KG/c_{\text{base}}^2$
+which lies between $10^{-32}$ and $10^{-17}$ across iterates. This guarantees that the
+plotted improvement values are not artifacts of floating-point cancellation.
+
+\paragraph{Linearisation.}
+For $\Delta\KG\ll c_{\text{base}}$,
+\eqref{eq:KGimp} expands as
+\(
+   \KG\text{-improvement}
+   = (1/c_{\text{base}}^2)\,\Delta\KG + O(\Delta\KG^2)
+   = \bigl(\pi/(2\gamma_0)\bigr)^2 \Delta\KG + O(\Delta\KG^2),
+\)
+so the curve $\KG$-improvement vs.\ iteration is, to leading order, just the Krivine
+constant squared times the $\Delta\KG$ trace. The plots in
+\href{run:plots/kg_improvement.pdf}{\texttt{plots/kg\_improvement.pdf}} display the
+exact form \eqref{eq:KGimp} computed with arb at precision~256.
+
+\bigskip
+
+%-------------------------------------------------------------------------
+\section{The auxiliary $z$-identity for $\norm{u_{zz}}$}\label{sec:aux-z-identity}
+
+The original argument bounds $\norm{u_{zz}}$ via a recentred Cauchy estimate on the
+analyticity disk $\{|z-z_0|<r\}$:
+\(
+   \norm{u_{zz}}\le 8R/(1-r)^2.
+\)
+The new derivation comes from differentiating the implicit-function identity
+$\Fmap(\eta, p, \Finvmap(p,z)) = z$ twice in $z$ and exploiting the algebraic relation
+\begin{equation}\label{eq:auxz}
+   D\cdot u_{zz}
+   \;+\;
+   DD\cdot h_z^2
+   \;=\; 0,
+   \qquad
+   D = \partial_w \Fmap,\quad
+   DD = \partial_w^2 \Fmap,\quad
+   h_z = \partial_z\Finvmap = 1/D.
+\end{equation}
+Solving \eqref{eq:auxz} gives the \emph{exact pointwise identity}
+\begin{equation}\label{eq:uzz-id}
+   u_{zz}
+   \;=\;
+   -\,\frac{DD\,h_z^2}{D}
+   \;=\;
+   -\,\frac{DD}{D^3}.
+\end{equation}
+The auxiliary $z$-identity \eqref{eq:auxz} is, up to sign, a re-statement of
+$\partial_z(D h_z) = 0$ along the inverse curve.
+Identity~\eqref{eq:uzz-id} replaces the worst-case Cauchy step
+$8R/(1-r)^2 \approx 1393$ by a direct sup
+\(
+   \norm{u_{zz}}\le \norm{DD/D^3}_{\Om}
+\)
+which our truncation-free chunk certifier evaluates to a value $\approx 1.55$,
+a $\sim 900\times$ tightening of the term~that dominated the V10 baseline.
+Crucially this is identity (not inequality) at every $(p,w)$, so the slack is purely a
+function of how tightly we can sup over a given $(p,w)$-cell.
+
+\bigskip
+
+%-------------------------------------------------------------------------
+\section{Joint sup-bounds vs.\ triangle products}\label{sec:joint-vs-triangle}
+
+A recurring leverage point is that the Lemma~5.4 derivation produces inequalities of
+the form
+\begin{equation}\label{eq:triangle}
+   \sup_{(p,w)} \norm{ A(p,w)\,B(p,w) /\ C(p,w)^k }
+   \;\le\;
+   \Bigl(\sup A\Bigr)\,\Bigl(\sup B\Bigr) / \Bigl(\inf C\Bigr)^k,
+\end{equation}
+and the right-hand side is what the original proof bounds by \emph{three independent}
+suprema. \eqref{eq:triangle} is sharp only when the three suprema all bind at the same
+$(p,w)$. For our analytic family they bind at \emph{different} corners, and the
+right-hand side over-estimates the joint sup by a factor that turns out to be
+$5$--$300\times$ depending on the cell.
+
+\paragraph{Term~1 (sprint~019).}
+The triangle product
+\(
+M_\phi\,M_{\phi'}\,(1/D)^2
+\)
+on the V13 oracle constellation evaluates to $2.09\times 10^{-3}$, while the joint
+sup
+\(
+J_1 \;=\; \sup_{(p,w)} \norm{\Phizz(w)\,\Phizz'(w)\,/\,D(p,w)^2}
+\)
+certifies to $J_1 \le 3\times 10^{-4}$ on the same rectangle---a $\sim 7\times$
+reduction. Mathematically this happens because $\Phi(w)$ and $\Phi'(w)$ are
+\emph{$\eta$-correlated}: each is an $O(\eta^2)$ deviation from
+$H_0(w)$ resp.\ $H_0'(w)$, and the deviations have aligned phase, so $|\Phi\,\Phi'|$ at
+the binding $w$ is much smaller than the product of the worst-case magnitudes.
+
+\paragraph{Term~2 (sprint~020).}
+The same mechanism applied to the second term:
+\(
+   \tfrac12 u_{zz}\,M_\phi^2 = \tfrac12\,\norm{DD/D^3}\,M_\phi^2 \approx 9.24\times 10^{-4}
+\)
+becomes
+\(
+   J_2 \;=\;\tfrac12\sup_{(p,w)} \norm{ DD(p,w)\,\Phi(w)^2 / D(p,w)^3 } \approx 7.7\times 10^{-5}
+\),
+a $\sim 6\times$ reduction. The \emph{same} aux-$z$ identity $u_{zz} = -DD/D^3$
+explains why $u_{zz}\,\Phi^2 = -DD\,\Phi^2/D^3$ is the natural single-cell
+quantity to certify.
+
+\bigskip
+
+%-------------------------------------------------------------------------
+\section{The form-A identity and merged-numerator interference}\label{sec:formA-merged}
+
+\paragraph{Form-A identity.}
+Differentiating $\Fmap(\eta,p,\Finvmap(p,z))=z$ twice in $p$ at fixed $z$ yields
+\begin{equation}\label{eq:formA}
+   D\,u_{pp} \;+\; 2\,\Phi'\,u_p \;+\; DD\,u_p^2 \;=\; 0,
+\end{equation}
+where $u_p = \partial_p \Finvmap$ satisfies, by a separate differentiation,
+$u_p = -\Phi/D$ with $\Phi = \Heta - H_0$. Substituting $u_p = -\Phi/D$ into
+\eqref{eq:formA} and solving gives the \emph{exact pointwise identity}
+\begin{equation}\label{eq:upp-merged}
+   u_{pp}
+   \;=\;
+   \frac{2\,\Phi(w)\,\Phi'(w)\,D(p,w)\;-\;DD(p,w)\,\Phi(w)^2}{D(p,w)^3}.
+\end{equation}
+This is the \emph{merged numerator}. The two terms in the numerator have opposite
+signs and partially cancel.
+
+\paragraph{Triangle vs.\ merged.}
+A naive triangle bound on $|u_{pp}|$ would split \eqref{eq:upp-merged} into
+\(
+   |u_{pp}|
+   \;\le\;
+   2\,\norm{\Phi\Phi'/D^2} + \norm{DD\,\Phi^2/D^3}
+   \;=\;
+   2 J_1 + J_2,
+\)
+discarding the destructive interference between the two summands. The merged sup
+\(
+   J_{\mathrm{merged}}
+   \;=\;
+   \sup_{(p,w)} \frac{ |2\Phi\Phi'D - DD\,\Phi^2| }{ |D|^3 }
+\)
+is the genuine pointwise sup of $|u_{pp}|$, and $J_{\mathrm{merged}} \le 2J_1+J_2$
+with equality if the two summands are everywhere phase-aligned.
+
+\paragraph{Resolution-dependent crossover.}
+A surprising phenomenon emerges when computing $J_{\mathrm{merged}}$ rigorously by
+interval arithmetic on cells of $\dOm \times [0,1]$ at resolution~$n$:
+\[
+\begin{array}{c|cccccccc}
+   n & 1{,}024 & 2{,}048 & 4{,}096 & 8{,}192 & 16{,}384 & 32{,}768 & 65{,}536 & 131{,}072 \\\hline
+   J_{\mathrm{merged}}/(2J_1+J_2) & 1.99 & 1.92 & 1.87 & 1.78 & 1.61 & 1.40 & 1.20 & 1.034
+\end{array}
+\]
+At low resolution the certified bound on the \emph{difference} $|2\Phi\Phi'D-DD\Phi^2|$
+is dominated by the per-cell interval slack of subtracting two large quantities of
+opposite sign---the bound is \emph{worse} than the triangle. The cancellation is real
+but invisible at coarse scale. Around $n\approx 2^{17}\!-\!2^{18}$ the per-cell slack
+shrinks below the cancellation gain and the merged bound crosses below the triangle.
+At $n=262{,}144$ the certified merged bound is $\approx 0.86\times$ the triangle,
+yielding a structural $\sim 14\%$ reduction that the triangle decomposition cannot
+capture at any resolution.
+
+This crossover is the cleanest example we have observed of a rigorous bound that is
+strictly tighter only above a quantitative resolution threshold, where ``resolution''
+refers to the discretisation of the sup.
+
+\bigskip
+
+%-------------------------------------------------------------------------
+\section{The $K_{\max}$ truncation regression and a truncation-free pipeline}\label{sec:trunc-free}
+
+The semi-analytic step in the original numerical pipeline writes
+\begin{equation}\label{eq:phi-series}
+   \Heta(w)
+   \;=\;
+   \arcsin(w) \;-\; \frac{\phi\bigl(\arcsin(w)\bigr)}{\sqrt{1-w^2}},
+   \qquad
+   \phi(z) \;=\; \sum_{k\ge 0} c_k\,z^k,
+\end{equation}
+and evaluates $\phi$ by truncating the series at $K_{\max}$. The $b$-series file at our
+parameters has $250$ coefficients with empirical pseudo-rate $|b_k|^{1/k}\approx 0.964$
+near $k=249$; a truncation at $K_{\max}=80$ leaves a tail that is \emph{not bounded
+rigorously} for the magnitudes that arise in $\Phi=\Heta-H_0$ at $\eta=1/100$
+($\Phi$ itself is $O(\eta^2)\sim 10^{-4}$, whereas the pseudo-rigorous tail is plausibly
+$O(10^{-8})$ but unverified). Interval arithmetic over a truncated polynomial returns
+a rigorous bound on the wrong function.
+
+\subsection{Integral representation via Price's theorem}
+
+The replacement is to evaluate $\Heta, \HetaP, \HetaPP$ \emph{without} $\phi$.
+Following Price's theorem, the analytic continuation of $\Heta$ to $w\in\C$ admits
+the integral representation
+\begin{equation}\label{eq:price}
+   \Heta(w)
+   \;=\;
+   \frac{1}{2\sigma_z}\,\iint_{\R^2}
+       K_z\bigl(P(x), Q(y)\bigr)\,
+       e^{-S_z[P,Q](x,y)}\;dx\,dy,
+\end{equation}
+where $K_z(P,Q)=\sgn(x-\eta P(x))\sgn(y+\eta Q(y))$ for the Hermite-physicist
+sign-pair we use, $S_z$ is the action quadratic form parameterised by $z\in\Om$, and
+$\sigma_z$ is the corresponding normalising determinant. The first and second
+$w$-derivatives are obtained by differentiating \eqref{eq:price} under the integral,
+producing analogous formulas for $\HetaP$ and $\HetaPP$ that involve $P', Q'$ but no
+power series in $w$.
+
+The integrals \eqref{eq:price} are evaluated via tensor-product Gauss--Legendre at the
+chunk midpoint, with adaptive Bernstein-ellipse error per panel; the value is then a
+sharp rigorous evaluation of $\Heta(w)$ (and its derivatives) at that midpoint.
+
+\subsection{Real-positive majorants for chunk bounds}
+
+To bound $\sup_{w\in Z}|\Heta(w)|$ over a chunk $Z\subset\Om$, we replace
+\eqref{eq:price} with its real-positive majorant
+\begin{equation}\label{eq:majorant}
+   |\Heta(w)|
+   \;\le\;
+   \frac{1}{2\absub{\sigma_z}}\,\iint_{\R^2}
+       \bigl|K_z(P,Q)\bigr|\;
+       \bigl|e^{-S_z}\bigr|\;dx\,dy
+   \;\le\;
+   \frac{1}{2\abslb{\sigma_z}}\,\iint_{\R^2}
+       \widehat E_Z(x,y)\,dx\,dy,
+\end{equation}
+where $\widehat E_Z(x,y)$ is a real, non-negative Gaussian-shaped majorant of
+$|K_z\,e^{-S_z}|$ valid uniformly for $w\in Z$. The right-hand side reduces to a finite
+sum of closed-form Gaussian moments
+\(
+   \int x^{2j} e^{-\alpha x^2}\,dx
+\)
+that arb evaluates rigorously. The chunk-bound for $\HetaP, \HetaPP, \Phi, \Phi'$ are
+analogous, with a key extra ingredient described below.
+
+\subsection{The $\eta^2$-tight $\Phi$-difference bound}
+
+Bounding $\Phi(w)=\Heta(w)-H_0(w)$ by a triangle inequality
+$|\Phi|\le |\Heta|+|H_0|\approx 2.4$ throws away the $O(\eta^2)$ scaling of $\Phi$
+and produces a $C_r$ that is six orders of magnitude worse than even the heuristic
+prior baseline. The remedy is to take the difference \emph{inside} the integral:
+\begin{equation}\label{eq:phi-diff}
+   \Phi(w)
+   \;=\;
+   \frac{1}{2\sigma_z}\,\iint_{\R^2}
+       \bigl[ K_z(P,Q) - K_z(0,0) \bigr]\;e^{-S_z[P,Q]}\,dx\,dy
+       \;+\;\text{(small) Gaussian-action correction},
+\end{equation}
+and majorise the kernel difference $K_z(P,Q)-K_z(0,0)$ by a real-positive Taylor
+expansion in $(P,Q)$ around $(0,0)$. Because $P,Q$ are themselves $O(\eta)$, the
+chunk-bound on $\Phi$ scales as $O(\eta^2)$, recovering the cancellation that the
+triangle bound discarded.
+
+\subsection{The $\lambda$-decay parallelogram fix}\label{sec:lambda-fix}
+
+A subtle bug in an earlier version of the $\HetaPP$ chunk certifier used the bound
+$\lambda \le 2\min(\alpha,\beta)$, where $\alpha,\beta$ are the principal-axis decay
+rates of the Gaussian factor. The correct bound is
+\begin{equation}\label{eq:lambda-fix}
+   \lambda \;\le\; \min(\alpha,\beta),
+\end{equation}
+which is the parallelogram identity
+$(x-y)^2 + (x+y)^2 = 2(x^2+y^2)$ in disguise: the joint quadratic form on the
+\emph{difference} of two Gaussians has decay $\min(\alpha,\beta)$, not
+$2\min(\alpha,\beta)$. The factor-of-two error inflated the certified Gaussian moments
+by $2^{j}$ at the $2j$-th moment and was the main quantitative gap between the
+truncation-free pipeline and the heuristic baseline before the fix.
+
+\subsection{Anisotropic Gaussian moments}\label{sec:aniso}
+
+Every chunk-bound integral collapses to a sum of moments of an anisotropic Gaussian
+$e^{-(\alpha x^2 + \beta y^2 + 2\gamma xy)}$. Bounding each moment by its isotropic
+majorant (replace $\alpha,\beta$ by $\min(\alpha,\beta)$) is sound but loose. We use
+\(
+   \text{moment}
+   \;\le\;
+   \min\bigl(\text{isotropic-majorant},\ \text{exact-anisotropic}\bigr),
+\)
+where the exact-anisotropic value is computed by diagonalising the quadratic form via
+an explicit rotation. The minimum is provably an upper bound on the moment and is
+tighter than either alone on cells where $\alpha,\beta$ differ substantially.
+
+\bigskip
+
+%-------------------------------------------------------------------------
+\section{The denominator-fix for $D(p,w)$}\label{sec:denom-fix}
+
+The joint quotients $\Phi\Phi'/D^2$ and $DD\,\Phi^2/D^3$ require a uniform lower
+bound $|D(p,w)|\ge \delta_D > 0$ on each cell. Computing $|D|$ directly as a joint
+$(p,w)$ interval inflates by orders of magnitude because $D$ is a difference
+$D = \HzeroP + p(\HetaP-\HzeroP)$ where the two summands have similar magnitude.
+The fix exploits the affine structure in $p$:
+\begin{equation}\label{eq:D-lb}
+   |D(p,w)|
+   \;\ge\;
+   |\HzeroP(w)|
+   \;-\;
+   |p|\cdot|\HetaP(w) - \HzeroP(w)|
+   \;\ge\;
+   \abslb{\HzeroP(w)}\;-\;p_{\mathrm{hi}}\cdot M_{\Phi'},
+\end{equation}
+where $M_{\Phi'}$ is the chunk-certified bound on $|\Phi'|$ and $\abslb{\HzeroP(w)}$ is
+the closed-form interval lower bound $1/|1-w^2|^{1/2}$. The right-hand side of
+\eqref{eq:D-lb} is computed once per $w$-chunk (independent of $p$) and is positive
+provided the chunk is bounded away from the branch points $w=\pm 1$. This avoids
+multiplying a small $p$-interval by a large $\HetaP-\HzeroP$ in the joint $(p,w)$
+representation and recovers near-optimal denominator bounds at every cell.
+
+\bigskip
+
+%-------------------------------------------------------------------------
+\section{The 2nd-order Taylor pad in $w$}\label{sec:taylor-pad}
+
+A chunk $Z$ of $w$-radius $r_Z$ admits a sharp interior midpoint $w_0$ at which
+$\Heta, \HetaP, \HetaPP$ are evaluated by~\eqref{eq:price}. The chunk values are then
+related to the midpoint values by 2nd-order Taylor expansion in $w$:
+\begin{equation}\label{eq:taylor-pad}
+\begin{aligned}
+   \sup_{w\in Z}|\Phi(w)| &\le |\Phi(w_0)| + \tfrac{r_Z^2}{2}\,M_{\Phi''} + \tfrac{r_Z^3}{6}\,M_{\Phi'''}, \\
+   \sup_{w\in Z}|\Phi'(w)| &\le |\Phi'(w_0)| + r_Z\,M_{\Phi''} + \tfrac{r_Z^2}{2}\,M_{\Phi'''}, \\
+   \sup_{w\in Z}|\Phi''(w)| &\le \min\bigl(|\Phi''(w_0)| + r_Z\,M_{\Phi'''},\;M_{\Phi''}\bigr),
+\end{aligned}
+\end{equation}
+where $M_{\Phi'''}$ is a Cauchy bound on the third derivative obtained from the
+analyticity of $\Phi$ on a slightly larger disk. The padded values are sharper than
+either the chunk-uniform bound $M_{\bullet}$ or the midpoint value alone, and are the
+mechanism by which corner-subdivision rounds (cf.\ \S\ref{sec:subdivision}) drive the
+certified sup down: each subdivision halves $r_Z$ and the pads shrink at order
+$r_Z^2$, $r_Z$, and $1$ respectively, with the third estimate switching from the
+Cauchy-padded value to the chunk-uniform bound at small $r_Z$.
+
+\bigskip
+
+%-------------------------------------------------------------------------
+\section{Per-cell $\min(\text{interval},\text{norm})$}\label{sec:min-cell}
+
+For cells where the merged numerator $2\Phi\Phi'D - DD\,\Phi^2$ has matched-magnitude
+summands of opposite sign, the interval-arithmetic numerator
+\(
+   \mathrm{score}_{\mathrm{interval}}
+   \;=\;
+   \absub{2\Phi\Phi'D - DD\Phi^2}\big/\abslb{D}^3
+\)
+captures the destructive interference but suffers dependency-blow-up when the
+constituents widen across the cell. The triangle-norm form
+\(
+   \mathrm{score}_{\mathrm{norm}}
+   \;=\;
+   2\,\absub{\Phi}\absub{\Phi'}/\abslb{D}^2 + \absub{DD}\absub{\Phi}^2/\abslb{D}^3
+\)
+discards interference but has no dependency-blow-up. Both quantities are valid upper
+bounds on $|u_{pp}|$ on the cell. We always use the tighter of the two,
+\(
+   \mathrm{score}_{\mathrm{cell}}
+   \;=\;
+   \min(\mathrm{score}_{\mathrm{interval}},\ \mathrm{score}_{\mathrm{norm}}),
+\)
+which is again provably a valid upper bound. The trade-off shifts cell-by-cell:
+near corner saturation, $\mathrm{score}_{\mathrm{norm}}$ wins; in the bulk,
+$\mathrm{score}_{\mathrm{interval}}$ wins.
+
+\bigskip
+
+%-------------------------------------------------------------------------
+\section{Symmetry of the V26 contour and corner subdivision}\label{sec:subdivision}
+
+\paragraph{Four-fold symmetry.}
+The function $\Heta$ at our parameters satisfies the two reflection identities
+\(
+   \Heta(\bar z) = \overline{\Heta(z)},
+\)
+\(
+   \Heta(-z) = -\Heta(z).
+\)
+The first is a consequence of the real-coefficient Taylor expansion of $\Heta$ near
+the origin; the second is the Hermite-physicist parity of the sign-pair $K_z$. The
+joint four-fold symmetry reduces the chunk certifier's work by exactly~$4\times$:
+only $w$-cells in the first quadrant of $\Om$ need to be evaluated primarily.
+
+\paragraph{Corner subdivision.}
+The chunk certifier uses a uniform $n_\bullet \times 4$ partition of $\dOm$, but the
+sup is consistently dominated by chunks adjacent to the four corners
+$\pm(1-\delta) \pm iB$. Recursively splitting each corner chunk $4$-way (or $2$-way for
+1D edge chunks) and re-running the Taylor-pad evaluator on the sub-chunks halves
+the certified sup roughly each round:
+\[
+\begin{array}{c|ccc}
+   \text{round} & 1 & 2 & 3 \\\hline
+   C_r & 2.27 & 1.23 & 0.383
+\end{array}
+\]
+starting from $C_r=34.47$ at the unsubdivided 64-chunk baseline. The diminishing returns
+reflect the fact that the binding cells move inwards from the corners as the local
+bound becomes tighter than the bulk.
+
+\bigskip
+
+%-------------------------------------------------------------------------
+\section{The $C_r$ landscape: formula $\times$ oracle constellation}\label{sec:landscape}
+
+Each candidate $V_K$ in the refinement loop encodes a pair
+$(\text{$C_r$ formula},\ \text{oracle constellation})$, not a linear sequence of
+literals. After the truncation-free re-audit (\S\ref{sec:trunc-free}), the
+\emph{patched} $C_r$ values rank as follows for our target parameters
+$\eta=1/100$, $r=23/25$, $p_{\max}=1$:
+\[
+\begin{array}{c|l|c}
+   V_K & C_r\ \text{formula} & C_r^{\mathrm{patched}} \\\hline
+   V_{11} & C_r^{\phi,u_{zz}} = M_\phi M_{\phi'} I^2 + \tfrac12 \norm{u_{zz}} M_\phi^2 & 0.3255 \\
+   V_{14} & C_r^{\phi,u_{zz},\,\mathrm{joint}} = J_1 + \tfrac12 \norm{u_{zz}} M_\phi^2 & \mathbf{0.2810} \\
+   V_{15-24} & C_r^{\phi,u_{zz},\,\mathrm{joint2}} = J_1 + \tfrac12 J_2 & 0.4105 \\
+   V_{25,26} & C_r^{\phi,u_{zz},\,\mathrm{merged}} = \tfrac12\,J_{\mathrm{merged}} & 0.3734
+\end{array}
+\]
+($I=\sup 1/|D|$.)
+The smallest $C_r^{\mathrm{patched}}$ is held by $V_{14}$. Two surprises emerge.
+
+\paragraph{Joint-on-only-one-term.}
+$V_{14}$'s mixed formula---$J_1$ (joint sup, term~1) plus $\norm{u_{zz}} M_\phi^2$
+(triangle product, term~2)---wins over $V_{15\text{-}24}$'s
+$J_1+\tfrac12 J_2$ (joint sup on \emph{both} terms). This is a consequence of the
+form-A identity \eqref{eq:upp-merged}: replacing $\norm{u_{zz}} M_\phi^2$ by
+$J_2 = \sup\norm{DD\,\Phi^2/D^3}$ changes which factor (the numerator $|DD|$ or the
+correlation $|\Phi|^2$) is taken on its worst cell, and at our parameters the
+correlation is more concentrated than the joint sup over a single cell can capture,
+so the triangle bound on term~2 is paradoxically tighter on the patched oracles.
+
+\paragraph{Merged loses (at finite resolution).}
+$V_{25,26}$'s merged formula is exact at the level of \eqref{eq:upp-merged}, but the
+certified sup $J_{\mathrm{merged}}$ at the chunk resolutions used for the audit
+($n=2^{18}$) is still slightly above the triangle $2J_1+J_2$, by exactly the
+crossover phenomenon in \S\ref{sec:formA-merged}. At higher resolution
+($n\ge 2^{20}$ extrapolated), the merged would dominate; at the production resolution
+of the audit, the joint mixture in $V_{14}$ wins.
+
+\paragraph{Take-away.}
+Beating any specific $C_r^{\mathrm{patched}}$ requires \emph{moving the audit floor},
+not just tightening the literal:
+\begin{enumerate}[leftmargin=2em]
+   \item re-baseline the formula choice onto $V_{14}$ for an immediate $\sim 17\%$ win;
+   \item subdivide chunks further (each round halved $J_{\mathrm{merged}}$ historically);
+   \item replace the 2nd-order Taylor pad by a 4th-order pad with a tighter
+         $M_{\Phi^{(4)}}$;
+   \item use an alternative analyticity domain (octagonal, Cassini, \dots) that
+         avoids corner saturation entirely.
+\end{enumerate}
+Items (3)--(4) are open analytic problems and require new oracles.
+
+\bigskip
+
+%-------------------------------------------------------------------------
+\section{The Cauchy-radius lift and the analyticity-domain envelope}\label{sec:cauchy-lift}
+
+The implicit-function family $\Finvmap$ is constructed in the original proof as the
+fixed-point of a contraction on a Banach space of analytic functions on
+$\mathrm{disk}(r_1\,r)$ with $r_1=(1+1/r)/2$. Our Lean axiomatisation supplies the
+strictly weaker analyticity domain $\mathrm{disk}((1+r)/2)$ (which equals $0.96$ at
+$r=23/25$), forcing the recentred Cauchy ball at any $z_0\in\mathrm{disk}\,r$ to have
+radius $\rho\le(1-r)/2=0.04$. By the standard Cauchy estimate
+\(
+   |f^{(n)}(z_0)|
+   \;\le\;
+   n!\,\sup_{|z-z_0|=\rho} |f(z)|/\rho^n,
+\)
+shrinking $\rho$ inflates derivative bounds by $1/\rho^n$. Lifting the analyticity
+domain to $\mathrm{disk}((3+r)/4) \approx 0.98$ enlarges the available Cauchy
+radius to $\rho=(3-r)/4\approx 0.13$, a $1.5\times$ lift, with an $n$-th derivative
+bound shrinking by $1.5^n$:
+\begin{itemize}
+   \item $1/D$ (first derivative): $1.5\times$ tighter,
+   \item $u_{zz}$ via Cauchy on the second derivative: $2.25\times$ tighter,
+   \item third-derivative Taylor pads (\S\ref{sec:taylor-pad}): $3.375\times$ tighter.
+\end{itemize}
+The wider domain claim $\mathrm{disk}((3+r)/4)$ is paper-citable in the original
+proof's Step~4; bringing it into the Lean axiomatisation is the single largest
+\emph{trust-expansion} gain available, with a downstream win factor that compounds
+with the chunk-bound improvements above.
+
+\bigskip
+
+%-------------------------------------------------------------------------
+\section{Summary of trace}
+
+Across $34$ refinement sprints driven by the framework, the certified $C_r$ for
+Lemma~5.4 traces (in pre-truncation-free units, then in truncation-free units after
+the May-2026 patch):
+\[
+   8.2\!\times\!10^{14}
+   \;\to\;
+   1.13\!\times\!10^{9}
+   \;\to\;
+   3.79
+   \;\to\;
+   1
+   \;\to\;
+   1/268{,}000\quad
+   \xrightarrow{\text{$K_{\max}$ patch}}\quad
+   0.3255
+   \;\to\;
+   0.2857.
+\]
+The correspondence between the $C_r$ trace and the $\KG$-improvement trace
+\eqref{eq:KGimp} is recorded in
+\href{run:plots/cr_progression.pdf}{\texttt{plots/cr\_progression.pdf}} and
+\href{run:plots/kg_improvement.pdf}{\texttt{plots/kg\_improvement.pdf}}. The non-
+monotonic plateaus reflect formula switches; the steepest descents come from the joint
+oracles (\S\ref{sec:joint-vs-triangle}) and the $K_{\max}$-truncation patch
+(\S\ref{sec:trunc-free}).
+
+The mathematical insights collected above---the auxiliary $z$-identity, the form-A
+identity and merged-numerator interference, the joint-vs-triangle gap, the
+$\eta^2$-tight $\Phi$-difference bound, the $\lambda$-decay parallelogram fix, the
+denominator-fix and Taylor-pad machinery, the per-cell $\min(\text{interval},\text{norm})$,
+the four-fold symmetry, and the analyticity-domain lift---are individually
+modest, but their composition is what makes the certified $\KG$-improvement strictly
+positive in arb-arithmetic at the $10^{-17}$ scale.
+
+\end{document}

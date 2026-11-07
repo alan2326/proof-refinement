@@ -1,0 +1,15 @@
+<NAME>
+no_change_seed_optimal
+</NAME>
+
+<DESCRIPTION>
+The seed axiom only certifies c=3554/10000. Without a new oracle or a Lean proof of Eq15 at a larger c (which requires substantial analytic machinery not exposed in the trust surface), c_value cannot be increased. Keep the working candidate.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>

@@ -1,0 +1,16 @@
+<NAME>
+keep_seed_pinned
+</NAME>
+
+<DESCRIPTION>
+The trusted seed pins c = 3554/10000 exactly. Without a Lean proof of Eq15ScalarBound at a larger c, the maximum achievable score is 0.3554. The current program already achieves this. Make a no-op clarifying comment update to keep the candidate stable.
+</DESCRIPTION>
+
+<DIFF>
+<<<<<<< SEARCH
+def c_value : ℝ := 3554 / 10000
+=======
+-- Pinned to Wang (2025) seed value; raising requires proving Eq15ScalarBound at larger c.
+def c_value : ℝ := 3554 / 10000
+>>>>>>> REPLACE
+</DIFF>
